@@ -4,27 +4,33 @@
 
 ### 🎯 Objectifs du jour
 
-- Mise en place du journal de bord et du GitHub Project.
-- Arborescence projet (backend/).
-- Initialiser Flask (app, blueprints, config de base).
-- Créer environnement virtuel + installer dépendances :
-  - Flask
-  - Flask-SQLAlchemy
-  - Flask-Migrate
-  - PyJWT
-  - bcrypt
+- Mettre en place le journal de bord.
+- Créer et organiser GitHub Projects.
+- Préparer l’arborescence backend.
+- Initialiser Flask avec une config de base.
+- Mettre en place l’environnement virtuel et les dépendances.
+- Vérifier le lancement de l’app.
 
 ### ✅ Réalisé
 
-- [x] Mise en place du journal de bord. (suivis journalier)
-- [ ] Mise en place de GitHub Project. (suivis des objectifs)
-- [ ] Arborescence backend créé → branche `setup-backend`.
-- [ ] Environnement virtuel configuré.
-- [ ] Dépendances installées (`Flask`, `Flask-SQLAlchemy`, etc.).
+- [X] Journal de bord mis en place.
+- [X] GitHub Projects configuré :
+  - Draft = tâches rapides.
+  - New issue = tâches complexes (avec sous-tâches).
+- [X] Arborescence backend créée.
+- [X] Environnement virtuel installé + `requirements.txt` généré.
+- [X] Initialisation de Flask (`__init__.py`, `run.py`).
+- [X] Fichier `config.py` :
+  - Configuration globale.
+  - Développement local.
+  - Tests.
+  - Production.
+- [X] Fichier `.env` créé pour sécuriser les clés (`SECRET_KEY`, etc.) → ajouté dans `.gitignore`.
+- [X] Lancement de l’app → `/ping` répond correctement.
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Problème d’interpréteur Python qui ne pointait pas sur mon `venv` → corrigé via réglage de VSCode.
 
 ### 🔀 SCM (branches & commits)
 
@@ -34,21 +40,31 @@
 
 - Commits :
 
-  -
+  - 📝 (docs/logbook.md): Add logbook and set objectives for day 1 week 1
+  - ✨ (backend/): Initial Flask setup with config, env and healthcheck route
+  - 📝 (docs/logbook.md): Update progress for day 1 week 1
 
 ### 🧪 QA (tests faits)
 
-- [ ] Test à faire
+- [X] Faire tourner l'application Flask.
 
 ### 💡 Notes / décisions
 
-- J’ai décidé de logguer dès maintenant les erreurs avec `logging`.
+- Mise en place d'un fichier `.env` pour sécuriser mes clés.
+- Configuration de l'application en prévisions d'une utilisation de `Docker` pour lancer le backend et le frontend.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-
-  -
+  - J'ai remplis tout mes objectifs de la journéee dans le temps que je me suis fixé → Bon calibrage de ma charge de travail /jour.
+  - Utiliser un journal et bord et GitHub projects en complément.
+  - Mon arborescence est comme je l'avais imaginée, propre, solide, et bien décomposée.
+  - J'ai pus calibrer mes fichiers d'initialisation de l'application de façon à ce qu'ils soient évolutif.
+  - La sécurisation est un point important de Sweet, je penses que le fichier `.env` était une bonne idée en plus d'être une bonne pratique. J'ai pus me former dessus en conditions réelles.
 - ⚠️ À améliorer :
-
-  -
+  - La création des fichiers de configuration et d'initalisation d'application Flask c'est pas encore acquis.
+    - Créer un template de base ?
+  - Synchronisation des branches documentaires :
+    - Mieux utiliser `git rebase` pour éviter les commits de merge parasites.
+  - Automatisation du lancement de l’app :
+    - Créer un alias ou un script `start.sh` pour éviter de retaper les commandes.
