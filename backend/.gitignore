@@ -1,0 +1,22 @@
+# Environnement virtuel
+venv/
+
+# Variables d'environnement
+.env
+.flaskenv
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Base de données locale (ne pas versionner SQLite)
+instance/
+*.db
+
+# Migrations Alembic (se recréent si besoin)
+migrations/
+
+# Outils/IDE (au cas où)
+.vscode/
+.idea/
