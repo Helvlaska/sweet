@@ -68,3 +68,46 @@
     - Mieux utiliser `git rebase` pour éviter les commits de merge parasites.
   - Automatisation du lancement de l’app :
     - Créer un alias ou un script `start.sh` pour éviter de retaper les commandes.
+
+---
+
+## Jour 2 – Base Classe (30/09/25)
+
+### 🎯 Objectifs du jour
+
+- Création de la classe abstraite BaseClass (CRUD générique + timestamps).
+- Création de la classe User (attributs, sécurité mdp).
+- Ajouter validation (regex : email, mdp, etc).
+- Configuration migration + premier flask db init/migrate/upgrate.
+
+### ✅ Réalisé
+
+- [ ] Création de la classe abstraite BaseClass (CRUD générique + timestamps).
+- [ ] Création de la classe User (attributs, sécurité mdp).
+- [ ] Ajouter validation (regex : email, mdp, etc).
+- [ ] Configuration migration + premier flask db init/migrate/upgrate.
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Mise à jour du journal de bord → `logbook`.
+  - Ajout d'outils réutilisables dans ma toolbox → `toolbox_backend`.
+
+- Commits :
+
+  - 📝 (toolbox_backend/): Add tools naming, regex and class template
+  - 📝 (docs/logbook.md): Add logbook and set objectives for day 2 week 1
+
+### 🧪 QA (tests faits)
+
+- [ ]
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
