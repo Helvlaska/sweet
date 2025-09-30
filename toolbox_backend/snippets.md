@@ -610,3 +610,31 @@ def refresh():
 ```
 
 ---
+
+### to_dict()
+
+#### Qu’est-ce que c’est ?
+
+Une méthode qui transforme ton objet SQLAlchemy en dictionnaire Python → pour être facilement converti en JSON.
+
+#### À quoi ça sert ?
+
+- Uniformiser les retours JSON.
+- Éviter de répéter {"id": self.id, "field1": self.field1, ...} partout.
+- Simplifier les tests et le debug.
+
+#### Comment je l’utilise ?
+
+```python
+def to_dict(self):
+    """
+    Retourne un dictionnaire représentant l'objet.
+    À compléter selon les attributs de la classe.
+    """
+    return {
+        "id": self.id,
+        # TODO: ajouter les champs spécifiques de la classe
+        "created_at": self.created_at.isoformat() if self.created_at else None,
+        "updated_at": self.updated_at.isoformat() if self.updated_at else None,
+    }
+```
