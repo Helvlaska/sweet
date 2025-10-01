@@ -82,20 +82,24 @@
 
 ### ✅ Réalisé
 
-- [ ] Création de la classe abstraite BaseClass (CRUD générique + timestamps).
+- [X] Création de la classe abstraite BaseClass (CRUD générique + timestamps).
 - [ ] Création de la classe User (attributs, sécurité mdp).
 - [ ] Ajouter validation (regex : email, mdp, etc).
 - [ ] Configuration migration + premier flask db init/migrate/upgrate.
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Réflexion sur la sécurisation des données passées en JSON notamment pour le mdp.
+  - Prise de renseignement sur "exclude" dans une fonction to_dict().
+- Journée en exterieur : Rennes.
+  - Focus légé sur le code de Sweet.
 
 ### 🔀 SCM (branches & commits)
 
 - Branches :
   - Mise à jour du journal de bord → `logbook`.
   - Ajout d'outils réutilisables dans ma toolbox → `toolbox_backend`.
+  - Branche tirer pour la création de BaseModel et la création de la classe User.
 
 - Commits :
 
@@ -104,10 +108,17 @@
 
 ### 🧪 QA (tests faits)
 
-- [ ]
+- [ ] Pas de tests fais sur cette session de travail.
 
 ### 💡 Notes / décisions
 
--
+- Intégration de "exclude" pour la fonction to_dict(), cohérent avec la volonté de Sweet d'être une application sécurisée.
+- Poursuite des objectifs du jour 2 en jour 3, amplitude horaire allongée pour respecter les objectifs du planning définis en amont.
 
 ### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  - La création de BaseModel inspirée de la BaseModel du HBnB s'est bien passée, elle a même été améliorée.
+  - Je me challenge sur la sécurisation de l'application, ce qui n'est pas mon point fort de base, je monte en compétence et reflexe.
+- ⚠️ À améliorer :
+  - Je dois me concentrer sur mon code lorsque je suis en groupe. Les interactions sociales sont importantes mais elle ne doivent pas nuire au bon déroulement du travail en cours.
