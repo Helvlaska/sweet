@@ -138,8 +138,8 @@
 
 ### ✅ Réalisé
 
-- [ ] Création de la classe User (attributs, sécurité mdp).
-- [ ] Ajouter validation (regex : email, mdp, etc).
+- [X] Création de la classe User (attributs, sécurité mdp).
+- [X] Ajouter validation (regex : email, mdp, etc).
 - [ ] Configuration migration + premier flask db init/migrate/upgrate.
 - [ ] Mise au point des routes Auth (/auth/register, /auth/login, /auth/logout).
 - [ ] Générer JWT + refresh token.
@@ -147,27 +147,70 @@
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Prise de renseignements sur les conventions moderne du nombre de char / champs :
+  - les standards IETF, ISO, ICAO (email, nom dans passeport, etc.).
+  - les pratiques banques / assurances / santé.
+  - les bases d’utilisateurs (Salesforce, Google, Facebook, etc.).
+  - les retours des cas « limites » (Malgache, Indonésien, Islandais, etc.).
+- Déterminer si le champ "role" est bien un Enum.
+  - Oui il restera en Enum car plus robuste.
+- Déterminer si un user supprime son compte est ce que :
+  - Ses données personnelles sont supprimées, sauf ces posts et commentaires sur le forum?
+    - Cette solution à été choisis, car si dans le forum les commentaires et les posts sont supprimés ils perdrons potentiellement du sens. Par contre le username sera modifié (User deleted, Unknow user, etc à déterminer).
+  - L'ensemble de des données sont supprimées? ❌
+- Réflexion sur quels champs de la classe User passer en privé ou en publique :
+  - Champs privés : Les champs qui servent à la connexion et ceux qui contiennent des données personnelles (age, genre, taille, etc).
+  - Champs publiques : Le reste.
+- Centralisation des regex
+  - Code répétitif sur les validations de valeur de champ → Possibilité de créer une fonction réutilisable.
+  - Création d’un fichier validators.py qui contient :
+    - une fonction générique is_valid(value, pattern).
+    - une fonction génératrice make_text_pattern(min_length, max_length).
+    - des constantes regex (EMAIL_PATTERN, USERNAME_PATTERN, etc.).
+- Approche whitelisting → Plutôt que de créer une multitude de regex personnalisées pour chaque champ, en créer une seule mais modulable.
+  - Autoriser uniquement les caractères attendus (lettres, chiffres, accents, quelques ponctuations).
+  - Objectif : empêcher les injections (SQL/XSS) dès la validation des champs.
+- Usage des @property / @setter
+  - Les champs sensibles (email, username, password, role, etc.) → privés (_email, _username, etc.) et exposés via @property.
+  - Setters = validations systématiques (type, vide, format, bornes).
+    - Username → regex inspirée de la pattern de GitHub/twitter.
+    - Date_of_birth → réflexion sur le bornage des dates : pas après la date du jour mais pas avant 1900.
+    - Changement du nom de l'attribut "sex" remplacé par "gender", quitte à faire une application inclusive autant l'être dans son code.
+    - Taille → réflexion sur le bornage minimum de la taille, Sweet pourrait très bien être utilisé par des parents qui on un bébé diabétique, or la taille est importante dans le calcul de l'IMC, au lieu d'un bornage minimum à 50 cm, décision de le faire passer à 30 cm.
+    - Profil_picture → Setter construit dans l'optique d'un stockage de fichier de type image, pousser la réflexion lors de la manipulation par l'API.
+    - Role → Pour savoir si c'est un admin ou un user, envie de simplifier avec un boolean is_admin, mais pour la suite de Sweet, il vaut mieux un Enum, mais je dois le sécuriser dans l'API.
+- Logs (app.logger) anticipés pour suivre les validations/rejets.
+- Demain trancher si je mets un __repr__ dans mon module User.
+
 ### 🔀 SCM (branches & commits)
 
 - Branches :
-  - Description → `branche_name`.
+  - Branche tirer pour la création de la classe User. → `user-model`.
+  - Mise à jour du journal de bord → `logbook`.
 
 - Commits :
-
-  -
+  - 📝 (docs/logbook.md): Set objectives for day 3 week 1
+  - ✨ (models/user.py): Add User class with attributes and validation methods
+  - ✨ (utils/validators.py): Add validation functions and regex for text, username, email, and password fields
+  - 📝 (docs/logbook.md): Update progress for day 3 week 1
 
 ### 🧪 QA (tests faits)
 
-- [ ]
+- [ ] Pas de tests fais sur cette session de travail.
 
 ### 💡 Notes / décisions
 
--
+- Retard pris en jour 2, non rattrapé en jour 3, mais le module user.py est presque fini. Demain se sera de la connexion et de la configuration, il est probable de gagner du temps à ce moment là.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - La classe User c'était LE module le plus long et avec le plus d'attributs (13!), et je l'ai fais en une journée.
+  - Belle idée de m'être préparé des tools dans ma boite à outils backend, j'ai gagné beaucoup de temps dans la mise en place des différentes parties du module. Un travail bien préparé est un travail bien fait ! ça m'a aussi permise de me concentrer et de réfléchir sur les attributs que je pensais simple de prime abord mais en fait il y a des subtilités (exemple: les dates).
+  - Ajouter les logs maintenant plutôt que après ça va être un gain de temps et m'évite de retravailler encore sur ce mega module.
+  - J'ai pus apprendre pleins de chose sur les conventions internationales de remplissage de champs.
+  - Pousser ma réflexion sur les utilisateurs de Sweet, leur culture, leur âge, comment l'application peu au mieux matcher avec leur vie.
+  - La centralisation des certaines fonctions redondantes, je n'étais pas à l'aise mais finalement ça s'est bien passé.
 - ⚠️ À améliorer :
-  -
+  - Se renseigner sur la gestion des différents champs avec un setter (date)
+  - La gestion du temps, même si là c'était un gros morceau, je risque de devoir travailler ce w.e, et de ne pas pouvoir préprer mes outils pour la semaine prochaine.
