@@ -122,3 +122,52 @@
   - Je me challenge sur la sécurisation de l'application, ce qui n'est pas mon point fort de base, je monte en compétence et reflexe.
 - ⚠️ À améliorer :
   - Je dois me concentrer sur mon code lorsque je suis en groupe. Les interactions sociales sont importantes mais elle ne doivent pas nuire au bon déroulement du travail en cours.
+
+---
+
+## Jour 3 – Base Classe + Routes Auth (01/10/25)
+
+### 🎯 Objectifs du jour
+
+- Création de la classe User (attributs, sécurité mdp).
+- Ajouter validation (regex : email, mdp, etc).
+- Configuration migration + premier flask db init/migrate/upgrate.
+- Mise au point des routes Auth (/auth/register, /auth/login, /auth/logout).
+- Générer JWT + refresh token.
+- Gérer cookies sécurisés (httpOnly).
+
+### ✅ Réalisé
+
+- [ ] Création de la classe User (attributs, sécurité mdp).
+- [ ] Ajouter validation (regex : email, mdp, etc).
+- [ ] Configuration migration + premier flask db init/migrate/upgrate.
+- [ ] Mise au point des routes Auth (/auth/register, /auth/login, /auth/logout).
+- [ ] Générer JWT + refresh token.
+- [ ] Gérer cookies sécurisés (httpOnly).
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Description → `branche_name`.
+
+- Commits :
+
+  -
+
+### 🧪 QA (tests faits)
+
+- [ ]
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
