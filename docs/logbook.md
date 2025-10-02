@@ -99,7 +99,7 @@
 - Branches :
   - Mise à jour du journal de bord → `logbook`.
   - Ajout d'outils réutilisables dans ma toolbox → `toolbox_backend`.
-  - Branche tirer pour la création de BaseModel et la création de la classe User.
+  - Branche tirée pour la création de BaseModel et la création de la classe User.
 
 - Commits :
 
@@ -185,7 +185,7 @@
 ### 🔀 SCM (branches & commits)
 
 - Branches :
-  - Branche tirer pour la création de la classe User. → `user-model`.
+  - Branche tirée pour la création de la classe User. → `user-model`.
   - Mise à jour du journal de bord → `logbook`.
 
 - Commits :
@@ -214,3 +214,49 @@
 - ⚠️ À améliorer :
   - Se renseigner sur la gestion des différents champs avec un setter (date)
   - La gestion du temps, même si là c'était un gros morceau, je risque de devoir travailler ce w.e, et de ne pas pouvoir préprer mes outils pour la semaine prochaine.
+
+---
+
+## Jour 4 – Migration + Route Auth (02/10/25)
+
+### 🎯 Objectifs du jour
+
+- Configurer migrations + premier flask db init/migrate/upgrade.
+- Matin : mise au point des routes Auth (/auth/register, /auth/login, /auth/logout).
+- Générer JWT + refresh token.
+- Gérer cookies sécurisés (httpOnly).
+
+### ✅ Réalisé
+
+- [ ] Configurer migrations + premier flask db init/migrate/upgrade.
+- [ ] Mise au point des routes Auth (/auth/register, /auth/login, /auth/logout).
+- [ ] Générer JWT + refresh token.
+- [ ] Gérer cookies sécurisés (httpOnly).
+
+### 🪲 Bugs / difficultés rencontrées
+
+- Formation sur l'utilisation de la migration avec Flask-Migrate.
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la migration de la classe User. → `user-model`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+  - 📝 (docs/logbook.md): Set objectives for day 4 week 1
+
+### 🧪 QA (tests faits)
+
+- [ ]
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
