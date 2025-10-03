@@ -282,17 +282,20 @@
 
 ### 🎯 Objectifs du jour
 
-- Mise au point des routes Auth (/auth/register, /auth/login, /auth/logout).
+- Mise au point des routes Auth (/auth/register, /auth/login, /auth/logout, /auth/reset, /auth/profile).
 
 ### ✅ Réalisé
 
-- [ ] Route /auth/register
-- [ ] Route /auth/login
-- [ ] Route /auth/logout
+- [X] Route /auth/register
+- [X] Route /auth/login
+- [X] Route /auth/logout
+- [X] Route /auth/reset
+- [X] Route /auth/profile
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Pas de difficultés particulières aujourd'hui.
+
 ### 🔀 SCM (branches & commits)
 
 - Branches :
@@ -301,6 +304,9 @@
 
 - Commits :
   - 📝 (docs/logbook.md): Set objectives for day 5 week 1
+  - ♻️ (app/init.py): Improve readability by adding comments and reorganizing blueprint registration
+  - ✨ (utils/responses.py): Add functions to standardize JSON success and error responses
+  - ✨ (routes/auth.py): Implement authentication routes for registration, login, logout, password reset, and profile management
   - 📝 (docs/logbook.md): Update progress for day 5 week 1
 
 ### 🧪 QA (tests faits)
@@ -309,11 +315,23 @@
 
 ### 💡 Notes / décisions
 
--
+- Formation et utilisation de Blueprint de flask.
+  - Ajout dans app/__init__.py de mon premier Blueprint → auth_bp.
+- Renseignement sur le process classique d'un "mot de passe oublié".
+  - Je vais le faire en deux fonctions :
+    - Une pour créer la requête de modification avec un token ephémère.
+    - Une autre pour vérifier ce dit token avec une double vérification du nouveau mot de passe.
+- Mise en place des routes et fonctions sans les remplir, attente du fichier services/auth_service.py.
+  - Ajout en commentaire dans mes fonctions de la logique de vérification pour chacune, comme ça j'ai pus repérer les vérifications redondantes, je pourrais ainsi faire des fonctions réutilisables.
+- Ajout d'un fichier qui contient mes fonctions de standardisation de mes jsonify.
+  - Je trouve ça plus propre, mais par contre je dois pas tromper dans l'ordre des arguments, je me suis crée un template pour ne pas me tromper.
+  - Je l'ai appelé utils/reponses.py j'espère que c'est un nom suffisament parlant.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - J'ai appris à créer et utiliser des Blueprint.
+  - J'ai quand même bien avancé sur les routes d'authentifications, malgré que j'étais en évènement pro toute la matiné.
+  - Mes fonctions succes_response et error_response correspondent tout à fait à ma logique de traçabilité, mes logger aussi je les trouve bien construits.
 - ⚠️ À améliorer :
-  -
+  - L'ensemble de la journée c'est bien passé, à part mon retard de planning que je vais ratrapper en jour 6 et 7, je n'ai rien à documenter.
