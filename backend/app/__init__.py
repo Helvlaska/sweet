@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 
-# Initialisation des extensions
+# ----------------------------------------------- Initialisation des extensions
 db = SQLAlchemy()
 migrate = Migrate()
 bcrypt = Bcrypt()
@@ -16,6 +16,7 @@ def create_app(test_config=None):
 # ---------------------------------------------------------------- Charger .env
     load_dotenv()
 
+# --------------------------------------------- Création de l'application Flask
     flask_app = Flask(__name__, instance_relative_config=True)
 
 # ------------------------------------------------------------ Sélection config
@@ -35,13 +36,16 @@ def create_app(test_config=None):
     db.init_app(flask_app)
     migrate.init_app(flask_app, db)
     bcrypt.init_app(flask_app)
+
 # -------------------------------------------------- Enregistrement des modèles
     import app.models
 
 # ----------------------------------------------- Enregistrement des blueprints
     # Exemple :
     # from .routes.auth import auth_bp
-    # app.register_blueprint(auth_bp)
+    # flask_app.register_blueprint(auth_bp)
+    from .routes.auth import auth_bp
+    flask_app.register_blueprint(auth_bp)
 
 # ------------------------------------------------------------- Instance folder
     try:
