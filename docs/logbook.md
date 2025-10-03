@@ -228,14 +228,21 @@
 
 ### ✅ Réalisé
 
-- [ ] Configurer migrations + premier flask db init/migrate/upgrade.
+- [X] Configurer migrations + premier flask db init/migrate/upgrade.
 - [ ] Mise au point des routes Auth (/auth/register, /auth/login, /auth/logout).
 - [ ] Générer JWT + refresh token.
 - [ ] Gérer cookies sécurisés (httpOnly).
 
 ### 🪲 Bugs / difficultés rencontrées
 
-- Formation sur l'utilisation de la migration avec Flask-Migrate.
+- Formation sur l'utilisation de la migration avec Flask-Migrate et migration en elle même.
+  - BUG refonte du module de la BaseModel par ce que je n'avais pas anticipé la migration.
+  - J'ai aussi appris que pour faire une migration propre je dois :
+    - Ajouter dans models/__init__.py l'import de la classe.
+    - Dans mon terminal :
+      - Rappeler à mon app où chercher mon fichier d'exécution → export FLASK_APP=run.py
+      - Effectuer la migration → flask db migrate -m "create tableName table"
+      - Lancer la mise à jour de la db → flask db upgrade
 
 ### 🔀 SCM (branches & commits)
 
@@ -245,18 +252,26 @@
 
 - Commits :
   - 📝 (docs/logbook.md): Set objectives for day 4 week 1
+  - ♻️ (models/base.py): Refactor BaseModel to use SQLAlchemy ORM, update timestamp handling, and improve to_dict method
+  - ♻️ (models/user.py): Reorganize imports to improve readability and code structure
+  - ➕ (requirements.txt): Add Flask-JWT-Extended, Flask-Bcrypt, and python-dotenv dependencies
+  - ♻️ (app/init.py): Refactor create_app function to use consistent variable naming and initialize bcrypt
+  - 📝 (docs/logbook.md): Update progress for day 4 week 1
 
 ### 🧪 QA (tests faits)
 
-- [ ]
+- [X] Vérification que la migration à fonctionné.
 
 ### 💡 Notes / décisions
 
--
+- Même si j'ai anticipé en amont, il faut que je prennes en compte et plannifies des plages horaire pour gérer le retard.
+  - Le jour 6 ou 7 de la semaine 1 : Mise en place de sessions de travail plus longues que celles planifiées + Modification du planning de la semaine 2 en prévoyant une journée pour gérer les imprévus de la semaine en cours.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Malgré un problème sur le fichier de ma BaseModel qui n'était pas construite en vu d'une migration, la migration en elle même s'est bien passé.
+  - Je suis agréablement surprise par cet outil que je trouve pratique, travaillons mieux en faisant le moins.
 - ⚠️ À améliorer :
-  -
+  - J'avais anticipé certaines choses, mais je dois prendre en compte les imprévus.
+  - Je dois ajouter à mon planning des sessions de travail pour gérer les imprévus.
