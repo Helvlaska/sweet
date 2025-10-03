@@ -1,8 +1,7 @@
 from flask import current_app as app
-from models.base import BaseModel
-from models import db
-from app import bcrypt
+from app.models.base import BaseModel
 from datetime import date
+from app import db, bcrypt
 from app.utils.validators import is_valid, EMAIL_PATTERN, USERNAME_PATTERN, PASSWORD_PATTERN, FIRSTNAME_PATTERN, LASTNAME_PATTERN, CITY_PATTERN
 
 class User(BaseModel):
