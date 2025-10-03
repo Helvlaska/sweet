@@ -275,3 +275,45 @@
 - ⚠️ À améliorer :
   - J'avais anticipé certaines choses, mais je dois prendre en compte les imprévus.
   - Je dois ajouter à mon planning des sessions de travail pour gérer les imprévus.
+
+---
+
+## Jour 5 – Mise au point de la route Auth (03/10/25)
+
+### 🎯 Objectifs du jour
+
+- Mise au point des routes Auth (/auth/register, /auth/login, /auth/logout).
+
+### ✅ Réalisé
+
+- [ ] Route /auth/register
+- [ ] Route /auth/login
+- [ ] Route /auth/logout
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la gestion des routes Auth. → `user-model`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+  - 📝 (docs/logbook.md): Set objectives for day 5 week 1
+  - 📝 (docs/logbook.md): Update progress for day 5 week 1
+
+### 🧪 QA (tests faits)
+
+- [ ] Pas de tests ce jour.
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
