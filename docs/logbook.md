@@ -335,3 +335,149 @@
   - Mes fonctions succes_response et error_response correspondent tout à fait à ma logique de traçabilité, mes logger aussi je les trouve bien construits.
 - ⚠️ À améliorer :
   - L'ensemble de la journée c'est bien passé, à part mon retard de planning que je vais ratrapper en jour 6 et 7, je n'ai rien à documenter.
+
+---
+
+Template du logbook:
+
+## Jour 6 – Auth (04/10/25)
+
+### 🎯 Objectifs du jour
+
+- Boîte à outils Auth (services réutilisables).
+  - Gestion des champs (validation).
+  - Gestion du mot de passe.
+  - Gestion des utilisateurs (DB).
+  - Gestion des tokens.
+  - Gestion du profil.
+  - Sécurité & rôles.
+- Routes à implémenter aujourd’hui
+  - Authentification.
+  - Reset Password.
+  - Gestion du profil.
+- Sécurité & Qualité.
+- Tests
+
+### ✅ Réalisé
+
+- [ ] Boîte à outils Auth (services réutilisables)
+  - [ ] Gestion des champs (validation)
+    - [ ]  Vérifier si les champs obligatoires sont remplis.
+    - [ ] Vérifier le format et la validité des champs (regex email, username, mot de passe).
+    - [ ] Vérifier l’unicité de l’email lors de l’inscription ou mise à jour profil.
+  - [ ] Gestion du mot de passe
+    - [ ] Vérifier si le mot de passe fourni correspond au hash stocké en DB.
+    - [ ] Vérifier si l’ancien mot de passe est correct avant un changement.
+    - [ ] Vérifier la conformité du nouveau mot de passe (force, longueur, regex).
+    - [ ] Hasher le mot de passe avant enregistrement ou mise à jour.
+    - [ ] Mettre à jour le mot de passe en DB.
+  - [ ] Gestion des utilisateurs (DB)
+    - [ ] Vérifier si un utilisateur existe par email.
+    - [ ] Vérifier si un utilisateur existe par username.
+    - [ ] Récupérer un utilisateur par email ou username.
+    - [ ] Créer un nouvel utilisateur en DB.
+    - [ ] Mettre à jour le profil utilisateur (champs valides uniquement).
+  - [ ] Gestion des tokens
+    - [ ] Générer un access_token + refresh_token pour un utilisateur.
+    - [ ] Générer un token temporaire pour un reset de mot de passe.
+    - [ ] Vérifier si un token de reset est valide et non expiré.
+    - [ ] Invalider un token de reset après usage.
+    - [ ] Nettoyer/invalider les cookies et tokens lors du logout.
+  - [ ] Gestion du profil
+    - [ ] Récupérer l’utilisateur courant via JWT (get_jwt_identity).
+    - [ ] Retirer les champs sensibles avant de retourner le profil (mot de passe, tokens).
+    - [ ] Vérifier la validité des champs envoyés lors d’une mise à jour de profil.
+  - [ ] Sécurité & rôles
+    - [ ] Assigner le rôle user par défaut à l’inscription.
+    - [ ] Vérifier les accès selon le rôle (user/admin).
+
+- [ ] Routes à implémenter aujourd’hui
+  - [ ] Authentification
+    - [ ] Register (POST /register)
+      - [ ] Champs obligatoires + validation.
+      - [ ] Email unique.
+      - [ ] Hash + sauvegarde User.
+      - [ ] Logger + success_response.
+    - [ ] Login (POST /login)
+      - [ ] Champs obligatoires + validation.
+      - [ ] Vérif user (email/username).
+      - [ ] Vérif mot de passe.
+      - [ ] Génération JWT + retour JSON.
+      - [ ] Logger + success_response.
+    - [ ] Logout (POST /logout)
+      - [ ] Nettoyer cookies/tokens.
+      - [ ] Logger + success_response.
+  - [ ] Reset Password
+    - [ ] Reset Request (POST /reset)
+      - [ ] Vérifier email fourni et user existe.
+      - [ ] Générer token reset (MVP → retour JSON).
+      - [ ] Logger + success_response.
+    - [ ] Reset Confirm (PUT /reset/< token>)
+      - [ ] Vérifier token valide/non expiré.
+      - [ ] Vérifier new_password.
+      - [ ] Hash + update DB.
+      - [ ] Invalider token.
+      - [ ] Logger + success_response.
+    - [ ] Update Password connecté (PUT /reset)
+      - [ ] Vérifier JWT valide.
+      - [ ] Vérifier old_password correct.
+      - [ ] Vérifier new_password conforme.
+      - [ ] Hash + update DB.
+      - [ ] Logger + success_response.
+  - [ ] Gestion du profil
+    - [ ] Show Profile (GET /profile)
+      - [ ] Vérifier JWT valide.
+      - [ ] Charger user.
+      - [ ] Nettoyer données sensibles.
+      - [ ] Logger + success_response.
+    - [ ] Update Profile (PUT /profile)
+      - [ ] Vérifier JWT valide.
+      - [ ] Valider champs (regex, unicité email).
+      - [ ] Update DB.
+      - [ ] Logger + success_response.
+  - [ ] Sécurité & Qualité
+    - [ ] Ajouter rôle user par défaut à l’inscription.
+      - [ ] Vérifier rôle admin seulement via DB.
+      - [ ] Centraliser logs (app.logger).
+      - [ ] Créer exceptions custom dans exceptions.py.
+      - [ ] Remplacer certains error_response par exceptions custom si besoin.
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la gestion des routes Auth. → `user-model`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+
+  - 📝 (docs/logbook.md): Set objectives for day 6 week 1
+  - 📝 (docs/logbook.md): Update progress for day 6 week 1
+
+### 🧪 QA (tests faits)
+
+- [ ] Tests (fin de journée)
+  - [ ] Tests manuels (Postman)
+    - [ ] register → login → logout.
+    - [ ] reset password (oublié).
+    - [ ] reset password (connecté).
+    - [ ] profil (GET/PUT).
+    - [ ] rôles (user/admin).
+  - [ ] Tests unitaires (Pytest)
+    - [ ] Création user.
+    - [ ] Login.
+    - [ ] Reset password.
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
