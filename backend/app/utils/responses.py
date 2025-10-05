@@ -17,7 +17,7 @@ def success_response(part, file=None, element=None, message="", data=None, statu
     return jsonify(response), status_code
 
 # ------------------------------- Fonction pour standardiser les error messages
-def error_response(part, file=None, element=None, message="", status_code=400):
+def error_response(part, file=None, element=None, message="", data=None, status_code=400):
     """
     Crée une réponse JSON uniforme pour une erreur.
     """
@@ -28,4 +28,6 @@ def error_response(part, file=None, element=None, message="", status_code=400):
         "element": element or "N/A",
         "message": message
     }
+    if data is not None:
+        response["data"] = data
     return jsonify(response), status_code
