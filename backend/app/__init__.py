@@ -3,12 +3,15 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
+from datetime import timedelta
 
 # ----------------------------------------------- Initialisation des extensions
 db = SQLAlchemy()
 migrate = Migrate()
 bcrypt = Bcrypt()
+jwt = JWTManager()
 
 def create_app(test_config=None):
     """Fonction pour créer et configurer l'application Flask"""
@@ -32,10 +35,29 @@ def create_app(test_config=None):
         # Config spéciale test si donnée
         flask_app.config.from_mapping(test_config)
 
+# --------------------------- Configuration des tokens et des cookies sécurisés
+    # Déclaration d'utilisation des cookies
+    flask_app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
+
+    # Déclaration du path pour chaque token
+    flask_app.config["JWT_ACCESS_COOKIE_PATH"] = "/"
+    flask_app.config["JWT_REFRESH_COOKIE_PATH"] = "/auth/refresh"
+
+    # Configuration de la sécurité des cookies
+    flask_app.config["JWT_COOKIE_SECURE"] = False  # ⚠️ Mettre True en production (HTTPS obligatoire)
+    flask_app.config["JWT_COOKIE_HTTPONLY"] = True
+    flask_app.config["JWT_COOKIE_CSRF_PROTECT"] = True
+    flask_app.config["JWT_COOKIE_SAMESITE"] = "Lax"
+
+    # Configuration de la durée de vie des tokens
+    flask_app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
+    flask_app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(hours=48)
+
 # --------------------------------------------------- Initialisation extensions
     db.init_app(flask_app)
     migrate.init_app(flask_app, db)
     bcrypt.init_app(flask_app)
+    jwt.init_app(flask_app)
 
 # -------------------------------------------------- Enregistrement des modèles
     import app.models
@@ -56,6 +78,6 @@ def create_app(test_config=None):
 # ------------------------------------------------------------------ Route test
     @flask_app.route("/ping")
     def ping():
-        return {"status": "ok", "message": "Sweet backend is running"}
+        return {"status": "ok", "message": "Sweet backend is running", "env": flask_app.config["ENV"]}
 
     return flask_app
