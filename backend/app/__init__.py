@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
@@ -12,6 +13,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 bcrypt = Bcrypt()
 jwt = JWTManager()
+mail = Mail()
 
 def create_app(test_config=None):
     """Fonction pour créer et configurer l'application Flask"""
@@ -53,8 +55,18 @@ def create_app(test_config=None):
     flask_app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
     flask_app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(hours=48)
 
+# ------------------------------------------------- Configuration de Flask-Mail
+    flask_app.config["MAIL_SERVER"] = os.getenv("MAIL_SERVER", "smtp.gmail.com")
+    flask_app.config["MAIL_PORT"] = int(os.getenv("MAIL_PORT", 587))
+    flask_app.config["MAIL_USE_TLS"] = True
+    flask_app.config["MAIL_USE_SSL"] = False
+    flask_app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME")
+    flask_app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
+    flask_app.config["MAIL_DEFAULT_SENDER"] = os.getenv("MAIL_DEFAULT_SENDER", "noreply@sweet-app.fr")
+
 # --------------------------------------------------- Initialisation extensions
     db.init_app(flask_app)
+    mail.init_app(flask_app)
     migrate.init_app(flask_app, db)
     bcrypt.init_app(flask_app)
     jwt.init_app(flask_app)
