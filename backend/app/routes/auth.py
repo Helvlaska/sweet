@@ -2,7 +2,7 @@ from flask import current_app as app
 from flask import Blueprint, request
 from utils.responses import success_response, error_response
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, unset_jwt_cookies
-from app.services import auth_service
+from app.services.auth_service import validate_user_data, create_user
 from app.models.user import User
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -11,18 +11,10 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 @auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    # Vérifier si les champs obligatoires sont remplis → sinon error_response
-      # app.logger.error(f"[BACK][routes/auth.py][register()] Les champs obligatoires sont vides")
-      # return error_response("BACK", "routes/auth.py", "register()", "Les champs obligatoires sont vides", 400)
-    # Vérifier le format et la validité des champs (email, mot de passe, etc.) → sinon error_response
-      # app.logger.error(f"[BACK][routes/auth.py][register()] Champs invalides : échec de l'inscription")
-      # return error_response("BACK", "routes/auth.py", "register()", "Champs invalides : échec de l'inscription", 400)
-    # Vérifier si l'email est déjà utilisé → sinon error_response
-    # Hasher le mot de passe avant enregistrement
-    # Sauvegarder le nouvel utilisateur en DB
-    # Si tout est Ok → success_response + logger.info
-    app.logger.info(f"[BACK][routes/auth.py][register()] Le user à été enregistré avec succès")
-    return success_response("BACK", "routes/auth.py", "register()", "Le user à été enregistré avec succès", {data}, 201)
+    new_user = validate_user_data(data)
+    if isinstance(new_user, User):
+        return new_user
+    return create_user(new_user)
 
 # ---------------------------------------------------- Route POST : /auth/login
 @auth_bp.route('/login', methods=['POST'])
