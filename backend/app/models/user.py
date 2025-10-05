@@ -24,7 +24,7 @@ class User(BaseModel):
     _city = db.Column(db.String(120), nullable=False)
     _profile_picture = db.Column(db.LargeBinary, nullable=True)
     _role = db.Column(db.Enum("user", "admin"), nullable=False)
-    _first_login = db.Column(db.Boolean, nullable=False)
+    _first_login = db.Column(db.Boolean, nullable=False, default=True)
 
 # ------------------------------------------------------------------- Relations
     # children = db.relationship("children", backref="parent", cascade="all, delete-orphan")
