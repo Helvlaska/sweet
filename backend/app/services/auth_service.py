@@ -1,9 +1,13 @@
+import os
 from app.models.user import User
-from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity
+from utils.validators import is_valid, EMAIL_PATTERN, PASSWORD_PATTERN
+from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, set_access_cookies, set_refresh_cookies, unset_jwt_cookies, decode_token
+from jwt import ExpiredSignatureError, InvalidTokenError
+from flask_mail import Message
 from app.utils.responses import success_response, error_response
-from flask import current_app as app
+from flask import current_app as app, make_response
 from sqlalchemy.exc import IntegrityError
-from app import db
+from app import db, mail
 from datetime import timedelta
 
 # ----------------------------------------------------- Fonctions réutilisables
@@ -12,7 +16,7 @@ def validate_user_data(data):
     try:
         new_user = User(**data)
         app.logger.error(f"[BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides")
-        return success_response("BACK", "services/auth_service.py", "validate_register_data()", "Les valeurs enregistrées pour le nouvel user sont valides", new_user.to_dict(), 201)
+        return success_response("BACK", "services/auth_service.py", "validate_register_data()", "Les valeurs enregistrées pour le nouvel user sont valides", new_user, 201)
     except (ValueError, TypeError) as e:
         app.logger.error(f"[BACK][services/auth_service.py][validate_register_data()] Invalid value: {str(e)}")
         return error_response("BACK", "services/auth_service.py", "validate_register_data()", f"Invalid value: {str(e)}", 400)
@@ -40,9 +44,9 @@ def create_user(new_user):
 # ---------------------------------------------------------------------- /Login
 def validate_login_data(data):
     """Vérifie que les données de connexion sont présentes (email/username et password)."""
-    email = data.get("email")
-    username = data.get("username")
-    password = data.get("password")
+    email = data.get("email", "").strip()
+    username = data.get("username", "").strip()
+    password = data.get("password", "").strip()
     if not password or (not email and not username):
         app.logger.error("[BACK][services/auth_service.py][validate_login_data()] Champs invalides : email/username ou mot de passe manquant")
         return error_response("BACK", "services/auth_service.py", "validate_login_data()", "Champs invalides : email/username ou mot de passe manquant", 400)
@@ -58,12 +62,12 @@ def find_user_by_email_or_username(data):
         user = db.session.query(User).filter_by(_email=email).first()
         if user:
             app.logger.info(f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : {email}")
-            return success_response("BACK", "services/auth_service.py", "find_user_by_email_or_username()", "Utilisateur trouvé par email : ", {email}, 201)
+            return success_response("BACK", "services/auth_service.py", "find_user_by_email_or_username()", "Utilisateur trouvé par email : ", email, 201)
     if username:
         user = db.session.query(User).filter_by(_username=username).first()
         if user:
             app.logger.info(f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par username : {username}")
-            return success_response("BACK", "services/auth_service.py", "find_user_by_email_or_username()", "Utilisateur trouvé par username : ", {username}, 201)
+            return success_response("BACK", "services/auth_service.py", "find_user_by_email_or_username()", "Utilisateur trouvé par username : ", username, 201)
     app.logger.error("[BACK][services/auth_service.py][find_user_by_email_or_username()] Aucun utilisateur trouvé")
     return error_response("BACK", "services/auth_service.py", "find_user_by_email_or_username()", "Aucun utilisateur trouvé avec cet email/username", 404)
 
@@ -71,82 +75,161 @@ def authenticate_user(user, password):
     """Vérifie si le mot de passe fourni correspond au hash stocké pour cet utilisateur."""
     if not user:
         app.logger.error("[BACK][services/auth_service.py][authenticate_user()] Utilisateur introuvable")
-        return error_response("BACK", "services/auth_service.py", "authenticate_user()", "Utilisateur introuvable", 404)
+        return error_response("BACK", "services/auth_service.py", "authenticate_user()", "Utilisateur introuvable", False, 404)
     if not user.verify_password(password):
         app.logger.error(f"[BACK][services/auth_service.py][authenticate_user()] Mot de passe incorrect")
-        return error_response("BACK", "services/auth_service.py", "authenticate_user()", "Mot de passe incorrect", 401)
+        return error_response("BACK", "services/auth_service.py", "authenticate_user()", "Mot de passe incorrect", False, 401)
     app.logger.info(f"[BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur")
-    return success_response("BACK", "services/auth_service.py", "authenticate_user()", "Authentification réussie pour l'utilisateur", {user}, 200)
+    return success_response("BACK", "services/auth_service.py", "authenticate_user()", "Authentification réussie pour l'utilisateur", True, 200)
 
-def generate_tokens(user):
+def generate_tokens(user, remember_me=False):
     """Génère et retourne un access_token et un refresh_token pour un utilisateur."""
     try:
+        # Générer l'access token de base
         access_token = create_access_token(identity=user.id, expires_delta=timedelta(hours=24))
-
-        app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Tokens générés avec succès pour {user.to_dict()}")
-        response = success_response("BACK", "services/auth_service.py", "generate_tokens()", "Tokens générés avec succès pour : ", {user.to_dict(), access_token}, 200)
-
-        #set_access_cookies(response, access_token)
-
-        #if remember_me:
-        #    refresh_token = create_refresh_token(identity=user.id, expires_delta=timedelta(hours=48))
-        #    set_refresh_cookies(response, refresh_token)
-
-        #app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Tokens générés pour {user.email} (remember_me={remember_me})")
-        #return response, 200
-
+        app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Access token généré pour {user.to_dict()}")
+        # Générer le refresh token seulement si "remember me" est activé
+        refresh_token = None
+        if remember_me:
+            refresh_token = create_refresh_token(identity=user.id, expires_delta=timedelta(hours=48))
+            app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Refresh token généré (remember_me=True)")
+        # Construire la réponse
+        response_data = {
+            "message": "Authentification réussie",
+            "user": user.email,
+            "remember_me": remember_me
+        }
+        response, status_code = success_response("BACK", "services/auth_service.py", "generate_tokens()", "Authentification réussie, tokens créés", response_data, 200)
+        # Ajouter les cookies sécurisés à la réponse
+        set_access_cookies(response, access_token)
+        if refresh_token:
+            set_refresh_cookies(response, refresh_token)
+        app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {user.to_dict()}")
+        return response, status_code
     except Exception as e:
         app.logger.error(f"[BACK][services/auth_service.py][generate_tokens()] Erreur lors de la génération des tokens : {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "generate_tokens()", "Impossible de générer les tokens", 500)
-
+        return error_response("BACK", "services/auth_service.py", "generate_tokens()", f"Erreur lors de la génération des tokens : {str(e)}", 500)
 
 # ---------------------------------------------------------------------- Logout
-
-def logout_user(response):
+def logout_user():
     """Nettoie les cookies JWT et invalide la session de l'utilisateur."""
-    pass
-
+    try:
+        # Pour utiliser unset_jwt_cookies() il faut : contruire la réponse → unset_jwt_cookies modifie la réponse → renvoie de la réponse
+        response = make_response(success_response("BACK", "services/auth_service.py", "logout_user()", "Déconnexion réussie : Les cookies JWT ont été supprimés", None, 200))
+        unset_jwt_cookies(response)
+        app.logger.info(f"[BACK][services/auth_service.py][logout_user()] Déconnexion réussie : Les cookies JWT ont été supprimés")
+        return response
+    except Exception as e:
+        app.logger.error(f"[BACK][services/auth_service.py][logout_user()] Erreur lors du nettoyage des cookies : {str(e)}")
+        return error_response("BACK", "services/auth_service.py", "logout_user()", f"Erreur lors du nettoyage des cookies : {str(e)}", 500)
 
 # -------------------------------------------------------------- Reset Password
-
 def validate_reset_request(data):
     """Vérifie que l'email est fourni pour une demande de reset password."""
-    pass
+    email = data.get("email", "").strip()
+    if not email:
+        app.logger.error("[BACK][services/auth_service.py][validate_reset_request()] Champs invalides : email manquant")
+        return error_response("BACK", "services/auth_service.py", "validate_reset_request()", "Champs invalides : email manquant", 400)
+    if not is_valid(email, EMAIL_PATTERN):
+        app.logger.error("[BACK][services/auth_service.py][validate_reset_request()] Format d'email invalide")
+        return error_response("BACK", "services/auth_service.py", "validate_reset_request()", "Format d'email invalide", 400)
+    app.logger.info("[BACK][services/auth_service.py][validate_reset_request()] Email valide pour reset password")
+    return success_response("BACK", "services/auth_service.py", "validate_reset_request()", "Email valide pour reset password", email, 201)
 
 def find_user_by_email(email):
     """Retourne un utilisateur à partir de son email, ou None si inexistant."""
-    pass
+    user = User.query.filter_by(_email=email).first()
+    if not user:
+        app.logger.error(f"[BACK][services/auth_service.py][find_user_by_email()] Aucun utilisateur trouvé pour {email}")
+        return error_response("BACK", "services/auth_service.py", "find_user_by_email()", f"Aucun utilisateur trouvé pour {email}", 404)
+    app.logger.info(f"[BACK][services/auth_service.py][find_user_by_email()] Utilisateur trouvé : {email}")
+    return success_response("BACK", "services/auth_service.py", "find_user_by_email()", f"Utilisateur trouvé : {email}", user, 201)
 
 def generate_reset_token(user):
     """Génère un token temporaire de reset pour l'utilisateur (UUID ou JWT avec expiration)."""
-    pass
+    try:
+        # Générer le token temporaire
+        reset_token = create_access_token(identity=user.email, expires_delta=timedelta(minutes=15))
+        app.logger.info(f"[BACK][services/auth_service.py][generate_reset_token()] Reset token généré pour {user.email}")
+        # Construire la réponse Flask (make_response indispensable)
+        response = make_response(
+            success_response("BACK", "services/auth_service.py", "generate_reset_token()", "Reset token créé", {"user": user.email}, 200)
+        )
+        # Ajouter le token dans les cookies sécurisés
+        set_access_cookies(response, reset_token)
+        return response
+    except Exception as e:
+        app.logger.error(f"[BACK][services/auth_service.py][generate_reset_token()] Erreur lors de la génération du reset token : {str(e)}")
+        return error_response("BACK", "services/auth_service.py", "generate_reset_token()", f"Erreur lors de la génération du reset token : {str(e)}", 500)
+
+def send_reset_email(user, reset_token):
+    """Envoie un email de réinitialisation du mot de passe via Flask-Mail."""
+    try:
+        # Construire le lien de réinitialisation
+        reset_link = f"{os.getenv('FRONTEND_URL')}/reset-password?token={reset_token}"
+        # Contenu du mail
+        subject = "🔐 Réinitialisation de votre mot de passe - Sweet"
+        html_body = f"""
+        <html>
+            <body>
+                <p>Bonjour {user.first_name},</p>
+                <p>Vous avez demandé la réinitialisation de votre mot de passe sur <strong>Sweet</strong>.</p>
+                <p>Cliquez sur le lien ci-dessous pour le réinitialiser :</p>
+                <p><a href="{reset_link}" target="_blank">{reset_link}</a></p>
+                <p>Ce lien expirera dans 15 minutes.</p>
+                <p>Si vous n'êtes pas à l'origine de cette demande, ignorez cet email.</p>
+                <br>
+                <p>L'équipe Sweet 🍃</p>
+            </body>
+        </html>
+        """
+        # Création du message
+        msg = Message(subject=subject, recipients=[user.email], html=html_body)
+        # Envoi du mail
+        mail.send(msg)
+        app.logger.info(f"[BACK][services/auth_service.py][send_reset_email()] Email envoyé avec succès à {user.email}")
+        return success_response("BACK", "services/auth_service.py", "send_reset_email()", f"Email de réinitialisation envoyé à {user.email}", {"reset_link": reset_link}, 200)
+    except Exception as e:
+        app.logger.error(f"[BACK][services/auth_service.py][send_reset_email()] Erreur d'envoi du mail : {str(e)}")
+        return error_response("BACK", "services/auth_service.py", "send_reset_email()", f"Erreur d'envoi du mail : {str(e)}", 500)
 
 def validate_reset_token(token):
     """Vérifie si le token de reset est valide et non expiré."""
-    pass
+    try:
+        decoded_token = decode_token(token)
+        app.logger.info("[BACK][services/auth_service.py][validate_reset_token()] Token valide")
+        return decoded_token
+    except ExpiredSignatureError:
+        app.logger.error("[BACK][services/auth_service.py][validate_reset_token()] Token expiré")
+        return error_response("BACK", "services/auth_service.py", "validate_reset_token()", "Token expiré", 401)
+    except InvalidTokenError:
+        app.logger.error("[BACK][services/auth_service.py][validate_reset_token()] Token invalide")
+        return error_response("BACK", "services/auth_service.py", "validate_reset_token()", "Token invalide", 400)
 
 def invalidate_reset_token(token):
     """Invalide un token de reset après usage pour éviter toute réutilisation."""
-    pass
+    try:
+        response = make_response(success_response("BACK", "services/auth_service.py", "invalidate_reset_token()", "Token de réinitialisation invalidé avec succès"))
+        unset_jwt_cookies(response)
+        app.logger.info("[BACK][services/auth_service.py][invalidate_reset_token()] Reset token invalidé avec succès")
+        return response
+    except Exception as e:
+        app.logger.error(f"[BACK][services/auth_service.py][invalidate_reset_token()] Erreur : {str(e)}")
+        return error_response("BACK", "services/auth_service.py", "invalidate_reset_token()", f"Erreur lors de l'invalidation du reset token : {str(e)}", 500)
 
 def update_user_password(user, new_password):
     """Met à jour le mot de passe d’un utilisateur (hashé) dans la DB."""
-    pass
-
-
-# ------------------------------------------------------------- Update Password
-
-def validate_new_password(new_password):
-    """Vérifie que le nouveau mot de passe est conforme (force, regex, longueur)."""
-    pass
-
-def change_password(user, old_password, new_password):
-    """Vérifie l'ancien mot de passe puis met à jour avec le nouveau (hashé)."""
-    pass
-
+    try:
+        user.password_hash = new_password
+        db.session.commit()
+        app.logger.info(f"[BACK][services/auth_service.py][update_user_password()]" f"Mot de passe mis à jour avec succès pour {user.email}")
+        return success_response("BACK", "services/auth_service.py", "update_user_password()", f"Mot de passe mis à jour avec succès pour {user.email}", None, 200)
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error(f"[BACK][services/auth_service.py][update_user_password()]" f"Erreur lors de la mise à jour du mot de passe pour {user.email} : {str(e)}")
+        return error_response("BACK", "services/auth_service.py", "update_user_password()", f"Erreur lors de la mise à jour du mot de passe pour {user.email} : {str(e)}", 500)
 
 # ----------------------------------------------------------- Gestion du Profil
-
 def get_user_from_identity(identity):
     """Récupère un utilisateur en fonction de l'identité contenue dans le JWT."""
     pass
