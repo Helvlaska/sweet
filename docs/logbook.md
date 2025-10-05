@@ -404,3 +404,119 @@ Template du logbook:
   - La facilité de validation des champs, me rassure sur mon choix de les avoir mis dans ma classe.
 - ⚠️ À améliorer :
   - Prévoir un demi-journée pour se former sur des nouveaux concepts, c'est chronophage et vraiment le temps passe beaucoup trop vite, surtout pour rester conforme aux quatre semaines de délais.
+
+---
+
+## Jour 7 – Auth (suite) (05/10/25)
+
+### 🎯 Objectifs du jour
+
+- Boite à outils Auth (services/auth_service.py)
+  - Gestion des tokens.
+  - Gestion du profil.
+  - Sécurité & rôles.
+- Routes à implémenter (routes/auth.py)
+  - Authentification → Génération de tokens
+  - Reset Password.
+  - Gestion du profil.
+- Sécurité & Qualité.
+- Tests
+
+### ✅ Réalisé
+
+- [ ] Boîte à outils Auth (services/auth_service.py)
+  - [ ] Gestion des tokens
+    - [ ] Générer un access_token + refresh_token pour un utilisateur.
+    - [ ] Générer un token temporaire pour un reset de mot de passe.
+    - [ ] Vérifier si un token de reset est valide et non expiré.
+    - [ ] Invalider un token de reset après usage.
+    - [ ] Nettoyer/invalider les cookies et tokens lors du logout.
+  - [ ] Gestion du profil
+    - [ ] Récupérer l’utilisateur courant via JWT (get_jwt_identity).
+    - [ ] Retirer les champs sensibles avant de retourner le profil (mot de passe, tokens).
+    - [ ] Vérifier la validité des champs envoyés lors d’une mise à jour de profil.
+  - [ ] Sécurité & rôles
+    - [ ] Assigner le rôle user par défaut à l’inscription.
+    - [ ] Vérifier les accès selon le rôle (user/admin).
+
+- [ ] Routes à implémenter (routes/auth.py)
+  - [ ] Authentification
+    - [ ] Login (POST /login)
+      - [ ] Génération JWT + retour JSON.
+      - [ ] Logger + success_response.
+    - [ ] Logout (POST /logout)
+      - [ ] Nettoyer cookies/tokens.
+      - [ ] Logger + success_response.
+  - [ ] Reset Password
+    - [ ] Reset Request (POST /reset)
+      - [ ] Vérifier email fourni et user existe.
+      - [ ] Générer token reset (MVP → retour JSON).
+      - [ ] Logger + success_response.
+    - [ ] Reset Confirm (PUT /reset/< token>)
+      - [ ] Vérifier token valide/non expiré.
+      - [ ] Vérifier new_password.
+      - [ ] Hash + update DB.
+      - [ ] Invalider token.
+      - [ ] Logger + success_response.
+    - [ ] Update Password connecté (PUT /reset)
+      - [ ] Vérifier JWT valide.
+      - [ ] Vérifier old_password correct.
+      - [ ] Vérifier new_password conforme.
+      - [ ] Hash + update DB.
+      - [ ] Logger + success_response.
+  - [ ] Gestion du profil
+    - [ ] Show Profile (GET /profile)
+      - [ ] Vérifier JWT valide.
+      - [ ] Charger user.
+      - [ ] Nettoyer données sensibles.
+      - [ ] Logger + success_response.
+    - [ ] Update Profile (PUT /profile)
+      - [ ] Vérifier JWT valide.
+      - [ ] Valider champs (regex, unicité email).
+      - [ ] Update DB.
+      - [ ] Logger + success_response.
+  - [ ] Sécurité & Qualité
+    - [ ] Ajouter rôle user par défaut à l’inscription.
+      - [ ] Vérifier rôle admin seulement via DB.
+      - [ ] Centraliser logs (app.logger).
+      - [ ] Créer exceptions custom dans exceptions.py.
+      - [ ] Remplacer certains error_response par exceptions custom si besoin.
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la gestion des routes Auth. → `user-model`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+  - 📝 (docs/logbook.md): Set objectives for day 7 week 1
+  - 📝 (docs/logbook.md): Update progress for day 7 week 1
+
+### 🧪 QA (tests faits)
+
+- [ ] Tests (fin de journée)
+  - [ ] Tests manuels (Postman)
+    - [ ] register → login → logout.
+    - [ ] reset password (oublié).
+    - [ ] reset password (connecté).
+    - [ ] profil (GET/PUT).
+    - [ ] rôles (user/admin).
+  - [ ] Tests unitaires (Pytest)
+    - [ ] Création user.
+    - [ ] Login.
+    - [ ] Reset password.
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
