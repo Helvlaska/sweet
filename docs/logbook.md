@@ -413,78 +413,58 @@ Template du logbook:
 
 - Boite à outils Auth (services/auth_service.py)
   - Gestion des tokens.
-  - Gestion du profil.
-  - Sécurité & rôles.
 - Routes à implémenter (routes/auth.py)
   - Authentification → Génération de tokens
   - Reset Password.
-  - Gestion du profil.
-- Sécurité & Qualité.
-- Tests
 
 ### ✅ Réalisé
 
 - [ ] Boîte à outils Auth (services/auth_service.py)
-  - [ ] Gestion des tokens
-    - [ ] Générer un access_token + refresh_token pour un utilisateur.
-    - [ ] Générer un token temporaire pour un reset de mot de passe.
-    - [ ] Vérifier si un token de reset est valide et non expiré.
-    - [ ] Invalider un token de reset après usage.
-    - [ ] Nettoyer/invalider les cookies et tokens lors du logout.
-  - [ ] Gestion du profil
-    - [ ] Récupérer l’utilisateur courant via JWT (get_jwt_identity).
-    - [ ] Retirer les champs sensibles avant de retourner le profil (mot de passe, tokens).
-    - [ ] Vérifier la validité des champs envoyés lors d’une mise à jour de profil.
-  - [ ] Sécurité & rôles
-    - [ ] Assigner le rôle user par défaut à l’inscription.
-    - [ ] Vérifier les accès selon le rôle (user/admin).
+  - [X] Gestion des tokens
+    - [X] Générer un access_token + refresh_token pour un utilisateur.
+    - [X] Générer un token temporaire pour un reset de mot de passe.
+    - [X] Vérifier si un token de reset est valide et non expiré.
+    - [X] Invalider un token de reset après usage.
+    - [X] Nettoyer/invalider les cookies et tokens lors du logout.
 
 - [ ] Routes à implémenter (routes/auth.py)
-  - [ ] Authentification
-    - [ ] Login (POST /login)
-      - [ ] Génération JWT + retour JSON.
-      - [ ] Logger + success_response.
-    - [ ] Logout (POST /logout)
-      - [ ] Nettoyer cookies/tokens.
-      - [ ] Logger + success_response.
-  - [ ] Reset Password
-    - [ ] Reset Request (POST /reset)
-      - [ ] Vérifier email fourni et user existe.
-      - [ ] Générer token reset (MVP → retour JSON).
-      - [ ] Logger + success_response.
-    - [ ] Reset Confirm (PUT /reset/< token>)
-      - [ ] Vérifier token valide/non expiré.
-      - [ ] Vérifier new_password.
-      - [ ] Hash + update DB.
-      - [ ] Invalider token.
-      - [ ] Logger + success_response.
-    - [ ] Update Password connecté (PUT /reset)
-      - [ ] Vérifier JWT valide.
-      - [ ] Vérifier old_password correct.
-      - [ ] Vérifier new_password conforme.
-      - [ ] Hash + update DB.
-      - [ ] Logger + success_response.
-  - [ ] Gestion du profil
-    - [ ] Show Profile (GET /profile)
-      - [ ] Vérifier JWT valide.
-      - [ ] Charger user.
-      - [ ] Nettoyer données sensibles.
-      - [ ] Logger + success_response.
-    - [ ] Update Profile (PUT /profile)
-      - [ ] Vérifier JWT valide.
-      - [ ] Valider champs (regex, unicité email).
-      - [ ] Update DB.
-      - [ ] Logger + success_response.
-  - [ ] Sécurité & Qualité
-    - [ ] Ajouter rôle user par défaut à l’inscription.
-      - [ ] Vérifier rôle admin seulement via DB.
-      - [ ] Centraliser logs (app.logger).
-      - [ ] Créer exceptions custom dans exceptions.py.
-      - [ ] Remplacer certains error_response par exceptions custom si besoin.
+  - [X] Authentification
+    - [X] Login (POST /login)
+      - [X] Génération JWT + retour JSON.
+      - [X] Logger + success_response.
+    - [X] Logout (POST /logout)
+      - [X] Nettoyer cookies/tokens.
+      - [X] Logger + success_response.
+  - [X] Reset Password
+    - [X] Reset Request (POST /reset)
+      - [X] Vérifier email fourni et user existe.
+      - [X] Générer token reset (MVP → retour JSON).
+      - [X] Logger + success_response.
+    - [X] Reset Confirm (PUT /reset/< token>)
+      - [X] Vérifier token valide/non expiré.
+      - [X] Vérifier new_password.
+      - [X] Hash + update DB.
+      - [X] Invalider token.
+      - [X] Logger + success_response.
+    - [X] Update Password connecté (PUT /reset)
+      - [X] Vérifier JWT valide.
+      - [X] Vérifier old_password correct.
+      - [X] Vérifier new_password conforme.
+      - [X] Hash + update DB.
+      - [X] Logger + success_response.
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- La partie la plus difficile aujourd'hui à été les services pour la réinitialisation du password.
+  - Est ce que je fais un reset du niveau d'un MVP, alors que je code comme une application pro depuis le départ ?
+  - Est ce que ce n'est pas une perte de temps et d'énergie alors que je ne peux pas encore tester ?
+  - J'ai eu des difficultés pour comprendre et visualiser le contenu de mes réponse :
+    - est ce que c'est un tuple ?
+    - est ce que c'est un dictionnaire ?
+    - est ce que c'est une valeur simple ?
+    Quelques confusions finalement mais qui m'ont fait retravailler mes types de réponses.
+- J'ai un énorme fichier de services (services/auth_service.py), j'ai eu vraiment peur de trop m'étaler et du coup de perdre du temps, mais finalement la mise en place de mes routes a été grandement facilitée (merci moi, d'avoir prévus).
+- J'ai eu des problèmes de type de donnée à cause de Pylance, j'ai dus utiliser # type: ignore, sur certaines lignes.
 
 ### 🔀 SCM (branches & commits)
 
@@ -494,29 +474,36 @@ Template du logbook:
 
 - Commits :
   - 📝 (docs/logbook.md): Set objectives for day 7 week 1
+  - ➕ (app/init.py): Add JWT configuration for token management and secure cookies
+  - ➕ (requirements.txt): Add Flask-Mail for email management
+  - ➕ (app/init.py): Add Flask-Mail for email management
+  - ♻️ (models/user.py): Add default value for the _first_login field
+  - ♻️ (utils/responses.py): Add a 'data' parameter to the error_response function to include additional data in error responses
+  - ♻️ (routes/auth.py): Refactor authentication routes to use auth_service methods and improve error handling
+  - ♻️ (services/auth_service.py): Refactor user authentication and password reset functionalities; add email sending for password reset requests
   - 📝 (docs/logbook.md): Update progress for day 7 week 1
 
 ### 🧪 QA (tests faits)
 
-- [ ] Tests (fin de journée)
-  - [ ] Tests manuels (Postman)
-    - [ ] register → login → logout.
-    - [ ] reset password (oublié).
-    - [ ] reset password (connecté).
-    - [ ] profil (GET/PUT).
-    - [ ] rôles (user/admin).
-  - [ ] Tests unitaires (Pytest)
-    - [ ] Création user.
-    - [ ] Login.
-    - [ ] Reset password.
+- [ ] Pas de tests ce jour.
 
 ### 💡 Notes / décisions
 
--
+- J'ai codé mon reset password comme pour une vraie application déployable, j'ai dépassé un peu mon MVP, mais quitte à me former autant le faire pour que ça me soit utile en entreprise. C'est un risque.
+- J'ai eu la possibilité de rendre modulable certains services, mais j'ai encore besoin d'avoir des fonctions séparées qui font qu'une seule chose pour gérer et comprendre lors de la construction de mes routes. Il faut que je prévois un temps pour l'opptimisation de fonctions. (Si j'ai pas le temps, ce n'est pas grave, ça reste fonctionnel).
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - J'ai encore appris beaucoup de choses pendant cette session de travail (tokens, cookies, reset password).
+  - Je me félicite tout les jours de ma classe User → un gain de temps incroyable surtout pour la vérification des champs, je vais m'en inspirer pour le reste de mes classes.
+  - La partie authentification pure est enfin terminée.
 - ⚠️ À améliorer :
-  -
+  - Je finis la semaine avec du retard sur mon planning.
+    - J'ai bon espoir que mes sessions de travail cette semaine 1 me permettrons de gagner du temps la semaine 2.
+  - J'ai un manque flagrant de connaissance sur les outils de Flask.
+    - J'ai ajouté dans ma to do de me former sur des librairies utiles type jwt ou Flask_jwt_extended.
+  - Je ne suis pas à l'aise avec l'authentification, l'utilisation des token, et des cookies.
+    - Je penses que ça va venir avec l'expérience et surtout beaucoup de pratique.
+  - Je me rends compte que j'ai des lacunes sur les tuples, dictionnaires, listes.
+    - Refaire des exercices ne me ferais pas de mal, il faut que je trouve du temps.
