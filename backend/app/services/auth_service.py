@@ -1,25 +1,28 @@
 import os
-from app.models.user import User
-from utils.validators import is_valid, EMAIL_PATTERN, PASSWORD_PATTERN
-from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, set_access_cookies, set_refresh_cookies, unset_jwt_cookies, decode_token
 from jwt import ExpiredSignatureError, InvalidTokenError
+from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, set_access_cookies, set_refresh_cookies, unset_jwt_cookies, decode_token
 from flask_mail import Message
-from app.utils.responses import success_response, error_response
 from flask import current_app as app, make_response
 from sqlalchemy.exc import IntegrityError
 from app import db, mail
+from app.utils.responses import success_response, error_response
+from app.models.user import User
+from app.utils.validators import is_valid, EMAIL_PATTERN, PASSWORD_PATTERN
 from datetime import timedelta
 
 # ----------------------------------------------------- Fonctions réutilisables
 def validate_user_data(data):
     """Vérifie que les données d'inscription sont présentes et valides (email, password, etc.)."""
     try:
-        new_user = User(**data)
-        app.logger.error(f"[BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides")
-        return success_response("BACK", "services/auth_service.py", "validate_register_data()", "Les valeurs enregistrées pour le nouvel user sont valides", new_user, 201)
+        raw_password = data.pop("password", None)
+        user = User(**data)
+        if raw_password:
+            user.password_hash = raw_password
+        app.logger.info(f"[BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides")
+        return user
     except (ValueError, TypeError) as e:
         app.logger.error(f"[BACK][services/auth_service.py][validate_register_data()] Invalid value: {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "validate_register_data()", f"Invalid value: {str(e)}", 400)
+        raise
 
 # ------------------------------------------------------------------- /Register
 def create_user(new_user):
@@ -29,13 +32,12 @@ def create_user(new_user):
         db.session.add(new_user)
         db.session.commit()
         app.logger.info(f"[BACK][services/auth_service.py][create_user()] Utilisateur créé avec succès : {new_user.email}")
-        return success_response("BACK", "services/auth_service.py", "create_user()", "Utilisateur créé avec succès", new_user.to_dict(), 201)
-
+        cleaned_user = new_user.to_dict(exclude=["_password_hash", "_first_login", "_role"])
+        return success_response("BACK", "services/auth_service.py", "create_user()", "Utilisateur créé avec succès", cleaned_user, 201)
     except IntegrityError as e:
         db.session.rollback()
         app.logger.error(f"[BACK][services/auth_service.py][create_user()] Email déjà utilisé : {str(e)}")
         return error_response("BACK", "services/auth_service.py", "create_user()", "Cet email est déjà utilisé", 400)
-
     except Exception as e:
         db.session.rollback()
         app.logger.error(f"[BACK][services/auth_service.py][create_user()] Erreur lors de la création : {str(e)}")
@@ -44,32 +46,37 @@ def create_user(new_user):
 # ---------------------------------------------------------------------- /Login
 def validate_login_data(data):
     """Vérifie que les données de connexion sont présentes (email/username et password)."""
-    email = data.get("email", "").strip()
-    username = data.get("username", "").strip()
-    password = data.get("password", "").strip()
+    email = data.get("email")
+    username = data.get("username")
+    password = data.get("password")
     if not password or (not email and not username):
         app.logger.error("[BACK][services/auth_service.py][validate_login_data()] Champs invalides : email/username ou mot de passe manquant")
         return error_response("BACK", "services/auth_service.py", "validate_login_data()", "Champs invalides : email/username ou mot de passe manquant", 400)
     app.logger.info("[BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion")
-    return success_response("BACK", "services/auth_service.py", "validate_login_data()", "Champs valides pour la connexion", {"email": email, "username": username, "password": password}, 201)
+    return {"email": email, "username": username, "password": password}
 
 def find_user_by_email_or_username(data):
     """Retourne un utilisateur à partir de son email ou de son username."""
     email = data.get("email")
     username = data.get("username")
-    user = None
-    if email:
-        user = db.session.query(User).filter_by(_email=email).first()
-        if user:
-            app.logger.info(f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : {email}")
-            return success_response("BACK", "services/auth_service.py", "find_user_by_email_or_username()", "Utilisateur trouvé par email : ", email, 201)
-    if username:
-        user = db.session.query(User).filter_by(_username=username).first()
-        if user:
-            app.logger.info(f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par username : {username}")
-            return success_response("BACK", "services/auth_service.py", "find_user_by_email_or_username()", "Utilisateur trouvé par username : ", username, 201)
-    app.logger.error("[BACK][services/auth_service.py][find_user_by_email_or_username()] Aucun utilisateur trouvé")
-    return error_response("BACK", "services/auth_service.py", "find_user_by_email_or_username()", "Aucun utilisateur trouvé avec cet email/username", 404)
+    try:
+        user = None
+        if email:
+            user = db.session.query(User).filter_by(_email=email).first()
+            if user:
+                app.logger.info(f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : {email}")
+                return user
+        if username:
+            user = db.session.query(User).filter_by(_username=username).first()
+            if user:
+                app.logger.info(f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par username : {username}")
+                return user
+        app.logger.error("[BACK][services/auth_service.py][find_user_by_email_or_username()] Aucun utilisateur trouvé")
+        return None
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error(f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Erreur SQL : {str(e)}")
+        raise
 
 def authenticate_user(user, password):
     """Vérifie si le mot de passe fourni correspond au hash stocké pour cet utilisateur."""
@@ -230,18 +237,39 @@ def update_user_password(user, new_password):
         return error_response("BACK", "services/auth_service.py", "update_user_password()", f"Erreur lors de la mise à jour du mot de passe pour {user.email} : {str(e)}", 500)
 
 # ----------------------------------------------------------- Gestion du Profil
-def get_user_from_identity(identity):
-    """Récupère un utilisateur en fonction de l'identité contenue dans le JWT."""
-    pass
-
 def sanitize_user_profile(user):
     """Retourne un profil utilisateur nettoyé (sans champs sensibles)."""
-    pass
+    if not isinstance(user, User):
+        app.logger.error("[BACK][services/auth_service.py][sanitize_user_profile()] Le user n'est pas une instance de User")
+        return error_response("BACK", "services/auth_service.py", "sanitize_user_profile()", "Le user n'est pas une instance de User", None, 400)
+    exclude = ["_password_hash", "_role", "_first_login"]
+    cleaned_user = user.to_dict(exclude=exclude)
+    app.logger.info(f"[BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour {user.email}")
+    return cleaned_user
 
-def validate_profile_update(data):
-    """Vérifie que les données de mise à jour de profil sont valides (regex, unicité email)."""
-    pass
+def get_user_from_identity():
+    """Récupère un utilisateur en fonction de l'identité contenue dans le JWT."""
+    email = get_jwt_identity()
+    user = find_user_by_email(email)
+    if user is None:
+        app.logger.error(f"[BACK][services/auth_service.py][get_user_from_identity()] Aucun utilisateur trouvé pour {email}")
+        return error_response("BACK", "services/auth_service.py", "get_user_from_identity()", f"Aucun utilisateur trouvé pour {email}", None, 404)
+    app.logger.info(f"[BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {email}")
+    return user
 
 def update_profile(user, data):
     """Met à jour les informations du profil utilisateur en DB avec les données valides."""
-    pass
+    try:
+        for key, value in data.items():
+            if hasattr(user, key):
+                setattr(user, key, value)
+        db.session.commit()
+        app.logger.info(f"[BACK][services/auth_service.py][update_profile()] Profil mis à jour avec succès pour {user.email}")
+        cleaned_user = sanitize_user_profile(user)
+        return success_response("BACK", "services/auth_service.py", "update_profile()", "Profil mis à jour avec succès", cleaned_user, 200)
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error(f"[BACK][services/auth_service.py][update_profile()] Erreur lors de la mise à jour du profil pour {user.email} : {str(e)}")
+        return error_response("BACK", "services/auth_service.py", "update_profile()", f"Erreur lors de la mise à jour du profil pour {user.email} : {str(e)}", 500)
+
+
