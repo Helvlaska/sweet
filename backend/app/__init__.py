@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
+from app.utils.logging import configure_logging
 from datetime import timedelta
 
 # ----------------------------------------------- Initialisation des extensions
@@ -48,7 +49,7 @@ def create_app(test_config=None):
     # Configuration de la sécurité des cookies
     flask_app.config["JWT_COOKIE_SECURE"] = False  # ⚠️ Mettre True en production (HTTPS obligatoire)
     flask_app.config["JWT_COOKIE_HTTPONLY"] = True
-    flask_app.config["JWT_COOKIE_CSRF_PROTECT"] = True
+    flask_app.config["JWT_COOKIE_CSRF_PROTECT"] = False
     flask_app.config["JWT_COOKIE_SAMESITE"] = "Lax"
 
     # Configuration de la durée de vie des tokens
@@ -70,6 +71,7 @@ def create_app(test_config=None):
     migrate.init_app(flask_app, db)
     bcrypt.init_app(flask_app)
     jwt.init_app(flask_app)
+    configure_logging(flask_app)
 
 # -------------------------------------------------- Enregistrement des modèles
     import app.models
