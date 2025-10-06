@@ -507,3 +507,83 @@ Template du logbook:
     - Je penses que ça va venir avec l'expérience et surtout beaucoup de pratique.
   - Je me rends compte que j'ai des lacunes sur les tuples, dictionnaires, listes.
     - Refaire des exercices ne me ferais pas de mal, il faut que je trouve du temps.
+
+---
+
+## Jour 8 – Auth (fin) (06/10/25)
+
+### 🎯 Objectifs du jour
+
+- Finir les 4 fonctions manquantes du fichier services/auth_service.py.
+- Finaliser les routes correspondantes.
+- Vérifier la cohérence avec les tokens JWT
+- Tests manuels Postman
+
+### ✅ Réalisé
+
+- [ ] Boîte à outils Auth (services/auth_service.py)
+  - [ ] Gestion du profil
+    - [ ] Récupérer l’utilisateur courant via JWT (get_jwt_identity).
+    - [ ] Retirer les champs sensibles avant de retourner le profil (mot de passe, tokens).
+    - [ ] Vérifier la validité des champs envoyés lors d’une mise à jour de profil.
+  - [ ] Sécurité & rôles
+    - [ ] Assigner le rôle user par défaut à l’inscription.
+    - [ ] Vérifier les accès selon le rôle (user/admin).
+
+- [ ] Routes à implémenter (routes/auth.py)
+  - [ ] Gestion du profil
+    - [ ] Show Profile (GET /profile)
+      - [ ] Vérifier JWT valide.
+      - [ ] Charger user.
+      - [ ] Nettoyer données sensibles.
+      - [ ] Logger + success_response.
+    - [ ] Update Profile (PUT /profile)
+      - [ ] Vérifier JWT valide.
+      - [ ] Valider champs (regex, unicité email).
+      - [ ] Update DB.
+      - [ ] Logger + success_response.
+  - [ ] Sécurité & Qualité
+    - [ ] Ajouter rôle user par défaut à l’inscription.
+      - [ ] Vérifier rôle admin seulement via DB.
+      - [ ] Centraliser logs (app.logger).
+      - [ ] Créer exceptions custom dans exceptions.py.
+      - [ ] Remplacer certains error_response par exceptions custom si besoin.
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la gestion des routes Auth. → `user-model`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+  - 📝 (docs/logbook.md): Set objectives for day 1 week 2
+  - 📝 (docs/logbook.md): Update progress for day 1 week 2
+
+### 🧪 QA (tests faits)
+
+- [ ] Tests
+  - [ ] Tests manuels (Postman)
+    - [ ] register → login → logout.
+    - [ ] reset password (oublié).
+    - [ ] reset password (connecté).
+    - [ ] profil (GET/PUT).
+    - [ ] rôles (user/admin).
+  - [ ] Tests unitaires (Pytest)
+    - [ ] Création user.
+    - [ ] Login.
+    - [ ] Reset password.
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
