@@ -1,0 +1,260 @@
+[2025-10-06 11:13:57] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 11:21:33] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 11:25:02] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 11:25:03] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:08:00] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Invalid value: __init__() got an unexpected keyword argument 'password'
+[2025-10-06 14:08:00] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user()] Erreur lors de la création : Class 'builtins.tuple' is not mapped
+[2025-10-06 14:25:41] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:25:44] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:35:48] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:35:54] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:35:57] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:36:00] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:36:05] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:36:19] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:36:22] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:53:57] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:53:58] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 14:54:04] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Invalid value: __init__() missing 9 required positional arguments: 'password_hash', 'first_name', 'last_name', 'date_of_birth', 'gender', 'height', 'city', 'profile_picture', and 'first_login'
+[2025-10-06 15:01:58] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Invalid value: __init__() missing 3 required positional arguments: 'password_hash', 'profile_picture', and 'first_login'
+[2025-10-06 15:09:16] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:12:06] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:12:07] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:14:08] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:14:13] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Invalid value: __init__() missing 3 required positional arguments: 'password_hash', 'profile_picture', and 'first_login'
+[2025-10-06 15:16:41] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:16:43] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:21:51] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:21:57] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:22:03] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email est validé
+[2025-10-06 15:22:03] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-06 15:22:03] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-06 15:22:03] [ERROR] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth n'est pas une date jj/mm/aaaa
+[2025-10-06 15:22:03] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Invalid value: La date de naissance doit être un objet date
+[2025-10-06 15:22:32] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email est validé
+[2025-10-06 15:22:32] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-06 15:22:32] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-06 15:22:32] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-06 15:22:32] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-06 15:22:32] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-06 15:22:32] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username est validé
+[2025-10-06 15:22:32] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-06 15:22:32] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-06 15:22:32] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user()] Email déjà utilisé : (sqlite3.IntegrityError) NOT NULL constraint failed: users._date_of_birth
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('truc@holberton.com', 'TrucMuche', '$2b$12$cOUHNNn.fyi3F.FFBUwVLOgFlv5K9sPXQOfTpAfmGanoYu0.4jMxS', 'Truc', 'Muche', None, 'male', 180, 'Paris', None, 'user', 1, 'a4dc617d-4ffa-42d9-9811-dff0803198c3', '2025-10-06 13:22:32.610450', '2025-10-06 13:22:32.610481')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-06 15:23:43] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email est validé
+[2025-10-06 15:23:43] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-06 15:23:43] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-06 15:23:43] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-06 15:23:43] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-06 15:23:43] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-06 15:23:43] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username est validé
+[2025-10-06 15:23:43] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-06 15:23:43] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-06 15:23:43] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user()] Email déjà utilisé : (sqlite3.IntegrityError) NOT NULL constraint failed: users._date_of_birth
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('Muche@holberton.com', 'TrucMuche', '$2b$12$q6XfTUHd9W0r1kFU.tqnMOOgAV977ik0byXhBGiuOLPVraGzJrHre', 'Truc', 'Muche', None, 'male', 180, 'Paris', None, 'user', 1, 'b7a73a2b-bff7-47e0-8489-fbaf14bf6eaf', '2025-10-06 13:23:43.485156', '2025-10-06 13:23:43.485160')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-06 15:25:07] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:25:09] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:25:15] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email est validé
+[2025-10-06 15:25:15] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-06 15:25:15] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-06 15:25:15] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-06 15:25:15] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-06 15:25:15] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-06 15:25:15] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username est validé
+[2025-10-06 15:25:15] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-06 15:25:15] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-06 15:25:15] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user()] Email déjà utilisé : (sqlite3.IntegrityError) NOT NULL constraint failed: users._date_of_birth
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('Muche@holberton.com', 'TrucMuche', '$2b$12$jAZ6hjaKk2cnDTgXoqkb4.QTHM.5j4tSnhDH/ixvpQmox4gON2ZjG', 'Truc', 'Muche', None, 'male', 180, 'Paris', None, 'user', 1, 'c3d7d292-ffc0-4b34-a9d8-be3309aae3ad', '2025-10-06 13:25:15.438274', '2025-10-06 13:25:15.438279')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-06 15:26:54] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email est validé
+[2025-10-06 15:26:54] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-06 15:26:54] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-06 15:26:54] [ERROR] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth n'est pas une date jj/mm/aaaa
+[2025-10-06 15:26:54] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Invalid value: La date de naissance doit être un objet date
+[2025-10-06 15:29:09] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email est validé
+[2025-10-06 15:29:09] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-06 15:29:09] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-06 15:29:09] [ERROR] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth n'est pas une date jj/mm/aaaa
+[2025-10-06 15:29:09] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Invalid value: La date de naissance doit être un objet date
+[2025-10-06 15:32:45] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email est validé
+[2025-10-06 15:32:45] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-06 15:32:45] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-06 15:32:45] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-06 15:32:45] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-06 15:32:45] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-06 15:32:45] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username est validé
+[2025-10-06 15:32:45] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-06 15:32:45] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-06 15:32:45] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user()] Email déjà utilisé : (sqlite3.IntegrityError) NOT NULL constraint failed: users._date_of_birth
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('truc@holberton.com', 'TrucMuche', '$2b$12$82pSOBJWf5NHFD/PAXlZUORnavsuzySZdAPZUdvcQnnIMITYTbYYW', 'Truc', 'Muche', None, 'male', 180, 'Paris', None, 'user', 1, 'b886e68d-187e-4b3b-b861-0f7b51fbf804', '2025-10-06 13:32:45.400067', '2025-10-06 13:32:45.400072')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-06 15:37:09] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:37:10] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:38:42] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:39:33] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:39:34] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 15:39:51] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email est validé
+[2025-10-06 15:39:51] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-06 15:39:51] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-06 15:39:51] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-06 15:39:51] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-06 15:39:51] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-06 15:39:51] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-06 15:39:51] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-06 15:39:51] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username est validé
+[2025-10-06 15:39:51] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-06 15:39:51] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-06 15:39:51] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user()] Utilisateur créé avec succès : truc@holberton.com
+[2025-10-06 15:44:37] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-06 15:44:37] [ERROR] [auth.login] [BACK][routes/auth.py][login()] Champs invalides : échec de la connexion
+[2025-10-06 15:45:51] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-06 15:45:51] [ERROR] [auth.login] [BACK][routes/auth.py][login()] Champs invalides : échec de la connexion
+[2025-10-06 15:46:37] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-06 15:46:37] [ERROR] [auth.login] [BACK][routes/auth.py][login()] Champs invalides : échec de la connexion
+[2025-10-06 17:43:49] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:44:36] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:44:36] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:50:27] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:50:45] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:50:47] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:50:52] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:51:04] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:52:03] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:52:04] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:55:22] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:55:37] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:56:46] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:57:07] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:57:38] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 17:57:58] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 18:01:20] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 18:01:40] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 18:01:41] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:06:38] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:06:40] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:06:43] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:06:44] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:06:47] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:06:49] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:09:39] [ERROR] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs invalides : email/username ou mot de passe manquant
+[2025-10-06 19:09:39] [ERROR] [auth.login] [BACK][routes/auth.py][login()] Champs invalides : échec de la connexion
+[2025-10-06 19:10:16] [ERROR] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs invalides : email/username ou mot de passe manquant
+[2025-10-06 19:10:16] [ERROR] [auth.login] [BACK][routes/auth.py][login()] Champs invalides : échec de la connexion
+[2025-10-06 19:10:30] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-06 19:10:30] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par username : TrucMuche
+[2025-10-06 19:10:30] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-06 19:10:30] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-06 19:10:30] [INFO] [auth.login] [BACK][routes/auth.py][login()] Première connexion détectée pour truc@holberton.com
+[2025-10-06 19:10:30] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'truc@holberton.com', '_username': 'TrucMuche', '_password_hash': '$2b$12$00gIZo0KxGxRZhK0sE/KAuRLa8wLd0XukOGAFv3jjIu9jQlwri1Nu', '_first_name': 'Truc', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '9f7059bd-91c3-4883-bc2e-f5298f8fb881', 'created_at': datetime.datetime(2025, 10, 6, 13, 39, 51, 693807), 'updated_at': datetime.datetime(2025, 10, 6, 17, 10, 30, 974330)}
+[2025-10-06 19:10:30] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'truc@holberton.com', '_username': 'TrucMuche', '_password_hash': '$2b$12$00gIZo0KxGxRZhK0sE/KAuRLa8wLd0XukOGAFv3jjIu9jQlwri1Nu', '_first_name': 'Truc', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '9f7059bd-91c3-4883-bc2e-f5298f8fb881', 'created_at': datetime.datetime(2025, 10, 6, 13, 39, 51, 693807), 'updated_at': datetime.datetime(2025, 10, 6, 17, 10, 30, 974330)}
+[2025-10-06 19:13:39] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:13:41] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:13:56] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:14:03] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:14:08] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:15:53] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:15:59] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:16:03] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:22:49] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:23:37] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:23:38] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:23:42] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-06 19:23:42] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par username : TrucMuche
+[2025-10-06 19:23:42] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-06 19:23:42] [INFO] [auth.login] Type user: <class 'app.models.user.User'>
+[2025-10-06 19:23:42] [INFO] [auth.login] Session is active: True
+[2025-10-06 19:24:52] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email est validé
+[2025-10-06 19:24:52] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-06 19:24:52] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-06 19:24:52] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-06 19:24:52] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-06 19:24:52] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-06 19:24:52] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-06 19:24:53] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-06 19:24:53] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username est validé
+[2025-10-06 19:24:53] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-06 19:24:53] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-06 19:24:53] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user()] Utilisateur créé avec succès : machin@holberton.com
+[2025-10-06 19:25:26] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-06 19:25:26] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : machin@holberton.com
+[2025-10-06 19:25:26] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-06 19:25:26] [INFO] [auth.login] Type user: <class 'app.models.user.User'>
+[2025-10-06 19:25:26] [INFO] [auth.login] Session is active: True
+[2025-10-06 19:30:05] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:30:08] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:30:12] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:30:36] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 19:31:16] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email est validé
+[2025-10-06 19:31:16] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-06 19:31:16] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-06 19:31:16] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-06 19:31:16] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-06 19:31:16] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-06 19:31:16] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-06 19:31:16] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-06 19:31:16] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username est validé
+[2025-10-06 19:31:16] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-06 19:31:16] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-06 19:31:16] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user()] Utilisateur créé avec succès : toto@holberton.com
+[2025-10-06 19:31:28] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-06 19:31:28] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-06 19:31:28] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-06 19:31:28] [INFO] [auth.login] Type user: <class 'app.models.user.User'>
+[2025-10-06 19:31:28] [INFO] [auth.login] Session is active: True
+[2025-10-06 19:31:28] [INFO] [auth.login] User is attached: True
+[2025-10-06 19:31:28] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-06 19:31:28] [INFO] [auth.login] [BACK][routes/auth.py][login()] Première connexion détectée pour toto@holberton.com
+[2025-10-06 19:31:28] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-06 19:31:28] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-06 19:39:52] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 23:32:08] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 23:32:09] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-06 23:32:41] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-06 23:32:41] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-06 23:32:42] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-06 23:32:42] [INFO] [auth.login] [BACK][routes/auth.py][login()] Connexion classique pour toto@holberton.com
+[2025-10-06 23:32:42] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-06 23:32:42] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-06 23:34:13] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-06 23:34:13] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-06 23:34:14] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-06 23:34:14] [INFO] [auth.login] [BACK][routes/auth.py][login()] Connexion classique pour toto@holberton.com
+[2025-10-06 23:34:14] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-06 23:34:14] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 00:12:06] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 00:12:07] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 00:12:12] [INFO] [auth.logout] [BACK][routes/auth.py][logout()] Demande de déconnexion reçue
+[2025-10-07 00:12:12] [INFO] [auth_service.logout_user] [BACK][services/auth_service.py][logout_user()] Déconnexion réussie : Les cookies JWT ont été supprimés
+[2025-10-07 00:12:29] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-07 00:12:29] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-07 00:12:29] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-07 00:12:29] [INFO] [auth.login] [BACK][routes/auth.py][login()] Connexion classique pour toto@holberton.com
+[2025-10-07 00:12:29] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 00:12:29] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 00:12:38] [INFO] [auth.logout] [BACK][routes/auth.py][logout()] Demande de déconnexion reçue
+[2025-10-07 00:12:38] [INFO] [auth_service.logout_user] [BACK][services/auth_service.py][logout_user()] Déconnexion réussie : Les cookies JWT ont été supprimés
+[2025-10-07 00:14:58] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-07 00:14:58] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-07 00:14:59] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-07 00:14:59] [INFO] [auth.login] [BACK][routes/auth.py][login()] Connexion classique pour toto@holberton.com
+[2025-10-07 00:14:59] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 00:14:59] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 00:15:05] [ERROR] [auth_service.find_user_by_email] [BACK][services/auth_service.py][find_user_by_email()] Aucun utilisateur trouvé pour 20e32c12-207f-443c-8ab2-5b512f3fe722
+[2025-10-07 00:15:05] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : 20e32c12-207f-443c-8ab2-5b512f3fe722
+[2025-10-07 00:15:05] [ERROR] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Le user n'est pas de une instance de User
+[2025-10-07 00:15:05] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de (<Response 220 bytes [200 OK]>, 400) réussi
+[2025-10-07 00:23:45] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 00:25:13] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 00:25:17] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 00:25:20] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 00:25:22] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 00:25:26] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 00:25:29] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 00:25:31] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
