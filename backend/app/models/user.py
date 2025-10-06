@@ -1,6 +1,6 @@
 from flask import current_app as app
 from app.models.base import BaseModel
-from datetime import date
+from datetime import date, datetime
 from app import db, bcrypt
 from app.utils.validators import is_valid, EMAIL_PATTERN, USERNAME_PATTERN, PASSWORD_PATTERN, FIRSTNAME_PATTERN, LASTNAME_PATTERN, CITY_PATTERN
 
@@ -18,43 +18,26 @@ class User(BaseModel):
     _password_hash = db.Column(db.String(255), nullable=False)
     _first_name = db.Column(db.String(75), nullable=False)
     _last_name = db.Column(db.String(100), nullable=False)
-    _date_of_birth = db.Column(db.Date, nullable=False)
-    _gender = db.Column(db.Enum("male", "female", "other", "prefer_not_say"), nullable=False)
+    _date_of_birth = db.Column(db.Date, nullable=True)
+    _gender = db.Column(db.Enum("male", "female", "other", "prefer_not_say"), nullable=False, default="prefer_not_say")
     _height = db.Column(db.Integer, nullable=False)
     _city = db.Column(db.String(120), nullable=False)
     _profile_picture = db.Column(db.LargeBinary, nullable=True)
-    _role = db.Column(db.Enum("user", "admin"), nullable=False)
+    _role = db.Column(db.Enum("user", "admin"), nullable=False, default="user")
     _first_login = db.Column(db.Boolean, nullable=False, default=True)
 
 # ------------------------------------------------------------------- Relations
     # children = db.relationship("children", backref="parent", cascade="all, delete-orphan")
-    comment = db.relationship("Comment", backref="User", cascade="all")
-    forum_post = db.relationship("Forum_post", backref="User", cascade="all")
-    activity = db.relationship("Activity", backref="User", cascade="all, delete-orphan")
-    glycemia = db.relationship("Glycemia", backref="User", cascade="all, delete-orphan")
-    health_professional = db.relationship("Health_professional", backref="User", cascade="all, delete-orphan")
-    meal = db.relationship("Meal", backref="User", cascade="all, delete-orphan")
-    medication = db.relationship("Medication", backref="User", cascade="all, delete-orphan")
-    mood = db.relationship("Mood", backref="User", cascade="all, delete-orphan")
-    note = db.relationship("Note", backref="User", cascade="all, delete-orphan")
-    weight = db.relationship("Weight", backref="User", cascade="all, delete-orphan")
-
-# ----------------------------------------------------------- Attributs de User
-    def __init__(self, email, username, password_hash, first_name, last_name, date_of_birth, gender, height, city, profile_picture, first_login, role="user"):
-        """Initialisation d'un nouveau user avec les attributs requis"""
-        super().__init__()
-        self.email = email
-        self.username = username
-        self.password_hash = password_hash
-        self.first_name = first_name
-        self.last_name = last_name
-        self.date_of_birth = date_of_birth
-        self.gender = gender
-        self.height = height
-        self.city = city
-        self.profile_picture = profile_picture
-        self.first_login = first_login
-        self.role = role
+    #comment = db.relationship("Comment", backref="User", cascade="all")
+    #forum_post = db.relationship("Forum_post", backref="User", cascade="all")
+    #activity = db.relationship("Activity", backref="User", cascade="all, delete-orphan")
+    #glycemia = db.relationship("Glycemia", backref="User", cascade="all, delete-orphan")
+    #health_professional = db.relationship("Health_professional", backref="User", cascade="all, delete-orphan")
+    #meal = db.relationship("Meal", backref="User", cascade="all, delete-orphan")
+    #medication = db.relationship("Medication", backref="User", cascade="all, delete-orphan")
+    #mood = db.relationship("Mood", backref="User", cascade="all, delete-orphan")
+    #note = db.relationship("Note", backref="User", cascade="all, delete-orphan")
+    #weight = db.relationship("Weight", backref="User", cascade="all, delete-orphan")
 
 # ----------------------------------------------------------------- Champ email
     @property
@@ -174,6 +157,17 @@ class User(BaseModel):
 
     @date_of_birth.setter
     def date_of_birth(self, value):
+        if value is None or value == "":
+            app.logger.info("[BACK][models/user.py][date_of_birth.setter] Aucun champ de date renseigné (nullable autorisé).")
+            self._date_of_birth = None
+            return
+        if isinstance(value, str):
+            try:
+                value = datetime.strptime(value, "%Y-%m-%d").date()
+                app.logger.info("[BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.")
+            except ValueError:
+                app.logger.error("[BACK][models/user.py][date_of_birth.setter] Format invalide. Attendu : YYYY-MM-DD.")
+                raise ValueError("Format de la date invalide. Utilisez le format YYYY-MM-DD.")
         if not isinstance(value, date):
             app.logger.error("[BACK][models/user.py][date_of_birth.setter] Date_of_birth n'est pas une date jj/mm/aaaa")
             raise TypeError("La date de naissance doit être un objet date")
