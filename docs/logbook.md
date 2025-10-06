@@ -522,36 +522,38 @@ Template du logbook:
 ### ✅ Réalisé
 
 - [ ] Boîte à outils Auth (services/auth_service.py)
-  - [ ] Gestion du profil
-    - [ ] Récupérer l’utilisateur courant via JWT (get_jwt_identity).
-    - [ ] Retirer les champs sensibles avant de retourner le profil (mot de passe, tokens).
-    - [ ] Vérifier la validité des champs envoyés lors d’une mise à jour de profil.
+  - [X] Gestion du profil
+    - [X] Récupérer l’utilisateur courant via JWT (get_jwt_identity).
+    - [X] Retirer les champs sensibles avant de retourner le profil (mot de passe, tokens).
+    - [X] Vérifier la validité des champs envoyés lors d’une mise à jour de profil.
   - [ ] Sécurité & rôles
     - [ ] Assigner le rôle user par défaut à l’inscription.
     - [ ] Vérifier les accès selon le rôle (user/admin).
 
-- [ ] Routes à implémenter (routes/auth.py)
-  - [ ] Gestion du profil
-    - [ ] Show Profile (GET /profile)
-      - [ ] Vérifier JWT valide.
-      - [ ] Charger user.
-      - [ ] Nettoyer données sensibles.
-      - [ ] Logger + success_response.
-    - [ ] Update Profile (PUT /profile)
-      - [ ] Vérifier JWT valide.
-      - [ ] Valider champs (regex, unicité email).
-      - [ ] Update DB.
-      - [ ] Logger + success_response.
+- [X] Routes à implémenter (routes/auth.py)
+  - [X] Gestion du profil
+    - [X] Show Profile (GET /profile)
+      - [X] Vérifier JWT valide.
+      - [X] Charger user.
+      - [X] Nettoyer données sensibles.
+      - [X] Logger + success_response.
+    - [X] Update Profile (PUT /profile)
+      - [X] Vérifier JWT valide.
+      - [X] Valider champs (regex, unicité email).
+      - [X] Update DB.
+      - [X] Logger + success_response.
   - [ ] Sécurité & Qualité
     - [ ] Ajouter rôle user par défaut à l’inscription.
       - [ ] Vérifier rôle admin seulement via DB.
-      - [ ] Centraliser logs (app.logger).
+      - [X] Centraliser logs (app.logger).
       - [ ] Créer exceptions custom dans exceptions.py.
       - [ ] Remplacer certains error_response par exceptions custom si besoin.
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Mes error_response et success_response font beaucoup de bruit dans mon code.
+  - Lors de ma phase de tests (elle se termine jour 2), je dois déterminer si elles mes sont vraiment utiles pour le debugue ou si je peux me contenter des logger.
+- Pylance est un problème récurant dans mon code, il se perd dans les types quand mes fonctions return, déjà que c'est difficile de penser à tout, mais si en plus je dois typer mes fonctions je ne m'en sortirais jamais, ou en tout cas pas dans le temps imparti. (Note à moi-même : ça me permettrait sans doute de réviser les tuple, liste et dictionnaire 👀🥲)
 
 ### 🔀 SCM (branches & commits)
 
@@ -561,29 +563,37 @@ Template du logbook:
 
 - Commits :
   - 📝 (docs/logbook.md): Set objectives for day 1 week 2
+  - ♻️ (app/init.py): Add logging configuration and disable CSRF protection for JWT cookies during testing
+  - ♻️ (models/user.py): Refactor User model, update date_of_birth handling to allow nullable values and improve error logging for date format validation
+  - ♻️ (routes/auth.py): Refactor authentication routes to improve user profile handling and logging; sanitize user profile data and streamline response messages
+  - ♻️ (services/auth_service.py): Refactor user data validation and profile management; improve error handling and logging for user creation and profile updates
+  - ✨ (utils/logging.py): Implement code changes to enhance functionality and improve performance
   - 📝 (docs/logbook.md): Update progress for day 1 week 2
 
 ### 🧪 QA (tests faits)
 
 - [ ] Tests
   - [ ] Tests manuels (Postman)
-    - [ ] register → login → logout.
+    - [X] register → login → logout.
     - [ ] reset password (oublié).
     - [ ] reset password (connecté).
     - [ ] profil (GET/PUT).
     - [ ] rôles (user/admin).
   - [ ] Tests unitaires (Pytest)
-    - [ ] Création user.
-    - [ ] Login.
+    - [X] Création user.
+    - [X] Login.
     - [ ] Reset password.
 
 ### 💡 Notes / décisions
 
--
+- Pendant les premiers tests, je me rends compte que je regarde d'avantage mes logger et mes sorties en console, plutôt que mes responses, d'autant que j'ai beaucoup de problèmes en ce qui concerne les type de response.
+  - Je vais attendre la fin des tests pour prendre une décision.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Je me suis formée à Postman, autant la toute première fois je n'avais rien compris, autant aujourd'hui, j'ai pris le temps de bien comprendre, d'expérimenter, et vraiment c'est une belle (re)découverte.
+  - J'ai enfin terminé mes fichiers pour l'authentification, il ne me reste qu'une partie des tests et la gestion de user/admin, mais c'est gérable pour demain soir.
+  - Même si je tatonne encore, je suis contente, par ce que je trouve ma façon de coder, ou en tout cas celle que je comprends, et qui me convient.
 - ⚠️ À améliorer :
-  -
+  - Des difficultés mais ça à été une bonne journée.
