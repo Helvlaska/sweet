@@ -77,14 +77,15 @@ def reset_confirm(token):
     app.logger.info(f"[BACK][routes/auth.py][reset_confirm()] Mot de passe mis à jour avec succès.")
     return success_response("BACK", "routes/auth.py", "reset_confirm()", "Mot de passe mis à jour avec succès.", None, 200)
 
-@auth_bp.route('/reset', methods=['PUT'])
+@auth_bp.route('/password', methods=['PUT'])
 @jwt_required()
 def update_password():
     data = request.get_json()
-    email = get_jwt_identity()
-    user = auth_service.find_user_by_email(email)
-    auth_service.update_user_password(user, data["new_password"])
-    app.logger.info(f"[BACK][routes/auth.py][update_password()] La modification du mdp à été un succès pour {email}")
+    current_user = auth_service.get_user_from_identity()
+    if not current_user:
+        return error_response("BACK", "routes/auth.py", "update_password()", "Utilisateur introuvable pour ce token", None, 404)
+    auth_service.update_user_password(current_user, data["new_password"])
+    app.logger.info(f"[BACK][routes/auth.py][update_password()] La modification du mdp à été un succès pour {current_user}")
     return success_response("BACK", "routes/auth.py", "update_password()", "La modification du mdp à été un succès", 200)
 
 # --------------------------------------------- Route GET & PUT : /auth/profile
@@ -92,16 +93,16 @@ def update_password():
 @jwt_required()
 def show_profile():
     current_user = auth_service.get_user_from_identity()
-    app.logger.info(current_user)
+    app.logger.info(f"[BACK][routes/auth.py][show_profile()] Récupération de {current_user} avec get_user_from_identity() réussi")
     cleaned_user = auth_service.sanitize_user_profile(current_user)
-    app.logger.info(f"[BACK][routes/auth.py][show_profile()] Affichage du profil de {current_user} réussi")
+    app.logger.info(f"[BACK][routes/auth.py][show_profile()] Affichage du profil de {current_user} après l'avoir nettoyé réussi")
     return success_response("BACK", "routes/auth.py", "show_profile()", "Affichage du profil utilisateur réussi", cleaned_user, 200)
 
 @auth_bp.route('/profile', methods=['PUT'])
 @jwt_required()
 def update_profile():
-    app.logger.info("[BACK][routes/auth.py][update_profile()] Requête de mise à jour du profil reçue")
     data = request.get_json()
     current_user = auth_service.get_user_from_identity()
     response = auth_service.update_profile(current_user, data)
+    app.logger.info(f"[BACK][routes/auth.py][update_profile()] J'ai modifié le profile du user {response}")
     return response
