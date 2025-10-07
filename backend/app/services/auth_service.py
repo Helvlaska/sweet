@@ -271,5 +271,3 @@ def update_profile(user, data):
         db.session.rollback()
         app.logger.error(f"[BACK][services/auth_service.py][update_profile()] Erreur lors de la mise à jour du profil pour {user.email} : {str(e)}")
         return error_response("BACK", "services/auth_service.py", "update_profile()", f"Erreur lors de la mise à jour du profil pour {user.email} : {str(e)}", 500)
-
-
