@@ -111,7 +111,7 @@ class User(BaseModel):
     @property
     def first_name(self):
         """User's first_name"""
-        return self.first_name
+        return self._first_name
 
     @first_name.setter
     def first_name(self, value):
@@ -132,7 +132,7 @@ class User(BaseModel):
     @property
     def last_name(self):
         """User's last_name"""
-        return self.last_name
+        return self._last_name
 
     @last_name.setter
     def last_name(self, value):
@@ -216,7 +216,7 @@ class User(BaseModel):
     @property
     def city(self):
         """User's city"""
-        return self.city
+        return self._city
 
     @city.setter
     def city(self, value):
@@ -237,7 +237,7 @@ class User(BaseModel):
     @property
     def profile_picture(self):
         """User's profile_picture"""
-        return self.profile_picture
+        return self._profile_picture
 
     @profile_picture.setter
     def profile_picture(self, value):
