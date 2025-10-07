@@ -597,3 +597,59 @@ Template du logbook:
   - Même si je tatonne encore, je suis contente, par ce que je trouve ma façon de coder, ou en tout cas celle que je comprends, et qui me convient.
 - ⚠️ À améliorer :
   - Des difficultés mais ça à été une bonne journée.
+
+---
+
+## Jour X – Tests Auth (XX/XX/25)
+
+### 🎯 Objectifs du jour
+
+- Tests /reset et /profile
+- Créer les classes Glycemia et Weight dans /models
+  - Implémenter leurs services CRUD + routes /data/glycemia et /data/weight
+  - Tests Postman (add, get, range)
+
+### ✅ Réalisé
+
+- [ ] Bloc Glycemia et Weight
+  - [ ] Création classe Glycemia
+  - [ ] Implémenter services CRUD
+  - [ ] Implémenter routes /data/glycemia
+  - [ ] Création classe Weight
+  - [ ] Implémenter services CRUD
+  - [ ] Implémenter routes /data/weight
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la gestion des routes Auth. → `user-model`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+  - 📝 (docs/logbook.md): Set objectives for day 2 week 2
+  - 📝 (docs/logbook.md): Update progress for day 2 week 2
+
+### 🧪 QA (tests faits)
+
+- [ ] Tests /auth
+  - [ ] reset password (oublié).
+  - [ ] reset password (connecté).
+  - [ ] profil (GET/PUT).
+  - [ ] rôles (user/admin)
+- [ ] Tests /glycemia /weight
+  - [ ] Tests sur Glycemia
+  - [ ] Tests sur Weight
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
