@@ -108,7 +108,7 @@ def generate_tokens(user, remember_me=False):
         }
         response, status_code = success_response("BACK", "services/auth_service.py", "generate_tokens()", "Authentification réussie, tokens créés", response_data, 200)
         # Ajouter les cookies sécurisés à la réponse
-        set_access_cookies(response, access_token)
+        set_access_cookies(response, access_token) # type: ignore
         if refresh_token:
             set_refresh_cookies(response, refresh_token)
         app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {user.to_dict()}")
@@ -241,7 +241,7 @@ def sanitize_user_profile(user):
     """Retourne un profil utilisateur nettoyé (sans champs sensibles)."""
     if not isinstance(user, User):
         app.logger.error("[BACK][services/auth_service.py][sanitize_user_profile()] Le user n'est pas une instance de User")
-        return error_response("BACK", "services/auth_service.py", "sanitize_user_profile()", "Le user n'est pas une instance de User", None, 400)
+        return None
     exclude = ["_password_hash", "_role", "_first_login"]
     cleaned_user = user.to_dict(exclude=exclude)
     app.logger.info(f"[BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour {user.email}")
@@ -249,12 +249,12 @@ def sanitize_user_profile(user):
 
 def get_user_from_identity():
     """Récupère un utilisateur en fonction de l'identité contenue dans le JWT."""
-    email = get_jwt_identity()
-    user = find_user_by_email(email)
-    if user is None:
-        app.logger.error(f"[BACK][services/auth_service.py][get_user_from_identity()] Aucun utilisateur trouvé pour {email}")
-        return error_response("BACK", "services/auth_service.py", "get_user_from_identity()", f"Aucun utilisateur trouvé pour {email}", None, 404)
-    app.logger.info(f"[BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {email}")
+    user_id = get_jwt_identity()
+    user = db.session.query(User).filter_by(id=user_id).first()
+    if not user:
+        app.logger.error(f"[BACK][services/auth_service.py][get_user_from_identity()] Aucun utilisateur trouvé pour {user_id}")
+        return None
+    app.logger.info(f"[BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {user.to_dict()}")
     return user
 
 def update_profile(user, data):
@@ -264,8 +264,8 @@ def update_profile(user, data):
             if hasattr(user, key):
                 setattr(user, key, value)
         db.session.commit()
-        app.logger.info(f"[BACK][services/auth_service.py][update_profile()] Profil mis à jour avec succès pour {user.email}")
         cleaned_user = sanitize_user_profile(user)
+        app.logger.info(f"[BACK][services/auth_service.py][update_profile()] Profil mis à jour avec succès pour {cleaned_user}")
         return success_response("BACK", "services/auth_service.py", "update_profile()", "Profil mis à jour avec succès", cleaned_user, 200)
     except Exception as e:
         db.session.rollback()
