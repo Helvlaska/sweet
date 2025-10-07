@@ -258,3 +258,200 @@
 [2025-10-07 00:25:26] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
 [2025-10-07 00:25:29] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
 [2025-10-07 00:25:31] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 09:56:47] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 09:56:49] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:04:11] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-07 10:04:11] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-07 10:04:11] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-07 10:04:11] [INFO] [auth.login] [BACK][routes/auth.py][login()] Connexion classique pour toto@holberton.com
+[2025-10-07 10:04:11] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 10:04:11] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 10:04:47] [INFO] [auth.logout] [BACK][routes/auth.py][logout()] Demande de déconnexion reçue
+[2025-10-07 10:04:47] [INFO] [auth_service.logout_user] [BACK][services/auth_service.py][logout_user()] Déconnexion réussie : Les cookies JWT ont été supprimés
+[2025-10-07 10:10:11] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:10:14] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:10:17] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:12:11] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-07 10:12:11] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-07 10:12:11] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-07 10:12:11] [INFO] [auth.login] [BACK][routes/auth.py][login()] Connexion classique pour toto@holberton.com
+[2025-10-07 10:12:11] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 10:12:11] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 10:13:25] [INFO] [auth.logout] [BACK][routes/auth.py][logout()] Demande de déconnexion reçue
+[2025-10-07 10:13:25] [INFO] [auth_service.logout_user] [BACK][services/auth_service.py][logout_user()] Déconnexion réussie : Les cookies JWT ont été supprimés
+[2025-10-07 10:13:54] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-07 10:13:54] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-07 10:13:54] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-07 10:13:54] [INFO] [auth.login] [BACK][routes/auth.py][login()] Connexion classique pour toto@holberton.com
+[2025-10-07 10:13:54] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 10:13:54] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 10:14:02] [ERROR] [auth_service.find_user_by_email] [BACK][services/auth_service.py][find_user_by_email()] Aucun utilisateur trouvé pour 20e32c12-207f-443c-8ab2-5b512f3fe722
+[2025-10-07 10:14:02] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : 20e32c12-207f-443c-8ab2-5b512f3fe722
+[2025-10-07 10:14:02] [INFO] [auth.show_profile] (<Response 220 bytes [200 OK]>, 400)
+[2025-10-07 10:14:02] [ERROR] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Le user n'est pas une instance de User
+[2025-10-07 10:14:02] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de (<Response 220 bytes [200 OK]>, 400) réussi
+[2025-10-07 10:20:34] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:20:37] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:20:49] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:20:55] [ERROR] [auth_service.find_user_by_email] [BACK][services/auth_service.py][find_user_by_email()] Aucun utilisateur trouvé pour 20e32c12-207f-443c-8ab2-5b512f3fe722
+[2025-10-07 10:20:55] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : 20e32c12-207f-443c-8ab2-5b512f3fe722
+[2025-10-07 10:20:55] [INFO] [auth.show_profile] (<Response 220 bytes [200 OK]>, 400)
+[2025-10-07 10:20:55] [ERROR] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Le user n'est pas une instance de User
+[2025-10-07 10:20:55] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de (<Response 220 bytes [200 OK]>, 400) réussi
+[2025-10-07 10:40:33] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:40:48] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:41:03] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:41:27] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:41:33] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:42:07] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : 20e32c12-207f-443c-8ab2-5b512f3fe722
+[2025-10-07 10:42:07] [INFO] [auth.show_profile] <User 20e32c12-207f-443c-8ab2-5b512f3fe722>
+[2025-10-07 10:42:07] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-07 10:42:07] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> réussi
+[2025-10-07 10:42:42] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:42:42] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : <User 20e32c12-207f-443c-8ab2-5b512f3fe722>
+[2025-10-07 10:42:42] [INFO] [auth.show_profile] <User 20e32c12-207f-443c-8ab2-5b512f3fe722>
+[2025-10-07 10:42:42] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-07 10:42:42] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> réussi
+[2025-10-07 10:43:17] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:43:45] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:43:46] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:43:49] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-07 10:43:49] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-07 10:43:49] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-07 10:43:49] [INFO] [auth.login] [BACK][routes/auth.py][login()] Connexion classique pour toto@holberton.com
+[2025-10-07 10:43:49] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 10:43:49] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 10:43:58] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 10:43:58] [INFO] [auth.show_profile] <User 20e32c12-207f-443c-8ab2-5b512f3fe722>
+[2025-10-07 10:43:58] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-07 10:43:58] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> réussi
+[2025-10-07 10:45:45] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:46:11] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:46:22] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:46:23] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:46:28] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:46:34] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:46:44] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:46:56] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:47:00] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 10:47:00] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Récupération de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> avec get_user_from_identity() réussi
+[2025-10-07 10:47:00] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-07 10:47:00] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> après l'avoir nettoyé réussi
+[2025-10-07 10:49:06] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] Requête de mise à jour du profil reçue
+[2025-10-07 10:50:41] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:50:44] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:50:48] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:50:55] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:50:58] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:51:01] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:51:04] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] Requête de mise à jour du profil reçue
+[2025-10-07 10:52:21] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:52:32] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:52:39] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:52:43] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:52:48] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:52:51] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:00] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:03] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:15] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:17] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:21] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:31] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:34] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:37] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:44] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:48] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:56] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:53:58] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:54:10] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:54:14] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:54:17] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:54:33] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:54:47] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:54:54] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:54:56] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:54:59] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] Requête de mise à jour du profil reçue
+[2025-10-07 10:55:27] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 10:55:31] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:02:35] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] Requête de mise à jour du profil reçue
+[2025-10-07 11:02:35] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] J'ai récupéré les {'city': 'Rennes', 'height': 170, 'first_name': 'Truc', 'last_name': 'Muche'}
+[2025-10-07 11:02:35] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 11:02:35] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] J'ai récupéré le <User 20e32c12-207f-443c-8ab2-5b512f3fe722>
+[2025-10-07 11:02:35] [INFO] [auth_service.update_profile] Je suis dans update_profile
+[2025-10-07 11:02:35] [ERROR] [auth_service.update_profile] [BACK][services/auth_service.py][update_profile()] Erreur lors de la mise à jour du profil pour toto@holberton.com : maximum recursion depth exceeded
+[2025-10-07 11:02:35] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] J'ai modifié le profile du user (<Response 248 bytes [200 OK]>, 400)
+[2025-10-07 11:04:46] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 11:04:46] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Récupération de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> avec get_user_from_identity() réussi
+[2025-10-07 11:04:46] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-07 11:04:46] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> après l'avoir nettoyé réussi
+[2025-10-07 11:10:32] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:10:37] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:10:47] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:10:51] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:10:59] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 11:10:59] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Récupération de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> avec get_user_from_identity() réussi
+[2025-10-07 11:10:59] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-07 11:10:59] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> après l'avoir nettoyé réussi
+[2025-10-07 11:11:17] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] Requête de mise à jour du profil reçue
+[2025-10-07 11:11:17] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] J'ai récupéré les {'city': 'Rennes', 'height': 170, 'first_name': 'Truc', 'last_name': 'Muche'}
+[2025-10-07 11:11:17] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'machin', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 180, '_city': 'Paris', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 6, 17, 31, 28, 888716)}
+[2025-10-07 11:11:17] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] J'ai récupéré le <User 20e32c12-207f-443c-8ab2-5b512f3fe722>
+[2025-10-07 11:11:17] [INFO] [auth_service.update_profile] Je suis dans update_profile
+[2025-10-07 11:11:17] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-07 11:11:17] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-07 11:11:17] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-07 11:11:17] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-07 11:11:17] [INFO] [auth_service.update_profile] [BACK][services/auth_service.py][update_profile()] Profil mis à jour avec succès pour toto@holberton.com
+[2025-10-07 11:11:17] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-07 11:11:17] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] J'ai modifié le profile du user (<Response 605 bytes [200 OK]>, 200)
+[2025-10-07 11:11:45] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'Truc', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 170, '_city': 'Rennes', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 7, 9, 11, 17, 563237)}
+[2025-10-07 11:11:45] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Récupération de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> avec get_user_from_identity() réussi
+[2025-10-07 11:11:45] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-07 11:11:45] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de <User 20e32c12-207f-443c-8ab2-5b512f3fe722> après l'avoir nettoyé réussi
+[2025-10-07 11:12:15] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:12:20] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:12:24] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:12:28] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:12:32] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:12:55] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:12:57] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:13:06] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:13:22] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 11:14:19] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 12:52:03] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 12:52:04] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 13:00:57] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-07 13:00:57] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-07 13:00:57] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-07 13:00:57] [INFO] [auth.login] [BACK][routes/auth.py][login()] Connexion classique pour toto@holberton.com
+[2025-10-07 13:00:57] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'Truc', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 170, '_city': 'Rennes', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 7, 9, 11, 17, 563237)}
+[2025-10-07 13:00:57] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'Truc', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 170, '_city': 'Rennes', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 7, 9, 11, 17, 563237)}
+[2025-10-07 13:03:31] [ERROR] [auth_service.validate_reset_token] [BACK][services/auth_service.py][validate_reset_token()] Token invalide
+[2025-10-07 13:14:26] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 13:14:40] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 13:14:44] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 13:14:48] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 13:14:59] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 13:15:02] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 13:15:23] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 13:15:54] [ERROR] [auth_service.validate_reset_token] [BACK][services/auth_service.py][validate_reset_token()] Token invalide
+[2025-10-07 14:19:04] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 14:19:05] [ERROR] [auth_service.validate_reset_token] [BACK][services/auth_service.py][validate_reset_token()] Token invalide
+[2025-10-07 14:20:00] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 14:21:46] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 14:21:48] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 14:21:59] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-07 14:21:59] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-07 14:21:59] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-07 14:21:59] [INFO] [auth.login] [BACK][routes/auth.py][login()] Connexion classique pour toto@holberton.com
+[2025-10-07 14:21:59] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'Truc', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 170, '_city': 'Rennes', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 7, 9, 11, 17, 563237)}
+[2025-10-07 14:21:59] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'Truc', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 170, '_city': 'Rennes', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 7, 9, 11, 17, 563237)}
+[2025-10-07 14:22:17] [ERROR] [auth_service.validate_reset_token] [BACK][services/auth_service.py][validate_reset_token()] Token invalide
+[2025-10-07 14:23:21] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 14:23:23] [ERROR] [auth_service.validate_reset_token] [BACK][services/auth_service.py][validate_reset_token()] Token invalide
+[2025-10-07 14:27:27] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 14:27:55] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+[2025-10-07 14:30:13] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'_email': 'toto@holberton.com', '_username': 'toto', '_password_hash': '$2b$12$DMRhgnEvk9bUOByfLFFeluyo6pc0ql6m/erxHTXvaPz0bxPeJ/Naa', '_first_name': 'Truc', '_last_name': 'Muche', '_date_of_birth': datetime.date(1990, 10, 6), '_gender': 'male', '_height': 170, '_city': 'Rennes', '_profile_picture': None, '_role': 'user', '_first_login': False, 'id': '20e32c12-207f-443c-8ab2-5b512f3fe722', 'created_at': datetime.datetime(2025, 10, 6, 17, 31, 16, 564597), 'updated_at': datetime.datetime(2025, 10, 7, 9, 11, 17, 563237)}
+[2025-10-07 14:30:13] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-07 14:30:13] [INFO] [auth_service.update_user_password] [BACK][services/auth_service.py][update_user_password()]Mot de passe mis à jour avec succès pour toto@holberton.com
+[2025-10-07 14:30:13] [INFO] [auth.update_password] [BACK][routes/auth.py][update_password()] La modification du mdp à été un succès pour <User 20e32c12-207f-443c-8ab2-5b512f3fe722>
