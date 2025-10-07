@@ -600,7 +600,7 @@ Template du logbook:
 
 ---
 
-## Jour X – Tests Auth (XX/XX/25)
+## Jour 9 – Tests Auth + Glycemia/Weight (07/10/25)
 
 ### 🎯 Objectifs du jour
 
@@ -612,44 +612,56 @@ Template du logbook:
 ### ✅ Réalisé
 
 - [ ] Bloc Glycemia et Weight
-  - [ ] Création classe Glycemia
+  - [X] Création classe Glycemia
   - [ ] Implémenter services CRUD
   - [ ] Implémenter routes /data/glycemia
-  - [ ] Création classe Weight
+  - [X] Création classe Weight
   - [ ] Implémenter services CRUD
   - [ ] Implémenter routes /data/weight
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Pas de difficultés particulières aujourd'hui.
+
 ### 🔀 SCM (branches & commits)
 
 - Branches :
-  - Branche tirée pour la gestion des routes Auth. → `user-model`.
+  - Branche tirée pour la gestion des routes Auth. → `user-model`. → Branche mergée et supprimée.
   - Mise à jour du journal de bord → `logbook`.
+  - Branche tirée pour la gestion des classes Glycemia et Weight → `glycemia-weight-module`
 
 - Commits :
   - 📝 (docs/logbook.md): Set objectives for day 2 week 2
+  - 🧪♻️ (routes/auth.py): Refactor code following Postman testing
+  - 🧪♻️ (services/auth_service.py): Refactor code following Postman testing
+  - 🧪♻️ (models/user.py): Refactor code following Postman testing
+  - ➕ (utils/logging.py): Implement code changes to enhance functionality and improve performance
+  - 🔀 (user-model → main): Merge user-model working branch into main
+  - ✨ (models/glycemia.py): Add Glycemia class with glucose level validation
+  - ✨ (models/weight.py): Add Weight class with weight validation
   - 📝 (docs/logbook.md): Update progress for day 2 week 2
 
 ### 🧪 QA (tests faits)
 
-- [ ] Tests /auth
-  - [ ] reset password (oublié).
-  - [ ] reset password (connecté).
-  - [ ] profil (GET/PUT).
-  - [ ] rôles (user/admin)
+- [X] Tests /auth
+  - [X] reset password (oublié).
+  - [X ] reset password (connecté).
+  - [X] profil (GET/PUT).
+  - [X] rôles (user/admin)
 - [ ] Tests /glycemia /weight
   - [ ] Tests sur Glycemia
   - [ ] Tests sur Weight
 
 ### 💡 Notes / décisions
 
--
+- Maintenant que les tests sont terminés pour la classe User, ainsi que pour l'authentification, je vais arrêter d'utiliser mes responses formatées, presque toutes mes erreurs lors des tests étaient liées à elles.
+- J'ai terminé aujourd'hui les classes Glycemia et Weight, elles ont étés extrêmement rapides à faire. La classe User était définitivement la plus longue.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Je peux enfin dire que l'authentification est terminée, c'était la moitié de mon backend finalement en terme de charge de travail. Je suis très contente de l'avoir finie.
+  - Même si il me reste presque 10x classes à faire, elles sont très rapide à faire, dans mon planning j'ai prévus d'en faire 2/jour, je penses que c'est planning est jouable.
 - ⚠️ À améliorer :
-  -
+  - J'arrête l'utilisation de mes responses personnalisées.
+  - Je n'ajoute que mes logs pour debuguer, c'est largement suffisant.
