@@ -1,0 +1,50 @@
+from flask import current_app as app
+from datetime import datetime, timezone
+import uuid
+from app import db
+
+class BaseModel(db.Model):
+    __abstract__= True
+
+    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+
+# ---------------------------------------------------------------------- save()
+    def save(self):
+        """Met à jour le timestamp de modification"""
+        db.session.add(self)
+        db.session.commit()
+
+# -------------------------------------------------------------------- update()
+    def update(self, data):
+        """Met à jour les attributs de l’instance à partir d’un dictionnaire"""
+        valid_attrs = {col.name for col in self.__table__.columns} # type: ignore
+        for key, value in data.items():
+            valid_attrs = self.__dict__.keys()
+            if not hasattr(self, key):
+                app.logger.error("[BACK][models/base.py][update()] '{key}' n'est pas un attribut valide")
+                raise AttributeError(
+                    f"{key} is not valid attribute"
+                    f"Valid attributes are: {list(valid_attrs)}"
+                )
+            setattr(self, key, value)
+        self.updated_at = datetime.now(timezone.utc)
+        db.session.commit()
+
+# ------------------------------------------------------------------- to_dict()
+    def to_dict(self, exclude=None):
+        """
+        Retourne un dictionnaire représentant l’instance.
+        exclude: liste des attributs à exclure (ex: mdp, token)
+        exemple d'utilisation : print(user.to_dict(exclude=["password_hash"]))
+        """
+        if exclude is None:
+            exclude = []
+
+        result = {}
+        for column in self.__table__.columns: # type: ignore
+            if column.name not in exclude:
+                result[column.name] = getattr(self, column.name)
+        return result
+
