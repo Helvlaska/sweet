@@ -688,7 +688,10 @@ Template du logbook:
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Je me suis rendue compte pendant l'élaboration de mes services pour la classe Glycemia, que je n'avais pas pensé dans mon diagramme de classe à toutes la gestion concernant les dates:
+  - J'ai une date de création → Elle ne doit pas être modifiée, elle me sert de point de repère dans ma BDD.
+  - J'ai une date de modification → Elle non plus ne bouge pas, elle me sert à tracer les mouvement dans ma BDD par rapport à la date de création.
+  - Mais il me manquait une date, que je pourrais manipuler et modifier au besoin pour pouvoir regrouper toutes les données pour une journée ou pour une période (date à date), j'ai mis en place une 3e date pour cela.
 
 ### 🔀 SCM (branches & commits)
 
@@ -699,6 +702,14 @@ Template du logbook:
 
 - Commits :
   - 📝 (docs/logbook.md): Set objectives for day 3 week 2
+  - ➕ (app/init.py): Register data blueprint for improved routing
+  - ➕ (models/init.py): Import Glycemia and Weight classes for model accessibility
+  - ➕ (models/base.py): Add entry_date column to record the entry date
+  - ➕ (models/glycemia.py): Add user_id column to associate glycemia records with users
+  - ➕ (models/user.py): Add weight relationship to User model for weight tracking
+  - ➖ (routes/auth.py): Remove unnecessary import of get_jwt_identity
+  - ✨ (routes/data.py): Add routes for managing glycemia and weight data
+  - ✨ (services/data_service.py): Add functions to validate and create glycemia entries
   - 📝 (docs/logbook.md): Update progress for day 3 week 2
 
 ### 🧪 QA (tests faits)
@@ -709,11 +720,14 @@ Template du logbook:
 
 ### 💡 Notes / décisions
 
--
+- Mise en place d'une troisième date dans la BaseModel qui s'héritera dans toutes les classe, afin de me permettre de manipuler et regrouper mes données.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - J'ai pus trouver une solution très simple à mon problème de date. La mise en place à été d'autant facilitée par ce que mes classes sont bien construites.
+  - J'ai sans doute trouvé une solution à mon problème de Pylance qui ne reconnait pas mes types quand je manipule de la donnée, je dois tester demain.
 - ⚠️ À améliorer :
-  -
+  - Je prends du retard sur mon planning, mais je ne suis pas inquiète. Mais je dois faire attention, dans mon planning le front commence la semaine prochaine.
+  - J'avais oublié que lorsque je fais des relations entre les classes, il faut que je déclare la liaison dans ma classe one mais aussi dans les classes many.
+  - J'ai beaucoup de fonctions déclarées qui sont censées me faciliter la vie, mais je les oublies, je penses que je vais pouvoir optimiser mon code en ce sens, je dois prendre un temps pour voir et corriger ça.
