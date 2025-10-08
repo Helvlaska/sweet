@@ -9,6 +9,7 @@ class BaseModel(db.Model):
     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    entry_date = db.Column(db.Date, default=lambda: datetime.now(timezone.utc).date(), index=True, nullable=False)
 
 # ---------------------------------------------------------------------- save()
     def save(self):
