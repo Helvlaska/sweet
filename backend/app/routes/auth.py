@@ -1,10 +1,9 @@
 from flask import current_app as app
 from flask import Blueprint, request
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from app import db
 from app.utils.responses import success_response, error_response
 from app.services import auth_service
-from app.models.user import User
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
