@@ -645,7 +645,7 @@ Template du logbook:
 
 - [X] Tests /auth
   - [X] reset password (oublié).
-  - [X ] reset password (connecté).
+  - [X] reset password (connecté).
   - [X] profil (GET/PUT).
   - [X] rôles (user/admin)
 - [ ] Tests /glycemia /weight
@@ -665,3 +665,55 @@ Template du logbook:
 - ⚠️ À améliorer :
   - J'arrête l'utilisation de mes responses personnalisées.
   - Je n'ajoute que mes logs pour debuguer, c'est largement suffisant.
+
+---
+
+## Jour 10 – Glycemia/Weight (08/10/25)
+
+### 🎯 Objectifs du jour
+
+- Implémenter les services CRUD pour les classes Glycemia et Weight
+- Implémenter les routes /data/glycemia et /data/weight
+- Tests Postman (add, get, range)
+- Créer les classes Activity et Meal
+
+### ✅ Réalisé
+
+- [ ] Implémenter services CRUD
+- [ ] Implémenter routes /data/glycemia
+- [ ] Implémenter services CRUD
+- [ ] Implémenter routes /data/weight
+- [ ] Création classe Activity
+- [ ] Création classe Meal
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Mise à jour du journal de bord → `logbook`.
+  - Branche tirée pour la gestion des classes Glycemia et Weight → `glycemia-weight-module`.
+  - Branche tirée pour la gestion des classes Activity et Meal → `activity-meal-module`.
+
+- Commits :
+  - 📝 (docs/logbook.md): Set objectives for day 3 week 2
+  - 📝 (docs/logbook.md): Update progress for day 3 week 2
+
+### 🧪 QA (tests faits)
+
+- [ ] Tests /glycemia /weight
+  - [ ] Tests sur Glycemia
+  - [ ] Tests sur Weight
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
