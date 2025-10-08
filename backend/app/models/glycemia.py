@@ -8,6 +8,8 @@ class Glycemia(BaseModel):
     UNIT = "mg/dl"
     _glucose_level = db.Column(db.Integer, nullable=False)
 
+    user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
+
     @property
     def glucose_level(self):
         return self._glucose_level
