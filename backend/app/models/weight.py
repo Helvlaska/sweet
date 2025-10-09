@@ -8,6 +8,8 @@ class Weight(BaseModel):
     UNIT = "kg"
     _mass = db.Column(db.Float, nullable=False)
 
+    user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
+
     @property
     def mass(self):
         return self._mass
