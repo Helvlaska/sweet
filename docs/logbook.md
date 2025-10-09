@@ -731,3 +731,54 @@ Template du logbook:
   - Je prends du retard sur mon planning, mais je ne suis pas inquiète. Mais je dois faire attention, dans mon planning le front commence la semaine prochaine.
   - J'avais oublié que lorsque je fais des relations entre les classes, il faut que je déclare la liaison dans ma classe one mais aussi dans les classes many.
   - J'ai beaucoup de fonctions déclarées qui sont censées me faciliter la vie, mais je les oublies, je penses que je vais pouvoir optimiser mon code en ce sens, je dois prendre un temps pour voir et corriger ça.
+
+---
+
+## Jour 11 – Glycemia service (09/10/25)
+
+### 🎯 Objectifs du jour
+
+- Implémenter les services CRUD pour les classes Glycemia et Weight
+- Implémenter les routes /data/glycemia et /data/weight
+- Tests Postman (add, get, range)
+- Créer les classes Activity et Meal
+
+### ✅ Réalisé
+
+- [ ] Implémenter services CRUD
+- [ ] Implémenter routes /data/glycemia
+- [ ] Implémenter services CRUD
+- [ ] Implémenter routes /data/weight
+- [ ] Création classe Activity
+- [ ] Création classe Meal
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Mise à jour du journal de bord → `logbook`.
+  - Branche tirée pour la gestion des classes Glycemia et Weight → `glycemia-weight-module`.
+
+- Commits :
+
+  - 📝 (docs/logbook.md): Set objectives for day 4 week 2
+  - 📝 (docs/logbook.md): Update progress for day 4 week 2
+
+### 🧪 QA (tests faits)
+
+- [ ] Tests /glycemia /weight
+  - [ ] Tests sur Glycemia
+  - [ ] Tests sur Weight
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
