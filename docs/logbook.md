@@ -745,16 +745,17 @@ Template du logbook:
 
 ### ✅ Réalisé
 
-- [ ] Implémenter services CRUD
-- [ ] Implémenter routes /data/glycemia
-- [ ] Implémenter services CRUD
-- [ ] Implémenter routes /data/weight
+- [X] Implémenter services CRUD glycemia
+- [X] Implémenter routes /data/glycemia
+- [X] Implémenter services CRUD weight
+- [X] Implémenter routes /data/weight
 - [ ] Création classe Activity
 - [ ] Création classe Meal
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Pas de difficultés aujourd'hui
+
 ### 🔀 SCM (branches & commits)
 
 - Branches :
@@ -764,6 +765,11 @@ Template du logbook:
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 4 week 2
+  - ➕ (models/base.py): Improve error handling in the update() method and reorganize the delete() method for better readability
+  - ➕ (models/weight.py): Add user_id column to link weight entries to the user
+  - ➕ (routes/data.py): Add CRUD routes for glycemia and weight entries with error handling
+  - ➕ (services/data_service.py): Add CRUD operations for glycemia and weight entries with validation and error handling
+  - ✨ (utils/timelaps.py): Add get_time_range function to return time ranges based on period type
   - 📝 (docs/logbook.md): Update progress for day 4 week 2
 
 ### 🧪 QA (tests faits)
@@ -774,11 +780,12 @@ Template du logbook:
 
 ### 💡 Notes / décisions
 
--
+- Pas de remontées, l'ensemble de la session de travail s'est très bien passé.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Le fait que j'ai des classes très proches en terme de gestion me permet de gagner beaucoup de temps sur l'implémentation de leurs services et de leurs routes.
+  - La BaseModel est très pratique par sont héritage de fonctions de base.
 - ⚠️ À améliorer :
-  -
+  - Je penses que je peux optimiser mes fonctions de services pour l'authentification en utilisant les fonctions de base de la BaseModel, mais pour l'instant elles sont fonctionnelles, aussi je les modifierais seulement si j'ai le temps en fin de MVP.
