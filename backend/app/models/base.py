@@ -9,6 +9,7 @@ class BaseModel(db.Model):
     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    entry_date = db.Column(db.Date, default=lambda: datetime.now(timezone.utc).date(), index=True, nullable=False)
 
 # ---------------------------------------------------------------------- save()
     def save(self):
@@ -24,13 +25,22 @@ class BaseModel(db.Model):
             valid_attrs = self.__dict__.keys()
             if not hasattr(self, key):
                 app.logger.error("[BACK][models/base.py][update()] '{key}' n'est pas un attribut valide")
-                raise AttributeError(
-                    f"{key} is not valid attribute"
-                    f"Valid attributes are: {list(valid_attrs)}"
-                )
+                raise AttributeError(f"{key} is not valid attribute, Valid attributes are: {list(valid_attrs)}")
             setattr(self, key, value)
         self.updated_at = datetime.now(timezone.utc)
         db.session.commit()
+
+# ---------------------------------------------------------------------- delete()
+    def delete(self):
+        """Supprime l'instance de la base de données"""
+        try:
+            db.session.delete(self)
+            db.session.commit()
+            app.logger.info(f"[BACK][models/base.py][delete()] Entrée supprimée : {self.__class__.__name__} (id={self.id})")
+        except Exception as e:
+            db.session.rollback()
+            app.logger.error(f"[BACK][models/base.py][delete()] Erreur lors de la suppression : {e}")
+            raise
 
 # ------------------------------------------------------------------- to_dict()
     def to_dict(self, exclude=None):

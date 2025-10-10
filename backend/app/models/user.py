@@ -28,16 +28,16 @@ class User(BaseModel):
 
 # ------------------------------------------------------------------- Relations
     # children = db.relationship("children", backref="parent", cascade="all, delete-orphan")
-    #comment = db.relationship("Comment", backref="User", cascade="all")
-    #forum_post = db.relationship("Forum_post", backref="User", cascade="all")
-    #activity = db.relationship("Activity", backref="User", cascade="all, delete-orphan")
-    #glycemia = db.relationship("Glycemia", backref="User", cascade="all, delete-orphan")
-    #health_professional = db.relationship("Health_professional", backref="User", cascade="all, delete-orphan")
-    #meal = db.relationship("Meal", backref="User", cascade="all, delete-orphan")
-    #medication = db.relationship("Medication", backref="User", cascade="all, delete-orphan")
-    #mood = db.relationship("Mood", backref="User", cascade="all, delete-orphan")
-    #note = db.relationship("Note", backref="User", cascade="all, delete-orphan")
-    #weight = db.relationship("Weight", backref="User", cascade="all, delete-orphan")
+    #comment = db.relationship("Comment", backref="user", cascade="all")
+    #forum_post = db.relationship("Forum_post", backref="user", cascade="all")
+    #activity = db.relationship("Activity", backref="user", cascade="all, delete-orphan")
+    glycemia = db.relationship("Glycemia", backref="user", cascade="all, delete-orphan")
+    #health_professional = db.relationship("Health_professional", backref="user", cascade="all, delete-orphan")
+    #meal = db.relationship("Meal", backref="user", cascade="all, delete-orphan")
+    #medication = db.relationship("Medication", backref="user", cascade="all, delete-orphan")
+    #mood = db.relationship("Mood", backref="user", cascade="all, delete-orphan")
+    #note = db.relationship("Note", backref="user", cascade="all, delete-orphan")
+    weight = db.relationship("Weight", backref="user", cascade="all, delete-orphan")
 
 # ----------------------------------------------------------------- Champ email
     @property

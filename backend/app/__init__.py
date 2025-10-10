@@ -81,7 +81,9 @@ def create_app(test_config=None):
     # from .routes.auth import auth_bp
     # flask_app.register_blueprint(auth_bp)
     from .routes.auth import auth_bp
+    from .routes.data import data_bp
     flask_app.register_blueprint(auth_bp)
+    flask_app.register_blueprint(data_bp)
 
 # ------------------------------------------------------------- Instance folder
     try:
