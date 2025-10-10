@@ -802,40 +802,47 @@ Template du logbook:
 
 ### ✅ Réalisé
 
-- [ ] Création classe Activity
-- [ ] Création classe Meal
-- [ ] Implémenter services CRUD Activity
-- [ ] Implémenter routes /data/activity
-- [ ] Implémenter services CRUD Meal
-- [ ] Implémenter routes /data/meal
+- [X] Création classe Activity
+- [X] Création classe Meal
+- [X] Implémenter services CRUD Activity
+- [X] Implémenter routes /data/activity
+- [X] Implémenter services CRUD Meal
+- [X] Implémenter routes /data/meal
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Pas de difficultés.
 
 ### 🔀 SCM (branches & commits)
 
 - Branches :
   - Branche tirée pour la gestion des classes Glycemia et Weight → `glycemia-weight-module`. → Branche mergée et supprimée.
   - Mise à jour du journal de bord → `logbook`.
-  - Branche tirée pour la gestion des classes Activity et Meal → `activity-meal-module`
+  - Branche tirée pour la gestion des classes Activity et Meal → `activity-meal-module`. → Branche mergée et supprimée.
 
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 5 week 2
+  - ✨ (models/activity.py): Add Activity model with validation for description and duration
+  - ✨ (models/meal.py): Add Meal model with validation for meal type and description
+  - ➕ (services/data_service.py): Add activity and meal management functions, including validation, creation, retrieval, update, and deletion of entries
+  - ➕ (routes/data.py): Add activity and meal management routes with CRUD operations and logging
+  - ➕ (models/init.py): Import Activity and Meal models in the initialization module
+  - ➕ (models/user.py): Add activity and meal relationships to the User model
+  - ♻️ (models/glycemia.py): Add info logging for glycemia validation
   - 📝 (docs/logbook.md): Update progress for day 5 week 2
 
 ### 🧪 QA (tests faits)
 
-- [ ]
+- [ ] Pas de tests pour cette session de travail.
 
 ### 💡 Notes / décisions
 
--
+- Tout s'est bien passé.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Mon architecture porte ses fruits. L'implémentation des classes, services et routes est grandement facilitée.
 - ⚠️ À améliorer :
-  -
+  - Je penses que je pourais améliorer mon fichier de routes qui n'est pas DRY, à voir pour après le MVP.
