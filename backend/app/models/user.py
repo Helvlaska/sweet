@@ -30,10 +30,10 @@ class User(BaseModel):
     # children = db.relationship("children", backref="parent", cascade="all, delete-orphan")
     #comment = db.relationship("Comment", backref="user", cascade="all")
     #forum_post = db.relationship("Forum_post", backref="user", cascade="all")
-    #activity = db.relationship("Activity", backref="user", cascade="all, delete-orphan")
+    activity = db.relationship("Activity", backref="user", cascade="all, delete-orphan")
     glycemia = db.relationship("Glycemia", backref="user", cascade="all, delete-orphan")
     #health_professional = db.relationship("Health_professional", backref="user", cascade="all, delete-orphan")
-    #meal = db.relationship("Meal", backref="user", cascade="all, delete-orphan")
+    meal = db.relationship("Meal", backref="user", cascade="all, delete-orphan")
     #medication = db.relationship("Medication", backref="user", cascade="all, delete-orphan")
     #mood = db.relationship("Mood", backref="user", cascade="all, delete-orphan")
     #note = db.relationship("Note", backref="user", cascade="all, delete-orphan")
@@ -190,7 +190,7 @@ class User(BaseModel):
             app.logger.error("[BACK][models/user.py][gender.setter] Le gender doit être une string")
             raise TypeError("Le genre doit être une chaîne")
         if value not in allowed:
-            app.logger.error("[BACK][models/user.py][gender.setter] Le champ gender doit être parmi {allowed}")
+            app.logger.error(f"[BACK][models/user.py][gender.setter] Le champ gender doit être parmi {allowed}")
             raise ValueError(f"Le genre doit être parmi {allowed}")
         app.logger.info("[BACK][models/user.py][gender.setter] Le champ gender est validé")
         self._gender = value

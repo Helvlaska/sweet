@@ -22,4 +22,5 @@ class Glycemia(BaseModel):
         if value < 50 or value > 350:
             app.logger.error("[BACK][models/glycemia.py][glucose_level.setter] La glycémie doit se situer entre 50 et 350")
             raise ValueError("La glycémie doit se situer entre 50 et 350")
+        app.logger.info("La mesure de glycémie est valide")
         self._glucose_level = value
