@@ -734,7 +734,7 @@ Template du logbook:
 
 ---
 
-## Jour 11 – Glycemia service (09/10/25)
+## Jour 11 – Glycemia/Weight services + routes (09/10/25)
 
 ### 🎯 Objectifs du jour
 
@@ -789,3 +789,53 @@ Template du logbook:
   - La BaseModel est très pratique par sont héritage de fonctions de base.
 - ⚠️ À améliorer :
   - Je penses que je peux optimiser mes fonctions de services pour l'authentification en utilisant les fonctions de base de la BaseModel, mais pour l'instant elles sont fonctionnelles, aussi je les modifierais seulement si j'ai le temps en fin de MVP.
+
+---
+
+## Jour 12 – Activity/Meal services + routes (10/10/25)
+
+### 🎯 Objectifs du jour
+
+- Créer les classes Activity et Meal
+- Implémenter les services CRUD pour les classes Activity et Meal
+- Implémenter les routes /data/activity et /data/meal
+
+### ✅ Réalisé
+
+- [ ] Création classe Activity
+- [ ] Création classe Meal
+- [ ] Implémenter services CRUD Activity
+- [ ] Implémenter routes /data/activity
+- [ ] Implémenter services CRUD Meal
+- [ ] Implémenter routes /data/meal
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la gestion des classes Glycemia et Weight → `glycemia-weight-module`. → Branche mergée et supprimée.
+  - Mise à jour du journal de bord → `logbook`.
+  - Branche tirée pour la gestion des classes Activity et Meal → `activity-meal-module`
+
+- Commits :
+
+  - 📝 (docs/logbook.md): Set objectives for day 5 week 2
+  - 📝 (docs/logbook.md): Update progress for day 5 week 2
+
+### 🧪 QA (tests faits)
+
+- [ ]
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
