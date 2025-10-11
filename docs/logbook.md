@@ -846,3 +846,52 @@ Template du logbook:
   - Mon architecture porte ses fruits. L'implémentation des classes, services et routes est grandement facilitée.
 - ⚠️ À améliorer :
   - Je penses que je pourais améliorer mon fichier de routes qui n'est pas DRY, à voir pour après le MVP.
+
+---
+
+## Jour 13 – Medication/Mood classe + services + routes (11/10/25)
+
+### 🎯 Objectifs du jour
+
+- Créer les classes Medication et Mood
+- Implémenter les services CRUD pour les classes Medication et Mood
+- Implémenter les routes /data/medication et /data/mood
+
+### ✅ Réalisé
+
+- [ ] Création classe Medication
+- [ ] Création classe Mood
+- [ ] Implémenter services CRUD Medication
+- [ ] Implémenter routes /data/medication
+- [ ] Implémenter services CRUD Mood
+- [ ] Implémenter routes /data/mood
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la gestion des classes Medication et Mood → `medication-mood-module`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+
+  - 📝 (docs/logbook.md): Set objectives for day 6 week 2
+  - 📝 (docs/logbook.md): Update progress for day 6 week 2
+
+### 🧪 QA (tests faits)
+
+- [ ] Pas de tests pour cette session de travail.
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
