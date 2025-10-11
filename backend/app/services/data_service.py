@@ -2,11 +2,8 @@ from datetime import date
 from flask import current_app as app
 from sqlalchemy import delete
 from app import db
-from app.models.glycemia import Glycemia
-from app.models.weight import Weight
+from app.models import Glycemia, Weight, Activity, Meal, Mood, Medication
 from app.utils import timelaps
-from backend.app.models import Meal, activity
-from backend.app.models.activity import Activity
 
 # -------------------------------------------------------------------- Glycemia
 def validate_glycemia_data(data: dict) -> Glycemia:
@@ -20,6 +17,7 @@ def validate_glycemia_data(data: dict) -> Glycemia:
         app.logger.error(f"[BACK][services/data_service.py][validate_glycemia_data] Erreur de validation de la glycémie: {str(e)}")
         raise
 
+
 def create_glycemia_entry(user_id, data):
     """Crée une nouvelle entrée pour un user via son id"""
     try:
@@ -32,6 +30,7 @@ def create_glycemia_entry(user_id, data):
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_glycemia_entry()] Erreur lors de la création: {e}")
         raise
+
 
 def get_glycemia_entry(user_id: str, range_type: str, target_date=None) -> list[dict]:
     """Récupération les glycémies pour un jour/semaine/mois/3mois/6mois/1an donné"""
@@ -55,6 +54,7 @@ def get_glycemia_entry(user_id: str, range_type: str, target_date=None) -> list[
         app.logger.error(f"[BACK][services/data_service.py][get_glycemia_entries] Erreur inattendue : {e}")
         raise
 
+
 def update_glycemia_entry(user_id: str, entry_id: str, new_data: dict):
     """Modifier une mesure déjà existante"""
     try:
@@ -74,6 +74,7 @@ def update_glycemia_entry(user_id: str, entry_id: str, new_data: dict):
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][update_glycemia_entry] Erreur inattendue : {e}")
         raise
+
 
 def get_glycemia_stats(user_id: str, range_type: str, target_date=None):
     """calculer la moyenne des mesures"""
@@ -102,6 +103,7 @@ def get_glycemia_stats(user_id: str, range_type: str, target_date=None):
         app.logger.error(f"[BACK][services/data_service.py][get_glycemia_stats] Erreur inattendue : {e}")
         raise
 
+
 def delete_glycemia_entry(entry_id: str, user_id: str):
     """Supprimer une mesure de l'utilisateur"""
     try:
@@ -117,6 +119,7 @@ def delete_glycemia_entry(entry_id: str, user_id: str):
         app.logger.error(f"[BACK][services/data_service.py][delete_glycemia_entry] Erreur inattendue pour user {user_id}, entry {entry_id} : {e}")
         raise
 
+
 # ---------------------------------------------------------------------- Weight
 def validate_weight_data(data: dict) -> Weight:
     try:
@@ -127,6 +130,7 @@ def validate_weight_data(data: dict) -> Weight:
     except (ValueError, TypeError) as e:
         app.logger.error(f"[BACK][services/data_service.py][validate_weight_data] Erreur de validation du poids: {str(e)}")
         raise
+
 
 def create_weight_entry(user_id, data):
     try:
@@ -139,6 +143,7 @@ def create_weight_entry(user_id, data):
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_weight_entries()] Erreur lors de la création: {e}")
         raise
+
 
 def get_weight_entry(user_id: str, range_type: str, target_date=None) -> list[dict]:
     try:
@@ -161,6 +166,7 @@ def get_weight_entry(user_id: str, range_type: str, target_date=None) -> list[di
         app.logger.error(f"[BACK][services/data_service.py][get_weight_entries] Erreur inattendue : {e}")
         raise
 
+
 def update_weight_entry(user_id: str, entry_id: str, new_data: dict):
     try:
         entry = Weight.query.filter_by(id=entry_id, user_id=user_id).first()
@@ -180,6 +186,7 @@ def update_weight_entry(user_id: str, entry_id: str, new_data: dict):
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][update_weight_entry] Erreur inattendue : {e}")
         raise
+
 
 def get_weight_stats(user_id: str, range_type: str, target_date=None):
     try:
@@ -207,6 +214,7 @@ def get_weight_stats(user_id: str, range_type: str, target_date=None):
         app.logger.error(f"[BACK][services/data_service.py][get_weight_stats] Erreur inattendue : {e}")
         raise
 
+
 def delete_weight_entry(entry_id: str, user_id: str):
     """Supprimer une mesure de l'utilisateur"""
     try:
@@ -222,6 +230,7 @@ def delete_weight_entry(entry_id: str, user_id: str):
         app.logger.error(f"[BACK][services/data_service.py][delete_weight_entries] Erreur inattendue pour user {user_id}, entry {entry_id} : {e}")
         raise
 
+
 # ---------------------------------------------------------------------- Activity
 def validate_activity_data(data: dict) -> Activity:
     try:
@@ -232,6 +241,7 @@ def validate_activity_data(data: dict) -> Activity:
     except (ValueError, TypeError) as e:
         app.logger.error(f"[BACK][services/data_service.py][validate_activity_data] Erreur de validation de l'activité: {str(e)}")
         raise
+
 
 def create_activity_entry(user_id, data):
     try:
@@ -244,6 +254,7 @@ def create_activity_entry(user_id, data):
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_activity_entry()] Erreur lors de la création de l'activité '{activity.description}' pour le user {user_id}: {e}")
         raise
+
 
 def get_activity_entry(user_id: str, range_type: str, target_date=None) -> list[dict]:
     try:
@@ -266,6 +277,7 @@ def get_activity_entry(user_id: str, range_type: str, target_date=None) -> list[
         app.logger.error(f"[BACK][services/data_service.py][get_activity_entry] Erreur inattendue : {e}")
         raise
 
+
 def update_activity_entry(user_id: str, entry_id: str, new_data: dict):
     try:
         entry = Activity.query.filter_by(id=entry_id, user_id=user_id).first()
@@ -285,6 +297,7 @@ def update_activity_entry(user_id: str, entry_id: str, new_data: dict):
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][update_activity_entry] Erreur inattendue : {e}")
         raise
+
 
 def get_activity_stats(user_id: str, range_type: str, target_date=None):
     try:
@@ -312,6 +325,7 @@ def get_activity_stats(user_id: str, range_type: str, target_date=None):
         app.logger.error(f"[BACK][services/data_service.py][get_activity_stats] Erreur inattendue : {e}")
         raise
 
+
 def delete_activity_entry(entry_id: str, user_id: str):
     """Supprimer une mesure de l'utilisateur"""
     try:
@@ -327,6 +341,7 @@ def delete_activity_entry(entry_id: str, user_id: str):
         app.logger.error(f"[BACK][services/data_service.py][delete_activity_entry] Erreur inattendue pour user {user_id}, entry {entry_id} : {e}")
         raise
 
+
 # ---------------------------------------------------------------------- Meal
 def validate_meal_data(data: dict) -> Meal:
     try:
@@ -337,6 +352,7 @@ def validate_meal_data(data: dict) -> Meal:
     except (ValueError, TypeError) as e:
         app.logger.error(f"[BACK][services/data_service.py][validate_meal_data] Erreur de validation du repas: {str(e)}")
         raise
+
 
 def create_meal_entry(user_id, data):
     try:
@@ -349,6 +365,7 @@ def create_meal_entry(user_id, data):
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_meal_entry()] Erreur lors de la création du repas '{meal.meal_type}' pour le user {user_id}: {e}")
         raise
+
 
 def get_meal_entry(user_id: str, range_type: str, target_date=None) -> list[dict]:
     try:
@@ -371,6 +388,7 @@ def get_meal_entry(user_id: str, range_type: str, target_date=None) -> list[dict
         app.logger.error(f"[BACK][services/data_service.py][get_meal_entry] Erreur inattendue : {e}")
         raise
 
+
 def update_meal_entry(user_id: str, entry_id: str, new_data: dict):
     try:
         entry = Meal.query.filter_by(id=entry_id, user_id=user_id).first()
@@ -391,6 +409,7 @@ def update_meal_entry(user_id: str, entry_id: str, new_data: dict):
         app.logger.error(f"[BACK][services/data_service.py][update_meal_entry] Erreur inattendue : {e}")
         raise
 
+
 def delete_meal_entry(entry_id: str, user_id: str):
     """Supprimer une mesure de l'utilisateur"""
     try:
@@ -404,4 +423,201 @@ def delete_meal_entry(entry_id: str, user_id: str):
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][delete_meal_entry] Erreur inattendue pour user {user_id}, entry {entry_id} : {e}")
+        raise
+
+
+# ---------------------------------------------------------------------- Mood
+def validate_mood_data(data: dict) -> Mood:
+    """Valide les données du modèle Mood via les setters."""
+    try:
+        mood = Mood(**data)
+        app.logger.info("[BACK][services/data_service.py][validate_mood_data] Les valeurs pour le mood sont valides")
+        return mood
+
+    except (ValueError, TypeError) as e:
+        app.logger.error(f"[BACK][services/data_service.py][validate_mood_data] Erreur de validation du mood : {str(e)}")
+        raise
+
+
+def create_mood_entry(user_id: str, data: dict):
+    """Crée une nouvelle entrée d’humeur pour un utilisateur donné."""
+    try:
+        mood = validate_mood_data(data)
+        mood.user_id = user_id
+        mood.save()
+        app.logger.info(f"[BACK][services/data_service.py][create_mood_entry] L’humeur '{mood.description}' a été enregistrée pour l’utilisateur {user_id}")
+        return mood.to_dict()
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][create_mood_entry] Erreur lors de la création de l’humeur pour user {user_id} : {e}")
+        raise
+
+
+def get_mood_entry(user_id: str, range_type: str, target_date=None) -> list[dict]:
+    """Récupère les entrées d’humeur sur une période donnée."""
+    try:
+        start_date, end_date = timelaps.get_time_range(range_type, target_date)
+        entries = (Mood.query.filter(Mood.user_id == user_id, Mood.entry_date >= start_date, Mood.entry_date <= end_date).order_by(Mood.entry_date.asc()).all())
+        if not entries:
+            app.logger.info(f"[BACK][services/data_service.py][get_mood_entry()] Aucune humeur trouvée pour user {user_id} ({range_type})")
+            return []
+        app.logger.info(f"[BACK][services/data_service.py][get_mood_entry()] {len(entries)} humeurs récupérées pour user {user_id}, période {range_type} → {start_date} à {end_date}")
+        result = []
+        for entry in entries: # type: ignore
+            mood_dict = entry.to_dict()
+            result.append(mood_dict)
+        return result
+
+    except ValueError as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_mood_entry()] Erreur de paramètre : {e}")
+        raise
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_mood_entry()] Erreur inattendue : {e}")
+        raise
+
+
+def update_mood_entry(user_id: str, entry_id: str, new_data: dict):
+    """Met à jour une entrée d’humeur existante."""
+    try:
+        entry = Mood.query.filter_by(id=entry_id, user_id=user_id).first()
+        if not entry:
+            app.logger.info(f"[BACK][services/data_service.py][update_mood_entry()] Aucune entrée trouvée pour user {user_id} (id: {entry_id})")
+            return None
+        validated = validate_mood_data(new_data)
+        entry.description = validated.description
+        entry.save()
+        app.logger.info(f"[BACK][services/data_service.py][update_mood_entry()] Entrée {entry_id} mise à jour avec la valeur '{entry.description}' pour user {user_id}")
+        return entry.to_dict()
+
+    except ValueError as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_mood_entry()] Erreur de validation : {e}")
+        raise
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_mood_entry()] Erreur inattendue : {e}")
+        raise
+
+
+def delete_mood_entry(entry_id: str, user_id: str):
+    """Supprime une entrée d’humeur."""
+    try:
+        entry = Mood.query.filter_by(id=entry_id, user_id=user_id).first()
+        if not entry:
+            app.logger.info(f"[BACK][services/data_service.py][delete_mood_entry()] Aucune entrée trouvée pour user {user_id} (entry_id: {entry_id})")
+            return None
+        entry.delete()
+        app.logger.info(f"[BACK][services/data_service.py][delete_mood_entry()] Entrée {entry_id} supprimée avec succès pour user {user_id}")
+        return {"deleted_entry_id": entry_id, "status": "deleted"}
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][delete_mood_entry()] Erreur inattendue pour user {user_id}, entry {entry_id} : {e}")
+        raise
+
+
+# ---------------------------------------------------------------------- Medication
+def validate_medication_data(data: dict) -> Medication:
+    """Valide les données pour la création ou la mise à jour d’un médicament."""
+    try:
+        medication = Medication(**data)
+        app.logger.info("[BACK][services/data_service.py][validate_medication_data] Données de médicament valides")
+        return medication
+
+    except (ValueError, TypeError) as e:
+        app.logger.error(f"[BACK][services/data_service.py][validate_medication_data] Erreur de validation : {str(e)}")
+        raise
+
+
+def create_medication_entry(user_id: str, data: dict):
+    """Crée un nouveau médicament pour l’utilisateur."""
+    try:
+        medication = validate_medication_data(data)
+        medication.user_id = user_id
+        medication.save()
+        app.logger.info(f"[BACK][services/data_service.py][create_medication_entry()] Médicament '{medication.name}' ajouté pour user {user_id}, dose : {medication.dose} mg, stock : {medication.stock} mg")
+        return medication.to_dict()
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][create_medication_entry()] Erreur lors de la création : {e}")
+        raise
+
+
+def get_medication_entry(user_id: str) -> list[dict]:
+    """Récupère tous les médicaments enregistrés pour un utilisateur."""
+    try:
+        entries = (Medication.query.filter_by(user_id=user_id).order_by(Medication.entry_date.asc()).all())
+        if not entries:
+            app.logger.info(f"[BACK][services/data_service.py][get_medication_entry()] Aucun médicament trouvé pour user {user_id}")
+            return []
+        app.logger.info(f"[BACK][services/data_service.py][get_medication_entry()] {len(entries)} médicaments trouvés pour user {user_id}")
+        result = []
+        for entry in entries: # type: ignore
+            medication_dict = entry.to_dict()
+            result.append(medication_dict)
+        return result
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_medication_entry()] Erreur inattendue : {e}")
+        raise
+
+
+def update_medication_entry(user_id: str, entry_id: str, new_data: dict):
+    """Met à jour un médicament existant."""
+    try:
+        entry = Medication.query.filter_by(id=entry_id, user_id=user_id).first()
+        if not entry:
+            app.logger.info(f"[BACK][services/data_service.py][update_medication_entry()] Aucun médicament trouvé pour user {user_id}")
+            return None
+        validated = validate_medication_data(new_data)
+        entry.name = validated.name
+        entry.dose = validated.dose
+        entry.stock = validated.stock
+        entry.frequency = validated.frequency
+        entry.save()
+        app.logger.info(f"[BACK][services/data_service.py][update_medication_entry()] Médicament {entry_id} mis à jour pour user {user_id}")
+        return entry.to_dict()
+
+    except ValueError as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_medication_entry()] Erreur de validation : {e}")
+        raise
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_medication_entry()] Erreur inattendue : {e}")
+        raise
+
+
+def delete_medication_entry(entry_id: str, user_id: str):
+    """Supprime un médicament de la base."""
+    try:
+        entry = Medication.query.filter_by(id=entry_id, user_id=user_id).first()
+        if not entry:
+            app.logger.info(f"[BACK][services/data_service.py][delete_medication_entry()] Aucun médicament trouvé pour user {user_id}")
+            return None
+        entry.delete()
+        app.logger.info(f"[BACK][services/data_service.py][delete_medication_entry()] Médicament {entry_id} supprimé pour user {user_id}")
+        return {"deleted_entry_id": entry_id, "status": "deleted"}
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][delete_medication_entry()] Erreur inattendue : {e}")
+        raise
+
+
+def take_medication_dose(user_id: str, entry_id: str):
+    """
+    Enregistre une prise de médicament → soustrait une dose du stock
+    Déclenche une alerte si le stock devient faible
+    """
+    try:
+        entry = Medication.query.filter_by(id=entry_id, user_id=user_id).first()
+        if not entry:
+            app.logger.info(f"[BACK][services/data_service.py][take_medication_dose()] Aucun médicament trouvé pour user {user_id}")
+            return None
+        old_stock = entry.stock
+        entry.take_dose()
+        new_stock = entry.stock
+        app.logger.info(f"[BACK][services/data_service.py][take_medication_dose()] Prise enregistrée pour {entry.name} ({entry.dose} mg). Stock : {old_stock} mg → {new_stock} mg")
+        if entry.alert_low_stock():
+            app.logger.warning(f"[BACK][services/data_service.py][take_medication_dose()] Stock faible pour {entry.name} ({entry.stock} mg restants, seuil : {entry._alert_threshold} mg)")
+        entry.save()
+        return entry.to_dict()
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][take_medication_dose()] Erreur inattendue lors de la prise : {e}")
         raise
