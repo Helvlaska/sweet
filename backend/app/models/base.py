@@ -37,10 +37,25 @@ class BaseModel(db.Model):
             db.session.delete(self)
             db.session.commit()
             app.logger.info(f"[BACK][models/base.py][delete()] Entrée supprimée : {self.__class__.__name__} (id={self.id})")
+
         except Exception as e:
             db.session.rollback()
             app.logger.error(f"[BACK][models/base.py][delete()] Erreur lors de la suppression : {e}")
             raise
+
+
+# ------------------------------------------------------------ Méthode générique pour la gestion des likes
+    def increment_likes(self):
+        """
+        Incrémente le compteur de likes pour les entités qui possèdent un champ _likes.
+        """
+        if not hasattr(self, "_likes"):
+            app.logger.error(f"[BACK][models/base.py][increment_likes()] L'objet {self.__class__.__name__} n'est pas 'likable'")
+            raise AttributeError(f"{self.__class__.__name__} ne possède pas d'attribut '_likes'")
+        self._likes += 1
+        app.logger.info(f"[BACK][models/base.py][increment_likes()] {self.__class__.__name__} {self.id} liké → total : {self._likes}")
+        return self._likes
+
 
 # ------------------------------------------------------------------- to_dict()
     def to_dict(self, exclude=None):
@@ -51,7 +66,6 @@ class BaseModel(db.Model):
         """
         if exclude is None:
             exclude = []
-
         result = {}
         for column in self.__table__.columns: # type: ignore
             if column.name not in exclude:
