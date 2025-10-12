@@ -935,19 +935,20 @@ Template du logbook:
 
 ### ✅ Réalisé
 
-- [ ] Création classe ForumPost
-- [ ] Création classe Comment
-- [ ] Création classe Article
-- [ ] Implémenter services CRUD ForumPost
-- [ ] Implémenter routes /data/forum_post
-- [ ] Implémenter services CRUD Comment
-- [ ] Implémenter routes /data/comment
-- [ ] Implémenter services CRUD Article
-- [ ] Implémenter routes /data/article
+- [X] Création classe ForumPost
+- [X] Création classe Comment
+- [X] Création classe Article
+- [X] Implémenter services CRUD ForumPost
+- [X] Implémenter routes /data/forum_post
+- [X] Implémenter services CRUD Comment
+- [X] Implémenter routes /data/comment
+- [X] Implémenter services CRUD Article
+- [X] Implémenter routes /data/article
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Des difficultés sur la gestion des likes.
+- Des difficultés pour utiliser plusieurs tables ensembles dans mes services et routes (ForumPost/Comment)
 
 ### 🔀 SCM (branches & commits)
 
@@ -958,19 +959,31 @@ Template du logbook:
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 7 week 2
+  - ✨ (models/forum_post.py): Add ForumPost class with validation for titles, content, and likes
+  - ✨ (models/comment.py): Add Comment class with validation for content and likes
+  - ✨ (models/article.py): Add Article class with validation for title, content, and likes
+  - ➕ (services/data_service.py): Add forum post and comment management features, including validation, creation, retrieval, update, and deletion
+  - ➕ (routes/data.py): Add routes for managing forum posts, comments, and articles, including creation, retrieval, update, and deletion
+  - ➕ (models/base.py): Add increment_likes method to manage like counter and improve error handling during deletion
+  - ➕ (models/user.py): Add liked_posts, liked_comments, and liked_articles relationships to manage user interactions with posts, comments, and articles
+  - ➕ (models/init.py): Add tables to manage user likes on posts, comments, and articles
+  - ➕ (utils/validators.py): Rename function for user field validation, create text field validation function, and add regex patterns
   - 📝 (docs/logbook.md): Update progress for day 7 week 2
 
 ### 🧪 QA (tests faits)
 
-- [ ]
+- [ ] Pas de tests pour cette session de travail.
 
 ### 💡 Notes / décisions
 
--
+- Déclaration des likes dans le MVP, mais pas de la gestion complète (like/dislike). J'ai décidé d'aller au bout de l'idée, j'ai un peu dépassé mon MVP.
+- Backend complet 🎉, mais :
+  - Décision 1 : Prendre la première journée de la semaine 3 pour tester l'ensemble du backend et debuguer.
+  - Décision 2 : Refactorisation des fichiers data.py (routes) et data_service.py (services), avec relancement des tests après chaque refactorisation.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Le backend est fait !! 🎉
 - ⚠️ À améliorer :
-  -
+  - Structure des fichiers → Refactorisation.
