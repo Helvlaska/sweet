@@ -13,6 +13,7 @@ USERNAME_PATTERN = r"^[a-zA-Z0-9._-]{3,30}$"
 EMAIL_PATTERN = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
 PASSWORD_PATTERN = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
 PROFILE_URL_PATTERN = r"^https?://[^\s]{1,2000}$"
+PHONE_PATTERN = r"^(?:\+|00)?\d[\d\s\-]{7,19}$"
 FIRSTNAME_PATTERN = make_text_pattern(75)
 LASTNAME_PATTERN = make_text_pattern(100)
 CITY_PATTERN = make_text_pattern(120)
