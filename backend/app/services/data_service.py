@@ -2,7 +2,7 @@ from datetime import date
 from flask import current_app as app
 from sqlalchemy import delete
 from app import db
-from app.models import Glycemia, Weight, Activity, Meal, Mood, Medication
+from app.models import Glycemia, Weight, Activity, Meal, Mood, Medication, HealthProfessional, Note
 from app.utils import timelaps
 
 # -------------------------------------------------------------------- Glycemia
@@ -620,4 +620,183 @@ def take_medication_dose(user_id: str, entry_id: str):
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][take_medication_dose()] Erreur inattendue lors de la prise : {e}")
+        raise
+
+
+# ---------------------------------------------------------------------- HealthProfessional
+def validate_health_professional_data(data: dict) -> HealthProfessional:
+    try:
+        pro = HealthProfessional(**data)
+        app.logger.info("[BACK][services/data_service.py][validate_health_professional_data] Les valeurs pour le professionnel de santé sont valides.")
+        return pro
+    except (ValueError, TypeError) as e:
+        app.logger.error(f"[BACK][services/data_service.py][validate_health_professional_data] Erreur de validation du professionnel de santé : {str(e)}")
+        raise
+
+
+def create_health_professional_entry(user_id: str, data: dict) -> HealthProfessional:
+    try:
+        pro = validate_health_professional_data(data)
+        pro.user_id = user_id
+        pro.save()
+        app.logger.info(f"[BACK][services/data_service.py][create_health_professional_entry] Professionnel {pro.fullname} ({pro.speciality}) enregistré pour le user {user_id}")
+        return pro
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][create_health_professional_entry] Erreur lors de la création : {e}")
+        raise
+
+
+def get_health_professional_entries(user_id: str) -> list[dict]:
+    try:
+        entries = (HealthProfessional.query.filter_by(user_id=user_id).order_by(HealthProfessional.entry_date.asc()).all())
+        if not entries:
+            app.logger.info(f"[BACK][services/data_service.py][get_health_professional_entries] Aucun professionnel trouvé pour l’utilisateur {user_id}.")
+            return []
+        result = []
+        for entry in entries: # type: ignore
+            pros_dict = entry.to_dict()
+            result.append(pros_dict)
+        app.logger.info(f"[BACK][services/data_service.py][get_health_professional_entries] {len(result)} professionnels récupérés pour l’utilisateur {user_id}.")
+        return result
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_health_professional_entries] Erreur inattendue : {e}")
+        raise
+
+
+def get_health_professional_with_notes(user_id: str, professional_id: str) -> dict:
+    """Récupère un professionnel de santé et toutes ses notes associées, triées par date décroissante"""
+    try:
+        professional = HealthProfessional.query.filter_by(id=professional_id, user_id=user_id).first()
+        if not professional:
+            app.logger.info(f"[BACK][services/data_service.py][get_health_professional_with_notes] Aucun professionnel trouvé pour l’utilisateur {user_id}")
+            return {}
+        notes = sorted(professional.notes, key=lambda n: n.entry_date, reverse=True)
+        result = professional.to_dict()
+        result["notes"] = []
+        for note in notes:
+            note_to_dict = note.to_dict()
+            result.append(note_to_dict)
+        app.logger.info(f"[BACK][services/data_service.py][get_health_professional_with_notes] {len(notes)} notes récupérées pour le pro {professional_id} (user {user_id})")
+        return result
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_health_professional_with_notes] Erreur inattendue : {e}")
+        raise
+
+
+def update_health_professional_entry(user_id: str, entry_id: str, new_data: dict):
+    try:
+        entry = HealthProfessional.query.filter_by(id=entry_id, user_id=user_id).first()
+        if not entry:
+            app.logger.info("[BACK][services/data_service.py][update_health_professional_entry] Aucune entrée trouvée pour cet utilisateur.")
+            return None
+        validated = validate_health_professional_data(new_data)
+        entry.fullname = validated.fullname
+        entry.speciality = validated.speciality
+        entry.phone = validated.phone
+        entry.save()
+        app.logger.info(f"[BACK][services/data_service.py][update_health_professional_entry] Entrée {entry_id} mise à jour ({entry.fullname}, {entry.speciality}) pour user {user_id}")
+        return entry.to_dict()
+
+    except ValueError as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_health_professional_entry] Erreur de validation : {e}")
+        raise
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_health_professional_entry] Erreur inattendue : {e}")
+        raise
+
+
+def delete_health_professional_entry(entry_id: str, user_id: str):
+    """Supprimer un professionnel de santé"""
+    try:
+        entry = HealthProfessional.query.filter_by(id=entry_id, user_id=user_id).first()
+        if not entry:
+            app.logger.info(f"[BACK][services/data_service.py][delete_health_professional_entry] Aucune entrée trouvée pour user {user_id} (entry_id: {entry_id})")
+            return None
+        entry.delete()
+        app.logger.info(f"[BACK][services/data_service.py][delete_health_professional_entry] Entrée {entry_id} supprimée avec succès pour user {user_id}")
+        return {"deleted_entry_id": entry_id}
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][delete_health_professional_entry] Erreur inattendue : {e}")
+        raise
+
+
+# ---------------------------------------------------------------------- Note
+def validate_note_data(data: dict) -> Note:
+    try:
+        note = Note(**data)
+        app.logger.info("[BACK][services/data_service.py][validate_note_data] Les valeurs de la note sont valides.")
+        return note
+
+    except (ValueError, TypeError) as e:
+        app.logger.error(f"[BACK][services/data_service.py][validate_note_data] Erreur de validation des données de la note : {str(e)}")
+        raise
+
+
+def create_note_entry(user_id: str, health_professional_id: str, data: dict) -> Note:
+    try:
+        note = validate_note_data(data)
+        note.user_id = user_id
+        note.health_professional_id = health_professional_id
+        note.save()
+        app.logger.info(f"[BACK][services/data_service.py][create_note_entry] Nouvelle note '{note.title}' créée pour user {user_id}, professionnel {health_professional_id}")
+        return note
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][create_note_entry] Erreur lors de la création de la note : {e}")
+        raise
+
+
+def get_note_entries(user_id: str, health_professional_id: str) -> list[dict]:
+    try:
+        entries = (Note.query.filter_by(user_id=user_id, health_professional_id=health_professional_id).order_by(Note.entry_date.desc()).all())
+        if not entries:
+            app.logger.info(f"[BACK][services/data_service.py][get_note_entries] Aucune note trouvée pour user {user_id} et professionnel {health_professional_id}")
+            return []
+        result = [entry.to_dict() for entry in entries]
+        app.logger.info(f"[BACK][services/data_service.py][get_note_entries] {len(result)} notes récupérées pour user {user_id}, professionnel {health_professional_id}")
+        return result
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_note_entries] Erreur inattendue : {e}")
+        raise
+
+
+def update_note_entry(user_id: str, entry_id: str, new_data: dict):
+    try:
+        entry = Note.query.filter_by(id=entry_id, user_id=user_id).first()
+        if not entry:
+            app.logger.info("[BACK][services/data_service.py][update_note_entry] Aucune note trouvée pour cet utilisateur.")
+            return None
+        validated = validate_note_data(new_data)
+        entry.title = validated.title
+        entry.content = validated.content
+        entry.save()
+        app.logger.info(f"[BACK][services/data_service.py][update_note_entry] Note {entry_id} mise à jour : '{entry.title}' pour user {user_id}")
+        return entry.to_dict()
+
+    except ValueError as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_note_entry] Erreur de validation : {e}")
+        raise
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_note_entry] Erreur inattendue : {e}")
+        raise
+
+
+def delete_note_entry(entry_id: str, user_id: str):
+    """Supprime une note"""
+    try:
+        entry = Note.query.filter_by(id=entry_id, user_id=user_id).first()
+        if not entry:
+            app.logger.info(f"[BACK][services/data_service.py][delete_note_entry] Aucune note trouvée pour user {user_id} (entry_id: {entry_id})")
+            return None
+        entry.delete()
+        app.logger.info(f"[BACK][services/data_service.py][delete_note_entry] Note {entry_id} supprimée avec succès pour user {user_id}")
+        return {"deleted_entry_id": entry_id}
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][delete_note_entry] Erreur inattendue : {e}")
         raise
