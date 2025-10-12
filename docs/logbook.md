@@ -849,36 +849,58 @@ Template du logbook:
 
 ---
 
-## Jour 13 – Medication/Mood classe + services + routes (11/10/25)
+## Jour 13 – Medication/Mood & HealthProfessional/Note classes + services + routes (11/10/25)
 
 ### 🎯 Objectifs du jour
 
 - Créer les classes Medication et Mood
 - Implémenter les services CRUD pour les classes Medication et Mood
 - Implémenter les routes /data/medication et /data/mood
+- Créer les classes HealthProfessional et Note
+- Implémenter les services CRUD pour les classes HealthProfessional et Note
+- Implémenter les routes /data/health_professional et /data/note
 
 ### ✅ Réalisé
 
-- [ ] Création classe Medication
-- [ ] Création classe Mood
-- [ ] Implémenter services CRUD Medication
-- [ ] Implémenter routes /data/medication
-- [ ] Implémenter services CRUD Mood
-- [ ] Implémenter routes /data/mood
+- [X] Création classe Medication
+- [X] Création classe Mood
+- [X] Implémenter services CRUD Medication
+- [X] Implémenter routes /data/medication
+- [X] Implémenter services CRUD Mood
+- [X] Implémenter routes /data/mood
+- [X] Création classe HealthProfessional
+- [X] Création classe Note
+- [X] Implémenter services CRUD HealthProfessional
+- [X] Implémenter routes /data/health_professional
+- [X] Implémenter services CRUD Note
+- [X] Implémenter routes /data/note
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Pas de difficultés particulières, juste besoin d'une piqure de rappel sur les relations entre tables (Column, relationship).
 
 ### 🔀 SCM (branches & commits)
 
 - Branches :
-  - Branche tirée pour la gestion des classes Medication et Mood → `medication-mood-module`.
+  - Branche tirée pour la gestion des classes Medication et Mood → `medication-mood-module`. → Branche mergée et supprimée.
+  - Branche tirée pour la gestion des classes Medication et Mood → `healthpros-note-module`. → Branche mergée et supprimée.
   - Mise à jour du journal de bord → `logbook`.
 
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 6 week 2
+  - ✨ (models/mood.py): Add Mood model with description validation and error handling
+  - ✨ (models/medication.py): Add Medication class with attribute validation and error handling
+  - ➕ (services/data_service.py): Add Mood and Medication management functions with validation and CRUD operations
+  - ➕ (routes/data.py): Add mood and medication management routes with CRUD operations and error handling
+  - ➕ (models/user.py): Add relationships for comments, forum posts, health professionals, medications, moods, and notes
+  - ➕ (models/init.py): Add imports for Glycemia, Weight, Activity, Meal, Mood, and Medication models
+  - ✨ (models/health_professional.py): Add HealthProfessional class with attribute validation for fullname, speciality, and phone
+  - ✨ (models/note.py): Add Note class with attribute validation for title and content
+  - ➕ (services/data_service.py): Add functions to manage health professionals and associated notes
+  - ➕ (routes/data.py): Add routes for managing health professionals and their notes
+  - ➕ (models/init.py): Add HealthProfessional and Note to the initialization module
+  - ➕ (utils/validators.py): Add regex pattern for phone number validation
   - 📝 (docs/logbook.md): Update progress for day 6 week 2
 
 ### 🧪 QA (tests faits)
@@ -887,11 +909,16 @@ Template du logbook:
 
 ### 💡 Notes / décisions
 
--
+- Suivis du planning : Le plus long à faire finalement c'est le contenu de mes classes ensuite pour les services et les routes, c'est sensiblement la même chose.
+- Plusieurs fois dans l'élaboration de mes classes, ajouter des attributs était tentant, toutefois je suis restée dans le cadre de mon MVP mais je me les suis notés pour une V2.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - J'ai pus élaborer et finaliser 4 classes en une journée, je rattrape mon retard sur mon planning. Il m'en restera 2 et ensuite les tests avec Pytest et le backend sera terminé, j'ai hâte.
+  - Arrivant à la fin de mon backend, je me félicite vraiment d'avoir aussi bien construit mes classes, c'est un gain de temps incroyable, je garderais cette architecture et ce reflexe pour tout mes futur projets perso.
 - ⚠️ À améliorer :
-  -
+  - Si je dois faire un pré-bilan, je dois m'améliorer sur :
+    - La gestion des listes/dictionnaires/tuples.
+    - Le contenu de mes responses.
+    - Le typage de mes fonctions (je veux faire la paix avec Pylance).
