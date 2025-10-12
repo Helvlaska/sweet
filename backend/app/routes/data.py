@@ -507,7 +507,7 @@ def delete_health_professional_entry_route(entry_id):
         return jsonify({"error": str(e)}), 500
 
 
-# ------------------------------------------------------- Routes HealthProfessional
+# ---------------------------------------------------------------- Routes Notes
 @data_bp.route('/note/<health_professional_id>', methods=['POST'])
 @jwt_required()
 def create_note_entry_route(health_professional_id):
@@ -563,4 +563,317 @@ def delete_note_entry_route(entry_id):
 
     except Exception as e:
         app.logger.error(f"[BACK][routes/data.py][delete_note_entry_route] Erreur inattendue lors de la suppression : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+# ------------------------------------------------------------ Routes ForumPost
+@data_bp.route("/forum/posts", methods=["POST"])
+@jwt_required()
+def route_create_forum_post():
+    """Crée un nouveau post de forum."""
+    try:
+        current_user_id = get_jwt_identity()
+        data = request.get_json()
+        if not data:
+            app.logger.error("[BACK][routes/data.py][route_create_forum_post] Requête vide ou invalide")
+            return jsonify({"error": "Aucune donnée reçue"}), 400
+        post = data_service.create_forum_post_entry(current_user_id, data)
+        if not post:
+            return jsonify({"error": "Création du post impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_create_forum_post] Post créé par user {current_user_id}")
+        return jsonify(post.to_dict()), 201
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_create_forum_post] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/forum/posts", methods=["GET"])
+def route_get_all_forum_posts():
+    """Récupère la liste complète des posts (tri date/popularité)."""
+    try:
+        sort_by = request.args.get("sort_by", "recent")
+        posts = data_service.get_all_forum_posts(sort_by)
+        if posts is None or len(posts) == 0:
+            return jsonify({"message": "Aucun post trouvé"}), 200
+        app.logger.info(f"[BACK][routes/data.py][route_get_all_forum_posts] {len(posts)} posts récupérés (sort_by={sort_by})")
+        return jsonify(posts), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_get_all_forum_posts] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/forum/posts/<string:post_id>", methods=["GET"])
+def route_get_forum_post_by_id(post_id):
+    """Récupère un post précis avec ses commentaires."""
+    try:
+        post = data_service.get_forum_post_by_id(post_id)
+        if not post:
+            return jsonify({"error": "Post introuvable"}), 404
+        app.logger.info(f"[BACK][routes/data.py][route_get_forum_post_by_id] Post {post_id} récupéré")
+        return jsonify(post), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_get_forum_post_by_id] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/forum/posts/<string:post_id>", methods=["PUT"])
+@jwt_required()
+def route_update_forum_post(post_id):
+    """Met à jour un post (uniquement par son auteur)."""
+    try:
+        current_user_id = get_jwt_identity()
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "Aucune donnée reçue"}), 400
+        updated_post = data_service.update_forum_post_entry(post_id, data, current_user_id)
+        if not updated_post:
+            return jsonify({"error": "Modification impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_update_forum_post] Post {post_id} mis à jour par user {current_user_id}")
+        return jsonify(updated_post.to_dict()), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_update_forum_post] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/forum/posts/<string:post_id>", methods=["DELETE"])
+@jwt_required()
+def route_delete_forum_post(post_id):
+    """Supprime un post (uniquement par son auteur)."""
+    try:
+        current_user_id = get_jwt_identity()
+        result = data_service.delete_forum_post(post_id, current_user_id)
+        if not result:
+            return jsonify({"error": "Suppression impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_delete_forum_post] Post {post_id} supprimé par user {current_user_id}")
+        return jsonify(result), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_delete_forum_post] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/forum/posts/<string:post_id>/like", methods=["POST"])
+@jwt_required()
+def route_toggle_like_forum_post(post_id):
+    """Ajoute ou retire un like sur un post."""
+    try:
+        current_user_id = get_jwt_identity()
+        result = data_service.toggle_like_forum_post(post_id, current_user_id)
+        if not result:
+            return jsonify({"error": "Action impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_toggle_like_forum_post] User {current_user_id} → {result['message']} sur post {post_id}")
+        return jsonify(result), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_toggle_like_forum_post] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+# ---------------------------------------------------------------- Routes Comment
+@data_bp.route("/forum/posts/<string:post_id>/comments", methods=["POST"])
+@jwt_required()
+def route_create_comment(post_id):
+    """Crée un commentaire associé à un post."""
+    try:
+        current_user_id = get_jwt_identity()
+        data = request.get_json()
+        if not data:
+            app.logger.error("[BACK][routes/data.py][route_create_comment] Requête vide ou invalide")
+            return jsonify({"error": "Aucune donnée reçue"}), 400
+        comment = data_service.create_comment_entry(post_id, current_user_id, data)
+        if not comment:
+            app.logger.error("[BACK][routes/data.py][route_create_comment] Échec de création du commentaire")
+            return jsonify({"error": "Création du commentaire impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_create_comment] Commentaire créé sur post {post_id} par user {current_user_id}")
+        return jsonify(comment.to_dict()), 201
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_create_comment] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/forum/posts/<string:post_id>/comments", methods=["GET"])
+def route_get_comments_by_post(post_id):
+    """Récupère tous les commentaires d’un post donné."""
+    try:
+        comments = data_service.get_comments_by_post(post_id)
+        if comments is None:
+            app.logger.warning(f"[BACK][routes/data.py][route_get_comments_by_post] Aucun commentaire trouvé pour le post {post_id}")
+            return jsonify({"message": "Aucun commentaire trouvé"}), 200
+        for comment in comments:
+            app.logger.debug(f"[BACK][routes/data.py][route_get_comments_by_post] Commentaire trouvé → {comment.get('id')}")
+        app.logger.info(f"[BACK][routes/data.py][route_get_comments_by_post] {len(comments)} commentaires récupérés pour le post {post_id}")
+        return jsonify(comments), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_get_comments_by_post] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/forum/comments/<string:comment_id>", methods=["PUT"])
+@jwt_required()
+def route_update_comment(comment_id):
+    """Met à jour un commentaire (uniquement par son auteur)."""
+    try:
+        current_user_id = get_jwt_identity()
+        data = request.get_json()
+        if not data:
+            app.logger.error("[BACK][routes/data.py][route_update_comment] Aucune donnée reçue pour la mise à jour")
+            return jsonify({"error": "Aucune donnée reçue"}), 400
+        updated_comment = data_service.update_comment_entry(comment_id, current_user_id, data)
+        if not updated_comment:
+            app.logger.error(f"[BACK][routes/data.py][route_update_comment] Mise à jour du commentaire {comment_id} impossible")
+            return jsonify({"error": "Mise à jour impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_update_comment] Commentaire {comment_id} mis à jour par user {current_user_id}")
+        return jsonify(updated_comment), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_update_comment] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/forum/comments/<string:comment_id>", methods=["DELETE"])
+@jwt_required()
+def route_delete_comment(comment_id):
+    """Supprime un commentaire (uniquement par son auteur)."""
+    try:
+        current_user_id = get_jwt_identity()
+        result = data_service.delete_comment_entry(comment_id, current_user_id)
+        if not result:
+            app.logger.error(f"[BACK][routes/data.py][route_delete_comment] Suppression du commentaire {comment_id} impossible")
+            return jsonify({"error": "Suppression impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_delete_comment] Commentaire {comment_id} supprimé par user {current_user_id}")
+        return jsonify(result), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_delete_comment] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/forum/comments/<string:comment_id>/like", methods=["POST"])
+@jwt_required()
+def route_toggle_like_comment(comment_id):
+    """Ajoute ou retire un like sur un commentaire."""
+    try:
+        current_user_id = get_jwt_identity()
+        result = data_service.toggle_like_comment(comment_id, current_user_id)
+        if not result:
+            app.logger.error(f"[BACK][routes/data.py][route_toggle_like_comment] Action impossible pour le commentaire {comment_id}")
+            return jsonify({"error": "Action impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_toggle_like_comment] User {current_user_id} → {result['message']} sur commentaire {comment_id}")
+        return jsonify(result), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_toggle_like_comment] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+# --------------------------------------------------------------------- Routes Article
+@data_bp.route("/articles", methods=["POST"])
+@jwt_required()
+def route_create_article():
+    """Crée un nouvel article (admin uniquement)."""
+    try:
+        current_user_id = get_jwt_identity()
+        data = request.get_json()
+        if not data:
+            app.logger.error("[BACK][routes/data.py][route_create_article] Aucune donnée reçue")
+            return jsonify({"error": "Aucune donnée reçue"}), 400
+        article = data_service.create_article_entry(data, current_user_id)
+        if not article:
+            return jsonify({"error": "Création de l'article impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_create_article] Article créé par admin {current_user_id}")
+        return jsonify(article.to_dict()), 201
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_create_article] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/articles", methods=["GET"])
+def route_get_all_articles():
+    """Récupère tous les articles (triés par date ou popularité)."""
+    try:
+        sort_by = request.args.get("sort_by", "recent")
+        articles = data_service.get_all_articles(sort_by)
+        if articles is None or len(articles) == 0:
+            return jsonify({"message": "Aucun article trouvé"}), 200
+        app.logger.info(f"[BACK][routes/data.py][route_get_all_articles] {len(articles)} articles récupérés (sort_by={sort_by})")
+        return jsonify(articles), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_get_all_articles] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/articles/<string:article_id>", methods=["GET"])
+def route_get_article_by_id(article_id):
+    """Récupère un article précis."""
+    try:
+        article = data_service.get_article_by_id(article_id)
+        if not article:
+            return jsonify({"error": "Article introuvable"}), 404
+        app.logger.info(f"[BACK][routes/data.py][route_get_article_by_id] Article {article_id} récupéré")
+        return jsonify(article), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_get_article_by_id] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/articles/<string:article_id>", methods=["PUT"])
+@jwt_required()
+def route_update_article(article_id):
+    """Met à jour un article (admin uniquement)."""
+    try:
+        current_user_id = get_jwt_identity()
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "Aucune donnée reçue"}), 400
+        updated_article = data_service.update_article_entry(article_id, current_user_id, data)
+        if not updated_article:
+            return jsonify({"error": "Mise à jour impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_update_article] Article {article_id} mis à jour par admin {current_user_id}")
+        return jsonify(updated_article), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_update_article] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/articles/<string:article_id>", methods=["DELETE"])
+@jwt_required()
+def route_delete_article(article_id):
+    """Supprime un article (admin uniquement)."""
+    try:
+        current_user_id = get_jwt_identity()
+        result = data_service.delete_article_entry(article_id, current_user_id)
+        if not result:
+            return jsonify({"error": "Suppression impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_delete_article] Article {article_id} supprimé par admin {current_user_id}")
+        return jsonify(result), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_delete_article] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route("/articles/<string:article_id>/like", methods=["POST"])
+@jwt_required()
+def route_toggle_like_article(article_id):
+    """Ajoute ou retire un like sur un article."""
+    try:
+        current_user_id = get_jwt_identity()
+        result = data_service.toggle_like_article(article_id, current_user_id)
+        if not result:
+            return jsonify({"error": "Action impossible"}), 400
+        app.logger.info(f"[BACK][routes/data.py][route_toggle_like_article] User {current_user_id} → {result['message']} sur article {article_id}")
+        return jsonify(result), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][route_toggle_like_article] Erreur inattendue : {e}")
         return jsonify({"error": str(e)}), 500

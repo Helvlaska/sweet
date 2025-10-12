@@ -1,16 +1,14 @@
 from flask import current_app as app
-from app.models.base import BaseModel
 from datetime import date, datetime
 from app import db, bcrypt
+from app.models.base import BaseModel
 from app.utils.validators import is_valid, EMAIL_PATTERN, USERNAME_PATTERN, PASSWORD_PATTERN, FIRSTNAME_PATTERN, LASTNAME_PATTERN, CITY_PATTERN
 
 class User(BaseModel):
-    """
-    La classe User stock les informations personnelles du User.
-    Hérite de BaseClass (id, created_at, updated_at, CRUD).
-    """
+    """La classe User stock les informations personnelles du User. Hérite de BaseClass (id, created_at, updated_at, CRUD)"""
 
     __tablename__ = "users"
+
 
 # --------------------------------------------------------- Champs de la classe
     _email = db.Column(db.String(254), nullable=False, unique=True)
@@ -26,6 +24,7 @@ class User(BaseModel):
     _role = db.Column(db.Enum("user", "admin"), nullable=False, default="user")
     _first_login = db.Column(db.Boolean, nullable=False, default=True)
 
+
 # ------------------------------------------------------------------- Relations
     # children = db.relationship("children", backref="parent", cascade="all, delete-orphan")
     comment = db.relationship("Comment", backref="user", cascade="all")
@@ -38,6 +37,11 @@ class User(BaseModel):
     mood = db.relationship("Mood", backref="user", cascade="all, delete-orphan")
     note = db.relationship("Note", backref="user", cascade="all, delete-orphan")
     weight = db.relationship("Weight", backref="user", cascade="all, delete-orphan")
+
+    liked_posts = db.relationship("ForumPost", secondary="user_likes_post", backref="liked_by", lazy="dynamic")
+    liked_comments = db.relationship("Comment", secondary="user_likes_comment", backref="liked_by", lazy="dynamic")
+    liked_articles = db.relationship("Article", secondary="user_likes_article", backref="liked_by", lazy="dynamic")
+
 
 # ----------------------------------------------------------------- Champ email
     @property

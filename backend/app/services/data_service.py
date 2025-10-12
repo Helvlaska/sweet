@@ -1,8 +1,6 @@
-from datetime import date
 from flask import current_app as app
-from sqlalchemy import delete
 from app import db
-from app.models import Glycemia, Weight, Activity, Meal, Mood, Medication, HealthProfessional, Note
+from app.models import Glycemia, Weight, Activity, Meal, Mood, Medication, HealthProfessional, Note, ForumPost, Comment, Article, User
 from app.utils import timelaps
 
 # -------------------------------------------------------------------- Glycemia
@@ -728,7 +726,7 @@ def delete_health_professional_entry(entry_id: str, user_id: str):
 def validate_note_data(data: dict) -> Note:
     try:
         note = Note(**data)
-        app.logger.info("[BACK][services/data_service.py][validate_note_data] Les valeurs de la note sont valides.")
+        app.logger.info("[BACK][services/data_service.py][validate_note_data] Les valeurs de la note sont valides")
         return note
 
     except (ValueError, TypeError) as e:
@@ -756,7 +754,10 @@ def get_note_entries(user_id: str, health_professional_id: str) -> list[dict]:
         if not entries:
             app.logger.info(f"[BACK][services/data_service.py][get_note_entries] Aucune note trouvée pour user {user_id} et professionnel {health_professional_id}")
             return []
-        result = [entry.to_dict() for entry in entries]
+        result = []
+        for entry in entries:
+            entry_dict = entry.to_dict()
+            result.append(entry_dict)
         app.logger.info(f"[BACK][services/data_service.py][get_note_entries] {len(result)} notes récupérées pour user {user_id}, professionnel {health_professional_id}")
         return result
 
@@ -799,4 +800,409 @@ def delete_note_entry(entry_id: str, user_id: str):
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][delete_note_entry] Erreur inattendue : {e}")
+        raise
+
+
+# ------------------------------------------------------------------- ForumPost
+def validate_forum_post_data(data: dict) -> ForumPost:
+    try:
+        forum_post = ForumPost(**data)
+        app.logger.info("[BACK][services/data_service.py][validate_forum_post_data] Les valeurs du post sont valides")
+        return forum_post
+    except (ValueError, TypeError) as e:
+        app.logger.error(f"[BACK][services/data_service.py][validate_forum_post_data] Erreur de validation des données du post : {str(e)}")
+        raise
+
+
+def create_forum_post_entry(user_id: str, data: dict) -> ForumPost:
+    """Crée un nouveau post dans le forum."""
+    try:
+        forum_post = validate_forum_post_data(data)
+        forum_post.user_id = user_id
+        forum_post.save()
+        app.logger.info(f"[BACK][services/data_service.py][create_forum_post_entry] Post {forum_post.title} créé par user {user_id}")
+        return forum_post
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][create_forum_post_entry] Erreur lors de la création du post sur le forum : {e}")
+        raise
+
+
+def get_all_forum_posts(sort_by="recent"):
+    """Retourne tous les posts triés par date ou popularité."""
+    try:
+        if sort_by == "popular":
+            posts = ForumPost.query.order_by(ForumPost._likes.desc(), ForumPost.created_at.desc()).all() # type: ignore
+        else:
+            posts = ForumPost.query.order_by(ForumPost.created_at.desc()).all()
+        result = []
+        for post in posts:
+            posts_dict = post.to_dict()
+            result.append(posts_dict)
+        app.logger.info("[BACK][services/data_service.py][get_all_forum_posts] Liste des posts renvoyée")
+        return result
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_all_forum_posts] Erreur inattendue : {e}")
+        raise
+
+
+def get_forum_post_by_id(post_id):
+    """Retourne un post et ses commentaires."""
+    try:
+        post = ForumPost.query.get(post_id)
+        if not post:
+            app.logger.error(f"[BACK][services/data_service.py][get_forum_post_by_id] Post {post_id} introuvable")
+            return None
+        post_data = post.to_dict()
+        post_data["comments"] = []
+        for comment in post.comments:
+            comment_dict = comment.to_dict()
+            post_data["comments"].append(comment_dict)
+            app.logger.info(f"[BACK][services/data_service.py][get_forum_post_by_id] Commentaire ajouté → {comment_dict.get('id')}")
+        app.logger.info(f"[BACK][services/data_service.py][get_forum_post_by_id] Post {post_id} récupéré avec ses commentaires")
+        return post_data
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_forum_post_by_id] Erreur inattendue : {e}")
+        raise
+
+
+def update_forum_post_entry(post_id: str, data: dict, user_id: str):
+    """Modifie un post existant (seulement par son auteur)."""
+    try:
+        post = ForumPost.query.get(post_id)
+        if not post:
+            app.logger.info("[BACK][services/data_service.py][update_forum_post_entry] Aucune entrée trouvée pour cet utilisateur.")
+            return None
+        if post.user_id != user_id:
+            app.logger.info("[BACK][services/data_service.py][update_forum_post_entry] Utilisateur non autorisé à modifier ce post")
+            return None
+        validated = validate_forum_post_data(data)
+        post.title = validated.title
+        post.centent = validated.content
+        post.save()
+        app.logger.info(f"[BACK][services/data_service.py][update_forum_post_entry] Post {post.id} mis à jour par user {user_id}")
+        return post.to_dict()
+
+    except ValueError as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_forum_post_entry] Erreur de validation : {e}")
+        raise
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_forum_post_entry] Erreur inattendue : {e}")
+        raise
+
+
+def delete_forum_post(post_id: str, user_id: str):
+    """Supprime un post (auteur uniquement)."""
+    try:
+        post = ForumPost.query.get(post_id)
+        if not post:
+            app.logger.info(f"[BACK][services/data_service.py][delete_forum_post] Aucune entrée trouvée pour user {user_id} (entry_id: {post_id})")
+            return None
+        if post.user_id != user_id:
+            app.logger.info("[BACK][services/data_service.py][delete_forum_post] Utilisateur non autorisé à supprimer ce post")
+            return None
+        post.delete()
+        app.logger.info(f"[BACK][services/data_service.py][delete_forum_post] Post {post_id} supprimé par user {user_id}")
+        return {"deleted_forum_post_id": post_id}
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][delete_forum_post] Erreur inattendue : {e}")
+        raise
+
+
+def toggle_like_forum_post(post_id: str, user_id: str):
+    """Ajoute ou retire un like sur un post."""
+    try:
+        user = User.query.get(user_id)
+        if not user:
+            app.logger.error(f"[BACK][services/data_service.py][toggle_like_forum_post()] Utilisateur {user_id} introuvable")
+            return None
+        post = ForumPost.query.get(post_id)
+        if not post:
+            app.logger.error(f"[BACK][services/data_service.py][toggle_like_forum_post()] Post {post_id} introuvable")
+            return None
+        if post.user_id == user_id:
+            app.logger.info(f"[BACK][services/data_service.py][toggle_like_forum_post()] User {user_id} a tenté de liker son propre post {post_id}")
+            return None
+        if post in user.liked_posts:
+            user.liked_posts.remove(post)
+            post.likes -= 1
+            message = "Like retiré"
+        else:
+            user.liked_posts.append(post)
+            post.increment_likes()
+            message = "Post liké"
+        db.session.commit()
+        app.logger.info(f"[BACK][services/data_service.py][toggle_like_forum_post()] User {user_id} → {message} post {post_id}")
+        return {"post_id": post_id, "likes": post.likes, "message": message}
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][toggle_like_forum_post()] Erreur inattendue : {e}")
+        raise
+
+
+# --------------------------------------------------------------------- Comment
+def validate_comment_data(data: dict) -> Comment:
+    try:
+        comment = Comment(**data)
+        app.logger.info("")
+        return comment
+    except (ValueError, TypeError) as e:
+        app.logger.error("")
+        raise
+
+
+def create_comment_entry(post_id: str, user_id: str, data: dict) -> Comment:
+    """Crée un nouveau commentaire associé à un post du forum."""
+    try:
+        post = ForumPost.query.get(post_id)
+        if not post:
+            app.logger.error(f"[BACK][services/data_service.py][create_comment_entry] Post {post_id} introuvable")
+            return None # type: ignore
+        validated_comment = validate_comment_data(data)
+        validated_comment.user_id = user_id
+        validated_comment.post_id = post_id
+        validated_comment.save()
+        app.logger.info(f"[BACK][services/data_service.py][create_comment_entry] Commentaire {validated_comment.id} créé sur post {post_id} par user {user_id}")
+        return validated_comment
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][create_comment_entry] Erreur inattendue : {e}")
+        raise
+
+
+def get_comments_by_post(post_id: str):
+    """Récupère tous les commentaires d’un post."""
+    try:
+        post = ForumPost.query.get(post_id)
+        if not post:
+            app.logger.error(f"[BACK][services/data_service.py][get_comments_by_post] Post {post_id} introuvable")
+            return None
+        comments = Comment.query.filter_by(post_id=post_id).order_by(Comment.created_at.desc()).all()
+        result = []
+        for comment in comments:
+            comment_dict = comment.to_dict()
+            result.append(comment_dict)
+            app.logger.debug(f"[BACK][services/data_service.py][get_comments_by_post] Commentaire ajouté → {comment_dict.get('id')}")
+        app.logger.info(f"[BACK][services/data_service.py][get_comments_by_post] {len(result)} commentaires récupérés pour le post {post_id}")
+        return result
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_comments_by_post] Erreur inattendue : {e}")
+        raise
+
+
+def update_comment_entry(comment_id: str, user_id: str, data: dict):
+    """Modifie un commentaire existant (auteur uniquement)."""
+    try:
+        comment = Comment.query.get(comment_id)
+        if not comment:
+            app.logger.error(f"[BACK][services/data_service.py][update_comment_entry] Commentaire {comment_id} introuvable")
+            return None
+        if comment.user_id != user_id:
+            app.logger.info(f"[BACK][services/data_service.py][update_comment_entry] User {user_id} non autorisé à modifier ce commentaire")
+            return None
+        validated_comment = validate_comment_data(data)
+        comment.content = validated_comment.content
+        comment.save()
+        app.logger.info(f"[BACK][services/data_service.py][update_comment_entry] Commentaire {comment.id} mis à jour par user {user_id}")
+        return comment.to_dict()
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_comment_entry] Erreur inattendue : {e}")
+        raise
+
+
+def delete_comment_entry(comment_id: str, user_id: str):
+    """Supprime un commentaire (auteur uniquement)."""
+    try:
+        comment = Comment.query.get(comment_id)
+        if not comment:
+            app.logger.error(f"[BACK][services/data_service.py][delete_comment_entry] Commentaire {comment_id} introuvable")
+            return None
+        if comment.user_id != user_id:
+            app.logger.info(f"[BACK][services/data_service.py][delete_comment_entry] User {user_id} non autorisé à supprimer ce commentaire")
+            return None
+        comment.delete()
+        app.logger.info(f"[BACK][services/data_service.py][delete_comment_entry] Commentaire {comment_id} supprimé par user {user_id}")
+        return {"deleted_comment_id": comment_id}
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][delete_comment_entry] Erreur inattendue : {e}")
+        raise
+
+
+def toggle_like_comment(comment_id: str, user_id: str):
+    """Ajoute ou retire un like sur un commentaire (toggle)."""
+    try:
+        user = User.query.get(user_id)
+        if not user:
+            app.logger.error(f"[BACK][services/data_service.py][toggle_like_comment] Utilisateur {user_id} introuvable")
+            return None
+        comment = Comment.query.get(comment_id)
+        if not comment:
+            app.logger.error(f"[BACK][services/data_service.py][toggle_like_comment] Commentaire {comment_id} introuvable")
+            return None
+        if comment.user_id == user_id:
+            app.logger.info(f"[BACK][services/data_service.py][toggle_like_comment] User {user_id} a tenté de liker son propre commentaire {comment_id}")
+            return None
+        if comment in user.liked_comments:
+            user.liked_comments.remove(comment)
+            comment.likes -= 1
+            message = "Like retiré"
+        else:
+            user.liked_comments.append(comment)
+            comment.increment_likes()
+            message = "Commentaire liké"
+        db.session.commit()
+        app.logger.info(f"[BACK][services/data_service.py][toggle_like_comment] User {user_id} → {message} sur commentaire {comment_id}")
+        return {"comment_id": comment_id, "likes": comment.likes, "message": message}
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][toggle_like_comment] Erreur inattendue : {e}")
+        raise
+
+
+# --------------------------------------------------------------------- Article
+def validate_article_data(data: dict) -> Article:
+    """Valide les données d'un article via la classe Article (setters)."""
+    try:
+        article = Article(**data)
+        app.logger.info("[BACK][services/data_service.py][validate_article_data] Données d'article validées")
+        return article
+
+    except (ValueError, TypeError) as e:
+        app.logger.error(f"[BACK][services/data_service.py][validate_article_data] Erreur de validation : {str(e)}")
+        raise
+
+
+def create_article_entry(data: dict, user_id: str) -> Article:
+    """Crée un nouvel article (admin uniquement)."""
+    try:
+        user = User.query.get(user_id)
+        if not user:
+            app.logger.error(f"[BACK][services/data_service.py][create_article_entry] User {user_id} introuvable")
+            return None # type: ignore
+        if user.role != "admin":
+            app.logger.warning(f"[BACK][services/data_service.py][create_article_entry] User {user_id} non autorisé à créer un article")
+            return None # type: ignore
+        validated_article = validate_article_data(data)
+        validated_article.user_id = user_id
+        validated_article.save()
+        app.logger.info(f"[BACK][services/data_service.py][create_article_entry] Article {validated_article.id} créé par admin {user_id}")
+        return validated_article
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][create_article_entry] Erreur inattendue : {e}")
+        raise
+
+
+def get_all_articles(sort_by: str = "recent"):
+    """Récupère tous les articles (triés par date ou popularité)."""
+    try:
+        if sort_by == "popular":
+            articles = Article.query.order_by(Article._likes.desc(), Article.created_at.desc()).all() #type: ignore
+        else:
+            articles = Article.query.order_by(Article.created_at.desc()).all()
+        result = []
+        for article in articles:
+            article_dict = article.to_dict()
+            result.append(article_dict)
+            app.logger.debug(f"[BACK][services/data_service.py][get_all_articles] Article ajouté → {article_dict.get('id')}")
+        app.logger.info(f"[BACK][services/data_service.py][get_all_articles] {len(result)} articles récupérés (tri={sort_by})")
+        return result
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_all_articles] Erreur inattendue : {e}")
+        raise
+
+
+def get_article_by_id(article_id: str):
+    """Récupère un article précis."""
+    try:
+        article = Article.query.get(article_id)
+        if not article:
+            app.logger.error(f"[BACK][services/data_service.py][get_article_by_id] Article {article_id} introuvable")
+            return None
+        app.logger.info(f"[BACK][services/data_service.py][get_article_by_id] Article {article_id} récupéré")
+        return article.to_dict()
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][get_article_by_id] Erreur inattendue : {e}")
+        raise
+
+
+def update_article_entry(article_id: str, user_id: str, data: dict):
+    """Met à jour un article (admin uniquement)."""
+    try:
+        user = User.query.get(user_id)
+        article = Article.query.get(article_id)
+        if not article:
+            app.logger.error(f"[BACK][services/data_service.py][update_article_entry] Article {article_id} introuvable")
+            return None
+        if not user or user.role != "admin":
+            app.logger.warning(f"[BACK][services/data_service.py][update_article_entry] User {user_id} non autorisé à modifier un article")
+            return None
+        validated_article = validate_article_data(data)
+        article.title = validated_article.title
+        article.content = validated_article.content
+        article.save()
+        app.logger.info(f"[BACK][services/data_service.py][update_article_entry] Article {article.id} mis à jour par admin {user_id}")
+        return article.to_dict()
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][update_article_entry] Erreur inattendue : {e}")
+        raise
+
+
+def delete_article_entry(article_id: str, user_id: str):
+    """Supprime un article (admin uniquement)."""
+    try:
+        user = User.query.get(user_id)
+        article = Article.query.get(article_id)
+        if not article:
+            app.logger.error(f"[BACK][services/data_service.py][delete_article_entry] Article {article_id} introuvable")
+            return None
+        if not user or user.role != "admin":
+            app.logger.warning(f"[BACK][services/data_service.py][delete_article_entry] User {user_id} non autorisé à supprimer un article")
+            return None
+        article.delete()
+        app.logger.info(f"[BACK][services/data_service.py][delete_article_entry] Article {article_id} supprimé par admin {user_id}")
+        return {"deleted_article_id": article_id}
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][delete_article_entry] Erreur inattendue : {e}")
+        raise
+
+
+def toggle_like_article(article_id: str, user_id: str):
+    """Ajoute ou retire un like sur un article."""
+    try:
+        user = User.query.get(user_id)
+        article = Article.query.get(article_id)
+        if not user:
+            app.logger.error(f"[BACK][services/data_service.py][toggle_like_article] Utilisateur {user_id} introuvable")
+            return None
+        if not article:
+            app.logger.error(f"[BACK][services/data_service.py][toggle_like_article] Article {article_id} introuvable")
+            return None
+        if article.user_id == user_id:
+            app.logger.info(f"[BACK][services/data_service.py][toggle_like_article] User {user_id} a tenté de liker son propre article {article_id}")
+            return None
+        if article in user.liked_articles:
+            user.liked_articles.remove(article)
+            article.likes -= 1
+            message = "Like retiré"
+        else:
+            user.liked_articles.append(article)
+            article.increment_likes()
+            message = "Article liké"
+        db.session.commit()
+        app.logger.info(f"[BACK][services/data_service.py][toggle_like_article] User {user_id} → {message} sur article {article_id}")
+        return {"article_id": article_id, "likes": article.likes, "message": message}
+
+    except Exception as e:
+        app.logger.error(f"[BACK][services/data_service.py][toggle_like_article] Erreur inattendue : {e}")
         raise
