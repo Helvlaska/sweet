@@ -431,3 +431,136 @@ def take_medication_dose_route(entry_id):
         app.logger.error(f"[BACK][routes/data.py][take_medication_dose_route] Erreur inattendue lors de l’enregistrement de la prise : {e}")
         return jsonify({"error": str(e)}), 500
 
+
+# ------------------------------------------------------- Routes HealthProfessional
+@data_bp.route('/healthprofessional', methods=['POST'])
+@jwt_required()
+def create_health_professional_entry_route():
+    try:
+        user_id = get_jwt_identity()
+        data = request.get_json()
+        new_entry = data_service.create_health_professional_entry(user_id, data)
+        app.logger.info(f"[BACK][routes/data.py][create_health_professional_entry_route] Nouveau professionnel créé pour user {user_id}")
+        return jsonify(new_entry.to_dict()), 201
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][create_health_professional_entry_route] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route('/healthprofessional', methods=['GET'])
+@jwt_required()
+def get_health_professional_entries_route():
+    try:
+        user_id = get_jwt_identity()
+        entries = data_service.get_health_professional_entries(user_id)
+        app.logger.info(f"[BACK][routes/data.py][get_health_professional_entries_route] {len(entries)} professionnels récupérés pour user {user_id}")
+        return jsonify(entries), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][get_health_professional_entries_route] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+@data_bp.route('/healthprofessional/<professional_id>/notes', methods=['GET'])
+@jwt_required()
+def get_health_professional_with_notes_route(professional_id):
+    try:
+        user_id = get_jwt_identity()
+        result = data_service.get_health_professional_with_notes(user_id, professional_id)
+        if not result:
+            return jsonify({"message": "Aucun professionnel trouvé pour cet utilisateur."}), 404
+        app.logger.info(f"[BACK][routes/data.py][get_health_professional_with_notes_route] Données pro+notes envoyées pour user {user_id}")
+        return jsonify(result), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][get_health_professional_with_notes_route] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+
+@data_bp.route('/healthprofessional/<entry_id>', methods=['PUT'])
+@jwt_required()
+def update_health_professional_entry_route(entry_id):
+    try:
+        user_id = get_jwt_identity()
+        new_data = request.get_json()
+        update_data = data_service.update_health_professional_entry(user_id, entry_id, new_data)
+        app.logger.info(f"[BACK][routes/data.py][update_health_professional_entry_route] Entrée {entry_id} mise à jour pour user {user_id}")
+        return jsonify(update_data), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][update_health_professional_entry_route] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route('/healthprofessional/<entry_id>', methods=['DELETE'])
+@jwt_required()
+def delete_health_professional_entry_route(entry_id):
+    try:
+        user_id = get_jwt_identity()
+        result = data_service.delete_health_professional_entry(entry_id, user_id)
+        app.logger.info(f"[BACK][routes/data.py][delete_health_professional_entry_route] Entrée {entry_id} supprimée avec succès pour user {user_id}")
+        return jsonify(result), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][delete_health_professional_entry_route] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+# ------------------------------------------------------- Routes HealthProfessional
+@data_bp.route('/note/<health_professional_id>', methods=['POST'])
+@jwt_required()
+def create_note_entry_route(health_professional_id):
+    try:
+        user_id = get_jwt_identity()
+        data = request.get_json()
+        new_entry = data_service.create_note_entry(user_id, health_professional_id, data)
+        app.logger.info(f"[BACK][routes/data.py][create_note_entry_route] Nouvelle note créée pour user {user_id}, pro {health_professional_id}")
+        return jsonify(new_entry.to_dict()), 201
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][create_note_entry_route] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route('/note/<health_professional_id>', methods=['GET'])
+@jwt_required()
+def get_note_entries_route(health_professional_id):
+    try:
+        user_id = get_jwt_identity()
+        entries = data_service.get_note_entries(user_id, health_professional_id)
+        app.logger.info(f"[BACK][routes/data.py][get_note_entries_route] {len(entries)} notes récupérées pour user {user_id}, pro {health_professional_id}")
+        return jsonify(entries), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][get_note_entries_route] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route('/note/<entry_id>', methods=['PUT'])
+@jwt_required()
+def update_note_entry_route(entry_id):
+    try:
+        user_id = get_jwt_identity()
+        new_data = request.get_json()
+        update_data = data_service.update_note_entry(user_id, entry_id, new_data)
+        app.logger.info(f"[BACK][routes/data.py][update_note_entry_route] Note {entry_id} mise à jour pour user {user_id}")
+        return jsonify(update_data), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][update_note_entry_route] Erreur inattendue : {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@data_bp.route('/note/<entry_id>', methods=['DELETE'])
+@jwt_required()
+def delete_note_entry_route(entry_id):
+    try:
+        user_id = get_jwt_identity()
+        result = data_service.delete_note_entry(entry_id, user_id)
+        app.logger.info(f"[BACK][routes/data.py][delete_note_entry_route] Note {entry_id} supprimée avec succès pour user {user_id}")
+        return jsonify(result), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/data.py][delete_note_entry_route] Erreur inattendue lors de la suppression : {e}")
+        return jsonify({"error": str(e)}), 500
