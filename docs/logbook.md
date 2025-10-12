@@ -883,7 +883,7 @@ Template du logbook:
 
 - Branches :
   - Branche tirée pour la gestion des classes Medication et Mood → `medication-mood-module`. → Branche mergée et supprimée.
-  - Branche tirée pour la gestion des classes Medication et Mood → `healthpros-note-module`. → Branche mergée et supprimée.
+  - Branche tirée pour la gestion des classes HealthProfessional et Note → `healthpros-note-module`. → Branche mergée et supprimée.
   - Mise à jour du journal de bord → `logbook`.
 
 - Commits :
@@ -922,3 +922,55 @@ Template du logbook:
     - La gestion des listes/dictionnaires/tuples.
     - Le contenu de mes responses.
     - Le typage de mes fonctions (je veux faire la paix avec Pylance).
+
+---
+
+## Jour 14 – ForumPost/Comment & Article classes + services + routes (12/10/25)
+
+### 🎯 Objectifs du jour
+
+- Créer les classes ForumPost, Comment et Article
+- Implémenter les services CRUD pour les classes ForumPost, Comment et Article
+- Implémenter les routes /data/forum_post, /data/comment et /data/article
+
+### ✅ Réalisé
+
+- [ ] Création classe ForumPost
+- [ ] Création classe Comment
+- [ ] Création classe Article
+- [ ] Implémenter services CRUD ForumPost
+- [ ] Implémenter routes /data/forum_post
+- [ ] Implémenter services CRUD Comment
+- [ ] Implémenter routes /data/comment
+- [ ] Implémenter services CRUD Article
+- [ ] Implémenter routes /data/article
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la gestion des classes ForumPost, Comment et Article → `forum-comment-article-module`. → Branche mergée et supprimée.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+
+  - 📝 (docs/logbook.md): Set objectives for day 7 week 2
+  - 📝 (docs/logbook.md): Update progress for day 7 week 2
+
+### 🧪 QA (tests faits)
+
+- [ ]
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
