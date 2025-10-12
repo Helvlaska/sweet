@@ -5,5 +5,8 @@ from app.models.activity import Activity
 from app.models.meal import Meal
 from app.models.mood import Mood
 from app.models.medication import Medication
+from app.models.health_professional import HealthProfessional
+from app.models.note import Note
 
-__all__ = ["User", "Glycemia", "Weight", "Activity", "Meal", "Mood", "Medication"]
+
+__all__ = ["User", "Glycemia", "Weight", "Activity", "Meal", "Mood", "Medication", "HealthProfessional", "Note"]
