@@ -987,3 +987,79 @@ Template du logbook:
   - Le backend est fait !! 🎉
 - ⚠️ À améliorer :
   - Structure des fichiers → Refactorisation.
+
+---
+
+## Jour 15 – Tests backend (13/10/25)
+
+### 🎯 Objectifs du jour
+
+- Unitest de l'ensemble du backend Flask
+- Refactorisation des fichiers de code
+- Vérification que la refactorisation est Ok
+- Tests Postman
+
+### ✅ Réalisé
+
+- [ ] Création des fichiers des tests Pytest
+- [ ] Tests Pytest
+- [ ] Debugue
+- [ ] Refactorisation des fichiers
+- [ ] Tests Pytest
+- [ ] Tests Postman
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour les tests unitaire → `test-module`. → Branche mergée et supprimée.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+
+  - 📝 (docs/logbook.md): Set objectives for day 1 week 3
+  - 📝 (docs/logbook.md): Update progress for day 1 week 3
+
+### 🧪 QA (tests faits)
+
+- [ ] tests Pytest auth
+- [ ] tests Pytest user
+- [ ] tests Pytest glycemia
+- [ ] tests Pytest weight
+- [ ] tests Pytest activity
+- [ ] tests Pytest mood
+- [ ] tests Pytest medication
+- [ ] tests Pytest meal
+- [ ] tests Pytest health_professional
+- [ ] tests Pytest note
+- [ ] tests Pytest forum_post
+- [ ] tests Pytest comment
+- [ ] tests Pytest article
+
+- [ ] tests Postman auth
+- [ ] tests Postman user
+- [ ] tests Postman glycemia
+- [ ] tests Postman weight
+- [ ] tests Postman activity
+- [ ] tests Postman mood
+- [ ] tests Postman medication
+- [ ] tests Postman meal
+- [ ] tests Postman health_professional
+- [ ] tests Postman note
+- [ ] tests Postman forum_post
+- [ ] tests Postman comment
+- [ ] tests Postman article
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
