@@ -1010,12 +1010,12 @@ Template du logbook:
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Reprise d'une grande partie de mes fonctions qui utilisent mes success_response et mes error_response.
 
 ### 🔀 SCM (branches & commits)
 
 - Branches :
-  - Branche tirée pour les tests unitaire → `test-module`. → Branche mergée et supprimée.
+  - Branche tirée pour les tests unitaire → `test-module`.
   - Mise à jour du journal de bord → `logbook`.
 
 - Commits :
@@ -1068,3 +1068,78 @@ Template du logbook:
   - Les logs me permettent de voir et comprendre les erreurs Pytest: c'était vraiment une bonne idée.
 - ⚠️ À améliorer :
   - NE PLUS JAMAIS FAIRE DE "JOLIES" RESPONSES.
+
+---
+
+## Jour 16 – Tests backend (14/10/25)
+
+### 🎯 Objectifs du jour
+
+- Unitest de l'ensemble du backend Flask
+- Refactorisation des fichiers de code
+- Vérification que la refactorisation est Ok
+- Tests Postman
+
+### ✅ Réalis/home/helvlaska/sweet/backend/logs/tests_run.logé
+
+- [ ] Tests Pytest (en cours)
+- [ ] Debugue
+- [ ] Refactorisation des fichiers
+- [ ] Tests Pytest
+- [ ] Tests Postman
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour les tests unitaire → `test-module`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+
+  - 📝 (docs/logbook.md): Set objectives for day 2 week 3
+  - 📝 (docs/logbook.md): Update progress for day 2 week 3
+
+### 🧪 QA (tests faits)
+
+- [ ] tests Pytest auth
+- [ ] tests Pytest user
+- [ ] tests Pytest glycemia
+- [ ] tests Pytest weight
+- [X] tests Pytest activity
+- [ ] tests Pytest mood
+- [ ] tests Pytest medication
+- [ ] tests Pytest meal
+- [ ] tests Pytest health_professional
+- [ ] tests Pytest note
+- [ ] tests Pytest forum_post
+- [ ] tests Pytest comment
+- [ ] tests Pytest article
+
+- [ ] tests Postman auth
+- [ ] tests Postman user
+- [ ] tests Postman glycemia
+- [ ] tests Postman weight
+- [ ] tests Postman activity
+- [ ] tests Postman mood
+- [ ] tests Postman medication
+- [ ] tests Postman meal
+- [ ] tests Postman health_professional
+- [ ] tests Postman note
+- [ ] tests Postman forum_post
+- [ ] tests Postman comment
+- [ ] tests Postman article
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
