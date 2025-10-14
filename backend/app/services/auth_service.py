@@ -2,10 +2,9 @@ import os
 from jwt import ExpiredSignatureError, InvalidTokenError
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, set_access_cookies, set_refresh_cookies, unset_jwt_cookies, decode_token
 from flask_mail import Message
-from flask import current_app as app, make_response
+from flask import current_app as app, jsonify, make_response
 from sqlalchemy.exc import IntegrityError
 from app import db, mail
-from app.utils.responses import success_response, error_response
 from app.models.user import User
 from app.utils.validators import is_valid, EMAIL_PATTERN, PASSWORD_PATTERN
 from datetime import timedelta
@@ -20,9 +19,11 @@ def validate_user_data(data):
             user.password_hash = raw_password
         app.logger.info(f"[BACK][services/auth_service.py][validate_register_data()] Les valeurs enregistrées pour le nouvel user sont valides")
         return user
+
     except (ValueError, TypeError) as e:
         app.logger.error(f"[BACK][services/auth_service.py][validate_register_data()] Invalid value: {str(e)}")
         raise
+
 
 # ------------------------------------------------------------------- /Register
 def create_user(new_user):
@@ -33,15 +34,17 @@ def create_user(new_user):
         db.session.commit()
         app.logger.info(f"[BACK][services/auth_service.py][create_user()] Utilisateur créé avec succès : {new_user.email}")
         cleaned_user = new_user.to_dict(exclude=["_password_hash", "_first_login", "_role"])
-        return success_response("BACK", "services/auth_service.py", "create_user()", "Utilisateur créé avec succès", cleaned_user, 201)
+        return cleaned_user
+
     except IntegrityError as e:
         db.session.rollback()
         app.logger.error(f"[BACK][services/auth_service.py][create_user()] Email déjà utilisé : {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "create_user()", "Cet email est déjà utilisé", 400)
+        raise
     except Exception as e:
         db.session.rollback()
         app.logger.error(f"[BACK][services/auth_service.py][create_user()] Erreur lors de la création : {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "create_user()", f"Erreur interne : {str(e)}", 500)
+        raise
+
 
 # ---------------------------------------------------------------------- /Login
 def validate_login_data(data):
@@ -51,16 +54,16 @@ def validate_login_data(data):
     password = data.get("password")
     if not password or (not email and not username):
         app.logger.error("[BACK][services/auth_service.py][validate_login_data()] Champs invalides : email/username ou mot de passe manquant")
-        return error_response("BACK", "services/auth_service.py", "validate_login_data()", "Champs invalides : email/username ou mot de passe manquant", 400)
+        return
     app.logger.info("[BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion")
     return {"email": email, "username": username, "password": password}
+
 
 def find_user_by_email_or_username(data):
     """Retourne un utilisateur à partir de son email ou de son username."""
     email = data.get("email")
     username = data.get("username")
     try:
-        user = None
         if email:
             user = db.session.query(User).filter_by(_email=email).first()
             if user:
@@ -73,21 +76,24 @@ def find_user_by_email_or_username(data):
                 return user
         app.logger.error("[BACK][services/auth_service.py][find_user_by_email_or_username()] Aucun utilisateur trouvé")
         return None
+
     except Exception as e:
         db.session.rollback()
         app.logger.error(f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Erreur SQL : {str(e)}")
         raise
 
+
 def authenticate_user(user, password):
     """Vérifie si le mot de passe fourni correspond au hash stocké pour cet utilisateur."""
     if not user:
         app.logger.error("[BACK][services/auth_service.py][authenticate_user()] Utilisateur introuvable")
-        return error_response("BACK", "services/auth_service.py", "authenticate_user()", "Utilisateur introuvable", False, 404)
+        return False
     if not user.verify_password(password):
         app.logger.error(f"[BACK][services/auth_service.py][authenticate_user()] Mot de passe incorrect")
-        return error_response("BACK", "services/auth_service.py", "authenticate_user()", "Mot de passe incorrect", False, 401)
+        return False
     app.logger.info(f"[BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur")
-    return success_response("BACK", "services/auth_service.py", "authenticate_user()", "Authentification réussie pour l'utilisateur", True, 200)
+    return True
+
 
 def generate_tokens(user, remember_me=False):
     """Génère et retourne un access_token et un refresh_token pour un utilisateur."""
@@ -106,29 +112,31 @@ def generate_tokens(user, remember_me=False):
             "user": user.email,
             "remember_me": remember_me
         }
-        response, status_code = success_response("BACK", "services/auth_service.py", "generate_tokens()", "Authentification réussie, tokens créés", response_data, 200)
-        # Ajouter les cookies sécurisés à la réponse
-        set_access_cookies(response, access_token) # type: ignore
+        response = make_response(jsonify(response_data), 200)
+        set_access_cookies(response, access_token)
         if refresh_token:
             set_refresh_cookies(response, refresh_token)
-        app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {user.to_dict()}")
-        return response, status_code
+        app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {user.email}")
+        return response
+
     except Exception as e:
         app.logger.error(f"[BACK][services/auth_service.py][generate_tokens()] Erreur lors de la génération des tokens : {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "generate_tokens()", f"Erreur lors de la génération des tokens : {str(e)}", 500)
+        raise
+
 
 # ---------------------------------------------------------------------- Logout
 def logout_user():
     """Nettoie les cookies JWT et invalide la session de l'utilisateur."""
     try:
-        # Pour utiliser unset_jwt_cookies() il faut : contruire la réponse → unset_jwt_cookies modifie la réponse → renvoie de la réponse
-        response = make_response(success_response("BACK", "services/auth_service.py", "logout_user()", "Déconnexion réussie : Les cookies JWT ont été supprimés", None, 200))
+        response = make_response(jsonify({"message": "Déconnexion réussie : les cookies JWT ont été supprimés"}), 200)
         unset_jwt_cookies(response)
-        app.logger.info(f"[BACK][services/auth_service.py][logout_user()] Déconnexion réussie : Les cookies JWT ont été supprimés")
+        app.logger.info("[BACK][services/auth_service.py][logout_user()] Déconnexion réussie, cookies JWT supprimés")
         return response
+
     except Exception as e:
         app.logger.error(f"[BACK][services/auth_service.py][logout_user()] Erreur lors du nettoyage des cookies : {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "logout_user()", f"Erreur lors du nettoyage des cookies : {str(e)}", 500)
+        raise
+
 
 # -------------------------------------------------------------- Reset Password
 def validate_reset_request(data):
@@ -136,21 +144,23 @@ def validate_reset_request(data):
     email = data.get("email", "").strip()
     if not email:
         app.logger.error("[BACK][services/auth_service.py][validate_reset_request()] Champs invalides : email manquant")
-        return error_response("BACK", "services/auth_service.py", "validate_reset_request()", "Champs invalides : email manquant", 400)
+        return
     if not is_valid(email, EMAIL_PATTERN):
         app.logger.error("[BACK][services/auth_service.py][validate_reset_request()] Format d'email invalide")
-        return error_response("BACK", "services/auth_service.py", "validate_reset_request()", "Format d'email invalide", 400)
+        return
     app.logger.info("[BACK][services/auth_service.py][validate_reset_request()] Email valide pour reset password")
-    return success_response("BACK", "services/auth_service.py", "validate_reset_request()", "Email valide pour reset password", email, 201)
+    return email
+
 
 def find_user_by_email(email):
     """Retourne un utilisateur à partir de son email, ou None si inexistant."""
     user = User.query.filter_by(_email=email).first()
     if not user:
         app.logger.error(f"[BACK][services/auth_service.py][find_user_by_email()] Aucun utilisateur trouvé pour {email}")
-        return error_response("BACK", "services/auth_service.py", "find_user_by_email()", f"Aucun utilisateur trouvé pour {email}", 404)
+        return
     app.logger.info(f"[BACK][services/auth_service.py][find_user_by_email()] Utilisateur trouvé : {email}")
-    return success_response("BACK", "services/auth_service.py", "find_user_by_email()", f"Utilisateur trouvé : {email}", user, 201)
+    return user
+
 
 def generate_reset_token(user):
     """Génère un token temporaire de reset pour l'utilisateur (UUID ou JWT avec expiration)."""
@@ -159,15 +169,15 @@ def generate_reset_token(user):
         reset_token = create_access_token(identity=user.email, expires_delta=timedelta(minutes=15))
         app.logger.info(f"[BACK][services/auth_service.py][generate_reset_token()] Reset token généré pour {user.email}")
         # Construire la réponse Flask (make_response indispensable)
-        response = make_response(
-            success_response("BACK", "services/auth_service.py", "generate_reset_token()", "Reset token créé", {"user": user.email}, 200)
-        )
+        response = make_response(jsonify({"message": "Reset token créé"}), 200)
         # Ajouter le token dans les cookies sécurisés
         set_access_cookies(response, reset_token)
         return response
+
     except Exception as e:
         app.logger.error(f"[BACK][services/auth_service.py][generate_reset_token()] Erreur lors de la génération du reset token : {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "generate_reset_token()", f"Erreur lors de la génération du reset token : {str(e)}", 500)
+        raise
+
 
 def send_reset_email(user, reset_token):
     """Envoie un email de réinitialisation du mot de passe via Flask-Mail."""
@@ -195,10 +205,12 @@ def send_reset_email(user, reset_token):
         # Envoi du mail
         mail.send(msg)
         app.logger.info(f"[BACK][services/auth_service.py][send_reset_email()] Email envoyé avec succès à {user.email}")
-        return success_response("BACK", "services/auth_service.py", "send_reset_email()", f"Email de réinitialisation envoyé à {user.email}", {"reset_link": reset_link}, 200)
+        return reset_link
+
     except Exception as e:
         app.logger.error(f"[BACK][services/auth_service.py][send_reset_email()] Erreur d'envoi du mail : {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "send_reset_email()", f"Erreur d'envoi du mail : {str(e)}", 500)
+        raise
+
 
 def validate_reset_token(token):
     """Vérifie si le token de reset est valide et non expiré."""
@@ -206,23 +218,27 @@ def validate_reset_token(token):
         decoded_token = decode_token(token)
         app.logger.info("[BACK][services/auth_service.py][validate_reset_token()] Token valide")
         return decoded_token
+
     except ExpiredSignatureError:
         app.logger.error("[BACK][services/auth_service.py][validate_reset_token()] Token expiré")
-        return error_response("BACK", "services/auth_service.py", "validate_reset_token()", "Token expiré", 401)
+        raise
     except InvalidTokenError:
         app.logger.error("[BACK][services/auth_service.py][validate_reset_token()] Token invalide")
-        return error_response("BACK", "services/auth_service.py", "validate_reset_token()", "Token invalide", 400)
+        raise
 
-def invalidate_reset_token(token):
+
+def invalidate_reset_token():
     """Invalide un token de reset après usage pour éviter toute réutilisation."""
     try:
-        response = make_response(success_response("BACK", "services/auth_service.py", "invalidate_reset_token()", "Token de réinitialisation invalidé avec succès"))
+        response = make_response(jsonify("Token de réinitialisation invalidé avec succès"))
         unset_jwt_cookies(response)
         app.logger.info("[BACK][services/auth_service.py][invalidate_reset_token()] Reset token invalidé avec succès")
         return response
+
     except Exception as e:
         app.logger.error(f"[BACK][services/auth_service.py][invalidate_reset_token()] Erreur : {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "invalidate_reset_token()", f"Erreur lors de l'invalidation du reset token : {str(e)}", 500)
+        raise
+
 
 def update_user_password(user, new_password):
     """Met à jour le mot de passe d’un utilisateur (hashé) dans la DB."""
@@ -230,11 +246,13 @@ def update_user_password(user, new_password):
         user.password_hash = new_password
         db.session.commit()
         app.logger.info(f"[BACK][services/auth_service.py][update_user_password()]" f"Mot de passe mis à jour avec succès pour {user.email}")
-        return success_response("BACK", "services/auth_service.py", "update_user_password()", f"Mot de passe mis à jour avec succès pour {user.email}", None, 200)
+        return True
+
     except Exception as e:
         db.session.rollback()
         app.logger.error(f"[BACK][services/auth_service.py][update_user_password()]" f"Erreur lors de la mise à jour du mot de passe pour {user.email} : {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "update_user_password()", f"Erreur lors de la mise à jour du mot de passe pour {user.email} : {str(e)}", 500)
+        raise
+
 
 # ----------------------------------------------------------- Gestion du Profil
 def sanitize_user_profile(user):
@@ -247,6 +265,7 @@ def sanitize_user_profile(user):
     app.logger.info(f"[BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour {user.email}")
     return cleaned_user
 
+
 def get_user_from_identity():
     """Récupère un utilisateur en fonction de l'identité contenue dans le JWT."""
     user_id = get_jwt_identity()
@@ -257,6 +276,7 @@ def get_user_from_identity():
     app.logger.info(f"[BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {user.to_dict()}")
     return user
 
+
 def update_profile(user, data):
     """Met à jour les informations du profil utilisateur en DB avec les données valides."""
     try:
@@ -266,8 +286,9 @@ def update_profile(user, data):
         db.session.commit()
         cleaned_user = sanitize_user_profile(user)
         app.logger.info(f"[BACK][services/auth_service.py][update_profile()] Profil mis à jour avec succès pour {cleaned_user}")
-        return success_response("BACK", "services/auth_service.py", "update_profile()", "Profil mis à jour avec succès", cleaned_user, 200)
+        return cleaned_user
+
     except Exception as e:
         db.session.rollback()
         app.logger.error(f"[BACK][services/auth_service.py][update_profile()] Erreur lors de la mise à jour du profil pour {user.email} : {str(e)}")
-        return error_response("BACK", "services/auth_service.py", "update_profile()", f"Erreur lors de la mise à jour du profil pour {user.email} : {str(e)}", 500)
+        raise

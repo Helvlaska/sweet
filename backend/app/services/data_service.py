@@ -7,7 +7,8 @@ from app.utils import timelaps
 def validate_glycemia_data(data: dict) -> Glycemia:
     """Vérification du contenu de la requete"""
     try:
-        glycemia = Glycemia(**data)
+        glycemia = Glycemia()
+        glycemia.glucose_level = data.get("glucose_level")
         app.logger.info("[BACK][services/data_service.py][validate_glycemia_data] La valeur glycémique est valide")
         return glycemia
 
@@ -121,7 +122,8 @@ def delete_glycemia_entry(entry_id: str, user_id: str):
 # ---------------------------------------------------------------------- Weight
 def validate_weight_data(data: dict) -> Weight:
     try:
-        weight = Weight(**data)
+        weight = Weight()
+        weight.mass = data.get("mass")
         app.logger.info("[BACK][services/data_service.py][validate_weight_data] La valeur du poids est valide")
         return weight
 
@@ -232,8 +234,10 @@ def delete_weight_entry(entry_id: str, user_id: str):
 # ---------------------------------------------------------------------- Activity
 def validate_activity_data(data: dict) -> Activity:
     try:
-        activity = Activity(**data)
-        app.logger.info("[BACK][services/data_service.py][validate_activity_data] Les valeurs pour l'activité sont valides")
+        activity = Activity()
+        activity.description = data.get("description")
+        activity.duration = data.get("duration")
+        app.logger.info(f"[BACK][services/data_service.py][validate_activity_data] L'activité {activity.description} de {activity.duration} minutes sont valides")
         return activity
 
     except (ValueError, TypeError) as e:
@@ -247,7 +251,7 @@ def create_activity_entry(user_id, data):
         activity.user_id = user_id
         activity.save()
         app.logger.info(f"[BACK][services/data_service.py][create_activity_entry()] L'activité {activity.description} pendant {activity.duration} minutes à été enregistrée pour le user {user_id}")
-        return activity
+        return activity.to_dict()
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_activity_entry()] Erreur lors de la création de l'activité '{activity.description}' pour le user {user_id}: {e}")
@@ -282,12 +286,16 @@ def update_activity_entry(user_id: str, entry_id: str, new_data: dict):
         if not entry:
             app.logger.info("[BACK][services/data_service.py][update_activity_entry()] Aucune entrée trouvée pour cet utilisateur")
             return None
+        app.logger.info(f"[BACK][services/data_service.py][update_activity_entry()] Activités {entry.description} de {entry.duration} minutes: trouvé")
         validated = validate_activity_data(new_data)
-        entry.description = validated.description
-        entry.duration = validated.duration
+        app.logger.info(f"[BACK][services/data_service.py][update_activity_entry()] Activités {validated.description} de {validated.duration} minutes: trouvé")
+        if validated.description is not None:
+            entry.description = validated.description
+        if validated.duration is not None:
+            entry.duration = validated.duration
         entry.save()
         app.logger.info(f"[BACK][services/data_service.py][update_activity_entry()] Entrée {entry_id} mise à jour de l'activité {entry.description} pendant {entry.duration} minutes, pour user {user_id}")
-        return entry.to_dict()
+        return entry
 
     except ValueError as e:
         app.logger.error(f"[BACK][services/data_service.py][update_activity_entry] Erreur de validation : {e}")
@@ -343,7 +351,9 @@ def delete_activity_entry(entry_id: str, user_id: str):
 # ---------------------------------------------------------------------- Meal
 def validate_meal_data(data: dict) -> Meal:
     try:
-        meal = Meal(**data)
+        meal = Meal()
+        meal.description = data.get("description")
+        meal.meal_type = data.get("meal_type")
         app.logger.info("[BACK][services/data_service.py][validate_meal_data] Les valeurs pour le repas sont valides")
         return meal
 
@@ -428,7 +438,8 @@ def delete_meal_entry(entry_id: str, user_id: str):
 def validate_mood_data(data: dict) -> Mood:
     """Valide les données du modèle Mood via les setters."""
     try:
-        mood = Mood(**data)
+        mood = Mood()
+        mood.description = data.get("description")
         app.logger.info("[BACK][services/data_service.py][validate_mood_data] Les valeurs pour le mood sont valides")
         return mood
 
@@ -515,7 +526,10 @@ def delete_mood_entry(entry_id: str, user_id: str):
 def validate_medication_data(data: dict) -> Medication:
     """Valide les données pour la création ou la mise à jour d’un médicament."""
     try:
-        medication = Medication(**data)
+        medication = Medication()
+        medication.dose = data.get("dose")
+        medication.frequency = data.get("frequency")
+        medication.name = data.get("name")
         app.logger.info("[BACK][services/data_service.py][validate_medication_data] Données de médicament valides")
         return medication
 
@@ -809,6 +823,7 @@ def validate_forum_post_data(data: dict) -> ForumPost:
         forum_post = ForumPost(**data)
         app.logger.info("[BACK][services/data_service.py][validate_forum_post_data] Les valeurs du post sont valides")
         return forum_post
+
     except (ValueError, TypeError) as e:
         app.logger.error(f"[BACK][services/data_service.py][validate_forum_post_data] Erreur de validation des données du post : {str(e)}")
         raise
