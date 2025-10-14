@@ -11,7 +11,7 @@ class ForumPost(BaseModel):
     _likes = db.Column(db.Integer, default=0, nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    comments = db.relationship("Comment", backref="forum_post", cascade="all, delete-orphan")
+    comments = db.relationship("Comment", backref="forum_posts", cascade="all, delete-orphan")
 
 
     @property

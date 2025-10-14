@@ -67,8 +67,10 @@ class BaseModel(db.Model):
         if exclude is None:
             exclude = []
         result = {}
-        for column in self.__table__.columns: # type: ignore
+        for column in self.__table__.columns:            # type: ignore
             if column.name not in exclude:
-                result[column.name] = getattr(self, column.name)
+                key = column.name.lstrip('_')            # Retire le underscore
+                value = getattr(self, column.name)
+                result[key] = value
         return result
 

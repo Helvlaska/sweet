@@ -24,7 +24,7 @@ class Activity(BaseModel):
         if value not in allowed:
             app.logger.error(f"[BACK][models/activity.py][description.setter] La description doit être parmis cette liste: {allowed}")
             raise ValueError(f"La description doit être parmis cette liste: {allowed}")
-        app.logger.info("[BACK][models/activity.py][description.setter] La description est validée")
+        app.logger.info(f"[BACK][models/activity.py][description.setter] La description {value} est validée")
         self._description = value
 
     @property
@@ -39,5 +39,5 @@ class Activity(BaseModel):
         if value <= 0 or value > 600:
             app.logger.error("[BACK][models/activity.py][duration.setter] La durée doit se situer entre 1 et 600 minutes")
             raise ValueError("La durée doit être comprise entre 1 et 600 minutes (10 heures maximum)")
-        app.logger.info("[BACK][models/activity.py][duration.setter] la durée est valide")
+        app.logger.info(f"[BACK][models/activity.py][duration.setter] la durée {value} est valide")
         self._duration = value
