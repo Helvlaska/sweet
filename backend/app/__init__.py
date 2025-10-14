@@ -26,17 +26,19 @@ def create_app(test_config=None):
     flask_app = Flask(__name__, instance_relative_config=True)
 
 # ------------------------------------------------------------ Sélection config
-    if test_config is None:
+    if isinstance(test_config, dict):
+        # Si on passe un dict explicite, on l'utilise directement
+        flask_app.config.from_mapping(test_config)
+    else:
+        # Sinon, on charge selon le nom d'environnement
         env = os.environ.get("FLASK_ENV", "development")
-        if env == "production":
-            flask_app.config.from_object("config.ProductionConfig")
-        elif env == "testing":
+
+        if test_config == "testing" or env == "testing":
             flask_app.config.from_object("config.TestingConfig")
+        elif env == "production":
+            flask_app.config.from_object("config.ProductionConfig")
         else:
             flask_app.config.from_object("config.DevelopmentConfig")
-    else:
-        # Config spéciale test si donnée
-        flask_app.config.from_mapping(test_config)
 
 # --------------------------- Configuration des tokens et des cookies sécurisés
     # Déclaration d'utilisation des cookies

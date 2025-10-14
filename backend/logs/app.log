@@ -455,3 +455,4 @@
 [2025-10-07 14:30:13] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
 [2025-10-07 14:30:13] [INFO] [auth_service.update_user_password] [BACK][services/auth_service.py][update_user_password()]Mot de passe mis à jour avec succès pour toto@holberton.com
 [2025-10-07 14:30:13] [INFO] [auth.update_password] [BACK][routes/auth.py][update_password()] La modification du mdp à été un succès pour <User 20e32c12-207f-443c-8ab2-5b512f3fe722>
+[2025-10-13 11:44:21] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
