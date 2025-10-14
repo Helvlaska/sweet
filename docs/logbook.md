@@ -1001,8 +1001,8 @@ Template du logbook:
 
 ### ✅ Réalisé
 
-- [ ] Création des fichiers des tests Pytest
-- [ ] Tests Pytest
+- [X] Création des fichiers des tests Pytest
+- [ ] Tests Pytest (en cours)
 - [ ] Debugue
 - [ ] Refactorisation des fichiers
 - [ ] Tests Pytest
@@ -1021,6 +1021,10 @@ Template du logbook:
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 1 week 3
+  - ✨🧪 (tests/): Implement tests for creating, reading, updating, and deleting medications, including edge cases and role-based access across models, services, and routes
+  - 🧪♻️ (models/): Refactor model code based on Pytest results of Activity
+  - 🧪♻️ (routes/): Refactor routes code based on Pytest results of Activity
+  - 🧪♻️ (services/): Refactor services code based on Pytest results of Activity
   - 📝 (docs/logbook.md): Update progress for day 1 week 3
 
 ### 🧪 QA (tests faits)
@@ -1029,7 +1033,7 @@ Template du logbook:
 - [ ] tests Pytest user
 - [ ] tests Pytest glycemia
 - [ ] tests Pytest weight
-- [ ] tests Pytest activity
+- [X] tests Pytest activity
 - [ ] tests Pytest mood
 - [ ] tests Pytest medication
 - [ ] tests Pytest meal
@@ -1055,11 +1059,12 @@ Template du logbook:
 
 ### 💡 Notes / décisions
 
--
+- NE PLUS JAMAIS FAIRE DE "JOLIES" RESPONSES.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Après avoir expérimenté avec Activity, je sais maintenant où sont mes erreurs, le debugue des autres entités devrait être plus rapide.
+  - Les logs me permettent de voir et comprendre les erreurs Pytest: c'était vraiment une bonne idée.
 - ⚠️ À améliorer :
-  -
+  - NE PLUS JAMAIS FAIRE DE "JOLIES" RESPONSES.
