@@ -72,7 +72,7 @@ def reset_confirm(token):
     if not user:
         return error_response("BACK", "routes/auth.py", "reset_confirm()", "Utilisateur introuvable", 404)
     auth_service.update_user_password(user, data["new_password"])
-    auth_service.invalidate_reset_token(token)
+    auth_service.invalidate_reset_token()
     app.logger.info(f"[BACK][routes/auth.py][reset_confirm()] Mot de passe mis à jour avec succès.")
     return success_response("BACK", "routes/auth.py", "reset_confirm()", "Mot de passe mis à jour avec succès.", None, 200)
 

@@ -166,7 +166,7 @@ def create_activity_entry_route():
         user_id = get_jwt_identity()
         data = request.get_json()
         new_entry = data_service.create_activity_entry(user_id, data)
-        app.logger.info(f"[BACK][routes/data.py][create_activity_entry_route] Nouvelle entrée créée pour user {user_id}")
+        app.logger.info(f"[BACK][routes/data.py][create_activity_entry_route] Nouvelle entrée {new_entry} créée pour user {user_id}")
         return jsonify(new_entry), 201
 
     except Exception as e:
