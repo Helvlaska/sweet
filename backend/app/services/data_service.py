@@ -170,12 +170,12 @@ def update_weight_entry(user_id: str, entry_id: str, new_data: dict):
         if not entry:
             app.logger.info("[BACK][services/data_service.py][update_weight_entry()] Aucune entrée trouvée pour cet utilisateur")
             return None
-        validated = validate_weight_data(new_data)
-        new_value = validated.mass
-        entry.mass = new_value
+        app.logger.info(f"[BACK][services/data_service.py][update_weight_entry] L'entrée de {entry.mass} kg à été trouvée")
+        validated_weight = validate_weight_data({"mass": new_data["mass"]})
+        entry.mass = validated_weight.mass
         entry.save()
-        app.logger.info(f"[BACK][services/data_service.py][update_weight_entry()] Entrée {entry_id} mise à jour à {new_value} mg/dl pour user {user_id}")
-        return {"update_value": new_value}
+        app.logger.info(f"[BACK][services/data_service.py][update_weight_entry()] Entrée {entry_id} mise à jour à {entry.mass} kg pour user {user_id}")
+        return entry.to_dict()
 
     except ValueError as e:
         app.logger.error(f"[BACK][services/data_service.py][update_weight_entry] Erreur de validation : {e}")
@@ -365,7 +365,7 @@ def create_meal_entry(user_id, data):
         meal.user_id = user_id
         meal.save()
         app.logger.info(f"[BACK][services/data_service.py][create_meal_entry()] Le repas {meal.description} pour le {meal.meal_type} à été enregistrée pour le user {user_id}")
-        return meal
+        return meal.to_dict()
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_meal_entry()] Erreur lors de la création du repas '{meal.meal_type}' pour le user {user_id}: {e}")
@@ -437,7 +437,7 @@ def validate_mood_data(data: dict) -> Mood:
     try:
         mood = Mood()
         mood.description = data.get("description")
-        app.logger.info("[BACK][services/data_service.py][validate_mood_data] Les valeurs pour le mood sont valides")
+        app.logger.info(f"[BACK][services/data_service.py][validate_mood_data] Les valeurs {mood.description} pour le mood sont valides")
         return mood
 
     except (ValueError, TypeError) as e:
@@ -524,10 +524,11 @@ def validate_medication_data(data: dict) -> Medication:
     """Valide les données pour la création ou la mise à jour d’un médicament."""
     try:
         medication = Medication()
+        medication.name = data.get("name")
+        medication.stock = data.get("stock")
         medication.dose = data.get("dose")
         medication.frequency = data.get("frequency")
-        medication.name = data.get("name")
-        app.logger.info("[BACK][services/data_service.py][validate_medication_data] Données de médicament valides")
+        app.logger.info(f"[BACK][services/data_service.py][validate_medication_data] Le médicament {medication.name}, d'une quantité de {medication.stock} pour une dose de {medication.dose} tout les {medication.frequency} valides")
         return medication
 
     except (ValueError, TypeError) as e:
@@ -573,8 +574,9 @@ def update_medication_entry(user_id: str, entry_id: str, new_data: dict):
     try:
         entry = Medication.query.filter_by(id=entry_id, user_id=user_id).first()
         if not entry:
-            app.logger.info(f"[BACK][services/data_service.py][update_medication_entry()] Aucun médicament trouvé pour user {user_id}")
+            app.logger.info(f"[BACK][services/data_service.py][update_medication_entry] Aucun médicament trouvé pour user {user_id}")
             return None
+        app.logger.info(f"[BACK][services/data_service.py][update_medication_entry] Le médicament : {entry.name} à été trouvé")
         validated = validate_medication_data(new_data)
         entry.name = validated.name
         entry.dose = validated.dose
@@ -635,21 +637,25 @@ def take_medication_dose(user_id: str, entry_id: str):
 # ---------------------------------------------------------------------- HealthProfessional
 def validate_health_professional_data(data: dict) -> HealthProfessional:
     try:
-        pro = HealthProfessional(**data)
-        app.logger.info("[BACK][services/data_service.py][validate_health_professional_data] Les valeurs pour le professionnel de santé sont valides.")
+        pro = HealthProfessional()
+        pro.fullname = data.get("fullname")
+        pro.speciality = data.get("speciality")
+        pro.phone = data.get("phone")
+        app.logger.info(f"[BACK][services/data_service.py][validate_health_professional_data] Le {pro.fullname} qui est {pro.speciality} joignable au {pro.phone} est valide")
         return pro
+
     except (ValueError, TypeError) as e:
         app.logger.error(f"[BACK][services/data_service.py][validate_health_professional_data] Erreur de validation du professionnel de santé : {str(e)}")
         raise
 
 
-def create_health_professional_entry(user_id: str, data: dict) -> HealthProfessional:
+def create_health_professional_entry(user_id, data):
     try:
         pro = validate_health_professional_data(data)
         pro.user_id = user_id
         pro.save()
         app.logger.info(f"[BACK][services/data_service.py][create_health_professional_entry] Professionnel {pro.fullname} ({pro.speciality}) enregistré pour le user {user_id}")
-        return pro
+        return pro.to_dict()
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_health_professional_entry] Erreur lors de la création : {e}")
@@ -701,10 +707,15 @@ def update_health_professional_entry(user_id: str, entry_id: str, new_data: dict
         if not entry:
             app.logger.info("[BACK][services/data_service.py][update_health_professional_entry] Aucune entrée trouvée pour cet utilisateur.")
             return None
-        validated = validate_health_professional_data(new_data)
-        entry.fullname = validated.fullname
-        entry.speciality = validated.speciality
-        entry.phone = validated.phone
+        if "fullname" in new_data:
+            validated_fullname = validate_health_professional_data({"fullname": new_data["fullname"], "speciality": entry.speciality, "phone": entry.phone})
+            entry.fullname = validated_fullname.fullname
+        if "speciality" in new_data:
+            validated_speciality = validate_health_professional_data({"speciality": new_data["speciality"], "fullname": entry.fullname, "phone": entry.phone})
+            entry.speciality = validated_speciality.speciality
+        if "phone" in new_data:
+            validated_phone = validate_health_professional_data({"phone": new_data["phone"], "speciality": entry.speciality, "fullname": entry.fullname})
+            entry.phone = validated_phone.phone
         entry.save()
         app.logger.info(f"[BACK][services/data_service.py][update_health_professional_entry] Entrée {entry_id} mise à jour ({entry.fullname}, {entry.speciality}) pour user {user_id}")
         return entry.to_dict()
@@ -736,8 +747,10 @@ def delete_health_professional_entry(entry_id: str, user_id: str):
 # ---------------------------------------------------------------------- Note
 def validate_note_data(data: dict) -> Note:
     try:
-        note = Note(**data)
-        app.logger.info("[BACK][services/data_service.py][validate_note_data] Les valeurs de la note sont valides")
+        note = Note()
+        note.title = data.get("title")
+        note.content = data.get("content")
+        app.logger.info(f"[BACK][services/data_service.py][validate_note_data] Le titre: {note.title} et le contenu: {note.content} de la note sont valides")
         return note
 
     except (ValueError, TypeError) as e:
@@ -783,9 +796,12 @@ def update_note_entry(user_id: str, entry_id: str, new_data: dict):
         if not entry:
             app.logger.info("[BACK][services/data_service.py][update_note_entry] Aucune note trouvée pour cet utilisateur.")
             return None
-        validated = validate_note_data(new_data)
-        entry.title = validated.title
-        entry.content = validated.content
+        if "title" in new_data:
+            validated_title = validate_note_data({"title": new_data["title"], "content": entry.content})
+            entry.title = validated_title.title
+        if "content" in new_data:
+            validated_content = validate_note_data({"content": new_data["content"], "title": entry.title})
+            entry.content = validated_content.content
         entry.save()
         app.logger.info(f"[BACK][services/data_service.py][update_note_entry] Note {entry_id} mise à jour : '{entry.title}' pour user {user_id}")
         return entry.to_dict()
@@ -817,8 +833,10 @@ def delete_note_entry(entry_id: str, user_id: str):
 # ------------------------------------------------------------------- ForumPost
 def validate_forum_post_data(data: dict) -> ForumPost:
     try:
-        forum_post = ForumPost(**data)
-        app.logger.info("[BACK][services/data_service.py][validate_forum_post_data] Les valeurs du post sont valides")
+        forum_post = ForumPost()
+        forum_post.title = data.get("title")
+        forum_post.content = data.get("content")
+        app.logger.info(f"[BACK][services/data_service.py][validate_forum_post_data] Le titre: {forum_post.title}, le contenu: {forum_post.content} et son nombre de likes: {forum_post.likes} du post sont valides")
         return forum_post
 
     except (ValueError, TypeError) as e:
@@ -826,14 +844,14 @@ def validate_forum_post_data(data: dict) -> ForumPost:
         raise
 
 
-def create_forum_post_entry(user_id: str, data: dict) -> ForumPost:
+def create_forum_post_entry(user_id, data):
     """Crée un nouveau post dans le forum."""
     try:
         forum_post = validate_forum_post_data(data)
         forum_post.user_id = user_id
         forum_post.save()
         app.logger.info(f"[BACK][services/data_service.py][create_forum_post_entry] Post {forum_post.title} créé par user {user_id}")
-        return forum_post
+        return forum_post.to_dict()
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_forum_post_entry] Erreur lors de la création du post sur le forum : {e}")
@@ -880,19 +898,22 @@ def get_forum_post_by_id(post_id):
         raise
 
 
-def update_forum_post_entry(post_id: str, data: dict, user_id: str):
+def update_forum_post_entry(post_id: str, new_data: dict, user_id: str):
     """Modifie un post existant (seulement par son auteur)."""
     try:
         post = ForumPost.query.get(post_id)
         if not post:
             app.logger.info("[BACK][services/data_service.py][update_forum_post_entry] Aucune entrée trouvée pour cet utilisateur.")
-            return None
+            return None, 404
         if post.user_id != user_id:
             app.logger.info("[BACK][services/data_service.py][update_forum_post_entry] Utilisateur non autorisé à modifier ce post")
-            return None
-        validated = validate_forum_post_data(data)
-        post.title = validated.title
-        post.centent = validated.content
+            return None, 403
+        if "title" in new_data:
+            validated_title = validate_forum_post_data({"title": new_data["title"], "content": post.content})
+            post.title = validated_title.title
+        if "content" in new_data:
+            validated_content = validate_forum_post_data({"content": new_data["content"], "title": post.title})
+            post.content = validated_content.content
         post.save()
         app.logger.info(f"[BACK][services/data_service.py][update_forum_post_entry] Post {post.id} mis à jour par user {user_id}")
         return post.to_dict()
