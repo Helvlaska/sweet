@@ -441,7 +441,7 @@ def create_health_professional_entry_route():
         data = request.get_json()
         new_entry = data_service.create_health_professional_entry(user_id, data)
         app.logger.info(f"[BACK][routes/data.py][create_health_professional_entry_route] Nouveau professionnel créé pour user {user_id}")
-        return jsonify(new_entry.to_dict()), 201
+        return jsonify(new_entry), 201
 
     except Exception as e:
         app.logger.error(f"[BACK][routes/data.py][create_health_professional_entry_route] Erreur inattendue : {e}")
@@ -581,7 +581,7 @@ def route_create_forum_post():
         if not post:
             return jsonify({"error": "Création du post impossible"}), 400
         app.logger.info(f"[BACK][routes/data.py][route_create_forum_post] Post créé par user {current_user_id}")
-        return jsonify(post.to_dict()), 201
+        return jsonify(post), 201
 
     except Exception as e:
         app.logger.error(f"[BACK][routes/data.py][route_create_forum_post] Erreur inattendue : {e}")
@@ -604,7 +604,7 @@ def route_get_all_forum_posts():
         return jsonify({"error": str(e)}), 500
 
 
-@data_bp.route("/forum/posts/<string:post_id>", methods=["GET"])
+@data_bp.route("/forum/posts/<post_id>", methods=["GET"])
 def route_get_forum_post_by_id(post_id):
     """Récupère un post précis avec ses commentaires."""
     try:
@@ -619,7 +619,7 @@ def route_get_forum_post_by_id(post_id):
         return jsonify({"error": str(e)}), 500
 
 
-@data_bp.route("/forum/posts/<string:post_id>", methods=["PUT"])
+@data_bp.route("/forum/posts/<post_id>", methods=["PUT"])
 @jwt_required()
 def route_update_forum_post(post_id):
     """Met à jour un post (uniquement par son auteur)."""
@@ -632,14 +632,14 @@ def route_update_forum_post(post_id):
         if not updated_post:
             return jsonify({"error": "Modification impossible"}), 400
         app.logger.info(f"[BACK][routes/data.py][route_update_forum_post] Post {post_id} mis à jour par user {current_user_id}")
-        return jsonify(updated_post.to_dict()), 200
+        return jsonify(updated_post), 200
 
     except Exception as e:
         app.logger.error(f"[BACK][routes/data.py][route_update_forum_post] Erreur inattendue : {e}")
         return jsonify({"error": str(e)}), 500
 
 
-@data_bp.route("/forum/posts/<string:post_id>", methods=["DELETE"])
+@data_bp.route("/forum/posts/<post_id>", methods=["DELETE"])
 @jwt_required()
 def route_delete_forum_post(post_id):
     """Supprime un post (uniquement par son auteur)."""
@@ -656,7 +656,7 @@ def route_delete_forum_post(post_id):
         return jsonify({"error": str(e)}), 500
 
 
-@data_bp.route("/forum/posts/<string:post_id>/like", methods=["POST"])
+@data_bp.route("/forum/posts/<post_id>/like", methods=["POST"])
 @jwt_required()
 def route_toggle_like_forum_post(post_id):
     """Ajoute ou retire un like sur un post."""
