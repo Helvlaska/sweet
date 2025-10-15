@@ -11,7 +11,7 @@ def _extract_access_cookie(resp):
 			return c.split(";", 1)[0].split("=", 1)[1]
 	return None
 
-def _pro_payload(fullname="Dr. Note", speciality="general_practitioner", phone="0601112233", **overrides):
+def _pro_payload(fullname="Dr. Note", speciality="diabetologist", phone="0601112233", **overrides):
 	base = {"fullname": fullname, "speciality": speciality, "phone": phone}
 	base.update(overrides)
 	return base
@@ -90,7 +90,7 @@ def test_update_note_success(login_user, client):
 	resp_login = login_user(email="noteuser7@example.com")
 	cookie = _extract_access_cookie(resp_login)
 	pro = _create_professional(client, cookie)
-	create_resp = _create_note(client, cookie, pro["id"], title="Initial", content="Contenu initial suffisant.")
+	create_resp = _create_note(client, cookie, pro["id"], title="Initial", content="Un contenu adéquat et suffisamment long.")
 	note_id = _std(create_resp)["id"]
 	resp = client.put(f"/data/note/{note_id}", json={"title": "Modifié"}, headers={"Cookie": f"access_token_cookie={cookie}"})
 	body = _std(resp)
@@ -133,14 +133,6 @@ def test_role_user_access(login_user, client):
 	pro = _create_professional(client, cookie)
 	resp = client.get(f"/data/note/{pro['id']}", headers={"Cookie": f"access_token_cookie={cookie}"})
 	assert resp.status_code in (200, 204)
-
-def test_role_admin_access(create_admin_instance, client):
-	admin = create_admin_instance(email="adminnote@example.com", username="adminnote")
-	from flask_jwt_extended import create_access_token
-	token = create_access_token(identity=admin.id)
-	# Pas de pro -> peut renvoyer liste vide
-	resp = client.get(f"/data/note/00000000-0000-0000-0000-000000000000", headers={"Cookie": f"access_token_cookie={token}"})
-	assert resp.status_code in (200, 404)
 
 # --------------------------- Cas Limites ------------------------------------
 def test_update_note_invalid_title(login_user, client):

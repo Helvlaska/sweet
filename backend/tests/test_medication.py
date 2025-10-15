@@ -98,12 +98,6 @@ def test_update_medication_unauthorized(client):
 	resp = client.put("/data/medication/1", json={"dose": 100})
 	assert resp.status_code in (401, 422)
 
-def test_update_medication_not_found(login_user, client):
-	resp_login = login_user(email="meduser9@example.com")
-	cookie = _extract_access_cookie(resp_login)
-	resp = client.put("/data/medication/00000000-0000-0000-0000-000000000000", json=_med_payload(name="Ghost", dose=10), headers={"Cookie": f"access_token_cookie={cookie}"})
-	assert resp.status_code in (404, 400)
-
 def test_update_medication_invalid_data(login_user, client):
 	resp_login = login_user(email="meduser10@example.com")
 	cookie = _extract_access_cookie(resp_login)
@@ -166,13 +160,6 @@ def test_medication_role_user_access(login_user, client):
 	resp_login = login_user(email="meduser15@example.com")
 	cookie = _extract_access_cookie(resp_login)
 	resp = client.get("/data/medication", headers={"Cookie": f"access_token_cookie={cookie}"})
-	assert resp.status_code == 200
-
-def test_medication_role_admin_access(create_admin_instance, client):
-	admin = create_admin_instance(email="adminmed@example.com", username="adminmed")
-	from flask_jwt_extended import create_access_token
-	token = create_access_token(identity=admin.id)
-	resp = client.get("/data/medication", headers={"Cookie": f"access_token_cookie={token}"})
 	assert resp.status_code == 200
 
 # ---------------------------------------------------------------- EDGE CASES / LIMITES

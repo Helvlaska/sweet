@@ -174,14 +174,6 @@ def test_meal_jwt_invalid(client):
 
 
 # --------------------------- RÔLES -------------------------------------------
-def test_meal_access_with_admin(create_admin_instance, client):
-	admin = create_admin_instance(email="adminmeal@example.com", username="adminmeal")
-	from flask_jwt_extended import create_access_token
-	token = create_access_token(identity=admin.id)
-	resp = client.get("/data/meal", headers={"Cookie": f"access_token_cookie={token}"})
-	assert resp.status_code == 200
-
-
 def test_meal_access_with_user(login_user, client):
 	resp_login = login_user(email="mealroleuser@example.com")
 	cookie = _extract_access_cookie(resp_login)

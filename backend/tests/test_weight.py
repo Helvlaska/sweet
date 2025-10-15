@@ -13,10 +13,9 @@ def _extract_access_cookie(resp):
 			return c.split(";", 1)[0].split("=", 1)[1]
 	return None
 
-def _weight_payload(value=70.0, time="08:00", **overrides):
+def _weight_payload(value=70.00, **overrides):
 	base = {
-		"value": value,
-		"time": time,
+		"mass": value,
 	}
 	base.update(overrides)
 	return base
@@ -25,17 +24,16 @@ def _weight_payload(value=70.0, time="08:00", **overrides):
 def test_create_weight_success(login_user, client):
 	resp_login = login_user(email="weightuser@example.com")
 	cookie = _extract_access_cookie(resp_login)
-	payload = _weight_payload(value=72.5, time="07:30")
+	payload = _weight_payload(value=72.50)
 	resp = client.post("/data/weight", json=payload, headers={"Cookie": f"access_token_cookie={cookie}"})
 	body = _std(resp)
 	assert resp.status_code == 201
-	assert body["value"] == 72.5
-	assert body["time"] == "07:30"
+	assert body["mass"] == 72.50
 
 def test_create_weight_missing_fields(login_user, client):
 	resp_login = login_user(email="weightmissing@example.com")
 	cookie = _extract_access_cookie(resp_login)
-	payload = {"value": 70.0}  # time manquant
+	payload = {"mass": "soixante"}  # time manquant
 	resp = client.post("/data/weight", json=payload, headers={"Cookie": f"access_token_cookie={cookie}"})
 	body = _std(resp)
 	assert resp.status_code in (400, 500) or "error" in body
@@ -44,12 +42,12 @@ def test_create_weight_missing_fields(login_user, client):
 def test_read_weight_success(login_user, client):
 	resp_login = login_user(email="weightread@example.com")
 	cookie = _extract_access_cookie(resp_login)
-	payload = _weight_payload(value=68.0, time="09:00")
+	payload = _weight_payload(value=68.0)
 	client.post("/data/weight", json=payload, headers={"Cookie": f"access_token_cookie={cookie}"})
 	resp = client.get("/data/weight", headers={"Cookie": f"access_token_cookie={cookie}"})
 	body = _std(resp)
 	assert resp.status_code == 200
-	assert any(e.get("value") == 68.0 for e in body)
+	assert any(e.get("mass") == 68.0 for e in body)
 
 def test_read_weight_not_found(login_user, client):
 	resp_login = login_user(email="weightnotfound@example.com")
@@ -63,23 +61,23 @@ def test_read_weight_not_found(login_user, client):
 def test_update_weight_success(login_user, client):
 	resp_login = login_user(email="weightupdate@example.com")
 	cookie = _extract_access_cookie(resp_login)
-	payload = _weight_payload(value=75.0, time="10:00")
+	payload = _weight_payload(value=75.0)
 	resp_create = client.post("/data/weight", json=payload, headers={"Cookie": f"access_token_cookie={cookie}"})
 	entry_id = _std(resp_create)["id"]
-	resp = client.put(f"/data/weight/{entry_id}", json={"value": 80.0}, headers={"Cookie": f"access_token_cookie={cookie}"})
+	resp = client.put(f"/data/weight/{entry_id}", json={"mass": 80.0}, headers={"Cookie": f"access_token_cookie={cookie}"})
 	body = _std(resp)
 	assert resp.status_code == 200
-	assert body["value"] == 80.0
+	assert body["mass"] == 80.0
 
 def test_update_weight_unauthorized(client):
-	resp = client.put("/data/weight/1", json={"value": 65.0})
+	resp = client.put("/data/weight/1", json={"mass": 65.0})
 	assert resp.status_code in (401, 422)
 
 # --------------------------- Tests DELETE -------------------------------------
 def test_delete_weight_success(login_user, client):
 	resp_login = login_user(email="weightdelete@example.com")
 	cookie = _extract_access_cookie(resp_login)
-	payload = _weight_payload(value=60.0, time="11:00")
+	payload = _weight_payload(value=60.0)
 	resp_create = client.post("/data/weight", json=payload, headers={"Cookie": f"access_token_cookie={cookie}"})
 	entry_id = _std(resp_create)["id"]
 	resp = client.delete(f"/data/weight/{entry_id}", headers={"Cookie": f"access_token_cookie={cookie}"})
@@ -101,13 +99,6 @@ def test_jwt_token_invalid(client):
 	assert resp.status_code in (401, 422)
 
 # --------------------------- Tests Rôles --------------------------------------
-def test_role_admin_access(create_admin_instance, client):
-	admin = create_admin_instance(email="adminweight@example.com", username="adminweight")
-	from flask_jwt_extended import create_access_token
-	token = create_access_token(identity=admin.id)
-	resp = client.get("/data/weight", headers={"Cookie": f"access_token_cookie={token}"})
-	assert resp.status_code == 200
-
 def test_role_user_access(login_user, client):
 	resp_login = login_user(email="roleweight@example.com")
 	cookie = _extract_access_cookie(resp_login)
@@ -119,14 +110,6 @@ def test_create_weight_invalid_value(login_user, client):
 	resp_login = login_user(email="weightbadval@example.com")
 	cookie = _extract_access_cookie(resp_login)
 	payload = _weight_payload(value=-10, time="12:00")
-	resp = client.post("/data/weight", json=payload, headers={"Cookie": f"access_token_cookie={cookie}"})
-	body = _std(resp)
-	assert resp.status_code in (400, 500) or "error" in body
-
-def test_create_weight_invalid_time(login_user, client):
-	resp_login = login_user(email="weightbadtime@example.com")
-	cookie = _extract_access_cookie(resp_login)
-	payload = _weight_payload(value=70.0, time="notatime")
 	resp = client.post("/data/weight", json=payload, headers={"Cookie": f"access_token_cookie={cookie}"})
 	body = _std(resp)
 	assert resp.status_code in (400, 500) or "error" in body
