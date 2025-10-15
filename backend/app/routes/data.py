@@ -778,6 +778,7 @@ def route_toggle_like_comment(comment_id):
 def route_create_article():
     """Crée un nouvel article (admin uniquement)."""
     try:
+        app.logger.info(f"[BACK][routes/data.py][route_create_article] Entrée dans la rooute pour créer des articles")
         current_user_id = get_jwt_identity()
         data = request.get_json()
         if not data:
