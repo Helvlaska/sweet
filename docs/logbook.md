@@ -1083,14 +1083,14 @@ Template du logbook:
 ### ✅ Réalis/home/helvlaska/sweet/backend/logs/tests_run.logé
 
 - [ ] Tests Pytest (en cours)
-- [ ] Debugue
-- [ ] Refactorisation des fichiers
-- [ ] Tests Pytest
+- [ ] Debugue (en cours)
+- [ ] Refactorisation des fichiers (en cours)
+- [ ] Tests Pytest (en cours)
 - [ ] Tests Postman
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Pas de difficultés particulières, correction du code selon les résultat du test, en série puisque toutes les fonctions sont sensiblement les mêmes pour chaque entité.
 
 ### 🔀 SCM (branches & commits)
 
@@ -1101,13 +1101,17 @@ Template du logbook:
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 2 week 3
+  - 🧪♻️ (models/glycemia.py): Refactor model code based on Pytest results of Glycemia
+  - 🧪♻️ (services/): Refactor services code based on Pytest results of Glycemia
+  - 🧪♻️ (routes/): Refactor routes code based on Pytest results of Glycemia
+  - 🧪♻️ (tests/): Update user payloads and glycemia tests to reflect new data structure
   - 📝 (docs/logbook.md): Update progress for day 2 week 3
 
 ### 🧪 QA (tests faits)
 
 - [ ] tests Pytest auth
 - [ ] tests Pytest user
-- [ ] tests Pytest glycemia
+- [X] tests Pytest glycemia
 - [ ] tests Pytest weight
 - [X] tests Pytest activity
 - [ ] tests Pytest mood
@@ -1135,11 +1139,13 @@ Template du logbook:
 
 ### 💡 Notes / décisions
 
--
+- Poursuite des tests unitaires:
+  - Décision de faire passer les fichiers de tests un par un.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Prise de recule sur le planning et la quantité de travail → Rendez-vous avec Axel.
+  - Quelques correction sur les fonctions par rapport aux tests mais moins que ce que je pensais.
 - ⚠️ À améliorer :
-  -
+  - Etre plus positive.
