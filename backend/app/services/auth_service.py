@@ -34,7 +34,7 @@ def create_user(new_user):
         db.session.commit()
         app.logger.info(f"[BACK][services/auth_service.py][create_user()] Utilisateur créé avec succès : {new_user.email}")
         cleaned_user = new_user.to_dict(exclude=["_password_hash", "_first_login", "_role"])
-        return cleaned_user
+        return cleaned_user, 201
 
     except IntegrityError as e:
         db.session.rollback()

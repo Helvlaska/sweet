@@ -5,7 +5,6 @@ from app.utils import timelaps
 
 # -------------------------------------------------------------------- Glycemia
 def validate_glycemia_data(data: dict) -> Glycemia:
-    """Vérification du contenu de la requete"""
     try:
         glycemia = Glycemia()
         glycemia.glucose_level = data.get("glucose_level")
@@ -18,13 +17,12 @@ def validate_glycemia_data(data: dict) -> Glycemia:
 
 
 def create_glycemia_entry(user_id, data):
-    """Crée une nouvelle entrée pour un user via son id"""
     try:
         glycemia = validate_glycemia_data(data)
         glycemia.user_id = user_id
         glycemia.save()
         app.logger.info(f"[BACK][services/data_service.py][create_glycemia_entry()] Mesure {glycemia.glucose_level} mg/dL enregistrée pour le user {user_id}")
-        return glycemia
+        return glycemia.to_dict()
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_glycemia_entry()] Erreur lors de la création: {e}")
@@ -32,7 +30,6 @@ def create_glycemia_entry(user_id, data):
 
 
 def get_glycemia_entry(user_id: str, range_type: str, target_date=None) -> list[dict]:
-    """Récupération les glycémies pour un jour/semaine/mois/3mois/6mois/1an donné"""
     try:
         start_date, end_date = timelaps.get_time_range(range_type, target_date)
         entries = (Glycemia.query.filter(Glycemia.user_id == user_id, Glycemia.entry_date >= start_date, Glycemia.entry_date <= end_date).order_by(Glycemia.entry_date.asc()).all())
@@ -55,18 +52,18 @@ def get_glycemia_entry(user_id: str, range_type: str, target_date=None) -> list[
 
 
 def update_glycemia_entry(user_id: str, entry_id: str, new_data: dict):
-    """Modifier une mesure déjà existante"""
     try:
         entry = Glycemia.query.filter_by(id=entry_id, user_id=user_id).first()
         if not entry:
             app.logger.info("[BACK][services/data_services.py][update_glycemia_entries()] Aucune entrée trouvée pour cet utilisateur")
             return None
-        validated = validate_glycemia_data(new_data)
-        new_value = validated.glucose_level
-        entry.glucose_level = new_value
+        app.logger.info(f"[BACK][services/data_service.py][update_glycemia_entry] Le mesure de {entry.glucose_level} trouvée pour le user {user_id}")
+        validated_glucose_level = validate_glycemia_data({"glucose_level": new_data["glucose_level"]})
+        entry.glucose_level = validated_glucose_level.glucose_level
         entry.save()
-        app.logger.info(f"[BACK][services/data_services.py][update_glycemia_entries()] Entrée {entry_id} mise à jour à {new_value} mg/dl pour user {user_id}")
-        return {"update_value": new_value}
+        app.logger.info(f"[BACK][services/data_services.py][update_glycemia_entries()] Entrée {entry_id} mise à jour à {validated_glucose_level} mg/dl pour user {user_id}")
+        return entry.to_dict()
+
     except ValueError as e:
         app.logger.error(f"[BACK][services/data_service.py][update_glycemia_entry] Erreur de validation : {e}")
         raise
@@ -138,7 +135,7 @@ def create_weight_entry(user_id, data):
         weight.user_id = user_id
         weight.save()
         app.logger.info(f"[BACK][services/data_service.py][create_weight_entries()] Mesure {weight.mass} mg/dL enregistrée pour le user {user_id}")
-        return weight
+        return weight.to_dict()
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_weight_entries()] Erreur lors de la création: {e}")
@@ -286,16 +283,16 @@ def update_activity_entry(user_id: str, entry_id: str, new_data: dict):
         if not entry:
             app.logger.info("[BACK][services/data_service.py][update_activity_entry()] Aucune entrée trouvée pour cet utilisateur")
             return None
-        app.logger.info(f"[BACK][services/data_service.py][update_activity_entry()] Activités {entry.description} de {entry.duration} minutes: trouvé")
-        validated = validate_activity_data(new_data)
-        app.logger.info(f"[BACK][services/data_service.py][update_activity_entry()] Activités {validated.description} de {validated.duration} minutes: trouvé")
-        if validated.description is not None:
-            entry.description = validated.description
-        if validated.duration is not None:
-            entry.duration = validated.duration
+        app.logger.info(f"[BACK][services/data_service.py][update_activity_entry()] L'activités {entry.description} de {entry.duration} minutes: trouvé")
+        if "description" in new_data:
+            validated_description = validate_activity_data({"description": new_data["description"], "duration": entry.duration})
+            entry.description = validated_description.description
+        if "duration" in new_data:
+            validated_duration = validate_activity_data({"duration": new_data["duration"], "description": entry.description})
+            entry.duration = validated_duration.duration
         entry.save()
         app.logger.info(f"[BACK][services/data_service.py][update_activity_entry()] Entrée {entry_id} mise à jour de l'activité {entry.description} pendant {entry.duration} minutes, pour user {user_id}")
-        return entry
+        return entry.to_dict()
 
     except ValueError as e:
         app.logger.error(f"[BACK][services/data_service.py][update_activity_entry] Erreur de validation : {e}")
@@ -961,11 +958,14 @@ def toggle_like_forum_post(post_id: str, user_id: str):
 # --------------------------------------------------------------------- Comment
 def validate_comment_data(data: dict) -> Comment:
     try:
-        comment = Comment(**data)
-        app.logger.info("")
+        comment = Comment()
+        comment.content = data.get("content")
+        comment.likes = data.get("likes")
+        app.logger.info(f"[BACK][services/data_service.py][validate_comment_data] Le contenu {comment.content} et les likes {comment.likes} du commentaire sont valides")
         return comment
+
     except (ValueError, TypeError) as e:
-        app.logger.error("")
+        app.logger.error(f"Erreur de validation du commentaire: {str(e)}")
         raise
 
 
@@ -981,7 +981,7 @@ def create_comment_entry(post_id: str, user_id: str, data: dict) -> Comment:
         validated_comment.post_id = post_id
         validated_comment.save()
         app.logger.info(f"[BACK][services/data_service.py][create_comment_entry] Commentaire {validated_comment.id} créé sur post {post_id} par user {user_id}")
-        return validated_comment
+        return validated_comment.to_dict() # type: ignore
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_comment_entry] Erreur inattendue : {e}")
@@ -1082,10 +1082,12 @@ def toggle_like_comment(comment_id: str, user_id: str):
 
 # --------------------------------------------------------------------- Article
 def validate_article_data(data: dict) -> Article:
-    """Valide les données d'un article via la classe Article (setters)."""
     try:
-        article = Article(**data)
-        app.logger.info("[BACK][services/data_service.py][validate_article_data] Données d'article validées")
+        article = Article()
+        article.title = data.get("title")
+        article.content = data.get("content")
+        article.likes = data.get("likes")
+        app.logger.info(f"[BACK][services/data_service.py][validate_article_data] Données de l'article {article.title} validées")
         return article
 
     except (ValueError, TypeError) as e:
@@ -1093,7 +1095,7 @@ def validate_article_data(data: dict) -> Article:
         raise
 
 
-def create_article_entry(data: dict, user_id: str) -> Article:
+def create_article_entry(data, user_id) -> Article:
     """Crée un nouvel article (admin uniquement)."""
     try:
         user = User.query.get(user_id)
@@ -1103,11 +1105,11 @@ def create_article_entry(data: dict, user_id: str) -> Article:
         if user.role != "admin":
             app.logger.warning(f"[BACK][services/data_service.py][create_article_entry] User {user_id} non autorisé à créer un article")
             return None # type: ignore
-        validated_article = validate_article_data(data)
-        validated_article.user_id = user_id
-        validated_article.save()
-        app.logger.info(f"[BACK][services/data_service.py][create_article_entry] Article {validated_article.id} créé par admin {user_id}")
-        return validated_article
+        article = validate_article_data(data)
+        article.user_id = user_id
+        article.save()
+        app.logger.info(f"[BACK][services/data_service.py][create_article_entry] Article {article.title} créé par admin {user_id}")
+        return article.to_dict() # type: ignore
 
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][create_article_entry] Erreur inattendue : {e}")
