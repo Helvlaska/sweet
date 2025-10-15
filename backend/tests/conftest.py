@@ -25,7 +25,7 @@ def client(app):
 	return app.test_client()
 
 
-def _user_payload(email="user@example.com", username="user1", password="Password1!", **overrides):
+def _user_payload(email="user@trucmuche.com", username="user1", password="Password1!", **overrides):
 	base = {
 		"email": email,
 		"username": username,
@@ -73,18 +73,20 @@ def create_user_instance(app):
 
 
 @pytest.fixture()
-def create_admin_instance(create_user_instance):
-	def _create(**kwargs):
-		user = create_user_instance(**kwargs)
+def create_admin_instance(create_user_instance, client):
+	def _create(email="admin@trucmuche.com", username="admin", password="Password1!", **kwargs):
+		user = create_user_instance(email=email, username=username, password=password, **kwargs)
 		user.role = "admin"
 		db.session.commit()
-		return user
+		# Simule le login admin pour obtenir le cookie
+		resp = client.post("/auth/login", json={"email": email, "password": password})
+		return resp
 	return _create
 
 
 @pytest.fixture()
 def login_user(client, register_user):
-	def _login(email="user@example.com", password="Password1!", remember_me=False, ensure_registered=True):
+	def _login(email="user@trucmuche.com", password="Password1!", remember_me=False, ensure_registered=True):
 		if ensure_registered:
 			register_user(email=email, username=email.split('@')[0], password=password)
 		resp = client.post("/auth/login", json={"email": email, "password": password, "remember_me": remember_me})
