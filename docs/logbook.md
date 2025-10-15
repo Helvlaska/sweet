@@ -1149,3 +1149,58 @@ Template du logbook:
   - Quelques correction sur les fonctions par rapport aux tests mais moins que ce que je pensais.
 - ⚠️ À améliorer :
   - Etre plus positive.
+
+---
+
+## Jour 17 – Tests backend (15/10/25)
+
+### 🎯 Objectifs du jour
+
+- Unitest de l'ensemble du backend Flask
+- Refactorisation des fichiers de code
+
+### ✅ Réalis/home/helvlaska/sweet/backend/logs/tests_run.logé
+
+- [ ] Tests Pytest (en cours)
+- [ ] Debugue (en cours)
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour les tests unitaire → `test-module`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+  - 📝 (docs/logbook.md): Set objectives for day 3 week 3
+  - 📝 (docs/logbook.md): Update progress for day 3 week 3
+
+### 🧪 QA (tests faits)
+
+- [ ] tests Pytest auth
+- [ ] tests Pytest user
+- [X] tests Pytest glycemia
+- [ ] tests Pytest weight
+- [X] tests Pytest activity
+- [ ] tests Pytest mood
+- [ ] tests Pytest medication
+- [ ] tests Pytest meal
+- [ ] tests Pytest health_professional
+- [ ] tests Pytest note
+- [ ] tests Pytest forum_post
+- [ ] tests Pytest comment
+- [ ] tests Pytest article
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
