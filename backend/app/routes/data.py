@@ -629,7 +629,7 @@ def route_update_forum_post(post_id):
         if not data:
             return jsonify({"error": "Aucune donnée reçue"}), 400
         updated_post = data_service.update_forum_post_entry(post_id, data, current_user_id)
-        if not updated_post:
+        if updated_post is None:
             return jsonify({"error": "Modification impossible"}), 400
         app.logger.info(f"[BACK][routes/data.py][route_update_forum_post] Post {post_id} mis à jour par user {current_user_id}")
         return jsonify(updated_post), 200
@@ -674,7 +674,7 @@ def route_toggle_like_forum_post(post_id):
 
 
 # ---------------------------------------------------------------- Routes Comment
-@data_bp.route("/forum/posts/<string:post_id>/comments", methods=["POST"])
+@data_bp.route("/forum/posts/<post_id>/comments", methods=["POST"])
 @jwt_required()
 def route_create_comment(post_id):
     """Crée un commentaire associé à un post."""
@@ -689,14 +689,14 @@ def route_create_comment(post_id):
             app.logger.error("[BACK][routes/data.py][route_create_comment] Échec de création du commentaire")
             return jsonify({"error": "Création du commentaire impossible"}), 400
         app.logger.info(f"[BACK][routes/data.py][route_create_comment] Commentaire créé sur post {post_id} par user {current_user_id}")
-        return jsonify(comment.to_dict()), 201
+        return jsonify(comment), 201
 
     except Exception as e:
         app.logger.error(f"[BACK][routes/data.py][route_create_comment] Erreur inattendue : {e}")
         return jsonify({"error": str(e)}), 500
 
 
-@data_bp.route("/forum/posts/<string:post_id>/comments", methods=["GET"])
+@data_bp.route("/forum/posts/<post_id>/comments", methods=["GET"])
 def route_get_comments_by_post(post_id):
     """Récupère tous les commentaires d’un post donné."""
     try:
@@ -725,7 +725,7 @@ def route_update_comment(comment_id):
             app.logger.error("[BACK][routes/data.py][route_update_comment] Aucune donnée reçue pour la mise à jour")
             return jsonify({"error": "Aucune donnée reçue"}), 400
         updated_comment = data_service.update_comment_entry(comment_id, current_user_id, data)
-        if not updated_comment:
+        if updated_comment is None:
             app.logger.error(f"[BACK][routes/data.py][route_update_comment] Mise à jour du commentaire {comment_id} impossible")
             return jsonify({"error": "Mise à jour impossible"}), 400
         app.logger.info(f"[BACK][routes/data.py][route_update_comment] Commentaire {comment_id} mis à jour par user {current_user_id}")
