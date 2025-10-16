@@ -1176,6 +1176,10 @@ Template du logbook:
 
 - Commits :
   - 📝 (docs/logbook.md): Set objectives for day 3 week 3
+  - 🧪♻️ (models/weight.py): Refactor model code based on Pytest results of Weight
+  - 🧪♻️ (services/): Refactor services code based on Pytest results of Weight, Note, Mood, Medication, Meal, Health_professional
+  - 🧪♻️ (routes/): Refactor routes code based on Pytest results of Weight, Note, Mood, Medication, Meal, Health_professional
+  - 🧪♻️ (tests/): Update tests to reflect new data structure
   - 📝 (docs/logbook.md): Update progress for day 3 week 3
 
 ### 🧪 QA (tests faits)
@@ -1183,24 +1187,24 @@ Template du logbook:
 - [ ] tests Pytest auth
 - [ ] tests Pytest user
 - [X] tests Pytest glycemia
-- [ ] tests Pytest weight
+- [X] tests Pytest weight
 - [X] tests Pytest activity
-- [ ] tests Pytest mood
-- [ ] tests Pytest medication
-- [ ] tests Pytest meal
-- [ ] tests Pytest health_professional
-- [ ] tests Pytest note
+- [X] tests Pytest mood
+- [X] tests Pytest medication
+- [X] tests Pytest meal
+- [X] tests Pytest health_professional
+- [X] tests Pytest note
 - [ ] tests Pytest forum_post
 - [ ] tests Pytest comment
 - [ ] tests Pytest article
 
 ### 💡 Notes / décisions
 
--
+- Poursuite des tests.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Mêmes retours que le jour précédent.
 - ⚠️ À améliorer :
-  -
+  - Mêmes retours que le jour précédent.
