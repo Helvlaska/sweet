@@ -35,8 +35,8 @@ FIRSTNAME_PATTERN = make_identity_pattern(75)
 LASTNAME_PATTERN = make_identity_pattern(100)
 CITY_PATTERN = make_identity_pattern(120)
 
-FORUM_TITLE_PATTERN = make_content_pattern(150, 5)
-FORUM_CONTENT_PATTERN = make_content_pattern(10000, 10, multiline=True)
+FORUM_TITLE_PATTERN = make_content_pattern(150, 2)
+FORUM_CONTENT_PATTERN = make_content_pattern(10000, 2, multiline=True)
 
 COMMENT_CONTENT_PATTERN = make_content_pattern(2000, 3, multiline=True)
 
