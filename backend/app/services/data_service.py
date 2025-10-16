@@ -904,10 +904,10 @@ def update_forum_post_entry(post_id: str, new_data: dict, user_id: str):
         post = ForumPost.query.get(post_id)
         if not post:
             app.logger.info("[BACK][services/data_service.py][update_forum_post_entry] Aucune entrée trouvée pour cet utilisateur.")
-            return None, 404
+            return None
         if post.user_id != user_id:
             app.logger.info("[BACK][services/data_service.py][update_forum_post_entry] Utilisateur non autorisé à modifier ce post")
-            return None, 403
+            return None
         if "title" in new_data:
             validated_title = validate_forum_post_data({"title": new_data["title"], "content": post.content})
             post.title = validated_title.title
@@ -981,12 +981,11 @@ def validate_comment_data(data: dict) -> Comment:
     try:
         comment = Comment()
         comment.content = data.get("content")
-        comment.likes = data.get("likes")
         app.logger.info(f"[BACK][services/data_service.py][validate_comment_data] Le contenu {comment.content} et les likes {comment.likes} du commentaire sont valides")
         return comment
 
     except (ValueError, TypeError) as e:
-        app.logger.error(f"Erreur de validation du commentaire: {str(e)}")
+        app.logger.error(f"[BACK][services/data_service.py][validate_comment_data] Erreur de validation du commentaire: {str(e)}")
         raise
 
 
