@@ -1080,7 +1080,7 @@ Template du logbook:
 - Vérification que la refactorisation est Ok
 - Tests Postman
 
-### ✅ Réalis/home/helvlaska/sweet/backend/logs/tests_run.logé
+### ✅ Réalisé
 
 - [ ] Tests Pytest (en cours)
 - [ ] Debugue (en cours)
@@ -1159,7 +1159,7 @@ Template du logbook:
 - Unitest de l'ensemble du backend Flask
 - Refactorisation des fichiers de code
 
-### ✅ Réalis/home/helvlaska/sweet/backend/logs/tests_run.logé
+### ✅ Réalisé
 
 - [ ] Tests Pytest (en cours)
 - [ ] Debugue (en cours)
@@ -1218,14 +1218,15 @@ Template du logbook:
 - Unitest de l'ensemble du backend Flask
 - Refactorisation des fichiers de code
 
-### ✅ Réalis/home/helvlaska/sweet/backend/logs/tests_run.logé
+### ✅ Réalisé
 
-- [ ] Tests Pytest (en cours)
-- [ ] Debugue (en cours)
+- [X] Tests Pytest (en cours)
+- [X] Debugue (en cours)
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Fichiers de tests générés par Copilot, problèmes de cohérence avec les tests générés et l'architecture du projet Sweet. → Perte de temps à la corrections des tests.
+- Doutes sur l'authentification par le token avec jwt_required() dans les routes à causes des tests mais après recherches tout va bien, c'est seulement que comme les tests s'enchainent, les token restent en mémoire et créent des faux négatifs.
 
 ### 🔀 SCM (branches & commits)
 
@@ -1235,12 +1236,16 @@ Template du logbook:
 
 - Commits :
   - 📝 (docs/logbook.md): Set objectives for day 4 week 3
+  - 🧪♻️ (tests/): Update tests to reflect new data structure
+  - 🧪♻️ (routes/data.py): Refactor forum post and comment routes for clarity and consistency
+  - 🧪♻️ (services/data_service.py): Simplify error handling in post updates and validate comments
+  - 🧪♻️ (utils/validator.py): Modify character length patterns for forum post field validation
   - 📝 (docs/logbook.md): Update progress for day 4 week 3
 
 ### 🧪 QA (tests faits)
 
-- [ ] tests Pytest auth
-- [ ] tests Pytest user
+- [X] tests Pytest auth
+- [X] tests Pytest user
 - [X] tests Pytest glycemia
 - [X] tests Pytest weight
 - [X] tests Pytest activity
@@ -1249,9 +1254,9 @@ Template du logbook:
 - [X] tests Pytest meal
 - [X] tests Pytest health_professional
 - [X] tests Pytest note
-- [ ] tests Pytest forum_post
-- [ ] tests Pytest comment
-- [ ] tests Pytest article
+- [X] tests Pytest forum_post
+- [X] tests Pytest comment
+- [X] tests Pytest article
 
 ### 💡 Notes / décisions
 
