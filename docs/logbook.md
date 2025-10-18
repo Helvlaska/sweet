@@ -1280,9 +1280,9 @@ Template du logbook:
 
 ### ✅ Réalisé
 
-- [ ] Refactorisation de la route et des services de Activity
-- [ ] Refactorisation de la route et des services de Article
-- [ ] Refactorisation de la route et des services de Auth
+- [X] Refactorisation de la route et des services de Activity
+- [X] Refactorisation de la route et des services de Article
+- [X] Refactorisation de la route et des services de Auth
 - [ ] Refactorisation de la route et des services de Comment
 - [ ] Refactorisation de la route et des services de Forum_post
 - [ ] Refactorisation de la route et des services de Glycemia
@@ -1291,13 +1291,12 @@ Template du logbook:
 - [ ] Refactorisation de la route et des services de Medication
 - [ ] Refactorisation de la route et des services de Mood
 - [ ] Refactorisation de la route et des services de Note
-- [ ] Test Pytest Note
 - [ ] Refactorisation de la route et des services de User
 - [ ] Refactorisation de la route et des services de Weight
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Beaucoup de fonctions à refactoriser, je dois également adapter mes tests pour vérifier que tout se passe bien: Prend du temps.
 
 ### 🔀 SCM (branches & commits)
 
@@ -1308,6 +1307,20 @@ Template du logbook:
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 5 week 3
+  - ♻️ (app/init.py): Refactor app initialization and register additional blueprints for improved structure
+  - ➕ (models/base.py): Improve save and update methods with logging messages and attribute validation
+  - ♻️ (routes/article_routes.py, services/article_service.py): Refactor Article routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/activity_routes.py, services/activity_service.py): Refactor Activity routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/auth_routes.py, services/auth_service.py): Refactor auth routes and services by extracting them from auth.py and auth_service.py to improve code readability and maintainability
+  - ➕ (routes/forum_routes.py, services/forum_service.py): Add placeholder files in preparation for refactoring data.py and data_service.py modules
+  - ➕ (routes/glycemia_routes.py, services/glycemia_service.py): Add placeholder files in preparation for refactoring data.py and data_service.py modules
+  - ➕ (routes/meal_routes.py, services/meal_service.py): Add placeholder files in preparation for refactoring data.py and data_service.py modules
+  - ➕ (routes/medication_routes.py, services/medication_service.py): Add placeholder files in preparation for refactoring data.py and data_service.py modules
+  - ➕ (routes/mood_routes.py, services/mood_service.py): Add placeholder files in preparation for refactoring data.py and data_service.py modules
+  - ➕ (routes/note_routes.py, services/note_service.py): Add placeholder files in preparation for refactoring data.py and data_service.py modules
+  - ➕ (routes/professional_routes.py, services/professional_service.py): Add placeholder files in preparation for refactoring data.py and data_service.py modules
+  - ➕ (routes/weight_routes.py, services/weight_service.py): Add placeholder files in preparation for refactoring data.py and data_service.py modules
+  - ➖ (services/email_service.py): Remove unused file
   - 📝 (docs/logbook.md): Update progress for day 5 week 3
 
 ### 🧪 QA (tests faits)
@@ -1324,14 +1337,15 @@ Template du logbook:
 - [ ] Test Pytest Mood
 - [ ] Test Pytest User
 - [ ] Test Pytest Weight
+- [ ] Test Pytest Note
 
 ### 💡 Notes / décisions
 
--
+- Pas de remonté, l'opération de refactorisation suit son cours.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Pour l'instant la refactorisation des trois premières entités se passe bien, je profite de l'occasion pour traduire mes docstring et responses en anglais.
 - ⚠️ À améliorer :
-  -
+  - Je dois absolument corriger mes fichiers de tests et les refaire passer après chaque factorisation pour la valider, pour éviter de revenir sur les fichiers à la fin.
