@@ -12,7 +12,7 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 def register():
     data = request.get_json()
     new_user = auth_service.validate_user_data(data)
-    return auth_service.create_user(new_user)
+    return auth_service.create_user(new_user)  # type:ignore
 
 # ---------------------------------------------------- Route POST : /auth/login
 @auth_bp.route('/login', methods=['POST'])
@@ -58,7 +58,7 @@ def reset_request():
     email = auth_service.validate_reset_request(data)
     user = auth_service.find_user_by_email(email)
     reset_token = auth_service.generate_reset_token(user)
-    auth_service.send_reset_email(user, reset_token)
+    auth_service.send_reset_email(user, reset_token) # type:ignore
     app.logger.info(f"[BACK][routes/auth.py][reset_request()] Lien de réinitialisation généré avec succès")
     return success_response("BACK", "routes/auth.py", "reset_request()", "Lien de réinitialisation généré avec succès (MVP : token renvoyé dans la réponse).", {user, reset_token}, 200)
 
@@ -72,7 +72,7 @@ def reset_confirm(token):
     if not user:
         return error_response("BACK", "routes/auth.py", "reset_confirm()", "Utilisateur introuvable", 404)
     auth_service.update_user_password(user, data["new_password"])
-    auth_service.invalidate_reset_token()
+    auth_service.clear_reset_token()
     app.logger.info(f"[BACK][routes/auth.py][reset_confirm()] Mot de passe mis à jour avec succès.")
     return success_response("BACK", "routes/auth.py", "reset_confirm()", "Mot de passe mis à jour avec succès.", None, 200)
 
