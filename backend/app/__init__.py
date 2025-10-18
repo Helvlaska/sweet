@@ -9,30 +9,28 @@ from dotenv import load_dotenv
 from app.utils.logging import configure_logging
 from datetime import timedelta
 
-# ----------------------------------------------- Initialisation des extensions
+# Global extensions
 db = SQLAlchemy()
 migrate = Migrate()
 bcrypt = Bcrypt()
 jwt = JWTManager()
 mail = Mail()
 
-def create_app(test_config=None):
-    """Fonction pour créer et configurer l'application Flask"""
 
-# ---------------------------------------------------------------- Charger .env
+def create_app(test_config=None):
+    """Create and configure the Flask application"""
+
+    # Load environment variables
     load_dotenv()
 
-# --------------------------------------------- Création de l'application Flask
+    # Create Flask app instance
     flask_app = Flask(__name__, instance_relative_config=True)
 
-# ------------------------------------------------------------ Sélection config
+    # Apply configuration
     if isinstance(test_config, dict):
-        # Si on passe un dict explicite, on l'utilise directement
         flask_app.config.from_mapping(test_config)
     else:
-        # Sinon, on charge selon le nom d'environnement
         env = os.environ.get("FLASK_ENV", "development")
-
         if test_config == "testing" or env == "testing":
             flask_app.config.from_object("config.TestingConfig")
         elif env == "production":
@@ -40,25 +38,21 @@ def create_app(test_config=None):
         else:
             flask_app.config.from_object("config.DevelopmentConfig")
 
-# --------------------------- Configuration des tokens et des cookies sécurisés
-    # Déclaration d'utilisation des cookies
+    # JWT and cookie configuration
     flask_app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
 
-    # Déclaration du path pour chaque token
     flask_app.config["JWT_ACCESS_COOKIE_PATH"] = "/"
     flask_app.config["JWT_REFRESH_COOKIE_PATH"] = "/auth/refresh"
 
-    # Configuration de la sécurité des cookies
     flask_app.config["JWT_COOKIE_SECURE"] = False  # ⚠️ Mettre True en production (HTTPS obligatoire)
     flask_app.config["JWT_COOKIE_HTTPONLY"] = True
     flask_app.config["JWT_COOKIE_CSRF_PROTECT"] = False
     flask_app.config["JWT_COOKIE_SAMESITE"] = "Lax"
 
-    # Configuration de la durée de vie des tokens
     flask_app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
     flask_app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(hours=48)
 
-# ------------------------------------------------- Configuration de Flask-Mail
+    # Mail configuration
     flask_app.config["MAIL_SERVER"] = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     flask_app.config["MAIL_PORT"] = int(os.getenv("MAIL_PORT", 587))
     flask_app.config["MAIL_USE_TLS"] = True
@@ -67,7 +61,7 @@ def create_app(test_config=None):
     flask_app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
     flask_app.config["MAIL_DEFAULT_SENDER"] = os.getenv("MAIL_DEFAULT_SENDER", "noreply@sweet-app.fr")
 
-# --------------------------------------------------- Initialisation extensions
+    # Initialize Flask extensions
     db.init_app(flask_app)
     mail.init_app(flask_app)
     migrate.init_app(flask_app, db)
@@ -75,27 +69,48 @@ def create_app(test_config=None):
     jwt.init_app(flask_app)
     configure_logging(flask_app)
 
-# -------------------------------------------------- Enregistrement des modèles
+    # Register models
     import app.models
 
-# ----------------------------------------------- Enregistrement des blueprints
-    # Exemple :
-    # from .routes.auth import auth_bp
-    # flask_app.register_blueprint(auth_bp)
+    # Register blueprints
     from .routes.auth import auth_bp
-    from .routes.data import data_bp
-    flask_app.register_blueprint(auth_bp)
-    flask_app.register_blueprint(data_bp)
+    from .routes.activity_routes import activity_bp
+    from .routes.article_routes import article_bp
+    from .routes.forum_routes import forum_bp
+    from .routes.glycemia_routes import glycemia_bp
+    from .routes.meal_routes import meal_bp
+    from .routes.medication_routes import medication_bp
+    from .routes.mood_routes import mood_bp
+    from .routes.note_routes import note_bp
+    from .routes.professional_routes import professional_bp
+    from .routes.user_routes import user_bp
+    from .routes.weight_routes import weight_bp
+    from .routes.data import data_bp                            # BluePrint en attente de refactorisation
 
-# ------------------------------------------------------------- Instance folder
+    flask_app.register_blueprint(auth_bp)
+    flask_app.register_blueprint(activity_bp)
+    flask_app.register_blueprint(article_bp)
+    flask_app.register_blueprint(forum_bp)
+    flask_app.register_blueprint(glycemia_bp)
+    flask_app.register_blueprint(meal_bp)
+    flask_app.register_blueprint(medication_bp)
+    flask_app.register_blueprint(mood_bp)
+    flask_app.register_blueprint(note_bp)
+    flask_app.register_blueprint(professional_bp)
+    flask_app.register_blueprint(user_bp)
+    flask_app.register_blueprint(weight_bp)
+    flask_app.register_blueprint(data_bp)                       # BluePrint en attente de refactorisation
+
+    # Ensure instance folder exists
     try:
         os.makedirs(flask_app.instance_path)
     except OSError:
         pass
 
-# ------------------------------------------------------------------ Route test
+    # Health check route
     @flask_app.route("/ping")
     def ping():
+        """Return a simple backend health check"""
         return {"status": "ok", "message": "Sweet backend is running", "env": flask_app.config["ENV"]}
 
     return flask_app
