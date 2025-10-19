@@ -1377,7 +1377,7 @@ Template du logbook:
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Mauvais code status mis en évidence par les tests de Activity, difficultés à trouver qu'elle ligne faisait blocage tandis que les codes status étaient pertinent dans le code : c'était un except Exception as e qui brouillait le bon retour de code status (500 au lieu de 400).
 
 ### 🔀 SCM (branches & commits)
 
@@ -1388,11 +1388,13 @@ Template du logbook:
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 6 week 3
+  - ➖ (app/init.py): Remove user_bp blueprint registration from the create_app function
+  - 🧪♻️ (tests/test_activity.py): Refactor test fixtures and fully enhance Activity tests, including code fixes based on test results
   - 📝 (docs/logbook.md): Update progress for day 6 week 3
 
 ### 🧪 QA (tests faits)
 
-- [ ] Test Pytest Activity
+- [X] Test Pytest Activity
 - [ ] Test Pytest Article
 - [ ] Test Pytest Auth
 - [ ] Test Pytest Comment
@@ -1408,11 +1410,13 @@ Template du logbook:
 
 ### 💡 Notes / décisions
 
--
+- Lorsque j'appelle une fonction de validation de données de champ je dois penser à traiter les ValueError et TypeError et pas seulement utiliser un Exception qui lui renverra une erreur 500 générique.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Les 19 tests pour Activity sont passés, le code de Activity a été éprouvé, refactorisé, l'entité Activity est désormais terminée.
+  - Maintenant que j'en ai terminé un et que je sais ce qui coince, je vais pouvoir gagner du temps sur les autres.
 - ⚠️ À améliorer :
-  -
+  - Penser à ajouter le traitement des ValueErrore et TypeError dans chaque fonction pour éviter les mauvaises surprises.
+  - Je dois aussi être plus efficace dans les prochains jours pour commencer le front dans les plus brefs délais.
