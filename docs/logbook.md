@@ -1420,3 +1420,70 @@ Template du logbook:
 - ⚠️ À améliorer :
   - Penser à ajouter le traitement des ValueErrore et TypeError dans chaque fonction pour éviter les mauvaises surprises.
   - Je dois aussi être plus efficace dans les prochains jours pour commencer le front dans les plus brefs délais.
+
+---
+
+## Jour 21 – Refactorisation des routes et services (19/10/25)
+
+### 🎯 Objectifs du jour
+
+- Refactorisation des routes et services.
+- Tests Pytest pour sécuriser la refactorisation.
+
+### ✅ Réalisé
+
+- [X] Refactorisation de la route et des services de Activity
+- [X] Refactorisation de la route et des services de Article
+- [X] Refactorisation de la route et des services de Auth
+- [ ] Refactorisation de la route et des services de Comment
+- [ ] Refactorisation de la route et des services de Forum_post
+- [ ] Refactorisation de la route et des services de Glycemia
+- [ ] Refactorisation de la route et des services de Health_pros
+- [ ] Refactorisation de la route et des services de Meal
+- [ ] Refactorisation de la route et des services de Medication
+- [ ] Refactorisation de la route et des services de Mood
+- [ ] Refactorisation de la route et des services de Note
+- [ ] Refactorisation de la route et des services de User
+- [ ] Refactorisation de la route et des services de Weight
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour les tests unitaire → `test-module`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+
+  - 📝 (docs/logbook.md): Set objectives for day 7 week 3
+  - 📝 (docs/logbook.md): Update progress for day 7 week 3
+
+### 🧪 QA (tests faits)
+
+- [X] Test Pytest Activity
+- [ ] Test Pytest Article
+- [ ] Test Pytest Auth
+- [ ] Test Pytest Comment
+- [ ] Test Pytest Forum_post
+- [ ] Test Pytest Glycemia
+- [ ] Test Pytest Health_pros
+- [ ] Test Pytest Meal
+- [ ] Test Pytest Medication
+- [ ] Test Pytest Mood
+- [ ] Test Pytest User
+- [ ] Test Pytest Weight
+- [ ] Test Pytest Note
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
