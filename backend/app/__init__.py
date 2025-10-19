@@ -83,7 +83,6 @@ def create_app(test_config=None):
     from .routes.mood_routes import mood_bp
     from .routes.note_routes import note_bp
     from .routes.professional_routes import professional_bp
-    from .routes.user_routes import user_bp
     from .routes.weight_routes import weight_bp
     from .routes.data import data_bp                            # BluePrint en attente de refactorisation
 
@@ -97,7 +96,6 @@ def create_app(test_config=None):
     flask_app.register_blueprint(mood_bp)
     flask_app.register_blueprint(note_bp)
     flask_app.register_blueprint(professional_bp)
-    flask_app.register_blueprint(user_bp)
     flask_app.register_blueprint(weight_bp)
     flask_app.register_blueprint(data_bp)                       # BluePrint en attente de refactorisation
 
