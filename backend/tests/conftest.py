@@ -51,37 +51,28 @@ def register_user(client):
 	return _create
 
 
-@pytest.fixture()
-def create_user_instance(app):
-	def _create(**kwargs):
-		payload = _user_payload(**kwargs)
-		# Direct model creation to simulate pre-existing user
-		user = User()
-		user.email=payload["email"],
-		user.username=payload["username"],
-		user.first_name=payload["first_name"],
-		user.last_name=payload["last_name"],
-		user.gender=payload["gender"],
-		user.height=payload["height"],
-		user.city=payload["city"],
-
-		user.password_hash = payload["password"]
-		db.session.add(user)
-		db.session.commit()
-		return user
-	return _create
+#@pytest.fixture()
+#def create_user_instance(app):
+	#def _create(**kwargs):
+		#payload = _user_payload(**kwargs)
+		#user = User(**payload)
+		#user.password_hash = payload["password"]
+		#db.session.add(user)
+		#db.session.commit()
+		#return payload
+	#return _create
 
 
-@pytest.fixture()
-def create_admin_instance(create_user_instance, client):
-	def _create(email="admin@trucmuche.com", username="admin", password="Password1!", **kwargs):
-		user = create_user_instance(email=email, username=username, password=password, **kwargs)
-		user.role = "admin"
-		db.session.commit()
+#@pytest.fixture()
+#def create_admin_instance(create_user_instance, client):
+	#def _create(email="admin@trucmuche.com", username="admin", password="Password1!", **kwargs):
+		#user = create_user_instance(email=email, username=username, password=password, **kwargs)
+		#user.role = "admin"
+		#db.session.commit()
 		# Simule le login admin pour obtenir le cookie
-		resp = client.post("/auth/login", json={"email": email, "password": password})
-		return resp
-	return _create
+		#resp = client.post("/auth/login", json={"email": email, "password": password})
+		#return resp
+	#return _create
 
 
 @pytest.fixture()
@@ -101,6 +92,14 @@ def extract_cookie(response, name):
 			return c.split(';', 1)[0].split('=', 1)[1]
 	return None
 
+@pytest.fixture(autouse=True)
+def clean_db():
+	"""Reset database between tests."""
+	yield
+	db.session.rollback()
+	for table in reversed(db.metadata.sorted_tables):
+		db.session.execute(table.delete())
+	db.session.commit()
 
 @pytest.fixture()
 def auth_client(client, login_user):

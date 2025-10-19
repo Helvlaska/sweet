@@ -5,6 +5,12 @@ from app.utils import timelaps
 def validate_activity_data(data: dict):
     """Validate and return a valid Activity instance"""
     try:
+        if not data:
+            app.logger.error("[BACK][services/activity_service.py][validate_activity_data] Aucune donnée reçue.")
+            raise ValueError("Aucune donnée reçue pour la création d'activité.")
+        if "description" not in data or "duration" not in data :
+            app.logger.error("[BACK][services/activity_service.py][validate_activity_data] Champs 'description' et 'duration' requis.")
+            raise ValueError("Les champs 'description' et 'duration' sont requis")
         activity = Activity()
         activity.description = data.get("description")
         activity.duration = data.get("duration")
@@ -25,6 +31,8 @@ def create_activity_entry(user_id: str, data: dict):
         app.logger.info(f"[BACK][services/activity_service][create_activity_entry] L'activité {activity.description} pendant {activity.duration} minutes à été enregistrée pour le user {user_id}")
         return activity.to_dict()
 
+    except (ValueError, TypeError):
+        raise
     except Exception as e:
         app.logger.error(f"[BACK][services/activity_service][create_activity_entry] Erreur lors de la création de l'activité '{activity.description}' pour le user {user_id}: {e}")
         raise

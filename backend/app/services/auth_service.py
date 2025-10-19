@@ -11,6 +11,9 @@ from datetime import timedelta
 def validate_user_data(data: dict):
     """Validate and return a valid User instance"""
     try:
+        if isinstance(data, User):
+            app.logger.warning("[BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.")
+            return data
         raw_password = data.pop("password", None)
         user = User(**data)
         if raw_password:

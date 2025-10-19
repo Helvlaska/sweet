@@ -9,17 +9,17 @@ activity_bp = Blueprint('activity', __name__, url_prefix='/data/activity')
 def create_activity_route():
     """Create a new activity entry for the authenticated user"""
     try:
+        app.logger.info(f"[BACK][routes/activity_routes.py][create_activity_route()] Données reçues : {request.data}")
+
         user_id = get_jwt_identity()
         data = request.get_json()
-        if not data:
-            app.logger.error(f"[BACK][routes/activity_routes][create_activity_route] Aucune donnée reçue")
-            return jsonify({"error": "Missing JSON data"}), 400
+        app.logger.info(f"[BACK][routes/activity_routes.py][create_activity_route()] Données reçues : {request.data}")
         new_entry = activity_service.create_activity_entry(user_id, data)
         app.logger.info(f"[BACK][routes/activity_routes][create_activity_route] Nouvelle activité {new_entry} créée pour user {user_id}")
         return jsonify(new_entry), 201
 
     except ValueError as e:
-        app.logger.warning(f"[BACK][activity_routes][create_activity_route] Données de l'activité NOK: {e}")
+        app.logger.error(f"[BACK][activity_routes][create_activity_route] Données de l'activité NOK: {e}")
         return jsonify({"error": str(e)}), 400
     except Exception as e:
         app.logger.error(f"[BACK][activity_routes][create_activity_route] Erreur: {e}")
@@ -100,7 +100,7 @@ def delete_activity_route(entry_id):
             app.logger.error("[BACK][routes/activity_routes][delete_activity_route] Activité non trouvée")
             return jsonify({"error": "Activity not found"}), 404
         app.logger.info(f"[BACK][routes/activity_routes][delete_activity_route] Entrée {entry_id} supprimée avec succès pour user {user_id}")
-        return "", 204
+        return jsonify({"message": "Activity deleted successfully"}), 200
 
     except ValueError as e:
         app.logger.warning(f"[BACK][routes/activity_routes][delete_activity_route] Erreur sur les valeurs entrées: {e}")
