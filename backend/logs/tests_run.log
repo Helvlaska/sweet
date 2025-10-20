@@ -7746,3 +7746,1031 @@
 [2025-10-19 10:53:21] [INFO] [activity_service.get_activity_stats] [BACK][services/activity_service][get_activity_stats] 2 enregistrements récupérés pour l’utilisateur df83e327-7c5d-4bed-bf09-37ead1df3c56 (day)
 [2025-10-19 10:53:21] [INFO] [activity_service.get_activity_stats] [BACK][services/activity_service][get_activity_stats] Moyenne calculée : 45 min/j sur 2 enregistrements
 [2025-10-19 10:53:21] [INFO] [activity_routes.get_activity_stats_route] [BACK][routes/activity_routes][get_activity_stats_route] Moyenne de temps d'activité récupérée pour user df83e327-7c5d-4bed-bf09-37ead1df3c56, période 'day', date 'None'
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 11:10:18
+
+================================================================================
+[2025-10-19 11:10:18] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 11:10:19] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:10:19] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email artuser@example.com est validé
+[2025-10-19 11:10:19] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:10:19] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:10:19] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:10:19] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:10:19] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username artuser est validé
+[2025-10-19 11:10:19] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:10:19] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-19 11:10:19] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-19 11:10:19] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=d829b564-0451-4899-b05a-387f46ddfeac)
+[2025-10-19 11:10:19] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : artuser@example.com
+[2025-10-19 11:10:19] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-19 11:10:19] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : artuser@example.com
+[2025-10-19 11:10:19] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-19 11:10:19] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-19 11:10:19] [INFO] [auth.login] [BACK][routes/auth.py][login()] Première connexion détectée pour artuser@example.com
+[2025-10-19 11:10:19] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'artuser@example.com', 'username': 'artuser', 'password_hash': '$2b$12$rQff7X52xkURGFw2AkCtEey5HJ7R3J3xXoYpMB6mCtK.ICIXrqFkK', 'first_name': 'Jean', 'last_name': 'Dupont', 'date_of_birth': None, 'gender': 'prefer_not_say', 'height': 170, 'city': 'Paris', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': 'd829b564-0451-4899-b05a-387f46ddfeac', 'created_at': datetime.datetime(2025, 10, 19, 9, 10, 19, 453867), 'updated_at': datetime.datetime(2025, 10, 19, 9, 10, 19, 680893), 'entry_date': datetime.date(2025, 10, 19)}
+[2025-10-19 11:10:19] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour artuser@example.com
+[2025-10-19 11:10:19] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:10:19] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email artmissing@example.com est validé
+[2025-10-19 11:10:19] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:10:19] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:10:19] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:10:19] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:10:19] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username artmissing est validé
+[2025-10-19 11:10:19] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:10:19] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-19 11:10:19] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-19 11:10:19] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=5ef18a37-ec33-4a76-8cd7-16c3d79197cd)
+[2025-10-19 11:10:19] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : artmissing@example.com
+[2025-10-19 11:10:19] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-19 11:10:19] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : artmissing@example.com
+[2025-10-19 11:10:20] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-19 11:10:20] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-19 11:10:20] [INFO] [auth.login] [BACK][routes/auth.py][login()] Première connexion détectée pour artmissing@example.com
+[2025-10-19 11:10:20] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'artmissing@example.com', 'username': 'artmissing', 'password_hash': '$2b$12$PcqZWBmtD4qoabneF7dqSOn8jqct.o3eCLgKK6zplLDAG.C3ynSVK', 'first_name': 'Jean', 'last_name': 'Dupont', 'date_of_birth': None, 'gender': 'prefer_not_say', 'height': 170, 'city': 'Paris', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': '5ef18a37-ec33-4a76-8cd7-16c3d79197cd', 'created_at': datetime.datetime(2025, 10, 19, 9, 10, 19, 962242), 'updated_at': datetime.datetime(2025, 10, 19, 9, 10, 20, 185261), 'entry_date': datetime.date(2025, 10, 19)}
+[2025-10-19 11:10:20] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour artmissing@example.com
+[2025-10-19 11:10:20] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:10:20] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email artread@example.com est validé
+[2025-10-19 11:10:20] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:10:20] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:10:20] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:10:20] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:10:20] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username artread est validé
+[2025-10-19 11:10:20] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:10:20] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-19 11:10:20] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-19 11:10:20] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=509c338a-3037-442c-8da2-4c4a7681fa7a)
+[2025-10-19 11:10:20] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : artread@example.com
+[2025-10-19 11:10:20] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-19 11:10:20] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : artread@example.com
+[2025-10-19 11:10:20] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-19 11:10:20] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-19 11:10:20] [INFO] [auth.login] [BACK][routes/auth.py][login()] Première connexion détectée pour artread@example.com
+[2025-10-19 11:10:20] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'artread@example.com', 'username': 'artread', 'password_hash': '$2b$12$WcdaTJPkh9orVol9W4w7FO2SNnq1wjkeBHKBHZkZLnkxguWxxeG56', 'first_name': 'Jean', 'last_name': 'Dupont', 'date_of_birth': None, 'gender': 'prefer_not_say', 'height': 170, 'city': 'Paris', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': '509c338a-3037-442c-8da2-4c4a7681fa7a', 'created_at': datetime.datetime(2025, 10, 19, 9, 10, 20, 459164), 'updated_at': datetime.datetime(2025, 10, 19, 9, 10, 20, 676252), 'entry_date': datetime.date(2025, 10, 19)}
+[2025-10-19 11:10:20] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour artread@example.com
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 11:21:15
+
+================================================================================
+[2025-10-19 11:21:15] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 11:21:15] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:21:15] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:21:15] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:21:15] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:21:15] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:21:15] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:21:15] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:21:15] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-19 11:21:15] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:21:15] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:21:15] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:21:15] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:21:15] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:21:15] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:21:15] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:21:16] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-19 11:21:16] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:21:16] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:21:16] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:21:16] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:21:16] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:21:16] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:21:16] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:21:16] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 11:22:03
+
+================================================================================
+[2025-10-19 11:22:03] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 11:22:03] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:22:03] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:22:03] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:22:03] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:22:03] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:22:03] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:22:03] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:22:03] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-19 11:22:03] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:22:03] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:22:03] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:22:03] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:22:03] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:22:03] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:22:03] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:22:03] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-19 11:22:03] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:22:03] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:22:03] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:22:03] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:22:03] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:22:03] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:22:03] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:22:04] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 11:23:06
+
+================================================================================
+[2025-10-19 11:23:06] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 11:23:06] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:23:06] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:23:06] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:23:06] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:23:06] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:23:06] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:23:06] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:23:07] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-19 11:23:07] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:23:07] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:23:07] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:23:07] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:23:07] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:23:07] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:23:07] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:23:07] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-19 11:23:07] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:23:07] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:23:07] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:23:07] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:23:07] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:23:07] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:23:07] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:23:07] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 11:41:29
+
+================================================================================
+[2025-10-19 11:41:29] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 11:41:29] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:41:29] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:41:29] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:41:29] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:41:29] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:41:29] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:41:29] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:41:29] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-19 11:41:29] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:41:29] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:41:29] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:41:29] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:41:29] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:41:29] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:41:29] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:41:29] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-19 11:41:29] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:41:29] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:41:29] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:41:29] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:41:29] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:41:29] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:41:29] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:41:30] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 11:41:56
+
+================================================================================
+[2025-10-19 11:41:56] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 11:41:57] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:41:57] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:41:57] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:41:57] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:41:57] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:41:57] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:41:57] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:41:57] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-19 11:41:57] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:41:57] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:41:57] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:41:57] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:41:57] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:41:57] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:41:57] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:41:57] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-19 11:41:57] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:41:57] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:41:57] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:41:57] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:41:57] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:41:57] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:41:57] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:41:57] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 11:48:23
+
+================================================================================
+[2025-10-19 11:48:23] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 11:48:23] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:48:23] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:48:23] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:48:23] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:48:23] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:48:23] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:48:23] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:48:23] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:48:23] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 11:48:23] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:48:23] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:48:23] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:48:23] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:48:23] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:48:23] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:48:23] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:48:23] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:48:23] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 11:48:23] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:48:23] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:48:23] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:48:23] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:48:23] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:48:23] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:48:23] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:48:23] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:48:24] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 11:51:07
+
+================================================================================
+[2025-10-19 11:51:07] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 11:51:08] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:51:08] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:51:08] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:51:08] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:51:08] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:51:08] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:51:08] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:51:08] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:51:08] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 11:51:08] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:51:08] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:51:08] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:51:08] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:51:08] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:51:08] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:51:08] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:51:08] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:51:08] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 11:51:08] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:51:08] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:51:08] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:51:08] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:51:08] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:51:08] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:51:08] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:51:08] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:51:08] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 11:53:45
+
+================================================================================
+[2025-10-19 11:53:45] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 11:53:45] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:53:45] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:53:45] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:53:45] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:53:45] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:53:45] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:53:45] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:53:45] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:53:46] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 11:53:46] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:53:46] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:53:46] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:53:46] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:53:46] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:53:46] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:53:46] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:53:46] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:53:46] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 11:53:46] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:53:46] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:53:46] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:53:46] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:53:46] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:53:46] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:53:46] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:53:46] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:53:46] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 11:55:02
+
+================================================================================
+[2025-10-19 11:55:02] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 11:55:03] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:55:03] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:55:03] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:55:03] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:55:03] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:55:03] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:55:03] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:55:03] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:55:03] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 11:55:03] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:55:03] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:55:03] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:55:03] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:55:03] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:55:03] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:55:03] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:55:03] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:55:03] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 11:55:03] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 11:55:03] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 11:55:03] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 11:55:03] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 11:55:03] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 11:55:03] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 11:55:03] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 11:55:03] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 11:55:03] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 12:00:05
+
+================================================================================
+[2025-10-19 12:00:05] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 12:00:05] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:00:05] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:00:05] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:00:05] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:00:05] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:00:05] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:00:05] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:00:05] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:00:05] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 12:00:05] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:00:05] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:00:05] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:00:05] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:00:05] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:00:05] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:00:05] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:00:05] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:00:05] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 12:00:06] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:00:06] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:00:06] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:00:06] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:00:06] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:00:06] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:00:06] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:00:06] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:00:06] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 12:01:00
+
+================================================================================
+[2025-10-19 12:01:00] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 12:01:00] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:01:00] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:01:00] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:01:00] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:01:00] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:01:00] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:01:00] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:01:00] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:01:01] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 12:01:01] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:01:01] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:01:01] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:01:01] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:01:01] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:01:01] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:01:01] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:01:01] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:01:01] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 12:01:01] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:01:01] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:01:01] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:01:01] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:01:01] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:01:01] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:01:01] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:01:01] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:01:01] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 12:01:01] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:01:01] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:01:01] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:01:01] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:01:01] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:01:01] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:01:01] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:01:01] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:01:01] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 12:10:56
+
+================================================================================
+[2025-10-19 12:10:56] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 12:10:57] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:10:57] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:10:57] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:10:57] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:10:57] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:10:57] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:10:57] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:10:57] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:10:57] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 12:10:57] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:10:57] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:10:57] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:10:57] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:10:57] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:10:57] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:10:57] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:10:57] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:10:57] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 12:10:57] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:10:57] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:10:57] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:10:57] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:10:57] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:10:57] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:10:57] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:10:57] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:10:57] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 12:12:53
+
+================================================================================
+[2025-10-19 12:12:53] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 12:12:53] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:12:53] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:12:53] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:12:53] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:12:53] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:12:53] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:12:53] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:12:53] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:12:54] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 12:12:54] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:12:54] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:12:54] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:12:54] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:12:54] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:12:54] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:12:54] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:12:54] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:12:54] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+[2025-10-19 12:12:54] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:12:54] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:12:54] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:12:54] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:12:54] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:12:54] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:12:54] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:12:54] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:12:54] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 12:20:22
+
+================================================================================
+[2025-10-19 12:20:22] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 12:20:23] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:20:23] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:20:23] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:20:23] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:20:23] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:20:23] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:20:23] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:20:23] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:20:23] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-19 12:20:23] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-19 12:20:23] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=51f57691-5f2b-4c82-81dc-9eb44a5c4c10)
+[2025-10-19 12:20:23] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : admin@example.com
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 12:20:51
+
+================================================================================
+[2025-10-19 12:20:51] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 12:20:51] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:20:51] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:20:51] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:20:51] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:20:51] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:20:51] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:20:51] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:20:51] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:20:51] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-19 12:20:51] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-19 12:20:51] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=ef5adb1b-1448-4585-8e69-191b2b93ef8d)
+[2025-10-19 12:20:51] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : admin@example.com
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 12:22:45
+
+================================================================================
+[2025-10-19 12:22:45] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 12:22:46] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:22:46] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@example.com est validé
+[2025-10-19 12:22:46] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:22:46] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:22:46] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:22:46] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:22:46] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username admin est validé
+[2025-10-19 12:22:46] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:22:46] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-19 12:22:46] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-19 12:22:46] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=9daaa672-b632-48b3-ba5c-e492db7ed95f)
+[2025-10-19 12:22:46] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : admin@example.com
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-19 12:27:28
+
+================================================================================
+[2025-10-19 12:27:28] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-19 12:27:28] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-19 12:27:28] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email adminart@example.com est validé
+[2025-10-19 12:27:28] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-19 12:27:28] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-19 12:27:28] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-19 12:27:28] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-19 12:27:28] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username adminart est validé
+[2025-10-19 12:27:28] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-19 12:27:29] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-19 12:27:29] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-19 12:27:29] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=f0951ac0-7346-441e-aa81-1652ee1ae822)
+[2025-10-19 12:27:29] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : adminart@example.com
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 09:36:24
+
+================================================================================
+[2025-10-20 09:36:24] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-20 09:36:24] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:36:24] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email usertest@example.com est validé
+[2025-10-20 09:36:24] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:36:24] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:36:24] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:36:24] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:36:24] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username usertest est validé
+[2025-10-20 09:36:24] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:36:25] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:36:25] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:36:25] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=0b11080b-91e1-4a35-9c85-3ed900acb1bd)
+[2025-10-20 09:36:25] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : usertest@example.com
+[2025-10-20 09:36:25] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:36:25] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email missing@example.com est validé
+[2025-10-20 09:36:25] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:36:25] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:36:25] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:36:25] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:36:25] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:36:25] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:36:25] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:36:25] [ERROR] [base.save] [BACK][models/base.py][save()] Erreur lors de la sauvegarde de l'instance User: (sqlite3.IntegrityError) NOT NULL constraint failed: users._username
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('missing@example.com', None, '$2b$12$VSTxbrw3LsJ9BCKtQzV.I.1hmFDmp.C.AdiJkYeDkWABb32fH5mYK', 'Test', 'User', None, 'prefer_not_say', 170, 'Paris', None, 'user', 1, 'c0b039e3-8388-4bd4-b1d8-d593e1fdb100', '2025-10-20 07:36:25.405214', '2025-10-20 07:36:25.405223', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 09:36:25] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: (sqlite3.IntegrityError) NOT NULL constraint failed: users._username
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('missing@example.com', None, '$2b$12$VSTxbrw3LsJ9BCKtQzV.I.1hmFDmp.C.AdiJkYeDkWABb32fH5mYK', 'Test', 'User', None, 'prefer_not_say', 170, 'Paris', None, 'user', 1, 'c0b039e3-8388-4bd4-b1d8-d593e1fdb100', '2025-10-20 07:36:25.405214', '2025-10-20 07:36:25.405223', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 09:36:26] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:36:26] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email readuser@example.com est validé
+[2025-10-20 09:36:26] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:36:26] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:36:26] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:36:26] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:36:26] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username readuser est validé
+[2025-10-20 09:36:26] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:36:26] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:36:26] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:36:26] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=619df84b-b494-4ed1-9be2-61c2c2550b17)
+[2025-10-20 09:36:26] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : readuser@example.com
+[2025-10-20 09:36:26] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-20 09:36:26] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : readuser@example.com
+[2025-10-20 09:36:26] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-20 09:36:26] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-20 09:36:26] [INFO] [auth.login] [BACK][routes/auth.py][login()] Première connexion détectée pour readuser@example.com
+[2025-10-20 09:36:26] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'readuser@example.com', 'username': 'readuser', 'password_hash': '$2b$12$I2xwawxrpGx0DtzuLSutguHcNsufq/cmcUNz/IJt4Kig3Z6ejsiG2', 'first_name': 'Jean', 'last_name': 'Dupont', 'date_of_birth': None, 'gender': 'prefer_not_say', 'height': 170, 'city': 'Paris', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': '619df84b-b494-4ed1-9be2-61c2c2550b17', 'created_at': datetime.datetime(2025, 10, 20, 7, 36, 26, 296484), 'updated_at': datetime.datetime(2025, 10, 20, 7, 36, 26, 531422), 'entry_date': datetime.date(2025, 10, 20)}
+[2025-10-20 09:36:26] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour readuser@example.com
+[2025-10-20 09:36:26] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'email': 'readuser@example.com', 'username': 'readuser', 'password_hash': '$2b$12$I2xwawxrpGx0DtzuLSutguHcNsufq/cmcUNz/IJt4Kig3Z6ejsiG2', 'first_name': 'Jean', 'last_name': 'Dupont', 'date_of_birth': None, 'gender': 'prefer_not_say', 'height': 170, 'city': 'Paris', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': '619df84b-b494-4ed1-9be2-61c2c2550b17', 'created_at': datetime.datetime(2025, 10, 20, 7, 36, 26, 296484), 'updated_at': datetime.datetime(2025, 10, 20, 7, 36, 26, 531422), 'entry_date': datetime.date(2025, 10, 20)}
+[2025-10-20 09:36:26] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Récupération de <User 619df84b-b494-4ed1-9be2-61c2c2550b17> avec get_user_from_identity() réussi
+[2025-10-20 09:36:26] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour readuser@example.com
+[2025-10-20 09:36:26] [INFO] [auth.show_profile] [BACK][routes/auth.py][show_profile()] Affichage du profil de <User 619df84b-b494-4ed1-9be2-61c2c2550b17> après l'avoir nettoyé réussi
+[2025-10-20 09:36:26] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:36:26] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email updateuser@example.com est validé
+[2025-10-20 09:36:26] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:36:26] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:36:26] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:36:26] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:36:26] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username updateuser est validé
+[2025-10-20 09:36:26] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:36:26] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:36:26] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:36:26] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=f84201d5-4efe-47a7-96ef-dae2e473eb84)
+[2025-10-20 09:36:26] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : updateuser@example.com
+[2025-10-20 09:36:26] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-20 09:36:26] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : updateuser@example.com
+[2025-10-20 09:36:27] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-20 09:36:27] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-20 09:36:27] [INFO] [auth.login] [BACK][routes/auth.py][login()] Première connexion détectée pour updateuser@example.com
+[2025-10-20 09:36:27] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'updateuser@example.com', 'username': 'updateuser', 'password_hash': '$2b$12$bDc/G9bCRqyvbQcdrFbAw.erQpV4quARM.0ral5JqARTseV.NJVc2', 'first_name': 'Jean', 'last_name': 'Dupont', 'date_of_birth': None, 'gender': 'prefer_not_say', 'height': 170, 'city': 'Paris', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': 'f84201d5-4efe-47a7-96ef-dae2e473eb84', 'created_at': datetime.datetime(2025, 10, 20, 7, 36, 26, 785510), 'updated_at': datetime.datetime(2025, 10, 20, 7, 36, 27, 7975), 'entry_date': datetime.date(2025, 10, 20)}
+[2025-10-20 09:36:27] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour updateuser@example.com
+[2025-10-20 09:36:27] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'email': 'updateuser@example.com', 'username': 'updateuser', 'password_hash': '$2b$12$bDc/G9bCRqyvbQcdrFbAw.erQpV4quARM.0ral5JqARTseV.NJVc2', 'first_name': 'Jean', 'last_name': 'Dupont', 'date_of_birth': None, 'gender': 'prefer_not_say', 'height': 170, 'city': 'Paris', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': 'f84201d5-4efe-47a7-96ef-dae2e473eb84', 'created_at': datetime.datetime(2025, 10, 20, 7, 36, 26, 785510), 'updated_at': datetime.datetime(2025, 10, 20, 7, 36, 27, 7975), 'entry_date': datetime.date(2025, 10, 20)}
+[2025-10-20 09:36:27] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:36:27] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=f84201d5-4efe-47a7-96ef-dae2e473eb84)
+[2025-10-20 09:36:27] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour updateuser@example.com
+[2025-10-20 09:36:27] [INFO] [auth_service.update_profile] [BACK][services/auth_service.py][update_profile()] Profil mis à jour avec succès pour {'email': 'updateuser@example.com', 'username': 'updateuser', 'first_name': 'Jean', 'last_name': 'Dupont', 'date_of_birth': None, 'gender': 'prefer_not_say', 'height': 170, 'city': 'Marseille', 'profile_picture': None, 'id': 'f84201d5-4efe-47a7-96ef-dae2e473eb84', 'created_at': datetime.datetime(2025, 10, 20, 7, 36, 26, 785510), 'updated_at': datetime.datetime(2025, 10, 20, 7, 36, 27, 22384), 'entry_date': datetime.date(2025, 10, 20)}
+[2025-10-20 09:36:27] [INFO] [auth.update_profile] [BACK][routes/auth.py][update_profile()] J'ai modifié le profile du user {'email': 'updateuser@example.com', 'username': 'updateuser', 'first_name': 'Jean', 'last_name': 'Dupont', 'date_of_birth': None, 'gender': 'prefer_not_say', 'height': 170, 'city': 'Marseille', 'profile_picture': None, 'id': 'f84201d5-4efe-47a7-96ef-dae2e473eb84', 'created_at': datetime.datetime(2025, 10, 20, 7, 36, 26, 785510), 'updated_at': datetime.datetime(2025, 10, 20, 7, 36, 27, 22384), 'entry_date': datetime.date(2025, 10, 20)}
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 09:36:54
+
+================================================================================
+[2025-10-20 09:36:54] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-20 09:36:54] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:36:54] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email alice@example.com est validé
+[2025-10-20 09:36:54] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:36:54] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:36:54] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:36:54] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:36:54] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username alice01 est validé
+[2025-10-20 09:36:54] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:36:54] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:36:54] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:36:54] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=5ba691d9-5308-42b1-a5c1-303a70a3cd45)
+[2025-10-20 09:36:54] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : alice@example.com
+[2025-10-20 09:36:54] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:36:54] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 09:36:54] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:36:54] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:36:54] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:36:54] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:36:54] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dup1 est validé
+[2025-10-20 09:36:54] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:36:55] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:36:55] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:36:55] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=62f5cafd-f6ae-4a3c-aa53-9dc7fd815ddb)
+[2025-10-20 09:36:55] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : dup@example.com
+[2025-10-20 09:36:55] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:36:55] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 09:36:55] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:36:55] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:36:55] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:36:55] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:36:55] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dup2 est validé
+[2025-10-20 09:36:55] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:36:55] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:36:55] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:36:55] [ERROR] [base.save] [BACK][models/base.py][save()] Erreur lors de la sauvegarde de l'instance User: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dup2', '$2b$12$sKH7l7ov8ZZkE/LQmd/SpO0pYn7FIzAXRbOTpn3NICiU8oC3RfTuS', 'Jean', 'Dupont', None, 'prefer_not_say', 170, 'Paris', None, 'user', 1, '7da42725-943e-419d-8e71-21be2e4a183c', '2025-10-20 07:36:55.352067', '2025-10-20 07:36:55.352074', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 09:36:55] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dup2', '$2b$12$sKH7l7ov8ZZkE/LQmd/SpO0pYn7FIzAXRbOTpn3NICiU8oC3RfTuS', 'Jean', 'Dupont', None, 'prefer_not_say', 170, 'Paris', None, 'user', 1, '7da42725-943e-419d-8e71-21be2e4a183c', '2025-10-20 07:36:55.352067', '2025-10-20 07:36:55.352074', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 09:36:56] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:36:56] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email bob@example.com est validé
+[2025-10-20 09:36:56] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:36:56] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:36:56] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:36:56] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:36:56] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username bob01 est validé
+[2025-10-20 09:36:56] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-20 09:36:56] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du password ne respect pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 09:37:16
+
+================================================================================
+[2025-10-20 09:37:16] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-20 09:37:17] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:37:17] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email alice@example.com est validé
+[2025-10-20 09:37:17] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:37:17] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:37:17] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:37:17] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:37:17] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username alice01 est validé
+[2025-10-20 09:37:17] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:37:17] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:37:17] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:37:17] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=78b5c69d-e167-4feb-8031-ee665c2e3e24)
+[2025-10-20 09:37:17] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : alice@example.com
+[2025-10-20 09:37:17] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:37:17] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 09:37:17] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:37:17] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:37:17] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:37:17] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:37:17] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser est validé
+[2025-10-20 09:37:17] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:37:17] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:37:17] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:37:17] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=b587f96f-565c-4ea8-b23a-df8fb5f36215)
+[2025-10-20 09:37:17] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : dup@example.com
+[2025-10-20 09:37:17] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:37:17] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 09:37:17] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:37:17] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:37:17] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:37:17] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:37:17] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser2 est validé
+[2025-10-20 09:37:17] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:37:17] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:37:17] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:37:17] [ERROR] [base.save] [BACK][models/base.py][save()] Erreur lors de la sauvegarde de l'instance User: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$iPk46ozD/1R1qID0sXgmD.7k8Gyhs6jBnzqmmg6swC9sLR8LL5b2G', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, '01ba01d4-7b92-4dd1-a0e9-c4b2d125b027', '2025-10-20 07:37:17.525307', '2025-10-20 07:37:17.525311', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 09:37:17] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$iPk46ozD/1R1qID0sXgmD.7k8Gyhs6jBnzqmmg6swC9sLR8LL5b2G', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, '01ba01d4-7b92-4dd1-a0e9-c4b2d125b027', '2025-10-20 07:37:17.525307', '2025-10-20 07:37:17.525311', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 09:37:18] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:37:18] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email bob@example.com est validé
+[2025-10-20 09:37:18] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:37:18] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:37:18] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:37:18] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:37:18] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username bob01 est validé
+[2025-10-20 09:37:18] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-20 09:37:18] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du password ne respect pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 09:39:47
+
+================================================================================
+[2025-10-20 09:39:47] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-20 09:39:47] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:39:47] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email alice@example.com est validé
+[2025-10-20 09:39:47] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:39:47] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:39:47] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:39:47] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:39:47] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username alice01 est validé
+[2025-10-20 09:39:47] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:39:47] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:39:47] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:39:47] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=56a14acc-b34d-4445-ac81-674c808d55d2)
+[2025-10-20 09:39:47] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : alice@example.com
+[2025-10-20 09:39:47] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:39:47] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 09:39:47] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:39:47] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:39:47] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:39:47] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:39:47] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser est validé
+[2025-10-20 09:39:47] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:39:48] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:39:48] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:39:48] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=2abe5f37-687a-48e2-9d4e-43c508fe1dcb)
+[2025-10-20 09:39:48] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : dup@example.com
+[2025-10-20 09:39:48] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:39:48] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 09:39:48] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:39:48] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:39:48] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:39:48] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:39:48] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser2 est validé
+[2025-10-20 09:39:48] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:39:48] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:39:48] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:39:48] [ERROR] [base.save] [BACK][models/base.py][save()] Erreur lors de la sauvegarde de l'instance User: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$4FNjSWdhsPPSdl7HKIogA.lIbBUXHuxuxbIbcKsEQC3by4/wfuuQq', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, 'c93be0bf-b2e5-4b76-9697-f27a498c29e2', '2025-10-20 07:39:48.277359', '2025-10-20 07:39:48.277364', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 09:39:48] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$4FNjSWdhsPPSdl7HKIogA.lIbBUXHuxuxbIbcKsEQC3by4/wfuuQq', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, 'c93be0bf-b2e5-4b76-9697-f27a498c29e2', '2025-10-20 07:39:48.277359', '2025-10-20 07:39:48.277364', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 09:39:48] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:39:48] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email bob@example.com est validé
+[2025-10-20 09:39:48] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:39:48] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:39:48] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:39:48] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:39:48] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username bob01 est validé
+[2025-10-20 09:39:48] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-20 09:39:48] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du password ne respect pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 09:44:17
+
+================================================================================
+[2025-10-20 09:44:17] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-20 09:44:17] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:44:17] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email alice@example.com est validé
+[2025-10-20 09:44:17] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:44:17] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:44:17] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:44:17] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:44:17] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username alice01 est validé
+[2025-10-20 09:44:17] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:44:17] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:44:17] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:44:17] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=27291f29-8f58-4dc7-888c-67d280e0453d)
+[2025-10-20 09:44:17] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : alice@example.com
+[2025-10-20 09:44:17] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:44:17] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 09:44:17] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:44:17] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:44:17] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:44:17] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:44:17] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser est validé
+[2025-10-20 09:44:17] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:44:18] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:44:18] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:44:18] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=622ad3ce-2752-4ebb-a0f5-cbcdeca7602e)
+[2025-10-20 09:44:18] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : dup@example.com
+[2025-10-20 09:44:18] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:44:18] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 09:44:18] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:44:18] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:44:18] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:44:18] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:44:18] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser2 est validé
+[2025-10-20 09:44:18] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 09:44:18] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 09:44:18] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 09:44:18] [ERROR] [base.save] [BACK][models/base.py][save()] Erreur lors de la sauvegarde de l'instance User: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$m17aaon5FmSSAcweUj7PDOb1WN2odnrflM7Yy4lqiKK8U9lN74pca', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, '125d961b-fd87-4711-9928-6c4b735f3bc9', '2025-10-20 07:44:18.247330', '2025-10-20 07:44:18.247339', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 09:44:18] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$m17aaon5FmSSAcweUj7PDOb1WN2odnrflM7Yy4lqiKK8U9lN74pca', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, '125d961b-fd87-4711-9928-6c4b735f3bc9', '2025-10-20 07:44:18.247330', '2025-10-20 07:44:18.247339', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 09:44:19] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 09:44:19] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email bob@example.com est validé
+[2025-10-20 09:44:19] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 09:44:19] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 09:44:19] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 09:44:19] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 09:44:19] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username bob01 est validé
+[2025-10-20 09:44:19] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-20 09:44:19] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du password ne respect pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 10:04:48
+
+================================================================================
+[2025-10-20 10:04:48] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-20 10:04:48] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:04:48] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email alice@example.com est validé
+[2025-10-20 10:04:48] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:04:48] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:04:48] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:04:48] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:04:48] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username alice01 est validé
+[2025-10-20 10:04:48] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 10:04:49] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 10:04:49] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 10:04:49] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=96bb8342-bafc-430f-a0b8-b6c051f26121)
+[2025-10-20 10:04:49] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : alice@example.com
+[2025-10-20 10:04:49] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:04:49] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 10:04:49] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:04:49] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:04:49] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:04:49] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:04:49] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser est validé
+[2025-10-20 10:04:49] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 10:04:49] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 10:04:49] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 10:04:49] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=f45b7dbe-e507-493f-839e-42ade1cbea64)
+[2025-10-20 10:04:49] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : dup@example.com
+[2025-10-20 10:04:49] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:04:49] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 10:04:49] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:04:49] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:04:49] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:04:49] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:04:49] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser2 est validé
+[2025-10-20 10:04:49] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 10:04:49] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 10:04:49] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 10:04:49] [ERROR] [base.save] [BACK][models/base.py][save()] Erreur lors de la sauvegarde de l'instance User: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$CfbHjfQn3d0idW8N9sOIneQUu.lYF7or7YgAyDDDDhg1dr6npudQC', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, 'fca9667b-bc00-4cff-ad69-fa11469a7ac4', '2025-10-20 08:04:49.658327', '2025-10-20 08:04:49.658332', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 10:04:49] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$CfbHjfQn3d0idW8N9sOIneQUu.lYF7or7YgAyDDDDhg1dr6npudQC', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, 'fca9667b-bc00-4cff-ad69-fa11469a7ac4', '2025-10-20 08:04:49.658327', '2025-10-20 08:04:49.658332', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 10:04:50] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:04:50] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email bob@example.com est validé
+[2025-10-20 10:04:50] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:04:50] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:04:50] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:04:50] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:04:50] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username bob01 est validé
+[2025-10-20 10:04:50] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-20 10:04:50] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du password ne respect pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 10:05:42
+
+================================================================================
+[2025-10-20 10:05:42] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-20 10:05:42] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:05:42] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 10:05:42] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:05:42] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:05:42] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:05:42] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:05:42] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser est validé
+[2025-10-20 10:05:42] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 10:05:42] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 10:05:42] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 10:05:42] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=191649ac-dcc1-492f-b31f-923de91eb608)
+[2025-10-20 10:05:42] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : dup@example.com
+[2025-10-20 10:05:42] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:05:42] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 10:05:42] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:05:42] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:05:42] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:05:42] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:05:42] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser2 est validé
+[2025-10-20 10:05:42] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 10:05:43] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 10:05:43] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 10:05:43] [ERROR] [base.save] [BACK][models/base.py][save()] Erreur lors de la sauvegarde de l'instance User: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$FZpXFzXOmDcSS2QVH56nd.kdoqUiIsBpXM8bNQzUz8UKUi1ZTGpCO', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, '58917b30-381d-4d75-a804-71c48686f879', '2025-10-20 08:05:43.017172', '2025-10-20 08:05:43.017176', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 10:05:43] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$FZpXFzXOmDcSS2QVH56nd.kdoqUiIsBpXM8bNQzUz8UKUi1ZTGpCO', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, '58917b30-381d-4d75-a804-71c48686f879', '2025-10-20 08:05:43.017172', '2025-10-20 08:05:43.017176', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 10:05:43] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:05:43] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email bob@example.com est validé
+[2025-10-20 10:05:43] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:05:43] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:05:43] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:05:43] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:05:43] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username bob01 est validé
+[2025-10-20 10:05:43] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-20 10:05:43] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du password ne respect pas le bon format
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 10:06:00
+
+================================================================================
+[2025-10-20 10:06:00] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-20 10:06:00] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:06:00] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email alice@example.com est validé
+[2025-10-20 10:06:00] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:06:00] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:06:00] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:06:00] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:06:00] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username alice01 est validé
+[2025-10-20 10:06:00] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 10:06:00] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 10:06:00] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 10:06:00] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=49166dbe-1fad-4854-92b8-905b3efcaea7)
+[2025-10-20 10:06:00] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : alice@example.com
+[2025-10-20 10:06:00] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:06:00] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 10:06:00] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:06:00] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:06:00] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:06:00] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:06:00] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser est validé
+[2025-10-20 10:06:00] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 10:06:01] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 10:06:01] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 10:06:01] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=6e1d7551-296e-4d3e-b357-69c7c63bbdd4)
+[2025-10-20 10:06:01] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : dup@example.com
+[2025-10-20 10:06:01] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:06:01] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email dup@example.com est validé
+[2025-10-20 10:06:01] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:06:01] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:06:01] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:06:01] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:06:01] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username dupuser2 est validé
+[2025-10-20 10:06:01] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 10:06:01] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 10:06:01] [WARNING] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_user_data()] 'data' is already a User instance, skipping revalidation.
+[2025-10-20 10:06:01] [ERROR] [base.save] [BACK][models/base.py][save()] Erreur lors de la sauvegarde de l'instance User: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$oOHOCbj2ssg28Ig2/B4i.Otq1F0.cxtIon4kqlcpk9rer82nDKgrm', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, '7a99e126-3248-460e-878a-667ccab4d478', '2025-10-20 08:06:01.311700', '2025-10-20 08:06:01.311708', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 10:06:01] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: (sqlite3.IntegrityError) UNIQUE constraint failed: users._email
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('dup@example.com', 'dupuser2', '$2b$12$oOHOCbj2ssg28Ig2/B4i.Otq1F0.cxtIon4kqlcpk9rer82nDKgrm', 'Dup', 'User', None, 'prefer_not_say', 180, 'Paris', None, 'user', 1, '7a99e126-3248-460e-878a-667ccab4d478', '2025-10-20 08:06:01.311700', '2025-10-20 08:06:01.311708', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-10-20 10:06:01] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 10:06:01] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email bob@example.com est validé
+[2025-10-20 10:06:01] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 10:06:01] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 10:06:01] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 10:06:01] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 10:06:01] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username bob01 est validé
+[2025-10-20 10:06:01] [ERROR] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le champ du password ne respecte pas le bon format
+[2025-10-20 10:06:01] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du password ne respect pas le bon format

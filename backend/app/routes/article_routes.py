@@ -11,13 +11,10 @@ def create_article_route():
     try:
         admin_id = get_jwt_identity()
         data = request.get_json()
-        if not data:
-            app.logger.error("[BACK][routes/article_routes][create_article_route] Aucune donnée reçue")
-            return jsonify({"error": "Missing JSON data"}), 400
-        new_article = article_service.create_article_entry(data, admin_id)
+        new_article = article_service.create_article_entry(admin_id, data)
         if not new_article:
             return jsonify({"error": "Création de l'article impossible"}), 403
-        app.logger.info(f"[BACK][routes/article_routes][create_article_route] Article {new_article.id} créé par l'admin {admin_id}") # type: ignore
+        app.logger.info(f"[BACK][routes/article_routes][create_article_route] Article {new_article} créé par l'admin {admin_id}")
         return jsonify(new_article), 201
 
     except ValueError as e:

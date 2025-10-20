@@ -1,6 +1,7 @@
 import pytest
 from app import create_app, db
 from app.models.user import User
+from werkzeug.security import generate_password_hash
 import time
 import logging
 
@@ -61,18 +62,49 @@ def register_user(client):
 		#db.session.commit()
 		#return payload
 	#return _create
+def _extract_cookie(resp, name="access_token_cookie"):
+	cookies = resp.headers.getlist("Set-Cookie")
+	for c in cookies:
+		if c.startswith(f"{name}="):
+			return c.split(";", 1)[0].split("=", 1)[1]
+	return None
 
+@pytest.fixture()
+def create_admin_via_api(client):
+	"""
+	Crée un admin en utilisant /auth/register puis élève son rôle en DB.
+	Retourne (admin_user, access_cookie)
+	"""
+	def _create_admin(email="admin@example.com", username="admin", password="Password1!", **overrides):
+		payload = {
+			"email": email,
+			"username": username,
+			"password": password,
+			"first_name": "Admin",
+			"last_name": "Tester",
+			"gender": "prefer_not_say",
+			"height": 180,
+			"city": "Paris",
+			**overrides,
+		}
+		# 1) créer le compte via l’API
+		resp = client.post("/auth/register", json=payload)
+		assert resp.status_code == 201, resp.get_json()
 
-#@pytest.fixture()
-#def create_admin_instance(create_user_instance, client):
-	#def _create(email="admin@trucmuche.com", username="admin", password="Password1!", **kwargs):
-		#user = create_user_instance(email=email, username=username, password=password, **kwargs)
-		#user.role = "admin"
-		#db.session.commit()
-		# Simule le login admin pour obtenir le cookie
-		#resp = client.post("/auth/login", json={"email": email, "password": password})
-		#return resp
-	#return _create
+		# 2) promouvoir en admin (même DB que le client)
+		with client.application.app_context():
+			admin = User.query.filter_by(_email=email).first()
+			assert admin is not None
+			admin.role = "admin"
+			db.session.commit()
+
+		# 3) login pour récupérer le cookie JWT si besoin
+		resp_login = client.post("/auth/login", json={"email": email, "password": password})
+		assert resp_login.status_code == 200, resp_login.get_data(as_text=True)
+		cookie = _extract_cookie(resp_login, "access_token_cookie")
+		return admin, cookie
+
+	return _create_admin
 
 
 @pytest.fixture()

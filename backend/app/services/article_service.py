@@ -5,6 +5,12 @@ from app.models import Article, User
 def validate_article_data(data: dict):
     """Validate and return an Article instance"""
     try:
+        if not data:
+            app.logger.error("[BACK][services/article_service][validate_article_data] Aucune donnée reçue")
+            raise ValueError("Aucune donnée reçue pour la création d'un nouvel article")
+        if "title" not in data or "content" not in data:
+            app.logger.error("[BACK][services/article_service][validate_article_data] Champs 'title' et 'content' requis")
+            raise ValueError("Les champs 'title' et 'content' sont requis")
         article = Article()
         article.title = data.get("title")
         article.content = data.get("content")
@@ -13,11 +19,11 @@ def validate_article_data(data: dict):
         return article
 
     except (ValueError, TypeError) as e:
-        app.logger.error(f"[BACK][services/article_service][validate_article_data] Erreur de validation : {str(e)}")
+        app.logger.error(f"[BACK][services/article_service][validate_article_data] Erreur de validation de l'article: {str(e)}")
         raise
 
 
-def create_article_entry(data: dict, user_id: str):
+def create_article_entry(user_id: str, data: dict):
     """Create a new article (admin only)"""
     try:
         user = User.query.get(user_id)
@@ -33,6 +39,8 @@ def create_article_entry(data: dict, user_id: str):
         app.logger.info(f"[BACK][services/article_service][create_article_entry] Article {article.title} créé par admin {user_id}")
         return article.to_dict()
 
+    except (ValueError, TypeError):
+        raise
     except Exception as e:
         app.logger.error(f"[BACK][services/article_service][create_article_entry] Erreur inattendue : {e}")
         raise
@@ -53,6 +61,9 @@ def get_all_articles(sort_by: str = "recent"):
         app.logger.info(f"[BACK][services/article_service][get_all_articles] {len(result)} articles récupérés (tri={sort_by})")
         return result
 
+    except ValueError as e:
+        app.logger.error(f"[BACK][services/article_service][get_all_articles] Erreur de paramètre : {e}")
+        raise
     except Exception as e:
         app.logger.error(f"[BACK][services/article_service][get_all_articles] Erreur inattendue : {e}")
         raise
@@ -68,6 +79,9 @@ def get_article_by_id(article_id: str):
         app.logger.info(f"[BACK][services/article_service][get_article_by_id] Article {article_id} récupéré")
         return article.to_dict()
 
+    except ValueError as e:
+        app.logger.error(f"[BACK][services/article_service][get_article_by_id] Erreur de paramètre : {e}")
+        raise
     except Exception as e:
         app.logger.error(f"[BACK][services/article_service][get_article_by_id] Erreur inattendue : {e}")
         raise
@@ -91,6 +105,9 @@ def update_article_entry(article_id: str, user_id: str, data: dict):
         app.logger.info(f"[BACK][services/article_service][update_article_entry] Article {article.id} mis à jour par admin {user_id}")
         return article.to_dict()
 
+    except ValueError as e:
+        app.logger.error(f"[BACK][services/article_service][update_article_entry] Erreur de paramètre : {e}")
+        raise
     except Exception as e:
         app.logger.error(f"[BACK][services/article_service][update_article_entry] Erreur inattendue : {e}")
         raise
@@ -111,6 +128,9 @@ def delete_article_entry(article_id: str, user_id: str):
         app.logger.info(f"[BACK][services/article_service][delete_article_entry] Article {article_id} supprimé par admin {user_id}")
         return {"deleted_article_id": article_id}
 
+    except ValueError as e:
+        app.logger.error(f"[BACK][services/article_service][delete_article_entry] Erreur de paramètre : {e}")
+        raise
     except Exception as e:
         app.logger.error(f"[BACK][services/article_service][delete_article_entry] Erreur inattendue : {e}")
         raise
