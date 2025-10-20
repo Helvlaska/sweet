@@ -9,11 +9,8 @@ activity_bp = Blueprint('activity', __name__, url_prefix='/data/activity')
 def create_activity_route():
     """Create a new activity entry for the authenticated user"""
     try:
-        app.logger.info(f"[BACK][routes/activity_routes.py][create_activity_route()] Données reçues : {request.data}")
-
         user_id = get_jwt_identity()
         data = request.get_json()
-        app.logger.info(f"[BACK][routes/activity_routes.py][create_activity_route()] Données reçues : {request.data}")
         new_entry = activity_service.create_activity_entry(user_id, data)
         app.logger.info(f"[BACK][routes/activity_routes][create_activity_route] Nouvelle activité {new_entry} créée pour user {user_id}")
         return jsonify(new_entry), 201
