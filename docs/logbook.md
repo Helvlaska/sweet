@@ -1490,3 +1490,70 @@ Template du logbook:
   - Backend propre et bien écrit.
 - ⚠️ À améliorer :
   - Prends trop de temps de faire du code propre pour le MVP → Unitest repoussé à la fin du MVP, mais tests Postman pour valider les refactorisations.
+
+---
+
+## Jour 22 – Refactorisation des routes et services (20/10/25)
+
+### 🎯 Objectifs du jour
+
+- Refactorisation des routes et services.
+- Tests Postman pour sécuriser la refactorisation.
+
+### ✅ Réalisé
+
+- [X] Refactorisation de la route et des services de Activity
+- [X] Refactorisation de la route et des services de Article
+- [X] Refactorisation de la route et des services de Auth
+- [ ] Refactorisation de la route et des services de Comment
+- [ ] Refactorisation de la route et des services de Forum_post
+- [ ] Refactorisation de la route et des services de Glycemia
+- [ ] Refactorisation de la route et des services de Health_pros
+- [ ] Refactorisation de la route et des services de Meal
+- [ ] Refactorisation de la route et des services de Medication
+- [ ] Refactorisation de la route et des services de Mood
+- [ ] Refactorisation de la route et des services de Note
+- [ ] Refactorisation de la route et des services de User
+- [ ] Refactorisation de la route et des services de Weight
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour les tests unitaire → `test-module`.
+  - Mise à jour du journal de bord → `logbook`.
+
+- Commits :
+
+  - 📝 (docs/logbook.md): Set objectives for day 1 week 4
+  - 📝 (docs/logbook.md): Update progress for day 1 week 4
+
+### 🧪 QA (tests faits)
+
+- [X] Test Pytest Activity
+- [X] Test Pytest Article
+- [X] Test Pytest Auth
+- [ ] Test Postman Comment
+- [ ] Test Postman Forum_post
+- [ ] Test Postman Glycemia
+- [ ] Test Postman Health_pros
+- [ ] Test Postman Meal
+- [ ] Test Postman Medication
+- [ ] Test Postman Mood
+- [ ] Test Postman User
+- [ ] Test Postman Weight
+- [ ] Test Postman Note
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
