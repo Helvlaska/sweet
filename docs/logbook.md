@@ -1459,13 +1459,16 @@ Template du logbook:
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 7 week 3
+  - ➖ (routes/activity_routes.py): Remove data logging from the create_activity_route function
+  - ♻️ (routes/article_routes.py, services/article_service.py): Refactor Article routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/auth_routes.py, services/auth_service.py): Refactor auth routes and services by extracting them from auth.py and auth_service.py to improve code readability and maintainability
   - 📝 (docs/logbook.md): Update progress for day 7 week 3
 
 ### 🧪 QA (tests faits)
 
 - [X] Test Pytest Activity
-- [ ] Test Pytest Article
-- [ ] Test Pytest Auth
+- [X] Test Pytest Article
+- [X] Test Pytest Auth
 - [ ] Test Pytest Comment
 - [ ] Test Pytest Forum_post
 - [ ] Test Pytest Glycemia
@@ -1479,11 +1482,11 @@ Template du logbook:
 
 ### 💡 Notes / décisions
 
--
+- Refactorisation + tests = Trop long en terme de temps → Refactorisation, modification des fichiers de tests plus tard, mais tests Postman pour valider la refactorisation.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Backend propre et bien écrit.
 - ⚠️ À améliorer :
-  -
+  - Prends trop de temps de faire du code propre pour le MVP → Unitest repoussé à la fin du MVP, mais tests Postman pour valider les refactorisations.
