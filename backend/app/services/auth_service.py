@@ -31,8 +31,8 @@ def create_user(data: dict):
     try:
         user = validate_user_data(data)
         user.save()
-        app.logger.info(f"[BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : {user.email}")
         cleaned_user = user.to_dict(exclude=["_password_hash", "_first_login", "_role"])
+        app.logger.info(f"[BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : {user.email}")
         return cleaned_user
 
     except Exception as e:
