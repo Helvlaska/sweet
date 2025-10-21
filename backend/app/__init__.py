@@ -73,7 +73,7 @@ def create_app(test_config=None):
     import app.models
 
     # Register blueprints
-    from .routes.auth import auth_bp
+    from .routes.auth_routes import auth_bp
     from .routes.activity_routes import activity_bp
     from .routes.article_routes import article_bp
     from .routes.forum_routes import forum_bp
@@ -84,7 +84,7 @@ def create_app(test_config=None):
     from .routes.note_routes import note_bp
     from .routes.professional_routes import professional_bp
     from .routes.weight_routes import weight_bp
-    from .routes.data import data_bp                            # BluePrint en attente de refactorisation
+    from .routes.comment_routes import comment_bp
 
     flask_app.register_blueprint(auth_bp)
     flask_app.register_blueprint(activity_bp)
@@ -97,7 +97,7 @@ def create_app(test_config=None):
     flask_app.register_blueprint(note_bp)
     flask_app.register_blueprint(professional_bp)
     flask_app.register_blueprint(weight_bp)
-    flask_app.register_blueprint(data_bp)                       # BluePrint en attente de refactorisation
+    flask_app.register_blueprint(comment_bp)
 
     # Ensure instance folder exists
     try:
