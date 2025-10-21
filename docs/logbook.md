@@ -1569,3 +1569,50 @@ Template du logbook:
   - Backend terminé, testé, migré, et validé !
 - ⚠️ À améliorer :
   - Gestion du temps à revoir pour un projet de cet ampleur.
+
+---
+
+## Jour 23 – Mise en place de l'arborescence du Frontend (21/10/25)
+
+### 🎯 Objectifs du jour
+
+- Mise en place de l'arborescence du Frontend
+- Mise en place de la connexion entre le Backend et le Frontend
+- Mise en place des varibles et mixines réutilisables (si le temps lors de la session de travail)
+
+### ✅ Réalisé
+
+- [ ] Arborescence React
+- [ ] Installation de Sass dans mon environnement
+- [ ] Connexion entre le Front et le Back
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour les tests unitaire → `test-module` → Branche mergée et supprimée
+  - Branche tirée pour la mise en place de la base du Frontend → `react-branch`
+  - Mise à jour du journal de bord → `logbook`
+
+- Commits :
+
+  - 📝 (docs/logbook.md): Set objectives for day 2 week 4
+  - 📝 (docs/logbook.md): Update progress for day 2 week 4
+
+### 🧪 QA (tests faits)
+
+- [ ]
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
