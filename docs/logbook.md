@@ -1505,20 +1505,20 @@ Template du logbook:
 - [X] Refactorisation de la route et des services de Activity
 - [X] Refactorisation de la route et des services de Article
 - [X] Refactorisation de la route et des services de Auth
-- [ ] Refactorisation de la route et des services de Comment
-- [ ] Refactorisation de la route et des services de Forum_post
-- [ ] Refactorisation de la route et des services de Glycemia
-- [ ] Refactorisation de la route et des services de Health_pros
-- [ ] Refactorisation de la route et des services de Meal
-- [ ] Refactorisation de la route et des services de Medication
-- [ ] Refactorisation de la route et des services de Mood
-- [ ] Refactorisation de la route et des services de Note
-- [ ] Refactorisation de la route et des services de User
-- [ ] Refactorisation de la route et des services de Weight
+- [X] Refactorisation de la route et des services de Comment
+- [X] Refactorisation de la route et des services de Forum_post
+- [X] Refactorisation de la route et des services de Glycemia
+- [X] Refactorisation de la route et des services de Health_pros
+- [X] Refactorisation de la route et des services de Meal
+- [X] Refactorisation de la route et des services de Medication
+- [X] Refactorisation de la route et des services de Mood
+- [X] Refactorisation de la route et des services de Note
+- [X] Refactorisation de la route et des services de User
+- [X] Refactorisation de la route et des services de Weight
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Pas de difficultés particulières. Refactorisation + Migration + Tests Postman:  OK
 
 ### 🔀 SCM (branches & commits)
 
@@ -1529,6 +1529,18 @@ Template du logbook:
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 1 week 4
+  - ♻️ (app/init.py): Update blueprint imports to use correct module paths for auth and comment routes
+  - ♻️ (routes/article_routes.py): Update article blueprint URL prefix to correct path
+  - ♻️ (routes/auth.py, routes/data.py, services/data_service.py): Remove files and all associated functionality for managing glycemia, weight, meals, mood, medication, health professionals, notes, forum posts, comments, and articles
+  - ♻️ (routes/comment_routes.py, servicescomment_service.py): Refactor comment routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/forum_routes.py, services/forum_service.py): Refactor forum routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/glycemia_routes.py, services/glycemia_service.py): Refactor glycemia routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/meal_routes.py, services/meal_service.py): Refactor meal routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/medication_routes.py, services/medication_service.py): Refactor medication routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/mood_routes.py, services/mood_service.py): Refactor mood routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/note_routes.py, services/note_service.py): Refactor note routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/professional_routes.py, services/professional_service.py): Refactor professional routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
+  - ♻️ (routes/weight_routes.py, services/weight_service.py): Refactor weight routes and services by extracting them from data.py and data_service.py to improve code readability and maintainability
   - 📝 (docs/logbook.md): Update progress for day 1 week 4
 
 ### 🧪 QA (tests faits)
@@ -1536,24 +1548,24 @@ Template du logbook:
 - [X] Test Pytest Activity
 - [X] Test Pytest Article
 - [X] Test Pytest Auth
-- [ ] Test Postman Comment
-- [ ] Test Postman Forum_post
-- [ ] Test Postman Glycemia
-- [ ] Test Postman Health_pros
-- [ ] Test Postman Meal
-- [ ] Test Postman Medication
-- [ ] Test Postman Mood
-- [ ] Test Postman User
-- [ ] Test Postman Weight
-- [ ] Test Postman Note
+- [X] Test Postman Comment
+- [X] Test Postman Forum_post
+- [X] Test Postman Glycemia
+- [X] Test Postman Health_pros
+- [X] Test Postman Meal
+- [X] Test Postman Medication
+- [X] Test Postman Mood
+- [X] Test Postman User
+- [X] Test Postman Weight
+- [X] Test Postman Note
 
 ### 💡 Notes / décisions
 
--
+- Back finalisé : Début du front.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Backend terminé, testé, migré, et validé !
 - ⚠️ À améliorer :
-  -
+  - Gestion du temps à revoir pour un projet de cet ampleur.
