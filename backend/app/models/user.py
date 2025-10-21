@@ -28,10 +28,10 @@ class User(BaseModel):
 # ------------------------------------------------------------------- Relations
     # children = db.relationship("children", backref="parent", cascade="all, delete-orphan")
     comment = db.relationship("Comment", backref="user", cascade="all")
-    forum_post = db.relationship("Forum_post", backref="user", cascade="all")
+    forum_post = db.relationship("ForumPost", backref="user", cascade="all")
     activity = db.relationship("Activity", backref="user", cascade="all, delete-orphan")
     glycemia = db.relationship("Glycemia", backref="user", cascade="all, delete-orphan")
-    health_professional = db.relationship("Health_professional", backref="user", cascade="all, delete-orphan")
+    health_professional = db.relationship("HealthProfessional", backref="user", cascade="all, delete-orphan")
     meal = db.relationship("Meal", backref="user", cascade="all, delete-orphan")
     medication = db.relationship("Medication", backref="user", cascade="all, delete-orphan")
     mood = db.relationship("Mood", backref="user", cascade="all, delete-orphan")
@@ -61,7 +61,7 @@ class User(BaseModel):
         if not is_valid(cleaned_email, EMAIL_PATTERN):
             app.logger.error("[BACK][models/user.py][email.setter] Le champ de l'email ne respecte pas le bon format")
             raise ValueError("Le champ de l'email ne respect pas le bon format")
-        app.logger.info("[BACK][models/user.py][email.setter] L'email est validé")
+        app.logger.info(f"[BACK][models/user.py][email.setter] L'email {cleaned_email} est validé")
         self._email = cleaned_email
 
 # -------------------------------------------------------------- Champ username
@@ -82,7 +82,7 @@ class User(BaseModel):
         if not is_valid(cleaned_username, USERNAME_PATTERN):
             app.logger.error("[BACK][models/user.py][username.setter] Le champ du username ne respecte pas le bon format")
             raise ValueError("Le champ du username ne respect pas le bon format")
-        app.logger.info("[BACK][models/user.py][username.setter] Le username est validé")
+        app.logger.info(f"[BACK][models/user.py][username.setter] Le username {cleaned_username} est validé")
         self._username = cleaned_username
 
 # --------------------------------------------------------- Champ password_hash

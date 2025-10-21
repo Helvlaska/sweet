@@ -455,3 +455,571 @@
 [2025-10-07 14:30:13] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
 [2025-10-07 14:30:13] [INFO] [auth_service.update_user_password] [BACK][services/auth_service.py][update_user_password()]Mot de passe mis à jour avec succès pour toto@holberton.com
 [2025-10-07 14:30:13] [INFO] [auth.update_password] [BACK][routes/auth.py][update_password()] La modification du mdp à été un succès pour <User 20e32c12-207f-443c-8ab2-5b512f3fe722>
+[2025-10-13 11:44:21] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré avec succès — tous les logs dans logs/app.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 14:57:47
+
+================================================================================
+[2025-10-20 14:57:47] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:05:39
+
+================================================================================
+[2025-10-20 15:05:39] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:05:39
+
+================================================================================
+[2025-10-20 15:05:39] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-20 15:05:45] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email toto@holberton.com est validé
+[2025-10-20 15:05:45] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-20 15:05:45] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-20 15:05:45] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-20 15:05:45] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-20 15:05:45] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-20 15:05:45] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-20 15:05:45] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-20 15:05:45] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username toto est validé
+[2025-10-20 15:05:45] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-20 15:05:45] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-20 15:05:45] [ERROR] [base.save] [BACK][models/base.py][save()] Erreur lors de la sauvegarde de l'instance User: (sqlite3.OperationalError) table users has no column named entry_date
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('toto@holberton.com', 'toto', '$2b$12$X/IaUobEGdgBRx0I3Qt15.8LTyCAWY9d9w3ZGokaIo8BKTeRLJI/.', 'machin', 'Muche', '1990-10-06', 'male', 180, 'Paris', None, 'user', 1, 'dc7b2e50-760e-4811-9616-4b3b818635ad', '2025-10-20 13:05:45.281877', '2025-10-20 13:05:45.281881', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2025-10-20 15:05:45] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: (sqlite3.OperationalError) table users has no column named entry_date
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('toto@holberton.com', 'toto', '$2b$12$X/IaUobEGdgBRx0I3Qt15.8LTyCAWY9d9w3ZGokaIo8BKTeRLJI/.', 'machin', 'Muche', '1990-10-06', 'male', 180, 'Paris', None, 'user', 1, 'dc7b2e50-760e-4811-9616-4b3b818635ad', '2025-10-20 13:05:45.281877', '2025-10-20 13:05:45.281881', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2025-10-20 15:05:45] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Erreur: (sqlite3.OperationalError) table users has no column named entry_date
+[SQL: INSERT INTO users (_email, _username, _password_hash, _first_name, _last_name, _date_of_birth, _gender, _height, _city, _profile_picture, _role, _first_login, id, created_at, updated_at, entry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('toto@holberton.com', 'toto', '$2b$12$X/IaUobEGdgBRx0I3Qt15.8LTyCAWY9d9w3ZGokaIo8BKTeRLJI/.', 'machin', 'Muche', '1990-10-06', 'male', 180, 'Paris', None, 'user', 1, 'dc7b2e50-760e-4811-9616-4b3b818635ad', '2025-10-20 13:05:45.281877', '2025-10-20 13:05:45.281881', '2025-10-20')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:27:39
+
+================================================================================
+[2025-10-20 15:27:39] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:27:59
+
+================================================================================
+[2025-10-20 15:27:59] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:28:04
+
+================================================================================
+[2025-10-20 15:28:04] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:28:12
+
+================================================================================
+[2025-10-20 15:28:12] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:28:36
+
+================================================================================
+[2025-10-20 15:28:36] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:28:47
+
+================================================================================
+[2025-10-20 15:28:47] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:29:04
+
+================================================================================
+[2025-10-20 15:29:04] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:29:11
+
+================================================================================
+[2025-10-20 15:29:11] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:29:13
+
+================================================================================
+[2025-10-20 15:29:13] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:29:21
+
+================================================================================
+[2025-10-20 15:29:21] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:29:23
+
+================================================================================
+[2025-10-20 15:29:23] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:29:26
+
+================================================================================
+[2025-10-20 15:29:26] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:30:56
+
+================================================================================
+[2025-10-20 15:30:56] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:31:04
+
+================================================================================
+[2025-10-20 15:31:04] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:31:06
+
+================================================================================
+[2025-10-20 15:31:06] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:31:15
+
+================================================================================
+[2025-10-20 15:31:15] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:31:20
+
+================================================================================
+[2025-10-20 15:31:20] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:31:41
+
+================================================================================
+[2025-10-20 15:31:41] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:31:48
+
+================================================================================
+[2025-10-20 15:31:48] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:32:10
+
+================================================================================
+[2025-10-20 15:32:10] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:32:15
+
+================================================================================
+[2025-10-20 15:32:15] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:32:33
+
+================================================================================
+[2025-10-20 15:32:33] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:32:37
+
+================================================================================
+[2025-10-20 15:32:37] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:32:51
+
+================================================================================
+[2025-10-20 15:32:51] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:32:57
+
+================================================================================
+[2025-10-20 15:32:57] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:32:59
+
+================================================================================
+[2025-10-20 15:32:59] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:33:03
+
+================================================================================
+[2025-10-20 15:33:03] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:33:05
+
+================================================================================
+[2025-10-20 15:33:05] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:33:12
+
+================================================================================
+[2025-10-20 15:33:12] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:33:19
+
+================================================================================
+[2025-10-20 15:33:19] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:33:29
+
+================================================================================
+[2025-10-20 15:33:29] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:33:31
+
+================================================================================
+[2025-10-20 15:33:31] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:33:34
+
+================================================================================
+[2025-10-20 15:33:34] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:33:36
+
+================================================================================
+[2025-10-20 15:33:36] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:33:38
+
+================================================================================
+[2025-10-20 15:33:38] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:34:07
+
+================================================================================
+[2025-10-20 15:34:07] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:34:12
+
+================================================================================
+[2025-10-20 15:34:12] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:34:59
+
+================================================================================
+[2025-10-20 15:34:59] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:35:20
+
+================================================================================
+[2025-10-20 15:35:20] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:35:32
+
+================================================================================
+[2025-10-20 15:35:32] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:37:46
+
+================================================================================
+[2025-10-20 15:37:46] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-20 15:37:46
+
+================================================================================
+[2025-10-20 15:37:46] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:11:23
+
+================================================================================
+[2025-10-21 09:11:23] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:11:58
+
+================================================================================
+[2025-10-21 09:11:58] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:16:06
+
+================================================================================
+[2025-10-21 09:16:06] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:16:50
+
+================================================================================
+[2025-10-21 09:16:50] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:22:58
+
+================================================================================
+[2025-10-21 09:22:58] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:22:59
+
+================================================================================
+[2025-10-21 09:22:59] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:23:00
+
+================================================================================
+[2025-10-21 09:23:00] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:24:40
+
+================================================================================
+[2025-10-21 09:24:40] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-21 09:27:06] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email admin@sweetapp.com est validé
+[2025-10-21 09:27:06] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username sweetadmin est validé
+[2025-10-21 09:27:06] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-21 09:27:06] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-21 09:27:06] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-21 09:27:06] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-21 09:27:06] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-21 09:27:06] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-21 09:27:06] [INFO] [user.role] [BACK][models/user.py][role.setter] Le champ role est validé
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:29:30
+
+================================================================================
+[2025-10-21 09:29:30] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:29:30
+
+================================================================================
+[2025-10-21 09:29:30] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-21 09:30:29] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-21 09:30:29] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Les données de connexion sont valides
+[2025-10-21 09:30:29] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : admin@sweetapp.com
+[2025-10-21 09:30:29] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Utilisateur trouvé par son email ou son username
+[2025-10-21 09:30:29] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-21 09:30:29] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Le mot de passe pour l'utilisateur: deb6aaf9-d2f3-4a0d-a1d1-1ab092a44501 est valide
+[2025-10-21 09:30:29] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-21 09:30:29] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=deb6aaf9-d2f3-4a0d-a1d1-1ab092a44501)
+[2025-10-21 09:30:29] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Première connexion détectée pour l'utilisateur: admin@sweetapp.com
+[2025-10-21 09:30:29] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'admin@sweetapp.com', 'username': 'sweetadmin', 'password_hash': '$2b$12$ZSQFW79XGZiE1vb2rskZtuDb.qGbqHshRbj55LOPZb.MJto9CBcuy', 'first_name': 'Admin', 'last_name': 'Tester', 'date_of_birth': None, 'gender': 'prefer_not_say', 'height': 170, 'city': 'Paris', 'profile_picture': None, 'role': 'admin', 'first_login': False, 'id': 'deb6aaf9-d2f3-4a0d-a1d1-1ab092a44501', 'created_at': datetime.datetime(2025, 10, 21, 7, 27, 6, 824853), 'updated_at': datetime.datetime(2025, 10, 21, 7, 30, 29, 680467), 'entry_date': datetime.date(2025, 10, 21)}
+[2025-10-21 09:30:29] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour admin@sweetapp.com
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:49:23
+
+================================================================================
+[2025-10-21 09:49:23] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:49:44
+
+================================================================================
+[2025-10-21 09:49:44] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:50:59
+
+================================================================================
+[2025-10-21 09:50:59] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:51:13
+
+================================================================================
+[2025-10-21 09:51:13] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:51:24
+
+================================================================================
+[2025-10-21 09:51:24] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:51:52
+
+================================================================================
+[2025-10-21 09:51:52] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:52:25
+
+================================================================================
+[2025-10-21 09:52:25] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 09:52:49
+
+================================================================================
+[2025-10-21 09:52:49] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:04:53
+
+================================================================================
+[2025-10-21 10:04:53] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:04:55
+
+================================================================================
+[2025-10-21 10:04:55] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:05:01
+
+================================================================================
+[2025-10-21 10:05:01] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:05:05
+
+================================================================================
+[2025-10-21 10:05:05] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:05:09
+
+================================================================================
+[2025-10-21 10:05:09] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:23:59
+
+================================================================================
+[2025-10-21 10:23:59] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:24:41
+
+================================================================================
+[2025-10-21 10:24:41] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:25:06
+
+================================================================================
+[2025-10-21 10:25:06] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:25:31
+
+================================================================================
+[2025-10-21 10:25:31] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:25:45
+
+================================================================================
+[2025-10-21 10:25:45] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:26:39
+
+================================================================================
+[2025-10-21 10:26:39] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 10:26:41
+
+================================================================================
+[2025-10-21 10:26:41] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-21 10:46:35] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email toto@holberton.com est validé
+[2025-10-21 10:46:35] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-21 10:46:35] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-21 10:46:35] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-21 10:46:35] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-21 10:46:35] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-21 10:46:35] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-21 10:46:35] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-21 10:46:35] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username toto est validé
+[2025-10-21 10:46:35] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-21 10:46:35] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-21 10:46:35] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=9f8b6029-2c7e-45bc-affc-27f785e538c1)
+[2025-10-21 10:46:35] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : toto@holberton.com
+[2025-10-21 10:46:35] [INFO] [auth_routes.register] [BACK][routes/auth_routes.py][register] Le nouvel utilisateur à été enregistré avec succès
+[2025-10-21 11:04:32] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-21 11:04:32] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Les données de connexion sont valides
+[2025-10-21 11:04:32] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : toto@holberton.com
+[2025-10-21 11:04:32] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Utilisateur trouvé par son email ou son username
+[2025-10-21 11:04:32] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-21 11:04:32] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Le mot de passe pour l'utilisateur: 9f8b6029-2c7e-45bc-affc-27f785e538c1 est valide
+[2025-10-21 11:04:32] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-21 11:04:32] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=9f8b6029-2c7e-45bc-affc-27f785e538c1)
+[2025-10-21 11:04:32] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Première connexion détectée pour l'utilisateur: toto@holberton.com
+[2025-10-21 11:04:32] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'toto@holberton.com', 'username': 'toto', 'password_hash': '$2b$12$u.mLb1lVEXMDVRdprUn9P.nVJl/FB0yW1dd.IUIiumN9aMFO3xlby', 'first_name': 'machin', 'last_name': 'Muche', 'date_of_birth': datetime.date(1990, 10, 6), 'gender': 'male', 'height': 180, 'city': 'Paris', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': '9f8b6029-2c7e-45bc-affc-27f785e538c1', 'created_at': datetime.datetime(2025, 10, 21, 8, 46, 35, 784121), 'updated_at': datetime.datetime(2025, 10, 21, 9, 4, 32, 883334), 'entry_date': datetime.date(2025, 10, 21)}
+[2025-10-21 11:04:32] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour toto@holberton.com
+[2025-10-21 11:05:33] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'email': 'toto@holberton.com', 'username': 'toto', 'password_hash': '$2b$12$u.mLb1lVEXMDVRdprUn9P.nVJl/FB0yW1dd.IUIiumN9aMFO3xlby', 'first_name': 'machin', 'last_name': 'Muche', 'date_of_birth': datetime.date(1990, 10, 6), 'gender': 'male', 'height': 180, 'city': 'Paris', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': '9f8b6029-2c7e-45bc-affc-27f785e538c1', 'created_at': datetime.datetime(2025, 10, 21, 8, 46, 35, 784121), 'updated_at': datetime.datetime(2025, 10, 21, 9, 4, 32, 883334), 'entry_date': datetime.date(2025, 10, 21)}
+[2025-10-21 11:05:33] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-21 11:05:33] [INFO] [auth_routes.show_profile] [BACK][routes/auth.py][show_profile()] Profile retrieved successfully for toto@holberton.com
+[2025-10-21 11:06:11] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'email': 'toto@holberton.com', 'username': 'toto', 'password_hash': '$2b$12$u.mLb1lVEXMDVRdprUn9P.nVJl/FB0yW1dd.IUIiumN9aMFO3xlby', 'first_name': 'machin', 'last_name': 'Muche', 'date_of_birth': datetime.date(1990, 10, 6), 'gender': 'male', 'height': 180, 'city': 'Paris', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': '9f8b6029-2c7e-45bc-affc-27f785e538c1', 'created_at': datetime.datetime(2025, 10, 21, 8, 46, 35, 784121), 'updated_at': datetime.datetime(2025, 10, 21, 9, 4, 32, 883334), 'entry_date': datetime.date(2025, 10, 21)}
+[2025-10-21 11:06:11] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-21 11:06:11] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-21 11:06:11] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=9f8b6029-2c7e-45bc-affc-27f785e538c1)
+[2025-10-21 11:06:11] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-21 11:06:11] [INFO] [auth_service.update_profile] [BACK][services/auth_service.py][update_profile()] Profil mis à jour avec succès pour {'email': 'toto@holberton.com', 'username': 'toto', 'first_name': 'machin', 'last_name': 'Muche', 'date_of_birth': datetime.date(1990, 10, 6), 'gender': 'male', 'height': 166, 'city': 'Rennes', 'profile_picture': None, 'id': '9f8b6029-2c7e-45bc-affc-27f785e538c1', 'created_at': datetime.datetime(2025, 10, 21, 8, 46, 35, 784121), 'updated_at': datetime.datetime(2025, 10, 21, 9, 6, 11, 379833), 'entry_date': datetime.date(2025, 10, 21)}
+[2025-10-21 11:06:11] [INFO] [auth_routes.update_profile] [BACK][routes/auth.py][update_profile()] Profile updated successfully for toto@holberton.com
+[2025-10-21 11:06:28] [INFO] [auth_service.get_user_from_identity] [BACK][services/auth_service.py][get_user_from_identity()] Utilisateur récupéré avec succès : {'email': 'toto@holberton.com', 'username': 'toto', 'password_hash': '$2b$12$u.mLb1lVEXMDVRdprUn9P.nVJl/FB0yW1dd.IUIiumN9aMFO3xlby', 'first_name': 'machin', 'last_name': 'Muche', 'date_of_birth': datetime.date(1990, 10, 6), 'gender': 'male', 'height': 166, 'city': 'Rennes', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': '9f8b6029-2c7e-45bc-affc-27f785e538c1', 'created_at': datetime.datetime(2025, 10, 21, 8, 46, 35, 784121), 'updated_at': datetime.datetime(2025, 10, 21, 9, 6, 11, 379833), 'entry_date': datetime.date(2025, 10, 21)}
+[2025-10-21 11:06:28] [INFO] [auth_service.sanitize_user_profile] [BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour toto@holberton.com
+[2025-10-21 11:06:28] [INFO] [auth_routes.show_profile] [BACK][routes/auth.py][show_profile()] Profile retrieved successfully for toto@holberton.com
+[2025-10-21 11:11:10] [ERROR] [glycemia.glucose_level] [BACK][models/glycemia.py][glucose_level.setter] La glycémie doit être un integer
+[2025-10-21 11:11:10] [ERROR] [glycemia_service.validate_glycemia_data] [BACK][services/data_service.py][validate_glycemia_data] Erreur de validation de la glycémie: La glycémie None doit être un nombre entier
+[2025-10-21 11:11:10] [ERROR] [glycemia_service.create_glycemia_entry] [BACK][services/data_service.py][create_glycemia_entry()] Erreur lors de la création: La glycémie None doit être un nombre entier
+[2025-10-21 11:11:10] [ERROR] [glycemia_routes.create_glycemia_entry_route] [BACK][routes/data.py][create_glycemia_entry_route()] Erreur inattendue pour l'entré d'une nouvelle mesure : La glycémie None doit être un nombre entier
+[2025-10-21 11:11:34] [INFO] [glycemia.glucose_level] La mesure 104 de glycémie est valide
+[2025-10-21 11:11:34] [INFO] [glycemia_service.validate_glycemia_data] [BACK][services/data_service.py][validate_glycemia_data] La valeur glycémique est valide
+[2025-10-21 11:11:34] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: Glycemia (id=a9c660fe-d9c2-4a51-94ce-0c85712471d1)
+[2025-10-21 11:11:34] [INFO] [glycemia_service.create_glycemia_entry] [BACK][services/data_service.py][create_glycemia_entry()] Mesure 104 mg/dL enregistrée pour le user 9f8b6029-2c7e-45bc-affc-27f785e538c1
+[2025-10-21 11:11:34] [INFO] [glycemia_routes.create_glycemia_entry_route] [BACK][routes/data.py][create_glycemia_entry_route] Nouvelle entrée créée pour user 9f8b6029-2c7e-45bc-affc-27f785e538c1
+[2025-10-21 11:12:26] [INFO] [glycemia.glucose_level] La mesure 100 de glycémie est valide
+[2025-10-21 11:12:26] [INFO] [glycemia_service.validate_glycemia_data] [BACK][services/data_service.py][validate_glycemia_data] La valeur glycémique est valide
+[2025-10-21 11:12:26] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: Glycemia (id=71971d26-3e35-46ab-aca2-1a1fba124cba)
+[2025-10-21 11:12:26] [INFO] [glycemia_service.create_glycemia_entry] [BACK][services/data_service.py][create_glycemia_entry()] Mesure 100 mg/dL enregistrée pour le user 9f8b6029-2c7e-45bc-affc-27f785e538c1
+[2025-10-21 11:12:26] [INFO] [glycemia_routes.create_glycemia_entry_route] [BACK][routes/data.py][create_glycemia_entry_route] Nouvelle entrée créée pour user 9f8b6029-2c7e-45bc-affc-27f785e538c1
+[2025-10-21 11:12:34] [INFO] [glycemia.glucose_level] La mesure 95 de glycémie est valide
+[2025-10-21 11:12:34] [INFO] [glycemia_service.validate_glycemia_data] [BACK][services/data_service.py][validate_glycemia_data] La valeur glycémique est valide
+[2025-10-21 11:12:34] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: Glycemia (id=f1d98335-8fa3-4a3f-a1d1-119aab711ad6)
+[2025-10-21 11:12:34] [INFO] [glycemia_service.create_glycemia_entry] [BACK][services/data_service.py][create_glycemia_entry()] Mesure 95 mg/dL enregistrée pour le user 9f8b6029-2c7e-45bc-affc-27f785e538c1
+[2025-10-21 11:12:34] [INFO] [glycemia_routes.create_glycemia_entry_route] [BACK][routes/data.py][create_glycemia_entry_route] Nouvelle entrée créée pour user 9f8b6029-2c7e-45bc-affc-27f785e538c1
+[2025-10-21 11:12:45] [ERROR] [glycemia.glucose_level] [BACK][models/glycemia.py][glucose_level.setter] La glycémie 49 doit se situer entre 50 et 350
+[2025-10-21 11:12:45] [ERROR] [glycemia_service.validate_glycemia_data] [BACK][services/data_service.py][validate_glycemia_data] Erreur de validation de la glycémie: La glycémie doit se situer entre 50 et 350
+[2025-10-21 11:12:45] [ERROR] [glycemia_service.create_glycemia_entry] [BACK][services/data_service.py][create_glycemia_entry()] Erreur lors de la création: La glycémie doit se situer entre 50 et 350
+[2025-10-21 11:12:45] [ERROR] [glycemia_routes.create_glycemia_entry_route] [BACK][routes/data.py][create_glycemia_entry_route()] Erreur inattendue pour l'entré d'une nouvelle mesure : La glycémie doit se situer entre 50 et 350
+[2025-10-21 11:12:55] [INFO] [glycemia.glucose_level] La mesure 120 de glycémie est valide
+[2025-10-21 11:12:55] [INFO] [glycemia_service.validate_glycemia_data] [BACK][services/data_service.py][validate_glycemia_data] La valeur glycémique est valide
+[2025-10-21 11:12:55] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: Glycemia (id=26fd9a7d-2ba4-4f02-b46b-943dc27e0f04)
+[2025-10-21 11:12:55] [INFO] [glycemia_service.create_glycemia_entry] [BACK][services/data_service.py][create_glycemia_entry()] Mesure 120 mg/dL enregistrée pour le user 9f8b6029-2c7e-45bc-affc-27f785e538c1
+[2025-10-21 11:12:55] [INFO] [glycemia_routes.create_glycemia_entry_route] [BACK][routes/data.py][create_glycemia_entry_route] Nouvelle entrée créée pour user 9f8b6029-2c7e-45bc-affc-27f785e538c1
+[2025-10-21 11:13:41] [INFO] [timelaps.get_time_range] [BACK][utils/timelaps.py][get_time_range()] Plage horaire sur une journée
+[2025-10-21 11:13:41] [INFO] [glycemia_service.get_glycemia_entry] [BACK][services/data_services][create_glycemia_entries] 4 entrées trouvées pour l'utilisateur 9f8b6029-2c7e-45bc-affc-27f785e538c1, day → 2025-10-21 à 2025-10-21
+[2025-10-21 11:13:41] [INFO] [glycemia_routes.get_glycemia_entries_route] [BACK][routes/data.py][get_glycemia_entries_route()] 4 mesures récupérées pour user 9f8b6029-2c7e-45bc-affc-27f785e538c1, période day, date None
+[2025-10-21 11:14:53] [INFO] [timelaps.get_time_range] [BACK][utils/timelaps.py][get_time_range()] Plage horaire sur une journée
+[2025-10-21 11:14:53] [INFO] [glycemia_service.get_glycemia_entry] [BACK][services/data_services][create_glycemia_entries] 4 entrées trouvées pour l'utilisateur 9f8b6029-2c7e-45bc-affc-27f785e538c1, day → 2025-10-21 à 2025-10-21
+[2025-10-21 11:14:53] [INFO] [glycemia_service.get_glycemia_stats] [BACK][services/data_service.py][get_glycemia_stats] 4 mesures récupérées pour l’utilisateur 9f8b6029-2c7e-45bc-affc-27f785e538c1 (day)
+[2025-10-21 11:14:53] [INFO] [glycemia_service.get_glycemia_stats] [BACK][services/data_service.py][get_glycemia_stats] Moyenne calculée : 105 mg/dL sur 4 mesures
+[2025-10-21 11:14:53] [INFO] [glycemia_routes.get_glycemia_stats_route] [BACK][routes/data.py][get_glycemia_stats_route()] Moyenne glycémique récupérée pour user 9f8b6029-2c7e-45bc-affc-27f785e538c1, période 'day', date 'None'
