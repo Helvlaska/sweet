@@ -2,7 +2,7 @@ from flask import current_app as app, Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.services import article_service
 
-article_bp = Blueprint('article', __name__, url_prefix='/data/article')
+article_bp = Blueprint('article', __name__, url_prefix='/article')
 
 @article_bp.route("/", methods=["POST"])
 @jwt_required()
