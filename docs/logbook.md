@@ -1582,37 +1582,40 @@ Template du logbook:
 
 ### ✅ Réalisé
 
-- [ ] Arborescence React
-- [ ] Installation de Sass dans mon environnement
-- [ ] Connexion entre le Front et le Back
+- [X] Arborescence React
+- [X] Installation de Sass dans mon environnement
+- [X] Connexion entre le Front et le Back
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Authentification React différente de mes souvenirs, besoin de me former pour comprendre la logique utilisée.
 
 ### 🔀 SCM (branches & commits)
 
 - Branches :
   - Branche tirée pour les tests unitaire → `test-module` → Branche mergée et supprimée
-  - Branche tirée pour la mise en place de la base du Frontend → `react-branch`
+  - Branche tirée pour la mise en place de la base du Frontend → `react-branch` → Branche mergée et supprimée
   - Mise à jour du journal de bord → `logbook`
 
 - Commits :
 
   - 📝 (docs/logbook.md): Set objectives for day 2 week 4
+  - ✨ (frontend/): Initial React setup with config, and env
   - 📝 (docs/logbook.md): Update progress for day 2 week 4
 
 ### 🧪 QA (tests faits)
 
-- [ ]
+- [ ] Pas de tests pour cette session de travail.
 
 ### 💡 Notes / décisions
 
--
+- Prendre le temps de comprendre les nouvelles bonnes pratiques concernant l'authentification, qui est la colonne vertèbrale de mon MVP.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - La mise en place du Frontend s'est très bien passée.
+  - La mise en place de Sass aussi s'est très bien passée.
 - ⚠️ À améliorer :
-  -
+  - Se tenir à jour des bonnes pratiques sur les technologies doit être amélioré.
+  - Pratiquer plus les technologies apprises.
