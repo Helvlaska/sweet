@@ -1619,3 +1619,53 @@ Template du logbook:
 - ⚠️ À améliorer :
   - Se tenir à jour des bonnes pratiques sur les technologies doit être amélioré.
   - Pratiquer plus les technologies apprises.
+
+---
+
+## Jour 24 – Mise en place de l'authentification (22/10/25)
+
+### 🎯 Objectifs du jour
+
+- Mise en place de l'authentification
+- Mise en place de la page d'acceuil et de ses composants
+- Mise en place de la page d'inscription et de ses composants
+
+### ✅ Réalisé
+
+- [ ] Authentification
+  - [ ] Stockage du user (AuthContext.jsx)
+  - [ ] Vérification du user (ProtectedRoute.jsx)
+  - [ ] Déclaration des routes globales (AppRouter.jsx)
+- [ ] Accueil composants
+- [ ] Accueil page
+- [ ] Signup composants
+- [ ] Signup page
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la mise en place de l'authentification → `auth-branch`
+  - Mise à jour du journal de bord → `logbook`
+
+- Commits :
+  - 📝 (docs/logbook.md): Set objectives for day 3 week 4
+  - 📝 (docs/logbook.md): Update progress for day 3 week 4
+
+### 🧪 QA (tests faits)
+
+- [ ] Création d'un nouveau User par le front
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
