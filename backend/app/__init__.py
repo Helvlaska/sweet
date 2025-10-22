@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
@@ -69,6 +70,13 @@ def create_app(test_config=None):
     jwt.init_app(flask_app)
     configure_logging(flask_app)
 
+    # Frontend configuration
+    CORS(
+        flask_app,
+        supports_credentials=True,
+        origins=["http://localhost:5173"]
+    )
+
     # Register models
     import app.models
 
@@ -109,6 +117,6 @@ def create_app(test_config=None):
     @flask_app.route("/ping")
     def ping():
         """Return a simple backend health check"""
-        return {"status": "ok", "message": "Sweet backend is running", "env": flask_app.config["ENV"]}
+        return {"status": "ok", "message": "Sweet backend is running", "env": env}
 
     return flask_app
