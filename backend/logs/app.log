@@ -1023,3 +1023,81 @@
 [2025-10-21 11:14:53] [INFO] [glycemia_service.get_glycemia_stats] [BACK][services/data_service.py][get_glycemia_stats] 4 mesures récupérées pour l’utilisateur 9f8b6029-2c7e-45bc-affc-27f785e538c1 (day)
 [2025-10-21 11:14:53] [INFO] [glycemia_service.get_glycemia_stats] [BACK][services/data_service.py][get_glycemia_stats] Moyenne calculée : 105 mg/dL sur 4 mesures
 [2025-10-21 11:14:53] [INFO] [glycemia_routes.get_glycemia_stats_route] [BACK][routes/data.py][get_glycemia_stats_route()] Moyenne glycémique récupérée pour user 9f8b6029-2c7e-45bc-affc-27f785e538c1, période 'day', date 'None'
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:02:00
+
+================================================================================
+[2025-10-21 14:02:00] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:02:01
+
+================================================================================
+[2025-10-21 14:02:01] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:19:17
+
+================================================================================
+[2025-10-21 14:19:17] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:19:46
+
+================================================================================
+[2025-10-21 14:19:46] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:20:19
+
+================================================================================
+[2025-10-21 14:20:19] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:20:33
+
+================================================================================
+[2025-10-21 14:20:33] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:21:47
+
+================================================================================
+[2025-10-21 14:21:47] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:21:48
+
+================================================================================
+[2025-10-21 14:21:48] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:24:26
+
+================================================================================
+[2025-10-21 14:24:26] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:24:56
+
+================================================================================
+[2025-10-21 14:24:56] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:25:28
+
+================================================================================
+[2025-10-21 14:25:28] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:27:07
+
+================================================================================
+[2025-10-21 14:27:07] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-21 14:27:07
+
+================================================================================
+[2025-10-21 14:27:07] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
