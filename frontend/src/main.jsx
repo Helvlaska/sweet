@@ -1,10 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles/main.scss'; // styles globaux
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App"; // composant racine de l'application
+//import "./styles/main.scss"; // tes styles globaux
+import { AuthProvider } from "./context/AuthContext"; // ton contexte global
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    {/* 🔐 Le contexte Auth englobe toute l'application */}
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );

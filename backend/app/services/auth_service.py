@@ -25,6 +25,18 @@ def validate_user_data(data: dict):
         app.logger.error(f"[BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: {str(e)}")
         raise
 
+def check_availability(data):
+    email = data.get("email")
+    username = data.get("username")
+
+    email_exists = User.query.filter_by(_email=email).first() is not None
+    username_exists = User.query.filter_by(_username=username).first() is not None
+
+    return {
+        "email_available": not email_exists,
+        "username_available": not username_exists
+    }
+
 
 def create_user(data: dict):
     """Register a new user account"""
