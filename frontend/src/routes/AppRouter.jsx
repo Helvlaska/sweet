@@ -1,60 +1,66 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-// Composant de protection (auth obligatoire)
+// Composant de protection d'accès
 import ProtectedRoute from "./ProtectedRoute";
 
-// Tes pages React (tu pourras les créer plus tard)
+// Pages publiques
 import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-import DashboardPage from "../pages/DashboardPage";
 
-// (optionnel) une page NotFound pour les mauvaises routes
+// Page sécurisées
+import DashboardPage from "../pages/DashboardPage";
+// import HealthProPage from "../pages/HealthProPage";
+// import ForumPage from "../pages/ForumPage";
+// import CalendarPage from "../pages/CalendarPage";
+// import ArticlePage from "../pages/ArticlePage";
+// import ProfilePage from "../pages/ProfilePage";
 // import NotFoundPage from "../pages/NotFoundPage";
 
 export default function AppRouter() {
   return (
-    /**
-     * BrowserRouter :
-     *  - supervise tout le système de navigation (URLs)
-     *  - rend possible les <Link>, <Navigate>, <Route>...
-     */
     <BrowserRouter>
       <Routes>
         {/* Routes publiques */}
         <Route path="/" element={<LandingPage />} />
-        {/* Page de connexion */}
         <Route path="/login" element={<LoginPage />} />
-
-        {/* Page d'inscription */}
         <Route path="/register" element={<RegisterPage />} />
 
-        {/* ------------------------------
-            🔒 Routes protégées (auth requise)
-           ------------------------------ */}
-
-        {/* Page principale du Dashboard */}
+        {/* Routes sécurisées */}
         <Route path="/dashboard" element={
             <ProtectedRoute>
               <DashboardPage />
             </ProtectedRoute>
           } />
-
-        {/* Exemple : une autre page protégée plus tard
-        <Route
-          path="/notes"
-          element={
+        {/*<Route path="/professionals" element={
             <ProtectedRoute>
-              <NotesPage />
+              <HealthProPage />
             </ProtectedRoute>
-          }
-        /> */}
+          } />*/}
+        {/*<Route path="/calendar" element={
+            <ProtectedRoute>
+              <CalendarPage />
+            </ProtectedRoute>
+          } />*/}
+        {/*<Route path="/forum" element={
+            <ProtectedRoute>
+              <ForumPage />
+            </ProtectedRoute>
+          } />*/}
+        {/*<Route path="/blog" element={
+            <ProtectedRoute>
+              <ArticlePage />
+            </ProtectedRoute>
+          } />*/}
+        {/*<Route path="/profil" element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          } />*/}
 
-        {/* ------------------------------
-            🚦 Gestion des routes inconnues
-           ------------------------------ */}
-        {/* Redirige toute URL inconnue vers /login */}
-        {/*<Route path="*" element={<Navigate to="/login" />} />*/}
+        {/* Gestion routes inconnues */}
+        <Route path="*" element={<Navigate to="/" />} />
+
       </Routes>
     </BrowserRouter>
   );

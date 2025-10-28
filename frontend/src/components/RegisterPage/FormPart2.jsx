@@ -1,11 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FormPart2Logic } from "./FormPart2Logic";
 
 function FormPart2({ formData, updateFormData, prevStep }) {
+    const navigate = useNavigate();
+
+    function handleSuccess() {
+        navigate("/dashboard");
+    }
     const {
         firstName, lastName, gender, height, city, dateOfBirth, errorMessage, successMessage,
         handleChange, handleSubmit
-    } = FormPart2Logic(formData, updateFormData);
+    } = FormPart2Logic(formData, updateFormData, handleSuccess);
 
     return (
         <form onSubmit={(e) => handleSubmit(e)} className="register-step2">

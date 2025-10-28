@@ -3,6 +3,7 @@ import { authService } from "../services/authService";  // Appel des services po
 
 
 const AuthContext = createContext(null);    // Création du contexte du User
+export {AuthContext};
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -25,7 +26,14 @@ export function AuthProvider({ children }) {
       }
     };
 
-    fetchProfile();
+    const publicPaths = ["/", "/login", "/register"];
+    const currentPath = window.location.pathname;
+
+    if (!publicPaths.includes(currentPath)) {
+        fetchProfile();
+    } else {
+        setLoading(false);
+    }
   }, []);
 
 
@@ -77,6 +85,7 @@ export function AuthProvider({ children }) {
 }
 
 // Hook personnalisé pour que tout les composants puissent utiliser l'authentification
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   return useContext(AuthContext);
 }

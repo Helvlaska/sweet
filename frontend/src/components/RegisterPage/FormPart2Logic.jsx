@@ -2,7 +2,7 @@ import { useState } from "react";
 import { authService } from "../../services/authService";
 import { validateField } from "../../utils/validator";
 import { formatData } from "../../utils/dataFormatter";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function FormPart2Logic(formData, updateFormData) {
     const [firstName, setFirstName] = useState(formData.first_name || "");
@@ -15,6 +15,8 @@ function FormPart2Logic(formData, updateFormData) {
 
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+
+    const navigate = useNavigate();
 
     function handleChange(event) {
         const { name, value, files } = event.target;
@@ -94,8 +96,12 @@ function FormPart2Logic(formData, updateFormData) {
                 };
                 const loginResponse = await authService.login(loginData);
                 console.log("Connexion automatique réussie :", loginResponse.data);
+                await new Promise((resolve) => setTimeout(resolve, 500));
+                const profile = await authService.show_profile();
+                console.log("Profil récupéré :", profile.data);
+                navigate("/dashboard")
 
-                Navigate("/dashboard");
+
             } catch (error) {
                 console.log(error);
                 setErrorMessage("Erreur lors de la création ou de la connexion du compte.");

@@ -3,7 +3,8 @@
 function convertFileToBase64(file, callback) {
     const reader = new FileReader();
     reader.onload = function(event) {
-        callback(event.target.result);
+        const base64String = event.target.result.split(",")[1];
+        callback(base64String);
     };
     reader.readAsDataURL(file);
 }
@@ -20,6 +21,11 @@ function formatUser(data, callback) {
         formatted.date_of_birth = formatted.date_of_birth.toISOString().split("T")[0];
     }
     if (formatted.profile_picture instanceof File) {
+        console.log(
+            "DEBUG formatUser → type de profile_picture :",
+            typeof formatted.profile_picture,
+            formatted.profile_picture
+        );
         convertFileToBase64(formatted.profile_picture, function(base64Image) {
             formatted.profile_picture = base64Image;
             callback(formatted);

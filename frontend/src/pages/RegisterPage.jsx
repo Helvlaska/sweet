@@ -46,7 +46,7 @@ function RegisterPage() {
   if (step === 1) {
     return (
         <div>
-            <h1>Avec quels identifiants veux tu te connecter ?</h1>
+            <h1>Avec quels identifiants voudras tu te connecter ?</h1>
             <FormPart1 formData={formData} updateFormData={updateFormData} nextStep={nextStep} />
         </div>
     );
