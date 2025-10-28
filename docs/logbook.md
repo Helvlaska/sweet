@@ -1632,10 +1632,10 @@ Template du logbook:
 
 ### ✅ Réalisé
 
-- [ ] Authentification
-  - [ ] Stockage du user (AuthContext.jsx)
-  - [ ] Vérification du user (ProtectedRoute.jsx)
-  - [ ] Déclaration des routes globales (AppRouter.jsx)
+- [X] Authentification
+  - [X] Stockage du user (AuthContext.jsx)
+  - [X] Vérification du user (ProtectedRoute.jsx)
+  - [X] Déclaration des routes globales (AppRouter.jsx)
 - [ ] Accueil composants
 - [ ] Accueil page
 - [ ] Signup composants
@@ -1657,7 +1657,61 @@ Template du logbook:
 
 ### 🧪 QA (tests faits)
 
-- [ ] Création d'un nouveau User par le front
+- [X] Création d'un nouveau User par le front
+
+### 💡 Notes / décisions
+
+- Pas de remontées aujourd'hui.
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  - Pas de remontées aujourd'hui.
+- ⚠️ À améliorer :
+  - Pas de remontées aujourd'hui.
+
+---
+
+## Jour 30 – Base Classe (28/10/25)
+
+### 🎯 Objectifs du jour
+
+- Finir les pages d'authentification
+- Vérification de la création et du login du user
+
+### ✅ Réalisé
+
+- [X] Création d'un user
+- [X] Login d'un user
+- [X] Redirection vers le dashboard
+
+### 🪲 Bugs / difficultés rencontrées
+
+- Gros problèmes sur la gestion de la photo de profile.
+- Gestion du refresh et access token.
+- Redirection automatique vers le dashboard après une inscription.
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la mise en place de l'authentification → `auth-branch` → Branche mergée et supprimée
+  - Branche tirée pour la mise en place du dashboard → `dashboard-branch`
+  - Mise à jour du journal de bord → `logbook`
+
+- Commits :
+
+  - ✨ (docs/stage4_report.md): Add MVP development report (Part 4) including project structure, completed sprints, and execution instructions
+  - ✨ (assets/): Add images and icons
+  - ✨ (pages/LandingPage, pages/RegisterPage, pages/LoginPage): Implement multi-step user registration with validation, error handling, and authentication context integration
+  - ➕ (app/init.py): Update JWT cookie settings for enhanced security in production
+  - ➕ (models/user.py, services/auth_service.py): Enhance profile picture handling with base64 encoding and decoding, and update user profile sanitization to include profile picture
+  - ➕ (auth/): Implement user authentication for registration and login
+  - 📝 (docs/logbook.md): Update progress for day 2 week 5
+
+### 🧪 QA (tests faits)
+
+- [X] Création d'un nouveau user
+- [X] Login du user
 
 ### 💡 Notes / décisions
 
@@ -1666,6 +1720,6 @@ Template du logbook:
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - Tout la partie connexion est terminée !
 - ⚠️ À améliorer :
-  -
+  - Encore des problèmes sur la redirection automatique du user vers la page de dashboard après une inscription → Laissé en l'état pour l'instant, sera amélioré en V2.
