@@ -1672,7 +1672,7 @@ Template du logbook:
 
 ---
 
-## Jour 30 – Base Classe (28/10/25)
+## Jour 30 – Authentification frontend (28/10/25)
 
 ### 🎯 Objectifs du jour
 
@@ -1723,3 +1723,58 @@ Template du logbook:
   - Tout la partie connexion est terminée !
 - ⚠️ À améliorer :
   - Encore des problèmes sur la redirection automatique du user vers la page de dashboard après une inscription → Laissé en l'état pour l'instant, sera amélioré en V2.
+
+---
+
+## Jour 31 – Dashboard (29/10/25)
+
+### 🎯 Objectifs du jour
+
+- Création de la NavBar
+- Création du header
+- Création des cards des entités de mesure
+- Création des cards des articles
+
+### ✅ Réalisé
+
+- [ ] NavBar
+  - [ ] Implémentation des routes de redirection
+  - [ ] Implémentation des icones des boutons de redirection
+- [ ] Header
+  - [ ] Implémentation de l'image d'illustration
+  - [ ] Implémentation de la bulle de bienvenu
+  - [ ] Implémentation de l'affichage de la date du jour
+- [ ] Cards entités
+  - [ ] Card glycémie
+    - [ ] Implémentation du header
+    - [ ] Implémentation du graphique
+    - [ ] Implémentation des boutons de timelaps
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la mise en place du dashboard → `dashboard-branch`
+  - Mise à jour du journal de bord → `logbook`
+
+- Commits :
+  - 📝 (docs/logbook.md): Set objectives for day 4 week 4
+  - 📝 (docs/logbook.md): Update progress for day 4 week 4
+
+### 🧪 QA (tests faits)
+
+- [ ]
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
