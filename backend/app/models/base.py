@@ -77,8 +77,13 @@ class BaseModel(db.Model):
             exclude = []
         result = {}
         for column in self.__table__.columns:            # type: ignore
-            if column.name not in exclude:
-                key = column.name.lstrip('_')            # Retire le underscore
-                value = getattr(self, column.name)
+            if column.name in exclude:
+                continue
+            if str(column.type).lower() in ("largebinary", "blob", "bytea"):
+                continue
+            key = column.name.lstrip("_")
+            value = getattr(self, column.name)
+            if hasattr(value, "isoformat"):
+                value = value.isoformat()
                 result[key] = value
         return result

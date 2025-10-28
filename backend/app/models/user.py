@@ -1,3 +1,4 @@
+import base64
 from flask import current_app as app
 from datetime import date, datetime
 from app import db, bcrypt
@@ -241,7 +242,15 @@ class User(BaseModel):
     @property
     def profile_picture(self):
         """User's profile_picture"""
-        return self._profile_picture
+        if not self._profile_picture:
+            return None
+        try:
+            encoded_image = base64.b64encode(self._profile_picture).decode("utf-8")
+            return f"data:image/jpeg;base64,{encoded_image}"
+
+        except Exception as e:
+            app.logger.error(f"[BACK][models/user.py][profile_picture.getter] Erreur encodage base64 : {str(e)}")
+            return None
 
     @profile_picture.setter
     def profile_picture(self, value):
@@ -249,10 +258,24 @@ class User(BaseModel):
             self._profile_picture = None
             app.logger.info("[BACK][models/user.py][profile_picture.setter] Aucune profile_picture n'a été ajoutée")
             return
+
+        if isinstance(value, str):
+            try:
+                if value.startswith("data:image"):
+                    value = value.split(",")[1]
+                decoded_image = base64.b64decode(value)
+                self._profile_picture = decoded_image
+                app.logger.info("[BACK][models/user.py][profile_picture.setter] Image base64 décodée avec succès")
+            except Exception as e:
+                app.logger.error(f"[BACK][models/user.py][profile_picture.setter] Erreur décodage base64 : {str(e)}")
+                raise ValueError("Format base64 invalide pour la photo de profil")
+            return
+
         if not isinstance(value, (bytes, bytearray)):
-            app.logger.error("[BACK][models/user.py][profile_picture.setter] Le champ profile_picture doit être une image")
-            raise TypeError("La photo de profil doit être une image")
-        app.logger.info("[BACK][models/user.py][profile_picture.setter] La profile_picture est validé")
+            app.logger.error("[BACK][models/user.py][profile_picture.setter] Le champ profile_picture doit être une image (bytes ou base64)")
+            raise TypeError("La photo de profil doit être une image (bytes ou base64)")
+
+        app.logger.info("[BACK][models/user.py][profile_picture.setter] La profile_picture est validée (format bytes)")
         self._profile_picture = value
 
 # ----------------------------------------------------------- Champ first_login
