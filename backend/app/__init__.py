@@ -45,10 +45,10 @@ def create_app(test_config=None):
     flask_app.config["JWT_ACCESS_COOKIE_PATH"] = "/"
     flask_app.config["JWT_REFRESH_COOKIE_PATH"] = "/auth/refresh"
 
-    flask_app.config["JWT_COOKIE_SECURE"] = False  # ⚠️ Mettre True en production (HTTPS obligatoire)
+    flask_app.config["JWT_COOKIE_SECURE"] = True
     flask_app.config["JWT_COOKIE_HTTPONLY"] = True
     flask_app.config["JWT_COOKIE_CSRF_PROTECT"] = False
-    flask_app.config["JWT_COOKIE_SAMESITE"] = "Lax"
+    flask_app.config["JWT_COOKIE_SAMESITE"] = "None"
 
     flask_app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
     flask_app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(hours=48)

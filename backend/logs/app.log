@@ -1029,3 +1029,344 @@
 
 ================================================================================
 [2025-10-22 10:53:57] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-22 11:20:09
+
+================================================================================
+[2025-10-22 11:20:09] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-22 11:20:58
+
+================================================================================
+[2025-10-22 11:20:58] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-22 11:20:59
+
+================================================================================
+[2025-10-22 11:20:59] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-22 16:56:15] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email ClaireTest@machin.fr est validé
+[2025-10-22 16:56:15] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username Claire est validé
+[2025-10-22 16:56:15] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-22 16:56:15] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-22 16:56:15] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-22 16:56:15] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-22 16:56:15] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-22 16:56:15] [ERROR] [user.height] [BACK][models/user.py][height.setter] La taille doit être un integer
+[2025-10-22 16:56:15] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: La taille doit être un entier (cm)
+[2025-10-22 16:56:15] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: La taille doit être un entier (cm)
+[2025-10-22 16:56:15] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Erreur: La taille doit être un entier (cm)
+[2025-10-22 17:13:30] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email ClaireTest@machin.fr est validé
+[2025-10-22 17:13:30] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username Claire est validé
+[2025-10-22 17:13:30] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-22 17:13:30] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-22 17:13:30] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-22 17:13:30] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-22 17:13:30] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-22 17:13:30] [ERROR] [user.height] [BACK][models/user.py][height.setter] La taille doit être un integer
+[2025-10-22 17:13:30] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: La taille doit être un entier (cm)
+[2025-10-22 17:13:30] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: La taille doit être un entier (cm)
+[2025-10-22 17:13:30] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Erreur: La taille doit être un entier (cm)
+[2025-10-22 17:14:25] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email ClaireTest@machin.fr est validé
+[2025-10-22 17:14:25] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username Claire est validé
+[2025-10-22 17:14:25] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-22 17:14:25] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-22 17:14:25] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-22 17:14:25] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-22 17:14:25] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-22 17:14:25] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-22 17:14:25] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-22 17:14:25] [ERROR] [user.profile_picture] [BACK][models/user.py][profile_picture.setter] Le champ profile_picture doit être une image
+[2025-10-22 17:14:25] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: La photo de profil doit être une image
+[2025-10-22 17:14:25] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: La photo de profil doit être une image
+[2025-10-22 17:14:25] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Erreur: La photo de profil doit être une image
+[2025-10-22 17:20:34] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email Truc@machin.fr est validé
+[2025-10-22 17:20:34] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username Claire est validé
+[2025-10-22 17:20:34] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-22 17:20:34] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-22 17:20:34] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-22 17:20:34] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-22 17:20:34] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-22 17:20:34] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-22 17:20:34] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-22 17:20:34] [INFO] [user.profile_picture] [BACK][models/user.py][profile_picture.setter] Aucune profile_picture n'a été ajoutée
+[2025-10-22 17:20:34] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-22 17:20:34] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-22 17:20:34] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=5b04907f-f44a-4ea0-9d04-bf348f276aef)
+[2025-10-22 17:20:34] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : Truc@machin.fr
+[2025-10-22 17:20:34] [INFO] [auth_routes.register] [BACK][routes/auth_routes.py][register] Le nouvel utilisateur à été enregistré avec succès
+[2025-10-22 17:20:34] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-22 17:20:34] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Les données de connexion sont valides
+[2025-10-22 17:20:34] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : Truc@machin.fr
+[2025-10-22 17:20:34] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Utilisateur trouvé par son email ou son username
+[2025-10-22 17:20:35] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-22 17:20:35] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Le mot de passe pour l'utilisateur: 5b04907f-f44a-4ea0-9d04-bf348f276aef est valide
+[2025-10-22 17:20:35] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-22 17:20:35] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=5b04907f-f44a-4ea0-9d04-bf348f276aef)
+[2025-10-22 17:20:35] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Première connexion détectée pour l'utilisateur: Truc@machin.fr
+[2025-10-22 17:20:35] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'Truc@machin.fr', 'username': 'Claire', 'password_hash': '$2b$12$hUyFmKts5Hlgqr48Z52o7u6ROKQM3PqhSHbwZu46oBzBqB3vUwTNi', 'first_name': 'Claire', 'last_name': 'Castan', 'date_of_birth': datetime.date(2011, 6, 8), 'gender': 'prefer_not_say', 'height': 170, 'city': 'Laval', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': '5b04907f-f44a-4ea0-9d04-bf348f276aef', 'created_at': datetime.datetime(2025, 10, 22, 15, 20, 34, 777300), 'updated_at': datetime.datetime(2025, 10, 22, 15, 20, 35, 166296), 'entry_date': datetime.date(2025, 10, 22)}
+[2025-10-22 17:20:35] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour Truc@machin.fr
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-23 09:27:53
+
+================================================================================
+[2025-10-23 09:27:53] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-23 09:27:54
+
+================================================================================
+[2025-10-23 09:27:54] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-23 10:33:59
+
+================================================================================
+[2025-10-23 10:33:59] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-23 10:34:32
+
+================================================================================
+[2025-10-23 10:34:32] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-23 10:34:38
+
+================================================================================
+[2025-10-23 10:34:38] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-23 14:41:18] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Erreur: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+[2025-10-23 14:57:59] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email ccastan@live.fr est validé
+[2025-10-23 14:57:59] [ERROR] [user.username] [BACK][models/user.py][username.setter] Le champ du username est vide
+[2025-10-23 14:57:59] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:57:59] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:57:59] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Données invalides pour le nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:58:14] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email ccastan@live.fr est validé
+[2025-10-23 14:58:14] [ERROR] [user.username] [BACK][models/user.py][username.setter] Le champ du username est vide
+[2025-10-23 14:58:14] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:58:14] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:58:14] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Données invalides pour le nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:58:40] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email ccastan@live.fr est validé
+[2025-10-23 14:58:40] [ERROR] [user.username] [BACK][models/user.py][username.setter] Le champ du username est vide
+[2025-10-23 14:58:40] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:58:40] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:58:40] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Données invalides pour le nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:59:47] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email ccastan@live.fr est validé
+[2025-10-23 14:59:47] [ERROR] [user.username] [BACK][models/user.py][username.setter] Le champ du username est vide
+[2025-10-23 14:59:47] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:59:47] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: Le champ du username est vide
+[2025-10-23 14:59:47] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Données invalides pour le nouvel utilisateur: Le champ du username est vide
+[2025-10-23 15:01:13] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email ccastan@live.fr est validé
+[2025-10-23 15:01:13] [ERROR] [user.username] [BACK][models/user.py][username.setter] Le champ du username est vide
+[2025-10-23 15:01:13] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: Le champ du username est vide
+[2025-10-23 15:01:13] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: Le champ du username est vide
+[2025-10-23 15:01:13] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Données invalides pour le nouvel utilisateur: Le champ du username est vide
+[2025-10-23 15:03:13] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email ccastan@live.fr est validé
+[2025-10-23 15:03:13] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username Helvlaska est validé
+[2025-10-23 15:03:13] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-23 15:03:13] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-23 15:03:13] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-23 15:03:13] [ERROR] [user.height] [BACK][models/user.py][height.setter] La taille doit être un integer
+[2025-10-23 15:03:13] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: La taille doit être un entier (cm)
+[2025-10-23 15:03:13] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: La taille doit être un entier (cm)
+[2025-10-23 15:03:13] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Erreur: La taille doit être un entier (cm)
+[2025-10-23 16:03:47] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email ccastan@live.fr est validé
+[2025-10-23 16:03:47] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username Helvlaska est validé
+[2025-10-23 16:03:47] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-23 16:03:47] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-23 16:03:47] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-23 16:03:47] [ERROR] [user.height] [BACK][models/user.py][height.setter] La taille doit être un integer
+[2025-10-23 16:03:47] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: La taille doit être un entier (cm)
+[2025-10-23 16:03:47] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: La taille doit être un entier (cm)
+[2025-10-23 16:03:47] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Erreur: La taille doit être un entier (cm)
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-24 09:55:09
+
+================================================================================
+[2025-10-24 09:55:09] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+
+================================================================================
+🧪 Nouvelle session de tests SWEET — 2025-10-24 09:55:10
+
+================================================================================
+[2025-10-24 09:55:10] [INFO] [logging.configure_logging] ✅ Logger SWEET configuré — les logs seront ajoutés à la suite dans logs/tests_run.log.
+[2025-10-24 11:03:26] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email Truc@machin.fr est validé
+[2025-10-24 11:03:26] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username test est validé
+[2025-10-24 11:03:26] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-24 11:03:26] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-24 11:03:26] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-24 11:03:26] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-24 11:03:26] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-24 11:03:26] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-24 11:03:26] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-24 11:03:26] [ERROR] [user.profile_picture] [BACK][models/user.py][profile_picture.setter] Le champ profile_picture doit être une image
+[2025-10-24 11:03:26] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: La photo de profil doit être une image
+[2025-10-24 11:03:26] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: La photo de profil doit être une image
+[2025-10-24 11:03:26] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Erreur: La photo de profil doit être une image
+[2025-10-24 11:03:45] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email Truc@machin.fr est validé
+[2025-10-24 11:03:45] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username test est validé
+[2025-10-24 11:03:45] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-24 11:03:45] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-24 11:03:45] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-24 11:03:45] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-24 11:03:45] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-24 11:03:45] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-24 11:03:45] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-24 11:03:45] [ERROR] [user.profile_picture] [BACK][models/user.py][profile_picture.setter] Le champ profile_picture doit être une image
+[2025-10-24 11:03:45] [ERROR] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: La photo de profil doit être une image
+[2025-10-24 11:03:45] [ERROR] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Erreur lors de la création du nouvel utilisateur: La photo de profil doit être une image
+[2025-10-24 11:03:45] [ERROR] [auth_routes.register] [BACK][routes/auth_routes.py][register()] Erreur: La photo de profil doit être une image
+[2025-10-24 11:04:45] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email keke.laglisse@nookmail.com est validé
+[2025-10-24 11:04:45] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username test est validé
+[2025-10-24 11:04:45] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-24 11:04:45] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-24 11:04:45] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-24 11:04:45] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-24 11:04:45] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-24 11:04:45] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-24 11:04:45] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-24 11:04:45] [INFO] [user.profile_picture] [BACK][models/user.py][profile_picture.setter] Aucune profile_picture n'a été ajoutée
+[2025-10-24 11:04:45] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-24 11:04:45] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-24 11:04:45] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=3083c4c9-9afa-4413-b9e1-0bf949ef1d7d)
+[2025-10-24 11:04:45] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : keke.laglisse@nookmail.com
+[2025-10-24 11:04:45] [INFO] [auth_routes.register] [BACK][routes/auth_routes.py][register] Le nouvel utilisateur à été enregistré avec succès
+[2025-10-24 12:01:03] [ERROR] [auth_routes.login] [BACK][routes/auth.py][login] Unexpected error: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+[2025-10-24 12:01:03] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email TestLogin@trucmuche.com est validé
+[2025-10-24 12:01:03] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username TestLogin est validé
+[2025-10-24 12:01:03] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-24 12:01:03] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-24 12:01:03] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-24 12:01:03] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-24 12:01:03] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-24 12:01:03] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-24 12:01:03] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-24 12:01:03] [INFO] [user.profile_picture] [BACK][models/user.py][profile_picture.setter] Aucune profile_picture n'a été ajoutée
+[2025-10-24 12:01:03] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-24 12:01:03] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-24 12:01:03] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=fe40d029-15e4-4218-8652-bbf6bcd26ca9)
+[2025-10-24 12:01:03] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : TestLogin@trucmuche.com
+[2025-10-24 12:01:03] [INFO] [auth_routes.register] [BACK][routes/auth_routes.py][register] Le nouvel utilisateur à été enregistré avec succès
+[2025-10-24 12:01:03] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-24 12:01:03] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Les données de connexion sont valides
+[2025-10-24 12:01:03] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : TestLogin@trucmuche.com
+[2025-10-24 12:01:03] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Utilisateur trouvé par son email ou son username
+[2025-10-24 12:01:04] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-24 12:01:04] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Le mot de passe pour l'utilisateur: fe40d029-15e4-4218-8652-bbf6bcd26ca9 est valide
+[2025-10-24 12:01:04] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-24 12:01:04] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=fe40d029-15e4-4218-8652-bbf6bcd26ca9)
+[2025-10-24 12:01:04] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Première connexion détectée pour l'utilisateur: TestLogin@trucmuche.com
+[2025-10-24 12:01:04] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'TestLogin@trucmuche.com', 'username': 'TestLogin', 'password_hash': '$2b$12$qIljcDGULZA0KddWRkcdvuZGagEFI1n/622T8C0ROJgkx2fVHs4wC', 'first_name': 'Test', 'last_name': 'Login', 'date_of_birth': datetime.date(2019, 4, 7), 'gender': 'other', 'height': 180, 'city': 'Laval', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': 'fe40d029-15e4-4218-8652-bbf6bcd26ca9', 'created_at': datetime.datetime(2025, 10, 24, 10, 1, 3, 896659), 'updated_at': datetime.datetime(2025, 10, 24, 10, 1, 4, 152183), 'entry_date': datetime.date(2025, 10, 24)}
+[2025-10-24 12:01:04] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour TestLogin@trucmuche.com
+[2025-10-24 12:01:52] [ERROR] [auth_routes.login] [BACK][routes/auth.py][login] Unexpected error: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+[2025-10-24 12:09:37] [ERROR] [auth_routes.login] [BACK][routes/auth.py][login] Unexpected error: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+[2025-10-24 12:09:37] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email TestLogin2@trucmuche.fr est validé
+[2025-10-24 12:09:37] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username TestLogin2 est validé
+[2025-10-24 12:09:37] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-24 12:09:37] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-24 12:09:37] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-24 12:09:37] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-24 12:09:37] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-24 12:09:37] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-24 12:09:37] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-24 12:09:37] [INFO] [user.profile_picture] [BACK][models/user.py][profile_picture.setter] Aucune profile_picture n'a été ajoutée
+[2025-10-24 12:09:37] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-24 12:09:37] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-24 12:09:37] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=eed2206f-3e34-4a06-8891-c09371c53b74)
+[2025-10-24 12:09:37] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : TestLogin2@trucmuche.fr
+[2025-10-24 12:09:37] [INFO] [auth_routes.register] [BACK][routes/auth_routes.py][register] Le nouvel utilisateur à été enregistré avec succès
+[2025-10-24 12:09:37] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-24 12:09:37] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Les données de connexion sont valides
+[2025-10-24 12:09:37] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : TestLogin2@trucmuche.fr
+[2025-10-24 12:09:37] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Utilisateur trouvé par son email ou son username
+[2025-10-24 12:09:38] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-24 12:09:38] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Le mot de passe pour l'utilisateur: eed2206f-3e34-4a06-8891-c09371c53b74 est valide
+[2025-10-24 12:09:38] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-24 12:09:38] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=eed2206f-3e34-4a06-8891-c09371c53b74)
+[2025-10-24 12:09:38] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Première connexion détectée pour l'utilisateur: TestLogin2@trucmuche.fr
+[2025-10-24 12:09:38] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'TestLogin2@trucmuche.fr', 'username': 'TestLogin2', 'password_hash': '$2b$12$h6sE/XdBIYrgj0l51WroAec4fDFCzOZyzoxpBae5f35baqrAqnh3K', 'first_name': 'Test', 'last_name': 'Login2', 'date_of_birth': datetime.date(2011, 2, 11), 'gender': 'other', 'height': 190, 'city': 'Laval', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': 'eed2206f-3e34-4a06-8891-c09371c53b74', 'created_at': datetime.datetime(2025, 10, 24, 10, 9, 37, 912806), 'updated_at': datetime.datetime(2025, 10, 24, 10, 9, 38, 163089), 'entry_date': datetime.date(2025, 10, 24)}
+[2025-10-24 12:09:38] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour TestLogin2@trucmuche.fr
+[2025-10-24 14:03:51] [ERROR] [auth_routes.login] [BACK][routes/auth.py][login] Unexpected error: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+[2025-10-24 14:03:51] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email TestLogin3@trucmuche.fr est validé
+[2025-10-24 14:03:51] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username TestLogin3 est validé
+[2025-10-24 14:03:51] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-24 14:03:51] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-24 14:03:51] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-24 14:03:51] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-24 14:03:51] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-24 14:03:51] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-24 14:03:51] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-24 14:03:51] [INFO] [user.profile_picture] [BACK][models/user.py][profile_picture.setter] Aucune profile_picture n'a été ajoutée
+[2025-10-24 14:03:51] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-24 14:03:52] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-24 14:03:52] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=bf01a51e-78df-44a5-9687-4010ee66ffc2)
+[2025-10-24 14:03:52] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : TestLogin3@trucmuche.fr
+[2025-10-24 14:03:52] [INFO] [auth_routes.register] [BACK][routes/auth_routes.py][register] Le nouvel utilisateur à été enregistré avec succès
+[2025-10-24 14:03:52] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-24 14:03:52] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Les données de connexion sont valides
+[2025-10-24 14:03:52] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : TestLogin3@trucmuche.fr
+[2025-10-24 14:03:52] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Utilisateur trouvé par son email ou son username
+[2025-10-24 14:03:52] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-24 14:03:52] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Le mot de passe pour l'utilisateur: bf01a51e-78df-44a5-9687-4010ee66ffc2 est valide
+[2025-10-24 14:03:52] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-24 14:03:52] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=bf01a51e-78df-44a5-9687-4010ee66ffc2)
+[2025-10-24 14:03:52] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Première connexion détectée pour l'utilisateur: TestLogin3@trucmuche.fr
+[2025-10-24 14:03:52] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'TestLogin3@trucmuche.fr', 'username': 'TestLogin3', 'password_hash': '$2b$12$C8jWWywn6ixCE2d83Jc09.SowgBNJUwxpz7oC7SDMGIOmaSGX3eYe', 'first_name': 'Test', 'last_name': 'Login3', 'date_of_birth': datetime.date(2011, 2, 11), 'gender': 'other', 'height': 190, 'city': 'Laval', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': 'bf01a51e-78df-44a5-9687-4010ee66ffc2', 'created_at': datetime.datetime(2025, 10, 24, 12, 3, 52, 31736), 'updated_at': datetime.datetime(2025, 10, 24, 12, 3, 52, 288565), 'entry_date': datetime.date(2025, 10, 24)}
+[2025-10-24 14:03:52] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour TestLogin3@trucmuche.fr
+[2025-10-24 14:10:47] [ERROR] [auth_routes.login] [BACK][routes/auth.py][login] Unexpected error: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+[2025-10-24 14:10:47] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email TestLogin4@trucmuche.fr est validé
+[2025-10-24 14:10:47] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username TestLogin4 est validé
+[2025-10-24 14:10:47] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-24 14:10:47] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-24 14:10:47] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-24 14:10:47] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-24 14:10:47] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-24 14:10:47] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-24 14:10:47] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-24 14:10:47] [INFO] [user.profile_picture] [BACK][models/user.py][profile_picture.setter] Aucune profile_picture n'a été ajoutée
+[2025-10-24 14:10:47] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-24 14:10:47] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-24 14:10:47] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=a504916e-5c26-4644-9436-80a58a20c3e7)
+[2025-10-24 14:10:47] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : TestLogin4@trucmuche.fr
+[2025-10-24 14:10:47] [INFO] [auth_routes.register] [BACK][routes/auth_routes.py][register] Le nouvel utilisateur à été enregistré avec succès
+[2025-10-24 14:10:47] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-24 14:10:47] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Les données de connexion sont valides
+[2025-10-24 14:10:47] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : TestLogin4@trucmuche.fr
+[2025-10-24 14:10:47] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Utilisateur trouvé par son email ou son username
+[2025-10-24 14:10:47] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-24 14:10:47] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Le mot de passe pour l'utilisateur: a504916e-5c26-4644-9436-80a58a20c3e7 est valide
+[2025-10-24 14:10:47] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-24 14:10:47] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=a504916e-5c26-4644-9436-80a58a20c3e7)
+[2025-10-24 14:10:47] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Première connexion détectée pour l'utilisateur: TestLogin4@trucmuche.fr
+[2025-10-24 14:10:47] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'TestLogin4@trucmuche.fr', 'username': 'TestLogin4', 'password_hash': '$2b$12$UHMm8a2rHVxkP.B1cr6glupALID2ZHhDkkzqsLjomJ4r0OLJfSvvG', 'first_name': 'Test', 'last_name': 'Login4', 'date_of_birth': datetime.date(2011, 2, 11), 'gender': 'other', 'height': 190, 'city': 'Laval', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': 'a504916e-5c26-4644-9436-80a58a20c3e7', 'created_at': datetime.datetime(2025, 10, 24, 12, 10, 47, 624148), 'updated_at': datetime.datetime(2025, 10, 24, 12, 10, 47, 875156), 'entry_date': datetime.date(2025, 10, 24)}
+[2025-10-24 14:10:47] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour TestLogin4@trucmuche.fr
+[2025-10-24 14:19:44] [INFO] [user.email] [BACK][models/user.py][email.setter] L'email TestLogin5@trucmuche.fr est validé
+[2025-10-24 14:19:44] [INFO] [user.username] [BACK][models/user.py][username.setter] Le username TestLogin5 est validé
+[2025-10-24 14:19:44] [INFO] [user.first_name] [BACK][models/user.py][first_name.setter] Le first_name est validé
+[2025-10-24 14:19:44] [INFO] [user.last_name] [BACK][models/user.py][last_name.setter] Le last_name est validé
+[2025-10-24 14:19:44] [INFO] [user.gender] [BACK][models/user.py][gender.setter] Le champ gender est validé
+[2025-10-24 14:19:44] [INFO] [user.height] [BACK][models/user.py][height.setter] Le champ height est validé
+[2025-10-24 14:19:44] [INFO] [user.city] [BACK][models/user.py][city.setter] La city est validé
+[2025-10-24 14:19:44] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth convertie depuis une chaîne ISO.
+[2025-10-24 14:19:44] [INFO] [user.date_of_birth] [BACK][models/user.py][date_of_birth.setter] Date_of_birth est validé
+[2025-10-24 14:19:44] [INFO] [user.profile_picture] [BACK][models/user.py][profile_picture.setter] Aucune profile_picture n'a été ajoutée
+[2025-10-24 14:19:44] [INFO] [user.password_hash] [BACK][models/user.py][password_hash.setter] Le password est validé
+[2025-10-24 14:19:44] [INFO] [auth_service.validate_user_data] [BACK][services/auth_service.py][validate_register_data] Les valeurs enregistrées pour le nouvel user sont valides
+[2025-10-24 14:19:44] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=b45eaf42-ec82-4e78-a031-b69313557ae9)
+[2025-10-24 14:19:44] [INFO] [auth_service.create_user] [BACK][services/auth_service.py][create_user] Utilisateur créé et enregistré en BDD avec succès : TestLogin5@trucmuche.fr
+[2025-10-24 14:19:44] [INFO] [auth_routes.register] [BACK][routes/auth_routes.py][register] Le nouvel utilisateur à été enregistré avec succès
+[2025-10-24 14:19:44] [INFO] [auth_service.validate_login_data] [BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion
+[2025-10-24 14:19:44] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Les données de connexion sont valides
+[2025-10-24 14:19:44] [INFO] [auth_service.find_user_by_email_or_username] [BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : TestLogin5@trucmuche.fr
+[2025-10-24 14:19:44] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Utilisateur trouvé par son email ou son username
+[2025-10-24 14:19:45] [INFO] [auth_service.authenticate_user] [BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur
+[2025-10-24 14:19:45] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Le mot de passe pour l'utilisateur: b45eaf42-ec82-4e78-a031-b69313557ae9 est valide
+[2025-10-24 14:19:45] [INFO] [user.first_login] [BACK][models/user.py][first_login.setter] Le champ first_login est validé
+[2025-10-24 14:19:45] [INFO] [base.save] [BACK][models/base.py][save] L'instance a bien été enregistrée en BDD: User (id=b45eaf42-ec82-4e78-a031-b69313557ae9)
+[2025-10-24 14:19:45] [INFO] [auth_routes.login] [BACK][routes/auth.py][login] Première connexion détectée pour l'utilisateur: TestLogin5@trucmuche.fr
+[2025-10-24 14:19:45] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Access token généré pour {'email': 'TestLogin5@trucmuche.fr', 'username': 'TestLogin5', 'password_hash': '$2b$12$bXImvA0mP7OVu1w/jYQQweC2u1HzfIyY6RlHIuwJCOjXS/vAXtnXW', 'first_name': 'Test', 'last_name': 'Login5', 'date_of_birth': datetime.date(2006, 3, 3), 'gender': 'female', 'height': 180, 'city': 'Laval', 'profile_picture': None, 'role': 'user', 'first_login': False, 'id': 'b45eaf42-ec82-4e78-a031-b69313557ae9', 'created_at': datetime.datetime(2025, 10, 24, 12, 19, 44, 892809), 'updated_at': datetime.datetime(2025, 10, 24, 12, 19, 45, 151568), 'entry_date': datetime.date(2025, 10, 24)}
+[2025-10-24 14:19:45] [INFO] [auth_service.generate_tokens] [BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour TestLogin5@trucmuche.fr

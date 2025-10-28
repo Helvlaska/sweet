@@ -1,3 +1,4 @@
+import base64
 import os
 from jwt import ExpiredSignatureError, InvalidTokenError
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, set_access_cookies, set_refresh_cookies, unset_jwt_cookies, decode_token
@@ -24,6 +25,18 @@ def validate_user_data(data: dict):
     except (ValueError, TypeError) as e:
         app.logger.error(f"[BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: {str(e)}")
         raise
+
+def check_availability(data):
+    email = data.get("email")
+    username = data.get("username")
+
+    email_exists = User.query.filter_by(_email=email).first() is not None
+    username_exists = User.query.filter_by(_username=username).first() is not None
+
+    return {
+        "email_available": not email_exists,
+        "username_available": not username_exists
+    }
 
 
 def create_user(data: dict):
@@ -246,8 +259,9 @@ def sanitize_user_profile(user: User):
     if not isinstance(user, User):
         app.logger.error("[BACK][services/auth_service.py][sanitize_user_profile()] Le user n'est pas une instance de User")
         return None
-    exclude = ["_password_hash", "_role", "_first_login"]
+    exclude = ["_password_hash", "_role", "_first_login", "_profile_picture"]
     cleaned_user = user.to_dict(exclude=exclude)
+    cleaned_user["profile_picture"] = user.profile_picture
     app.logger.info(f"[BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour {user.email}")
     return cleaned_user
 
@@ -271,7 +285,7 @@ def update_profile(user: User, data: dict):
                 setattr(user, key, value)
         user.save()
         cleaned_user = sanitize_user_profile(user)
-        app.logger.info(f"[BACK][services/auth_service.py][update_profile()] Profil mis à jour avec succès pour {cleaned_user}")
+        app.logger.info(f"[BACK][services/auth_service.py][update_profile()] Profil mis à jour avec succès pour {user.email}")
         return cleaned_user
 
     except Exception as e:

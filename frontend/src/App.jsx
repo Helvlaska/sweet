@@ -1,3 +1,5 @@
+import AppRouter from "./routes/AppRouter"; // ton système de navigation
+
 export default function App() {
-  return <h1>Sweet Frontend connected ✅</h1>;
+  return <AppRouter />;
 }

@@ -21,6 +21,13 @@ def register():
         return jsonify({"error": "Internal server error"}), 500
 
 
+@auth_bp.route('/check-availability', methods=['POST'])
+def check_availability_route():
+    data = request.get_json()
+    result = auth_service.check_availability(data)
+    return jsonify(result), 200
+
+
 @auth_bp.route('/login', methods=['POST'])
 def login():
     """Authenticate user credentials and generate JWT tokens (public route)."""
