@@ -6,7 +6,9 @@ from app.utils import timelaps
 def validate_weight_data(data: dict) -> Weight:
     try:
         weight = Weight()
-        weight.mass = data.get("mass")
+        mass_value = data.get("mass") #type: ignore
+        mass_value: float = float(data.get("mass", 0.0))
+        weight.mass = mass_value
         app.logger.info("[BACK][services/data_service.py][validate_weight_data] La valeur du poids est valide")
         return weight
 
@@ -20,7 +22,7 @@ def create_weight_entry(user_id, data):
         weight = validate_weight_data(data)
         weight.user_id = user_id
         weight.save()
-        app.logger.info(f"[BACK][services/data_service.py][create_weight_entries()] Mesure {weight.mass} mg/dL enregistrée pour le user {user_id}")
+        app.logger.info(f"[BACK][services/data_service.py][create_weight_entries()] Mesure {weight.mass} kg enregistrée pour le user {user_id}")
         return weight.to_dict()
 
     except Exception as e:
