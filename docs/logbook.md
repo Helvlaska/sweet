@@ -1791,3 +1791,60 @@ Template du logbook:
   - J'ai bien avancé sur mon dashboard, heureusement que l'implémentation des cards sont assez similaire pour gagner un peu de temps.
 - ⚠️ À améliorer :
   - Même si l'esthétique n'est pas une priorité, je penses que je vais devoir prévoir un temps pour réfléchir à la composition de return html.
+
+---
+
+## Jour 32 – Dashboard (30/10/25)
+
+### 🎯 Objectifs du jour
+
+- Implémentation des cards des entités
+- Implémentation des cards des articles
+- Ajouter le logout à la NavBar
+- Commencer la page profile
+
+### ✅ Réalisé
+
+- [ ] Cards entités
+  - [ ] Card Mood
+    - [ ] Implémentation du header
+    - [ ] Implémentation du choix de l'humeur
+  - [ ] Card Meal
+    - [ ] Implémentation du header
+    - [ ] Implémentation de l'ajout de données
+  - [ ] Card Medication
+    - [ ] Implémentation du header
+    - [ ] Implémentation du graphique
+    - [ ] Implémentation du footer
+- [ ] Ajout du logout dans la Navbar
+- [ ] Implémentation de la section des card article
+- [ ] Implémentation de la page profile
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+  - Branche tirée pour la mise en place du dashboard → `dashboard-branch`
+  - Mise à jour du journal de bord → `logbook`
+
+- Commits :
+  - 📝 (docs/logbook.md): Set objectives for day 4 week 4
+  - 📝 (docs/logbook.md): Update progress for day 4 week 4
+
+### 🧪 QA (tests faits)
+
+- [ ] Tests en live de l'entrée de données pour les différentes entités → OK
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide (fin de journée)
+
+- ✅ Points positifs :
+  -
+- ⚠️ À améliorer :
+  -
