@@ -1732,27 +1732,35 @@ Template du logbook:
 
 - Création de la NavBar
 - Création du header
-- Création des cards des entités de mesure
-- Création des cards des articles
+- Création des cards des entités de mesure (en cours)
 
 ### ✅ Réalisé
 
-- [ ] NavBar
-  - [ ] Implémentation des routes de redirection
-  - [ ] Implémentation des icones des boutons de redirection
-- [ ] Header
-  - [ ] Implémentation de l'image d'illustration
-  - [ ] Implémentation de la bulle de bienvenu
-  - [ ] Implémentation de l'affichage de la date du jour
-- [ ] Cards entités
-  - [ ] Card glycémie
-    - [ ] Implémentation du header
-    - [ ] Implémentation du graphique
-    - [ ] Implémentation des boutons de timelaps
+- [X] NavBar
+  - [X] Implémentation des routes de redirection
+  - [X] Implémentation des icones des boutons de redirection
+- [X] Header
+  - [X] Implémentation de l'image d'illustration
+  - [X] Implémentation de la bulle de bienvenu
+  - [X] Implémentation de l'affichage de la date du jour
+- [X] Cards entités
+  - [X] Card glycémie
+    - [X] Implémentation du header
+    - [X] Implémentation du graphique
+    - [X] Implémentation des boutons de timelaps
+  - [X] Card activity
+    - [X] Implémentation du header
+    - [X] Implémentation du graphique
+    - [X] Implémentation des boutons de timelaps
+  - [X] Card weight
+    - [X] Implémentation du header
+    - [X] Implémentation du graphique
+    - [X] Implémentation des boutons de timelaps
 
 ### 🪲 Bugs / difficultés rencontrées
 
--
+- Difficulté pour envoyer des float à décimale 0, lorsque j'enregistrais des float 120.0 la valeur envoyée au backend était 120 → Modification du backend pour qu'il accepte les float et les int.
+- Difficulté sur l'implémentation des graphiques → Formation.
 
 ### 🔀 SCM (branches & commits)
 
@@ -1761,20 +1769,25 @@ Template du logbook:
   - Mise à jour du journal de bord → `logbook`
 
 - Commits :
-  - 📝 (docs/logbook.md): Set objectives for day 4 week 4
-  - 📝 (docs/logbook.md): Update progress for day 4 week 4
+  - 📝 (docs/logbook.md): Set objectives for day 3 week 4
+  - ✨ (services/activityService.js, services/glycemiaService.js, services/weightService.js): Add activity, glycemia, and weight services for managing user data
+  - ➕ (models/weight.py): Update mass setter to accept both float and int types, ensuring proper type handling and logging
+  - ♻️ (services/weight_service.py): Refactor weight validation to ensure mass is correctly converted to float and update logging message for weight entry creation
+  - ✨ (DashboardPage/dashboardActivity.jsx, DashboardPage/dashboardGlycemia.jsx, DashboardPage/dashboardWeight.jsx, DashboardPage/dashboardHeader.jsx, DashboardPage/dashboardNavbar.jsx): Add ActivityCard, GlycemiaCard, DashboardHeader, and WeightCard components for managing activity, glycemia, and weight data with charts and input forms
+  - ➕ (pages/DashboardPage.jsx): Add DashboardHeader, ActivityCard, and WeightCard components to enhance data management on the dashboard
+  - 📝 (docs/logbook.md): Update progress for day 3 week 4
 
 ### 🧪 QA (tests faits)
 
-- [ ]
+- [ ] Tests en live de l'entrée de données pour les différentes entités → OK
 
 ### 💡 Notes / décisions
 
--
+- Continuer l'implémentation des features sans style → Privilégier la logique de fonctionnement, le beau ensuite.
 
 ### 🔄 Rétro rapide (fin de journée)
 
 - ✅ Points positifs :
-  -
+  - J'ai bien avancé sur mon dashboard, heureusement que l'implémentation des cards sont assez similaire pour gagner un peu de temps.
 - ⚠️ À améliorer :
-  -
+  - Même si l'esthétique n'est pas une priorité, je penses que je vais devoir prévoir un temps pour réfléchir à la composition de return html.
