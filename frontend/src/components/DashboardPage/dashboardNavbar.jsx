@@ -8,9 +8,6 @@ function NavBar() {
     if (loading) {
         return <nav>Chargement...</nav>;
     }
-    console.log(user.profile_picture)
-    console.log("DEBUG NavBar -> user:", user);
-    console.log("DEBUG NavBar -> profile_picture:", user?.profile_picture?.slice(0, 50));
 
     return (
         <nav>
