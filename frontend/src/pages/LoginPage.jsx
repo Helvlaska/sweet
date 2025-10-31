@@ -6,12 +6,22 @@ import { formatData } from "../utils/dataFormatter";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
+// Import des images
+import illustrationLoginOpen from "../assets/login/ConnextionIllustration.png";
+import illustrationLoginClose from "../assets/login/ConnextionIllustrationYeuxFerme.png";
+import passwordIconOpen from "../assets/icones/eye-open.png";
+import passwordIconClose from "../assets/icones/eye-close.png";
+import redCross from "../assets/icones/red-cross.png";
+
 function LoginPage() {
     // Stockage des champs du formulaire
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
+
+    // Gestion du password visible/invisible
+    const [showPassword, setShowPassword] = useState(false);
 
     // Gestion des succes/error messages
     const [errorMessage, setErrorMessage] = useState("");
@@ -74,6 +84,10 @@ function LoginPage() {
         return true;
     }
 
+    function togglePasswordVisibility() {
+        setShowPassword(!showPassword);
+    };
+
     // Fonction d'envoie de l'objet vers le backend
     async function handleSubmit(event) {
         event.preventDefault();
@@ -102,43 +116,48 @@ function LoginPage() {
     });
   }
     return (
-        <form onSubmit={handleSubmit} className="login">
-            <div className="login-group">
-                <label></label>
-                <input id="email" name="email" type="email" value={email} onChange={handleChange} placeholder="Email" />
+        <div className="login">
+            <form onSubmit={handleSubmit} className="login__form">
+                <div className="login__group">
+                    <input id="email" name="email" type="email" value={email} onChange={handleChange} placeholder="Adresse mail" className="login__input" />
+                </div>
+                <div className="login__group">
+                    <input id="username" name="username" type="text" value={username} onChange={handleChange} placeholder="Ou Nom d'utilisateur" className="login__input" />
+                </div>
+                <div className="login__group login__group--password">
+                    <input id="password" name="password" type={showPassword ? "text" : "password"} value={password} onChange={handleChange} placeholder="Mot de passe" className="login__input" />
+                    <img
+                        src={showPassword ? passwordIconOpen : passwordIconClose}
+                        alt={showPassword ? "Icône œil ouvert" : "Icône œil fermé"}
+                        className="login__icon"
+                        onClick={togglePasswordVisibility} />
+                </div>
+                {errorMessage &&
+                    <p className="login__message login__message--error">
+                        <img src= {redCross} className="login__message--error-redcross" />
+                        {errorMessage}
+                    </p>}
+                {successMessage && <p className="login__message login__message--success">{successMessage}</p>}
+                <div className="login__extras">
+                    <label htmlFor="rememberMe" className="login__remember">
+                        <input type="checkbox" id="rememberMe" name="rememberMe" checked={rememberMe} onChange={handleChange} className="login__checkbox" />
+                        &nbsp;Se souvenir de moi
+                    </label>
+                </div>
+                <div className="login__actions">
+                    <button type="submit" className="login__button">Se connecter</button>
+                </div>
+                <div className="login__cta">
+                    <p>
+                        Pas encore de compte ?{" "}
+                        <Link to="/register" className="login__link">Inscription ici</Link>
+                    </p>
+                </div>
+            </form>
+            <div className="login__illustration">
+                <img src={showPassword ? illustrationLoginOpen : illustrationLoginClose} alt="Mascotte Sweet en train de dire bonjour" className="login__mascot" />
             </div>
-
-            <div className="login-group">
-                <label></label>
-                <input id="username" name="username" type="text" value={username} onChange={handleChange} placeholder="Username" />
-            </div>
-
-            <div className="login-group">
-                <label></label>
-                <input id="password" name="password" type="password" value={password} onChange={handleChange} placeholder="Password" />
-            </div>
-
-            <div className="login-extras">
-                <label htmlFor="rememberMe">
-                    <input type="checkbox" id="rememberMe" name="rememberMe" checked={rememberMe} onChange={handleChange} />
-                    &nbsp;Se souvenir de moi
-                </label>
-            </div>
-
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-            {successMessage && <p className="success-message">{successMessage}</p>}
-
-            <div className="form-actions">
-                <button type="submit">Se connecter</button>
-            </div>
-
-             <div className="register-cta">
-                <p>
-                    Pas encore de compte ?
-                    <Link to="/register">Inscris-toi</Link>
-                </p>
-            </div>
-        </form>
+        </div>
     )
 }
 export default LoginPage
