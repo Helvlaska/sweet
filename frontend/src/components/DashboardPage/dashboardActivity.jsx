@@ -196,7 +196,7 @@ function ActivityCard() {
         {loading ? (
           <span className="average-value">...</span>
         ) : average !== null ? (
-          <span className="average-value">{average} min</span>
+          <span className="average-value">{average} min/j</span>
         ) : (
           <span className="average-value">Aucune donnée</span>
         )}
@@ -218,7 +218,7 @@ function ActivityCard() {
           {loading ? (
             <span>...</span>
           ) : average !== null ? (
-            <span>{average} min</span>
+            <span>{average} min/j</span>
           ) : (
             <span>Aucune donnée</span>
           )}
