@@ -11,16 +11,22 @@ import NavBar from "../components/DashboardPage/dashboardNavbar";
 import GlycemiaCard from "../components/DashboardPage/dashboardGlycemia";
 import ActivityCard from "../components/DashboardPage/dashboardActivity";
 import WeightCard from "../components/DashboardPage/dashboardWeight";
+import MoodCard from "../components/DashboardPage/dashboardMood";
+import MealCard from "../components/DashboardPage/dashboardMeal";
 
 function DashboardPage() {
     return (
         <div>
-            <DashboardHeader />
             <NavBar />
             <div>
-                <GlycemiaCard />
-                <ActivityCard />
-                <WeightCard />
+                <DashboardHeader />
+                <div>
+                    <GlycemiaCard />
+                    <ActivityCard />
+                    <MoodCard />
+                    <MealCard />
+                    <WeightCard />
+                </div>
             </div>
         </div>
     )
