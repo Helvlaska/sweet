@@ -1,0 +1,22 @@
+// Styles globaux
+@use "./base/reset";
+@use "./base/breakpoints";
+@use "./base/typography";
+@use "./base/variables";
+
+// LandingPage
+@use "../pages/landingPage";
+
+// LoginPage
+@use "../pages/loginPage";
+
+// RegisterPage
+@use "../pages/registerPage";
+@use "../components/RegisterPage/formPart1";
+@use "../components//RegisterPage//formPart2";
+
+// NavBar
+@use "../components//DashboardPage/dashboardNavbar";
+
+// DashboardPage
+@use "../components/DashboardPage/dashboardHeader";

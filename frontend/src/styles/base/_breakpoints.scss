@@ -1,0 +1,45 @@
+// Largeur maximale du contenu principal
+$max-width-container: 1440px;
+
+
+// Breakpoints
+$breakpoints: (
+  "xs": 480px,   // Téléphones petits
+  "sm": 768px,   // Téléphones larges / Tablettes portrait
+  "md": 1024px,  // Tablettes paysage / petits laptops
+  "lg": 1280px,  // Laptops standards
+  "xl": 1536px   // Écrans larges
+);
+
+
+
+// Mixin breakpoints → @include respond-to("md") {...}
+@mixin respond-to($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if $value {
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Le breakpoint `#{$breakpoint}` n’existe pas. Vérifie ton _breakpoints.scss !";
+  }
+}
+
+
+// Gestion de la width sur les écrans géants
+body {
+  width: 100%;
+  max-width: $max-width-container;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+
+  @include respond-to("md") {
+    padding: 0;
+  }
+
+  @media (min-width: 1920px) {
+    max-width: 1600px;
+  }
+}
