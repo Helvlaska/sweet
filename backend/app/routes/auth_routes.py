@@ -1,5 +1,5 @@
-from flask import current_app as app, Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required
+from flask import current_app as app, Blueprint, make_response, request, jsonify
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, set_access_cookies
 from app.services import auth_service
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -63,6 +63,22 @@ def logout():
     """Logout the current user and clear all JWT cookies (JWT required)."""
     app.logger.info(f"[BACK][routes/auth.py][logout] Demande de déconnexion reçue")
     return auth_service.logout_user()
+
+
+@auth_bp.route("/refresh", methods=["POST"])
+@jwt_required(refresh=True)
+def refresh():
+    """Régénère un access token à partir du refresh token (JWT refresh required)."""
+    try:
+        current_user_id = get_jwt_identity()
+        new_access_token = create_access_token(identity=current_user_id)
+        response = make_response(jsonify({"message": "Access token refreshed"}), 200)
+        set_access_cookies(response, new_access_token)
+        app.logger.info(f"[BACK][routes/auth_routes.py][refresh()] Nouveau access_token généré pour user_id={current_user_id}")
+        return response
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/auth_routes.py][refresh()] Erreur lors du refresh : {str(e)}")
+        return jsonify({"error": "Impossible de régénérer le token"}), 401
 
 
 @auth_bp.route('/reset', methods=['POST'])

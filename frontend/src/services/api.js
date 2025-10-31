@@ -11,12 +11,25 @@ export const api = axios.create({
 // On redirige automatiquement vers la page de login
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response && error.response.status === 401) {
-      console.warn("[API] Session expirée, redirection vers /login");
-      // Redirection immédiate (rafraîchit la page pour effacer le contexte utilisateur)
-      window.location.href = "/login";
+  async (error) => {
+    const originalRequest = error.config;
+
+    // Si token expiré (401) et qu'on n'a pas déjà essayé de refresh
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      try {
+        console.warn("[API] Access token expiré, tentative de refresh...");
+        await api.post("/auth/refresh");               // 🔄 Appel au backend pour régénérer le cookie
+        console.info("[API] Nouveau token généré, relance de la requête initiale");
+        return api(originalRequest);                   // Relance la requête initiale
+      } catch (refreshError) {
+        console.warn("[API] Refresh token invalide, redirection vers /login");
+        window.location.href = "/login";
+        return Promise.reject(refreshError);
+      }
     }
+
     return Promise.reject(error);
   }
 );
+

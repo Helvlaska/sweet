@@ -14,7 +14,7 @@ import DashboardPage from "../pages/DashboardPage";
 // import ForumPage from "../pages/ForumPage";
 // import CalendarPage from "../pages/CalendarPage";
 // import ArticlePage from "../pages/ArticlePage";
-// import ProfilePage from "../pages/ProfilePage";
+import ProfilePage from "../pages/ProfilePage";
 // import NotFoundPage from "../pages/NotFoundPage";
 
 export default function AppRouter() {
@@ -28,10 +28,10 @@ export default function AppRouter() {
 
         {/* Routes sécurisées */}
         <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <DashboardPage />
-            </ProtectedRoute>
-          } />
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        } />
         {/*<Route path="/professionals" element={
             <ProtectedRoute>
               <HealthProPage />
@@ -52,11 +52,11 @@ export default function AppRouter() {
               <ArticlePage />
             </ProtectedRoute>
           } />*/}
-        {/*<Route path="/profil" element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          } />*/}
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        } />
 
         {/* Gestion routes inconnues */}
         <Route path="*" element={<Navigate to="/" />} />
