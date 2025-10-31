@@ -102,32 +102,31 @@ def authenticate_user(user: User, password: str):
 
 
 def generate_tokens(user: User, remember_me=False):
-    """Generate JWT access and refresh tokens for a user"""
     try:
-        # Générer l'access token de base
         access_token = create_access_token(identity=user.id, expires_delta=timedelta(hours=24))
-        app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Access token généré pour {user.to_dict()}")
-        # Générer le refresh token seulement si "remember me" est activé
         refresh_token = None
         if remember_me:
             refresh_token = create_refresh_token(identity=user.id, expires_delta=timedelta(hours=48))
-            app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Refresh token généré (remember_me=True)")
-        # Construire la réponse
+
         response_data = {
             "message": "Authentification réussie",
             "user": user.email,
             "remember_me": remember_me
         }
         response = make_response(jsonify(response_data), 200)
-        set_access_cookies(response, access_token)
+
+        # 🍪 Durée du cookie = cohérente avec la durée du token
+        set_access_cookies(response, access_token, max_age=24*3600)
         if refresh_token:
-            set_refresh_cookies(response, refresh_token)
-        app.logger.info(f"[BACK][services/auth_service.py][generate_tokens()] Cookies JWT définis avec succès pour {user.email}")
+            set_refresh_cookies(response, refresh_token, max_age=48*3600)
+
+        app.logger.info(f"[BACK][generate_tokens()] Cookies JWT définis avec succès pour {user.email}")
         return response
 
     except Exception as e:
-        app.logger.error(f"[BACK][services/auth_service.py][generate_tokens()] Erreur lors de la génération des tokens : {str(e)}")
+        app.logger.error(f"[BACK][generate_tokens()] Erreur lors de la génération des tokens : {str(e)}")
         raise
+
 
 
 def logout_user():

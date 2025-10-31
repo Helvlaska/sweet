@@ -1,5 +1,7 @@
-import AppRouter from "./routes/AppRouter"; // ton système de navigation
+import AppRouter from "./routes/AppRouter";
+import "./styles/main.scss";
 
-export default function App() {
-  return <AppRouter />;
+function App() {
+    return <AppRouter />;
 }
+export default App;

@@ -1,7 +1,11 @@
-// Import pour communiquer avec le backend
-import {api} from "./api";
+import { api } from "./api"; // Permet de communiquer avec le backend
 
-// Récupération des routes backend de la glycemie
-const create = (data) => api.post("/data/glycemia", data, {headers: {"Content-type": "application/json"}})
+// Récupération des routes de glycémie
+const create_glycemia_entry = (data) => api.post("data/glycemia/", data);
+const get_glycemia_entries = (params) => api.get("data/glycemia/", { params });
+const get_glycemia_stats = (params) => api.get("data/glycemia/stats", { params });
+const update_glycemia_entry = (entry_id, data) => api.put(`data/glycemia/${entry_id}`, data);
+const delete_glycemia_entry = (entry_id) => api.delete(`data/glycemia/${entry_id}`);
 
-export const glycemiaService = {create}
+// Exportation des services
+export const glycemiaService = { create_glycemia_entry, get_glycemia_entries, get_glycemia_stats, update_glycemia_entry, delete_glycemia_entry,};

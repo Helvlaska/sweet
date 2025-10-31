@@ -1,0 +1,47 @@
+@use "../../styles/base/variables" as *;
+@use "../../styles/base/breakpoints" as *;
+
+.header-dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 20px 0px 0px 120px;
+    .header-dashboard__left {
+        display: flex;
+        align-items: flex-end;
+        .header-dashboard__illustration {
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        .header-dashboard__bubble {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .header-dashboard__bubble-content {
+                position: absolute;
+                top: 65%;
+                left: 45%;
+                transform: translate(-50%, -50%);
+                color: white;
+                text-align: left;
+                width: 75%;
+                .header-dashboard__text {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+    .header-dashboard__right {
+        text-align: right;
+        color: $dark-grey;
+        .header-dashboard__date-title {
+            font-size: 30px;
+            line-height: 10px;
+        }
+        .header-dashboard__date {
+            font-size: 30px;
+            line-height: 10px;
+        }
+    }
+}

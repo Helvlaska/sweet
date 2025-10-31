@@ -85,5 +85,5 @@ class BaseModel(db.Model):
             value = getattr(self, column.name)
             if hasattr(value, "isoformat"):
                 value = value.isoformat()
-                result[key] = value
+            result[key] = value
         return result

@@ -4,10 +4,16 @@ import { formatData } from "../../utils/dataFormatter";
 import { authService } from "../../services/authService";
 
 function FormPart1Logic(formData, updateFormData, nextStep) {
+    // Stockage des champs du formulaire
     const [email, setEmail] = useState(formData.email || "");
     const [username, setUsername] = useState(formData.username || "");
     const [password, setPassword] = useState(formData.password || "");
+
+    // Gestion des messages d'erreur
     const [errorMessage, setErrorMessage] = useState("");
+
+    // Gestion du password visible/invisible
+    const [showPassword, setShowPassword] = useState(false);
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -56,6 +62,10 @@ function FormPart1Logic(formData, updateFormData, nextStep) {
         return true;
     }
 
+    function togglePasswordVisibility() {
+        setShowPassword(!showPassword);
+    };
+
     function handleSubmit(event) {
         event.preventDefault();
         if (!validateForm()) return;
@@ -69,8 +79,8 @@ function FormPart1Logic(formData, updateFormData, nextStep) {
     }
 
     return {
-        email, username, password, errorMessage,
-        handleChange, handleBlur, handleSubmit
+        email, username, password, errorMessage, showPassword,
+        handleChange, handleBlur, handleSubmit, togglePasswordVisibility
     };
 }
 

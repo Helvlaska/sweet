@@ -16,10 +16,10 @@ class Weight(BaseModel):
 
     @mass.setter
     def mass(self, value):
-        if not isinstance(value, float):
-            app.logger.error("[BACK][models/weight.py][mass.setter] Le poids doit être un float")
+        if not isinstance(value, (float, int)):
+            app.logger.error(f"[BACK][models/weight.py][mass.setter] Le poids {value} doit être un float")
             raise TypeError("Le poids doit être un float")
         if value < 1.0 or value > 400.0:
             app.logger.error("[BACK][models/weight.py][mass.setter] Le poids doit être compris entre 1 et 400 kg")
             raise ValueError("Le poids doit être compris entre 1 et 400 kg")
-        self._mass = value
+        self._mass = float(value)

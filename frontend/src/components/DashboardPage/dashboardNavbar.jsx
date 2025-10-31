@@ -1,28 +1,69 @@
-import { Link } from "react-router-dom";
-//import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import profilePicture from "../../assets/images/02-illustration-ferme.png"
+
+// import des icones
+import DashboardIcon from "../../assets/dashboard/navbar/NavBarIconDashboard.svg";
+import CalendarIcon from "../../assets/dashboard/navbar/NavBarIconCalendar.svg";
+import ProfessionalsIcon from "../../assets/dashboard/navbar/NavBarIconProMedical.svg";
+import ForumIcon from "../../assets/dashboard/navbar/NavBarIconTchat.svg";
+import LogoutIcon from "../../assets/dashboard/navbar/NavBarIconLogOut.svg";
 
 function NavBar() {
-    const { user, loading } = useAuth();
+    const { user, loading, logout } = useAuth();
     if (loading) {
         return <nav>Chargement...</nav>;
     }
-    console.log(user.profile_picture)
-    console.log("DEBUG NavBar -> user:", user);
-    console.log("DEBUG NavBar -> profile_picture:", user?.profile_picture?.slice(0, 50));
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+        } catch (error) {
+            console.error("Erreur lors de la déconnexion :", error);
+        }
+    };
 
     return (
-        <nav>
-            <Link to="/profile" className="profile-avatar">
-                <img src={user?.profile_picture || profilePicture} alt="Profil" />
-            </Link>
-            <Link to="/dashboard">dashboard</Link>
-            <Link to="/calendar">calendar</Link>
-            <Link to="/professionals">professionals</Link>
-            <Link to="/forum">forum</Link>
+        <nav className="navbar">
+            <div className="navbar__links">
+                <div className="navbar__actions">
+                    <Link to="/profile" className="navbar__profile">
+                        <img src={user?.profile_picture} alt="Profil" className="navbar__avatar" />
+                    </Link>
+                    <button onClick={handleLogout} className="navbar__logout">
+                        <img src= {LogoutIcon} />
+                    </button>
+                </div>
+                <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                        isActive ? "navbar__icon navbar__icon--active" : "navbar__icon"
+                    }>
+                    <img src={DashboardIcon} alt="Dashboard" />
+                </NavLink>
+                <NavLink
+                    to="/calendar"
+                    className={({ isActive }) =>
+                        isActive ? "navbar__icon navbar__icon--active" : "navbar__icon"
+                    }>
+                    <img src={CalendarIcon} alt="Calendar" />
+                </NavLink>
+                <NavLink
+                    to="/professionals"
+                    className={({ isActive }) =>
+                        isActive ? "navbar__icon navbar__icon--active" : "navbar__icon"
+                    }>
+                    <img src={ProfessionalsIcon} alt="Professionals" />
+                </NavLink>
+                <NavLink
+                    to="/forum"
+                    className={({ isActive }) =>
+                    isActive ? "navbar__icon navbar__icon--active" : "navbar__icon"
+                    }>
+                    <img src={ForumIcon} alt="Forum" />
+                </NavLink>
+            </div>
         </nav>
-    )
+    );
 }
 
 export default NavBar

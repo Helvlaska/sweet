@@ -5,6 +5,7 @@ import { formatData } from "../../utils/dataFormatter";
 import { useNavigate } from "react-router-dom";
 
 function FormPart2Logic(formData, updateFormData) {
+    // Stockage des champs du formulaire
     const [firstName, setFirstName] = useState(formData.first_name || "");
     const [lastName, setLastName] = useState(formData.last_name || "");
     const [gender, setGender] = useState(formData.gender || "");
@@ -13,8 +14,12 @@ function FormPart2Logic(formData, updateFormData) {
     const [dateOfBirth, setDateOfBirth] = useState(formData.date_of_birth || "");
     const [profilePicture, setProfilePicture] = useState(null);
 
+    // Gestion des messages d'erreur
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+
+    // Gestion de la preview de la photo de profile
+    const [preview, setPreview] = useState(null);
 
     const navigate = useNavigate();
 
@@ -61,6 +66,14 @@ function FormPart2Logic(formData, updateFormData) {
         setErrorMessage("");
         return true;
     }
+
+    function handleFileChange(event) {
+        const file = event.target.files[0];
+        if (file) {
+            setPreview(URL.createObjectURL(file));
+            setProfilePicture(file); 
+        }
+    };
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -112,8 +125,8 @@ function FormPart2Logic(formData, updateFormData) {
 
     return {
         firstName, lastName, gender, height, city, dateOfBirth, profilePicture,
-        errorMessage, successMessage,
-        handleChange, handleSubmit
+        errorMessage, successMessage, preview,
+        handleChange, handleSubmit, handleFileChange
     };
 }
 

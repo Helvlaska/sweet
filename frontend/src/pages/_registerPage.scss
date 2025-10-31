@@ -1,0 +1,9 @@
+@use "../styles/base/variables" as *;
+@use "../styles/base/breakpoints" as *;
+
+.register-page {
+    padding: 20px;
+    width: 100vw;
+    height: 100vh;
+    background-color: $light-grey;
+}

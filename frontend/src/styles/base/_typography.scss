@@ -1,0 +1,93 @@
+// Import breakpoint
+@use './breakpoints' as *;
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+// Polices importées depuis Google Fonts (déjà dans ton index.html ou _main.scss)
+$font-heading: 'Inter', sans-serif;
+$font-body: 'Roboto', sans-serif;
+
+
+// Base globale
+html, body {
+  font-family: $font-body;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+// Titres
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  line-height: 1.3;
+  letter-spacing: 0.2px;
+  margin-bottom: 0.5rem;
+}
+
+h1 { font-size: 2.5rem; font-weight: 400; } // 40px
+h2 { font-size: 2rem;   font-weight: 600; } // 32px
+h3 { font-size: 1.5rem; font-weight: 600; } // 24px
+h4 { font-size: 1.25rem;font-weight: 500; } // 20px
+h5 { font-size: 1.125rem;font-weight: 500; } // 18px
+h6 { font-size: 1rem;   font-weight: 600; } // 16px
+
+
+// Paragraphes et textes
+p {
+  font-family: $font-body;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+small, .caption {
+  font-size: 0.875rem;
+}
+
+strong {
+  font-weight: 600;
+}
+
+
+// Liens & boutons
+a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+button {
+  font-family: $font-heading;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+
+// Responsive typography
+@include respond-to("sm") {
+  h1 { font-size: 2.25rem; } // 36px
+  h2 { font-size: 1.875rem; } // 30px
+  h3 { font-size: 1.375rem; } // 22px
+}
+
+@include respond-to("xs") {
+  h1 { font-size: 1.75rem; } // 28px
+  h2 { font-size: 1.5rem; }  // 24px
+  h3 { font-size: 1.25rem; } // 20px
+  p  { font-size: 0.9375rem; } // 15px
+}
+
+
+// Accessibilité visuelle
+::selection {
+  background-color: rgba(110, 193, 228, 0.25); // accent doux Sweet
+}
+
