@@ -115,7 +115,7 @@ def generate_tokens(user: User, remember_me=False):
         }
         response = make_response(jsonify(response_data), 200)
 
-        # 🍪 Durée du cookie = cohérente avec la durée du token
+        # Durée du cookie = cohérente avec la durée du token
         set_access_cookies(response, access_token, max_age=24*3600)
         if refresh_token:
             set_refresh_cookies(response, refresh_token, max_age=48*3600)
@@ -185,7 +185,7 @@ def send_reset_email(user: User, reset_token: str):
         # Construire le lien de réinitialisation
         reset_link = f"{os.getenv('FRONTEND_URL')}/reset-password?token={reset_token}"
         # Contenu du mail
-        subject = "🔐 Réinitialisation de votre mot de passe - Sweet"
+        subject = "Réinitialisation de votre mot de passe - Sweet"
         html_body = f"""
         <html>
             <body>
@@ -258,7 +258,7 @@ def sanitize_user_profile(user: User):
     if not isinstance(user, User):
         app.logger.error("[BACK][services/auth_service.py][sanitize_user_profile()] Le user n'est pas une instance de User")
         return None
-    exclude = ["_password_hash", "_role", "_first_login", "_profile_picture"]
+    exclude = ["_password_hash", "_first_login", "_profile_picture"]
     cleaned_user = user.to_dict(exclude=exclude)
     cleaned_user["profile_picture"] = user.profile_picture
     app.logger.info(f"[BACK][services/auth_service.py][sanitize_user_profile()] Profil nettoyé avec succès pour {user.email}")
@@ -280,7 +280,7 @@ def update_profile(user: User, data: dict):
     """Update user profile fields and commit changes"""
     try:
         for key, value in data.items():
-            if hasattr(user, key):
+            if hasattr(user, key) and value not in [None, "", "null"]:
                 setattr(user, key, value)
         user.save()
         cleaned_user = sanitize_user_profile(user)
