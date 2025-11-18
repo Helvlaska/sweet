@@ -4,7 +4,7 @@
 .landing {
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap;
+    align-items: center;
     padding: 20px;
     background-color: $light-grey;
     width: 100vw;
@@ -23,9 +23,9 @@
             display: flex;
             flex-direction: column;
             width: fit-content;
+            gap: 20px;
             .landing__btn {
                 padding: 13px 40px;
-                margin-bottom: 20px;
                 border: 2px solid $main-kaki;
                 border-radius: 50px;
                 color: $main-kaki;
@@ -39,5 +39,74 @@
     }
     .landing__image {
         height: 100%;
+    }
+
+    @include respond-to("xs") {
+        padding: 0;
+        flex-direction: column;
+        gap: 20px;
+        .landing__content {
+            width: 100%;
+            padding-top: 40px;
+            .landing__buttons {
+                width: 90%;
+                gap: 5px;
+            }
+        }
+        .landing__image {
+            width: 100%;
+            height: auto;
+            border-radius: 30px 30px 0 0;
+        }
+    }
+
+    @include respond-to("sm") {
+        padding: 0;
+        flex-direction: column;
+        gap: 30px;
+        .landing__content {
+            width: 100%;
+            padding-top: 40px;
+            .landing__buttons {
+                width: 60%;
+                gap: 15px;
+            }
+        }
+        .landing__image {
+            width: 100%;
+            height: auto;
+            border-radius: 30px 30px 0 0;
+        }
+    }
+
+    @include respond-to("md") {
+        padding: 20px;
+
+        .landing__content {
+            padding-top: 0px;
+            .landing__buttons {
+                width: 40%;
+            }
+        }
+        .landing__image {
+            height: 70%;
+            border-radius: 0;
+        }
+    }
+
+    @include respond-to("lg") {
+        justify-content: space-evenly;
+        flex-direction: row;
+        .landing__content {
+            width: 30%;
+            .landing__buttons {
+                width: fit-content;
+                gap: 20px;
+            }
+        }
+        .landing__image {
+            width: auto;
+            height: 100%;
+        }
     }
 }

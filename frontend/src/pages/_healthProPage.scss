@@ -1,0 +1,270 @@
+@use "../styles/base/variables" as *;
+@use "../styles/base/breakpoints" as *;
+
+.healthpro {
+    height: 100vh;
+    width: 100vw;
+    &__body {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-left: 120px;
+        padding: 30px 40px 0px 0px;
+        .healthpro__list {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            width: 60%;
+            .healthpro__cards {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                .healthpro__card {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 15px;
+                    border-radius: 20px;
+                    background-color: $white;
+                    font-size: 15px;
+                    transition: transform 0.1s ease, box-shadow 0.1s ease;
+                    &:hover {
+                        transform: scale(1.01);
+                        cursor: pointer;
+                    }
+                }
+            }
+            .healthpro__add-btn {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                border-radius: 50px;
+                padding: 2px 20px;
+                font-size: 15px;
+                color: $light-grey;
+                background-color: $main-kaki;
+                img {
+                    border: 1px solid $light-grey;
+                    border-radius: 50%;
+                    padding: 10px;
+                    height: 80%;
+                }
+            }
+        }
+        .healthpro__details {
+            width: 40%;
+            .healthpro__details-card {
+                display: flex;
+                flex-direction: column;
+                gap: 11px;
+                background-color: $white;
+                border-radius: 15px;
+                padding: 15px;
+                height: 100%;
+                .healthpro__details-header {
+                    display: flex;
+                    justify-content: space-between;
+                    color: $dark-grey;
+                    .healthpro__details-close {
+                        cursor: pointer;
+                    }
+                }
+                .healthpro__details-info {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 10px;
+                    border-radius: 10px;
+                    padding: 10px;
+                    color: $white;
+                    background-color: $dark-lila;
+                    .healthpro__details-top {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        .healthpro__details-name {
+                            margin: 0;
+                        }
+                    }
+                    .healthpro__details-edit {
+                        cursor: pointer;
+                    }
+                    .healthpro__details-phone {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+        .healthpro__note-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            gap: 10px;
+            border: 1px solid $main-blue;
+            border-radius: 20px;
+            padding: 15px 10px;
+            width: 100%;
+            .healthpro__note-form-content {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                textarea {
+                    height: 5rem;
+                }
+            }
+            .healthpro__note-submit {
+                border: 1px solid $main-blue;
+                border-radius: 50px;
+                padding: 13px 23px;
+                margin: 0;
+                width: fit-content;
+                font-size: 11px;
+                color: $main-blue;
+                &:hover {
+                    color: $white;
+                    background-color: $main-blue;
+                }
+            }
+        }
+        .healthpro__notes {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+            font-size: 18px;
+            color: $white;
+            .healthpro__note {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                border-radius: 10px;
+                padding: 10px;
+                background-color: $main-orange;
+                width: 32%;
+                .healthpro__note-text {
+                    width: 100%;
+                    .healthpro__note-date {
+                        margin: 0;
+                    }
+                }
+                .healthpro__note-view {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                    .healthpro__note-icon {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        cursor: pointer;
+        backdrop-filter: blur(2px);
+        &__content {
+            background-color: $white;
+            border-radius: 20px;
+            padding: 20px 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            position: relative;
+            overflow-y: auto;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            .popup__header {
+                display: flex;
+                flex-wrap: wrap;
+                .popup__close {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                }
+                .popup__title-pros {
+                    margin: 0;
+                    font-family: Roboto serif;
+                    font-size: 30px;
+                    font-weight: 400;
+                    text-align: center;
+                    width: 100%;
+                    color: $main-blue;
+                }
+                .popup__actions-header {
+                    display: flex;
+                    align-items: flex-end;
+                    gap: 20px;
+                    .popup__title-note {
+                        margin: 0;
+                        font-family: Roboto serif;
+                        font-size: 30px;
+                        font-weight: 400;
+                        width: 100%;
+                        color: $main-blue;
+                    }
+                    .popup__edit-icon {
+                        border: 1px solid $main-grey;
+                        border-radius: 50px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .popup__form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                width: 100%;
+                .popup__form-group {
+                    border: 1px solid $main-grey;
+                    border-radius: 10px;
+                    width: 60%;
+                    padding: 10px 20px;
+                    textarea {
+                        height: 10rem;
+                        width: 100%;
+                    }
+                }
+                .popup__actions {
+                    display: flex;
+                    gap: 20px;
+                    .popup__submit {
+                        border: 1px solid $main-blue;
+                        border-radius: 50px;
+                        padding: 13px 23px;
+                        margin-top: 4%;
+                        width: fit-content;
+                        font-size: 11px;
+                        color: $main-blue;
+                        &:hover {
+                            color: $white;
+                            background-color: $main-blue;
+                        }
+                    }
+                    .popup__submit-delete {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid $dark-grey;
+                        border-radius: 50px;
+                        img {
+                            width: 40%;
+                            height: fit-content;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
