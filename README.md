@@ -13,7 +13,6 @@ Sweet allows users to:
 - Track additional health indicators such as weight and daily activities.
 - Take notes for medical appointments.
 - View a dashboard with daily, weekly, and monthly summaries.
-- Explore simplified community features such as a forum and articles (for demonstration purposes).
 
 This MVP is not a certified medical tool. It is an academic project developed as part of the Portfolio Project at Holberton School.
 
@@ -34,15 +33,14 @@ This MVP is not a certified medical tool. It is an academic project developed as
 - Dashboard: Blood glucose entries with statistics (min, max, average).
 - Weight & Activity Tracking: Manual input.
 - Notes: Free text notes for medical appointments.
-- Simplified Forum: Create a topic and add comments.
 - Articles Section: Admin can post articles.
 
 ---
 
-## 🛠️ Tech Stack (to be refined later)
+## 🛠️ Tech Stack
 
 - Backend: Flask / Python
-- Frontend: HTML5, CSS3, JavaScript (responsive design)
+- Frontend: React / HTML5, SCSS, JavaScript (responsive design)
 - Database: MySQL / SQLAlchemy
 - Visualization: Chart.js
 
@@ -51,10 +49,10 @@ This MVP is not a certified medical tool. It is an academic project developed as
 ## 📅 Project Roadmap
 
 - Stage 1: Team Formation & Idea Development ✅
-- Stage 2: Project Charter
-- Stage 3: Technical Documentation
-- Stage 4: MVP Development
-- Stage 5: Project Closure
+- Stage 2: Project Charter                   ✅
+- Stage 3: Technical Documentation           ✅
+- Stage 4: MVP Development                   ✅
+- Stage 5: Project Closure                   ✅
 
 ---
 
