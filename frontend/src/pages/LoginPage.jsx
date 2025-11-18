@@ -94,27 +94,32 @@ function LoginPage() {
         if (!validateForm()) return;
 
         const rawData = {
-        email: email || undefined,
-        username: username || undefined,
-        password,
-        remember_me: rememberMe,
+            email: email || undefined,
+            username: username || undefined,
+            password,
+            remember_me: rememberMe,
         };
 
         formatData("user", rawData, async (formattedData) => {
-        try {
-            await login(formattedData);
+            try {
+                const user = await login(formattedData); // ✅ on récupère l'objet user
 
-            setSuccessMessage("Connexion réussie !");
-            setErrorMessage("");
+                setSuccessMessage("Connexion réussie !");
+                setErrorMessage("");
 
-            navigate("/dashboard");
-        } catch (err) {
-            console.error("[LoginPage] Erreur de connexion :", err);
-            setErrorMessage("Identifiants incorrects ou erreur serveur.");
-            setSuccessMessage("");
-        }
-    });
-  }
+                // ✅ Redirection intelligente selon le rôle
+                if (user?.role === "admin") {
+                    navigate("/admin");
+                } else {
+                    navigate("/dashboard");
+                }
+            } catch (err) {
+                console.error("[LoginPage] Erreur de connexion :", err);
+                setErrorMessage("Identifiants incorrects ou erreur serveur.");
+                setSuccessMessage("");
+            }
+        });
+    }
     return (
         <div className="login">
             <form onSubmit={handleSubmit} className="login__form">

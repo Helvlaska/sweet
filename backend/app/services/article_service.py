@@ -14,7 +14,6 @@ def validate_article_data(data: dict):
         article = Article()
         article.title = data.get("title")
         article.content = data.get("content")
-        article.likes = data.get("likes")
         app.logger.info(f"[BACK][services/article_service][validate_article_data] Données de l'article {article.title} validées")
         return article
 

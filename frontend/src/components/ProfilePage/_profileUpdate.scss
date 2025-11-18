@@ -1,0 +1,99 @@
+@use "../../styles/base/variables" as *;
+@use "../../styles/base/breakpoints" as *;
+
+.profile-update {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0px 0px 0px 120px;
+    width: 100%;
+    height: 100vh;
+    .profile-update__header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+        text-align: center;
+        .profile-upload__profile-picture {
+            .profile-upload__input {
+                display: none;
+            }
+            .profile-upload__label {
+                .profile-upload__circle {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    .profile-upload__preview, .profile-upload__avatar {
+                        border-radius: 50%;
+                        width: 180px;
+                        height: 180px;
+                    }
+                    .profile-upload__icon {
+                        position: absolute;
+                        bottom: 10px;
+                        right: 10px;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 1.5rem;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        .profile-update__navigation {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            width: 100%;
+            .profile__button {
+                padding: 10px 40px;
+                background-color: $light-orange;
+                border-radius: 50px;
+                font-size: 12px;
+                color: $white;
+                width: fit-content;
+            }
+            .profile-update__button--secondary {
+                background-color: $main-orange;
+            }
+        }
+    }
+    .profile-update__body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 45%;
+        height: fit-content;
+        .profile-update__body-form {
+            width: 30%;
+            border: 1px solid $main-grey;
+            border-radius: 10px;
+            padding: 10px 15px;
+        }
+    }
+    .profile-update__button {
+        padding: 13px 20px;
+        border: 1px solid $main-violet;
+        border-radius: 50px;
+        font-size: 15px;
+        color: $main-violet;
+        width: fit-content;
+        &:hover {
+            background-color: $main-violet;
+            color: $white;
+        }
+    }
+}

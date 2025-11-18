@@ -26,9 +26,11 @@ function NavBar() {
         <nav className="navbar">
             <div className="navbar__links">
                 <div className="navbar__actions">
-                    <Link to="/profile" className="navbar__profile">
+                    <NavLink to="/profile" className={({ isActive }) =>
+                        isActive ? "navbar__profile navbar__profile--active" : "navbar__profile"
+                    }>
                         <img src={user?.profile_picture} alt="Profil" className="navbar__avatar" />
-                    </Link>
+                    </NavLink>
                     <button onClick={handleLogout} className="navbar__logout">
                         <img src= {LogoutIcon} />
                     </button>

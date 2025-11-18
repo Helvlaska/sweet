@@ -2,7 +2,7 @@ import { api } from "./api";
 
 
 function create_medication_entry(data) {
-  return api.post("data/medication/", data);
+  return api.post("data/medication/", data, {headers: {"Content-type": "application/json"}});
 }
 
 function get_medication_entries() {

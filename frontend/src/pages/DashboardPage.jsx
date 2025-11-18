@@ -10,26 +10,33 @@ import DashboardHeader from "../components/DashboardPage/dashboardHeader";
 import NavBar from "../components/DashboardPage/dashboardNavbar";
 import GlycemiaCard from "../components/DashboardPage/dashboardGlycemia";
 import ActivityCard from "../components/DashboardPage/dashboardActivity";
+import MedicationCard from "../components/DashboardPage/dashboardMedication";
 import WeightCard from "../components/DashboardPage/dashboardWeight";
 import MoodCard from "../components/DashboardPage/dashboardMood";
 import MealCard from "../components/DashboardPage/dashboardMeal";
+import ArticleCard from "../components/DashboardPage/dashboardArticle";
 
 function DashboardPage() {
     return (
-        <div>
+        <div className="dashboardPage">
             <NavBar />
-            <div>
+            <div className="dashboardPage__body">
                 <DashboardHeader />
-                <div>
-                    <GlycemiaCard />
-                    <ActivityCard />
-                    <MoodCard />
-                    <MealCard />
-                    <WeightCard />
+                <div className="dashboardPage__content">
+                    <div className="dashboardPage__master">
+                        <GlycemiaCard />
+                        <ActivityCard />
+                        <MedicationCard />
+                        <WeightCard />
+                    </div>
+                    <div className="dashboardPage__option">
+                        <MoodCard />
+                        <MealCard />
+                    </div>
                 </div>
+                <ArticleCard />
             </div>
         </div>
     )
-
 }
 export default DashboardPage;

@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from app import db
 from app.services import note_service
 
-note_bp = Blueprint('note', __name__, url_prefix='/data/health_professionals/<professional_id>/notes')
+note_bp = Blueprint('note', __name__, url_prefix='/data/health_professionals/<health_professional_id>/notes')
 
 
 @note_bp.route('/', methods=['POST'])
@@ -38,11 +38,13 @@ def get_note_entries_route(health_professional_id):
 
 @note_bp.route('/<notes_id>', methods=['PUT'])
 @jwt_required()
-def update_note_entry_route(notes_id):
+def update_note_entry_route(health_professional_id, notes_id):
     try:
         user_id = get_jwt_identity()
         new_data = request.get_json()
-        update_data = note_service.update_note_entry(user_id, notes_id, new_data)
+        update_data = note_service.update_note_entry(user_id, health_professional_id, notes_id, new_data)
+        if not update_data:
+            return jsonify({"message": "Note introuvable."}), 404
         app.logger.info(f"[BACK][routes/data.py][update_note_entry_route] Note {notes_id} mise à jour pour user {user_id}")
         return jsonify(update_data), 200
 
@@ -53,10 +55,12 @@ def update_note_entry_route(notes_id):
 
 @note_bp.route('/<notes_id>', methods=['DELETE'])
 @jwt_required()
-def delete_note_entry_route(notes_id):
+def delete_note_entry_route(health_professional_id, notes_id):
     try:
         user_id = get_jwt_identity()
-        result = note_service.delete_note_entry(notes_id, user_id)
+        result = note_service.delete_note_entry(user_id, health_professional_id, notes_id)
+        if not result:
+            return jsonify({"message": "Note introuvable."}), 404
         app.logger.info(f"[BACK][routes/data.py][delete_note_entry_route] Note {notes_id} supprimée avec succès pour user {user_id}")
         return jsonify(result), 200
 

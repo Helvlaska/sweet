@@ -18,5 +18,30 @@
 // NavBar
 @use "../components//DashboardPage/dashboardNavbar";
 
+// AdminPage
+@use "../pages/adminPage";
+
 // DashboardPage
+@use "../pages/dashboardPage";
 @use "../components/DashboardPage/dashboardHeader";
+@use "../components/DashboardPage/dashboardGlycemia";
+@use "../components/DashboardPage/dashboardActivity";
+@use "../components/DashboardPage/dashboardMedication";
+@use "../components/DashboardPage/dashboardWeight";
+@use "../components/DashboardPage/dashboardMood";
+@use "../components/DashboardPage/dashboardMeal";
+@use "../components/DashboardPage/dashboardArticle";
+
+// ArticlePage
+@use "../pages/articlePage";
+
+// ProfilePage
+@use "../pages/profilePage";
+@use "../components/ProfilePage/profileUpdate";
+@use "../components/ProfilePage/profileMedication";
+
+// HealthProPage
+@use "../pages/healthProPage";
+
+// NoteFoundPage
+@use "../pages/notFoundPage";

@@ -1,14 +1,15 @@
 // Largeur maximale du contenu principal
-$max-width-container: 1440px;
+$max-width-container: 1660px;
 
 
 // Breakpoints
 $breakpoints: (
-  "xs": 480px,   // Téléphones petits
-  "sm": 768px,   // Téléphones larges / Tablettes portrait
-  "md": 1024px,  // Tablettes paysage / petits laptops
-  "lg": 1280px,  // Laptops standards
-  "xl": 1536px   // Écrans larges
+  "xs": 360px,
+  "sm": 576px,
+  "md": 768px,
+  "lg": 1024px,
+  "xl": 1440px,     // Laptop Lenovo compact
+  "xxl": 1920px
 );
 
 
@@ -35,11 +36,7 @@ body {
   padding: 0;
   overflow-x: hidden;
 
-  @include respond-to("md") {
-    padding: 0;
-  }
-
-  @media (min-width: 1920px) {
-    max-width: 1600px;
+  @include respond-to("xxl") {
+    max-width: 1800px;
   }
 }

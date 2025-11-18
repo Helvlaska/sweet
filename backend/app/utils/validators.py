@@ -9,7 +9,7 @@ def make_identity_pattern(max_length: int, min_length: int = 1) -> str:
 # --------- Générateur de regex pour les champs texte (Forum, comment, article)
 def make_content_pattern(max_length: int, min_length: int = 1, multiline: bool = False) -> str:
     """Génère une regex whitelist pour champs de texte libre (forum, article, commentaire). Autorise lettres, chiffres, accents, ponctuation et espaces. Si multiline=True → autorise les retours à la ligne"""
-    base_chars = r"\wÀ-ÿ .,!?;:'\"()\-"
+    base_chars = r"\wÀ-ÿ0-9 ,;:’'\"«»\.\(\)\!\?\-\–—%°…\r\n"
     if multiline:
         return rf"^[{base_chars}\n]{{{min_length},{max_length}}}$"
     return rf"^[{base_chars}]{{{min_length},{max_length}}}$"
