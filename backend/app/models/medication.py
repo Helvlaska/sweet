@@ -11,7 +11,7 @@ class Medication(BaseModel):
     _dose = db.Column(db.Integer, nullable=False)
     _stock = db.Column(db.Integer, nullable=False)
     _frequency = db.Column(db.Enum("once_a_day", "twice_a_day", "three_times_a_day", "as_needed"), nullable=False)
-    _alert_threshold = db.Column(db.Integer, default=1000)
+    _alert_threshold = db.Column(db.Integer, default=3000)
 
     user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
 
