@@ -33,7 +33,7 @@ def get_all_articles_route():
         articles = article_service.get_all_articles(sort_by)
         if articles is None or len(articles) == 0:
             app.logger.error("[BACK][routes/article_routes][route_get_all_articles] Aucun article trouvé")
-            return jsonify({"message": "Article not found"}), 200
+            return jsonify([]), 200
         app.logger.info(f"[BACK][routes/article_routes][route_get_all_articles] {len(articles)} articles récupérés (sort_by={sort_by})")
         return jsonify(articles), 200
 
