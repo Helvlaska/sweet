@@ -47,20 +47,29 @@ def get_note_entries(user_id: str, health_professional_id: str) -> list[dict]:
         raise
 
 
-def update_note_entry(user_id: str, entry_id: str, new_data: dict):
+def update_note_entry(user_id: str, health_professional_id: str, note_id: str, new_data: dict):
+    """Met à jour une note existante pour un professionnel donné."""
     try:
-        entry = Note.query.filter_by(id=entry_id, user_id=user_id).first()
+        entry = Note.query.filter_by(id=note_id, user_id=user_id, health_professional_id=health_professional_id).first()
         if not entry:
-            app.logger.info("[BACK][services/note_service.py][update_note_entry] Aucune note trouvée pour cet utilisateur.")
+            app.logger.info(
+                f"[BACK][services/note_service.py][update_note_entry] Aucune note trouvée (user={user_id}, pro={health_professional_id}, note={note_id})")
             return None
         if "title" in new_data:
-            validated_title = validate_note_data({"title": new_data["title"], "content": entry.content})
-            entry.title = validated_title.title
+            validated = validate_note_data({
+                "title": new_data["title"],
+                "content": entry.content
+            })
+            entry.title = validated.title
         if "content" in new_data:
-            validated_content = validate_note_data({"content": new_data["content"], "title": entry.title})
-            entry.content = validated_content.content
+            validated = validate_note_data({
+                "title": entry.title,
+                "content": new_data["content"]
+            })
+            entry.content = validated.content
         entry.save()
-        app.logger.info(f"[BACK][services/note_service.py][update_note_entry] Note {entry_id} mise à jour : '{entry.title}' pour user {user_id}")
+        app.logger.info(
+            f"[BACK][services/note_service.py][update_note_entry] Note {note_id} mise à jour pour user={user_id}, pro={health_professional_id}")
         return entry.to_dict()
 
     except ValueError as e:
@@ -71,16 +80,18 @@ def update_note_entry(user_id: str, entry_id: str, new_data: dict):
         raise
 
 
-def delete_note_entry(entry_id: str, user_id: str):
-    """Supprime une note"""
+def delete_note_entry(user_id: str, health_professional_id: str, note_id: str):
+    """Supprime une note spécifique liée à un professionnel de santé."""
     try:
-        entry = Note.query.filter_by(id=entry_id, user_id=user_id).first()
+        entry = Note.query.filter_by(id=note_id, user_id=user_id, health_professional_id=health_professional_id).first()
         if not entry:
-            app.logger.info(f"[BACK][services/note_service.py][delete_note_entry] Aucune note trouvée pour user {user_id} (entry_id: {entry_id})")
+            app.logger.info(
+                f"[BACK][services/note_service.py][delete_note_entry] Aucune note trouvée (user={user_id}, pro={health_professional_id}, note={note_id})")
             return None
         entry.delete()
-        app.logger.info(f"[BACK][services/note_service.py][delete_note_entry] Note {entry_id} supprimée avec succès pour user {user_id}")
-        return {"deleted_entry_id": entry_id}
+        app.logger.info(
+            f"[BACK][services/note_service.py][delete_note_entry] Note {note_id} supprimée avec succès (user={user_id}, pro={health_professional_id})")
+        return {"deleted_note_id": note_id}
 
     except Exception as e:
         app.logger.error(f"[BACK][services/note_service.py][delete_note_entry] Erreur inattendue : {e}")
