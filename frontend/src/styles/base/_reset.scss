@@ -21,9 +21,9 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', 'Roboto', serif;
   color: #222;
-  background-color: #fff;
+  background-color: #F8F0EA;
 }
 
 /* Images et médias */
@@ -112,6 +112,7 @@ h4,
 h5,
 h6,
 p {
+  font-family: "roboto", serif;
   font-weight: normal;
 }
 
