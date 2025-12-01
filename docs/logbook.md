@@ -1794,31 +1794,25 @@ Template du logbook:
 
 ---
 
-## Jour 32 – Dashboard (30/10/25)
+## 💄 Jour 1 – Refonte Front-End (01/12/25)
 
-### 🎯 Objectifs du jour
+### 🎯 Objectifs du jour — Normalisation arborescence
 
-- Implémentation des cards des entités
-- Implémentation des cards des articles
-- Ajouter le logout à la NavBar
-- Commencer la page profile
+- Créer la nouvelle structure (assets, components, pages, utils, services, context, routes)
+- Déplacer chaque fichier dans son dossier logique
+- Réparer tous les imports cassés
+- Vérifier paths des images & icons
+- Vérifier que chaque composant possède : Component.jsx / Component.logic.js / Component.scss
+- Mettre à jour AppRouter si nécessaire
 
 ### ✅ Réalisé
 
-- [ ] Cards entités
-  - [ ] Card Mood
-    - [ ] Implémentation du header
-    - [ ] Implémentation du choix de l'humeur
-  - [ ] Card Meal
-    - [ ] Implémentation du header
-    - [ ] Implémentation de l'ajout de données
-  - [ ] Card Medication
-    - [ ] Implémentation du header
-    - [ ] Implémentation du graphique
-    - [ ] Implémentation du footer
-- [ ] Ajout du logout dans la Navbar
-- [ ] Implémentation de la section des card article
-- [ ] Implémentation de la page profile
+- [ ] Créer la nouvelle structure
+- [ ] Déplacer chaque fichier dans son dossier logique
+- [ ] Réparer tous les imports cassés
+- [ ] Vérifier paths des images & icons
+- [ ] Vérifier que chaque composant possède : Component.jsx / Component.logic.js / Component.scss
+- [ ] Mettre à jour AppRouter si nécessaire
 
 ### 🪲 Bugs / difficultés rencontrées
 
@@ -1827,24 +1821,340 @@ Template du logbook:
 ### 🔀 SCM (branches & commits)
 
 - Branches :
-  - Branche tirée pour la mise en place du dashboard → `dashboard-branch`
-  - Mise à jour du journal de bord → `logbook`
-
 - Commits :
-  - 📝 (docs/logbook.md): Set objectives for day 4 week 4
-  - 📝 (docs/logbook.md): Update progress for day 4 week 4
+  - 📝 (docs/logbook.md): Set objectives for week 1 RNCP
+  - 📝 (docs/logbook.md): Update progress for day 1 week 1 RNCP
 
 ### 🧪 QA (tests faits)
 
-- [ ] Tests en live de l'entrée de données pour les différentes entités → OK
+- [ ] Navigation
+- [ ] Chargement dashboard
+- [ ] Import components
+
+### Notes / décisions
+
+-
+
+### 🔄 Rétro rapide
+
+- Points positifs :
+  -
+- À améliorer :
+  -
+
+---
+
+## 💄Jour 2 – Refonte Front-End (02/12/25)
+
+### 🎯 Objectifs du jour — Design system global
+
+- Créer/Nettoyer Button
+- Créer/Nettoyer Modal
+- Créer Loader
+- Créer FormField (input générique)
+- Créer Toast pour gestion d’erreurs
+- Normaliser couleurs, typo, tailles de base
+
+### ✅ Réalisé
+
+- [ ] Créer/Nettoyer Button
+- [ ] Créer/Nettoyer Modal
+- [ ] Créer Loader
+- [ ] Créer FormField (input générique)
+- [ ] Créer Toast pour gestion d’erreurs
+- [ ] Normaliser couleurs, typo, tailles de base
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+- Commits :
+  - 📝 (docs/logbook.md): Update progress for day 2 week 1 RNCP
+
+### 🧪 QA (tests faits)
+
+- [ ] Boutons OK
+- [ ] Modals OK
+- [ ] Toast visible
+- [ ] Inputs cohérents
 
 ### 💡 Notes / décisions
 
 -
 
-### 🔄 Rétro rapide (fin de journée)
+### 🔄 Rétro rapide
 
-- ✅ Points positifs :
-  -
-- ⚠️ À améliorer :
-  -
+- Points positifs :
+- À améliorer :
+
+---
+
+## 💄 Jour 3 – Refonte Front-End (03/12/25)
+
+### 🎯 Objectifs du jour — Dashboard
+
+- Découper Dashboard.jsx → .jsx / .logic.js / .scss
+- Refonte GlycemiaCard
+- Refonte WeightCard
+- Refonte ActivityCard
+- Refonte MealCard
+- Refonte MoodCard
+- Refonte MedicationCard
+- Extraire fonctions API dans services
+- Extraire formatages dans utils
+
+### ✅ Réalisé
+
+- [ ] Découper Dashboard.jsx → .jsx / .logic.js / .scss
+- [ ] Refonte GlycemiaCard
+- [ ] Refonte WeightCard
+- [ ] Refonte ActivityCard
+- [ ] Refonte MealCard
+- [ ] Refonte MoodCard
+- [ ] Refonte MedicationCard
+- [ ] Extraire fonctions API dans services
+- [ ] Extraire formatages dans utils
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+- Commits :
+  - 📝 (docs/logbook.md): Update progress for day 3 week 1 RNCP
+
+### 🧪 QA (tests faits)
+
+- [ ] Ajout glycemia
+- [ ] Ajout mood
+- [ ] Graphiques chargent
+- [ ] Cards OK
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide
+
+- Points positifs :
+- À améliorer :
+
+---
+
+## 💄 Jour 4 – Refonte Front-End (04/12/25)
+
+### 🎯 Objectifs du jour — Auth Pages
+
+- Refonte Login (jsx + logic + styles)
+- Refonte Register
+- Refonte Profile
+- Extraire validations dans utils
+- Vérifier ProtectedRoute
+- Vérifier flux JWT côté front
+
+### ✅ Réalisé
+
+- [ ] Refonte Login (jsx + logic + styles)
+- [ ] Refonte Register
+- [ ] Refonte Profile
+- [ ] Extraire validations dans utils
+- [ ] Vérifier ProtectedRoute
+- [ ] Vérifier flux JWT côté front
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+- Commits :
+  - 📝 (docs/logbook.md): Update progress for day 4 week 1 RNCP
+
+### 🧪 QA (tests faits)
+
+- [ ] Login OK
+- [ ] Logout OK
+- [ ] Register OK
+- [ ] Profile OK
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide
+
+- Points positifs :
+- À améliorer :
+
+---
+
+## 💄 Jour 5 – Refonte Front-End (05/12/25)
+
+### 🎯 Objectifs du jour — Professionals + Notes
+
+- Refonte ProfessionalsPage
+- ProfessionalCard / ProfessionalDetail / ProfessionalForm
+- Refonte NotesPage + sous-composants
+- Nettoyage services professionnels
+- Nettoyage services notes
+
+### ✅ Réalisé
+
+- [ ] Refonte ProfessionalsPage
+- [ ] ProfessionalCard / ProfessionalDetail / ProfessionalForm
+- [ ] Refonte NotesPage + sous-composants
+- [ ] Nettoyage services professionnels
+- [ ] Nettoyage services notes
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+- Commits :
+  - 📝 (docs/logbook.md): Update progress for day 5 week 1 RNCP
+
+### 🧪 QA (tests faits)
+
+- [ ] Ajout pro
+- [ ] Modif pro
+- [ ] Ajout note
+- [ ] Modif note
+- [ ] Navigation cohérente
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide
+
+- Points positifs :
+- À améliorer :
+
+---
+
+## 💄 Jour 6 – Refonte Front-End (06/12/25)
+
+### 🎯 Objectifs du jour — Forum
+
+- ForumPage refactor
+- PostCard
+- PostDetail
+- CommentList
+- CommentForm
+- Nettoyage forumService
+- Vérification cohérence UI
+
+### ✅ Réalisé
+
+- [ ] ForumPage refactor
+- [ ] PostCard
+- [ ] PostDetail
+- [ ] CommentList
+- [ ] CommentForm
+- [ ] Nettoyage forumService
+- [ ] Vérification cohérence UI
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+- Commits :
+  - 📝 (docs/logbook.md): Update progress for day 6 week 1 RNCP
+
+### 🧪 QA (tests faits)
+
+- [ ] Création post
+- [ ] Ajout commentaire
+- [ ] Affichage réponse
+- [ ] Navigation post/detail
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide
+
+- Points positifs :
+- À améliorer :
+
+---
+
+## 💄 Jour 7 – Refonte Front-End (07/12/25)
+
+### 🎯 Objectifs du jour — Articles + Nettoyage global
+
+- Articles
+  - ArticlesPage.jsx
+  - ArticleCard
+  - ArticleDetail
+  - ArticleForm
+  - Nettoyage articleService
+- Nettoyage & DRY
+  - Supprimer code mort
+  - Extraire duplications vers utils
+  - Normaliser conventions
+  - Ajouter commentaires pédagogiques
+  - Nettoyer imports et warnings
+- UI/Responsive
+  - Tests breakpoints
+  - Vérification marges & alignements
+  - Normalisation cards
+  - Vérification transitions
+
+### ✅ Réalisé
+
+- [ ] Articles
+  - [ ] ArticlesPage.jsx
+  - [ ] ArticleCard
+  - [ ] ArticleDetail
+  - [ ] ArticleForm
+  - [ ] Nettoyage articleService
+- [ ] Nettoyage & DRY
+  - [ ] Supprimer code mort
+  - [ ] Extraire duplications vers utils
+  - [ ] Normaliser conventions
+  - [ ] Ajouter commentaires pédagogiques
+  - [ ] Nettoyer imports et warnings
+- [ ] UI/Responsive
+  - [ ] Tests breakpoints
+  - [ ] Vérification marges & alignements
+  - [ ] Normalisation cards
+  - [ ] Vérification transitions
+
+### 🪲 Bugs / difficultés rencontrées
+
+-
+
+### 🔀 SCM (branches & commits)
+
+- Branches :
+- Commits :
+  - 📝 (docs/logbook.md): Update progress for day 7 week 1 RNCP
+
+### 🧪 QA (tests faits)
+
+- [ ] Affichage articles
+- [ ] Lecture article
+- [ ] Responsive OK
+- [ ] Parcours complet (auth → dashboard → pros → forum → articles)
+
+### 💡 Notes / décisions
+
+-
+
+### 🔄 Rétro rapide
+
+- Points positifs :
+- À améliorer :
