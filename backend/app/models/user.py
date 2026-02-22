@@ -30,14 +30,17 @@ class User(BaseModel):
     # children = db.relationship("children", backref="parent", cascade="all, delete-orphan")
     comment = db.relationship("Comment", backref="user", cascade="all")
     forum_post = db.relationship("ForumPost", backref="user", cascade="all")
+
     activity = db.relationship("Activity", backref="user", cascade="all, delete-orphan")
     glycemia = db.relationship("Glycemia", backref="user", cascade="all, delete-orphan")
-    health_professional = db.relationship("HealthProfessional", backref="user", cascade="all, delete-orphan")
     meal = db.relationship("Meal", backref="user", cascade="all, delete-orphan")
     medication = db.relationship("Medication", backref="user", cascade="all, delete-orphan")
     mood = db.relationship("Mood", backref="user", cascade="all, delete-orphan")
-    note = db.relationship("Note", backref="user", cascade="all, delete-orphan")
     weight = db.relationship("Weight", backref="user", cascade="all, delete-orphan")
+
+    health_professional = db.relationship("HealthProfessional", backref="user", cascade="all, delete-orphan")
+    note = db.relationship("Note", backref="user", cascade="all, delete-orphan")
+    health_documents = db.relationship("HealthDocument", backref="user", cascade="all, delete-orphan")
 
     liked_posts = db.relationship("ForumPost", secondary="user_likes_post", backref="liked_by", lazy="dynamic")
     liked_comments = db.relationship("Comment", secondary="user_likes_comment", backref="liked_by", lazy="dynamic")

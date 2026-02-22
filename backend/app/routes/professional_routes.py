@@ -35,19 +35,35 @@ def get_health_professional_entries_route():
         app.logger.error(f"[BACK][routes/data.py][get_health_professional_entries_route] Erreur inattendue : {e}")
         return jsonify({"error": str(e)}), 500
 
-@professional_bp.route('/<health_professionals_id>/notes', methods=['GET'])
+
+@professional_bp.route('/<health_professionals_id>', methods=['GET'])
 @jwt_required()
-def get_health_professional_with_notes_route(health_professionals_id):
+def get_health_professional_with_details_route(health_professionals_id):
     try:
         user_id = get_jwt_identity()
-        result = professional_service.get_health_professional_with_notes(user_id, health_professionals_id)
+
+        result = professional_service.get_health_professional_with_details(
+            user_id,
+            health_professionals_id
+        )
+
         if not result:
             return jsonify({"message": "Aucun professionnel trouvé pour cet utilisateur."}), 404
-        app.logger.info(f"[BACK][routes/data.py][get_health_professional_with_notes_route] Données pro+notes envoyées pour user {user_id}")
+
+        app.logger.info(
+            f"[BACK][routes/health_professional.py]"
+            f"[get_health_professional_with_details_route]"
+            f" Données complètes envoyées pour user {user_id}"
+        )
+
         return jsonify(result), 200
 
     except Exception as e:
-        app.logger.error(f"[BACK][routes/data.py][get_health_professional_with_notes_route] Erreur inattendue : {e}")
+        app.logger.error(
+            f"[BACK][routes/health_professional.py]"
+            f"[get_health_professional_with_details_route]"
+            f" Erreur inattendue : {e}"
+        )
         return jsonify({"error": str(e)}), 500
 
 

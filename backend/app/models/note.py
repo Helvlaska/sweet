@@ -9,7 +9,7 @@ class Note(BaseModel):
     _content = db.Column(db.String(1000), nullable=False)
 
     user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
-    health_professional_id = db.Column(db.String(36), db.ForeignKey("health_professionals.id"), nullable=False)
+    health_professional_id = db.Column(db.String(36), db.ForeignKey("health_professionals.id", ondelete="SET NULL"), nullable=True)
 
 
     @property

@@ -7,13 +7,14 @@ from app.models.meal import Meal
 from app.models.mood import Mood
 from app.models.medication import Medication
 from app.models.health_professional import HealthProfessional
+from app.models.health_document import HealthDocument
 from app.models.note import Note
 from app.models.forum_post import ForumPost
 from app.models.comment import Comment
 from app.models.article import Article
 
 
-__all__ = ["User", "Glycemia", "Weight", "Activity", "Meal", "Mood", "Medication", "HealthProfessional", "Note", "ForumPost", "Comment", "Article"]
+__all__ = ["User", "Glycemia", "Weight", "Activity", "Meal", "Mood", "Medication", "HealthProfessional", "HealthDocument", "Note", "ForumPost", "Comment", "Article"]
 
 
 user_likes_post = db.Table(

@@ -1,7 +1,8 @@
 from flask import current_app as app
 from app.models.base import BaseModel
-from app.utils.validators import PHONE_PATTERN, is_valid
+from app.utils.validators import PHONE_PATTERN, EMAIL_PATTERN, CITY_PATTERN, is_valid
 from app import db
+
 
 class HealthProfessional(BaseModel):
     __tablename__ = "health_professionals"
@@ -12,9 +13,14 @@ class HealthProfessional(BaseModel):
     _fullname = db.Column(db.String(100), nullable=False)
     _speciality = db.Column(db.Enum(*SPECIALITY_CHOICES), nullable=False)
     _phone = db.Column(db.String(20), nullable=True)
+    _email = db.Column(db.String(254), nullable=True)
+    _address = db.Column(db.String(120), nullable=True)
+    _postal_code = db.Column(db.String(10), nullable=True)
+    _city = db.Column(db.String(120), nullable=True)
 
     user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
-    notes = db.relationship("Note", backref="health_professional", cascade="all, delete-orphan", lazy=True)
+    notes = db.relationship("Note", backref="health_professional", lazy=True)
+    documents = db.relationship("HealthDocument", backref="health_professional", lazy=True)
 
 
 
@@ -71,3 +77,102 @@ class HealthProfessional(BaseModel):
             raise ValueError("Le numéro de téléphone n’est pas valide")
         app.logger.info("[BACK][models/health_professional.py][phone.setter] Le numéro de téléphone est validé")
         self._phone = cleaned_phone
+
+
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, value):
+        if value is None:
+            self._email = None
+            return
+        if not isinstance(value, str):
+            app.logger.error("[BACK][models/health_professional.py][email.setter] L'email n'est pas du type string")
+            raise TypeError("L'email n'est pas du type string")
+        cleaned_email = value.strip()
+        if not is_valid(cleaned_email, EMAIL_PATTERN):
+            app.logger.error("[BACK][models/health_professional.py][email.setter] Le champ de l'email ne respecte pas le bon format")
+            raise ValueError("Le champ de l'email ne respect pas le bon format")
+        app.logger.info(f"[BACK][models/health_professional.py][email.setter] L'email {cleaned_email} est validé")
+        self._email = cleaned_email
+
+    @property
+    def address(self):
+        return self._address
+
+    @address.setter
+    def address(self, value):
+        if value is None:
+            self._address = None
+            return
+        if not isinstance(value, str):
+            app.logger.error("[BACK][models/health_professional.py][address.setter] L'adresse du professionnel doit être une chaîne de caractères")
+            raise TypeError("L'adresse du professionnel doit être une chaîne de caractères")
+        cleaned_address = value.strip()
+        if len(cleaned_address) < 2 or len(cleaned_address) > 100:
+            app.logger.error("[BACK][models/health_professional.py][address.setter] L'adresse doit comporter entre 2 et 100 caractères")
+            raise ValueError("L'adresse du professionnel doit comporter entre 2 et 100 caractères")
+        app.logger.info("[BACK][models/health_professional.py][address.setter] L'adresse du professionnel est validé")
+        self._address = cleaned_address.title()
+
+
+    @property
+    def postal_code(self):
+        return self._postal_code
+
+    @postal_code.setter
+    def postal_code(self, value):
+        if value is None:
+            self._postal_code = None
+            return
+        if not isinstance(value, str):
+            app.logger.error("[BACK][models/health_professional.py][postal_code.setter] Le code postal du professionnel doit être une chaîne de caractères")
+            raise TypeError("Le code postal du professionnel doit être une chaîne de caractères")
+        cleaned__postal_code = value.strip()
+        if len(cleaned__postal_code) < 5 or len(cleaned__postal_code) > 10:
+            app.logger.error("[BACK][models/health_professional.py][postal_code.setter] Le code postal doit comporter entre 5 et 10 caractères")
+            raise ValueError("Le code postal du professionnel doit comporter entre 5 et 10 caractères")
+        app.logger.info("[BACK][models/health_professional.py][postal_code.setter] Le code postal du professionnel est validé")
+        self._postal_code = cleaned__postal_code
+
+
+    @property
+    def city(self):
+        return self._city
+
+    @city.setter
+    def city(self, value):
+        if value is None:
+            self._city = None
+            return
+        if not isinstance(value, str):
+            app.logger.error("[BACK][models/health_professional.py][city.setter] City n'est pas du type string")
+            raise TypeError("City n'est pas du type string")
+        cleaned_city = value.strip()
+        if not is_valid(cleaned_city, CITY_PATTERN):
+            app.logger.error("[BACK][models/health_professional.py][city.setter] Le champ city ne respecte pas le bon format")
+            raise ValueError("Le champ city ne respect pas le bon format")
+        app.logger.info("[BACK][models/health_professional.py][city.setter] La city est validé")
+        self._city = cleaned_city
+
+
+    def to_dict(self):
+        data = super().to_dict()
+
+        documents_list = []
+        documents = self.documents or []
+        for document in documents:                              # type: ignore
+            documents_list.append(document.to_dict())
+
+        data["documents"] = documents_list
+
+        notes_list = []
+        notes = self.notes or []
+        for note in notes:                                      # type: ignore
+            notes_list.append(note.to_dict())
+
+        data["notes"] = notes_list
+
+        return data

@@ -28,6 +28,24 @@ def check_availability_route():
     return jsonify(result), 200
 
 
+@auth_bp.route('/onboarding/complete', methods=['POST'])
+@jwt_required()
+def complete_onboarding():
+    """
+    Marque l'onboarding comme terminé.
+    """
+    try:
+        user_id = get_jwt_identity()
+
+        auth_service.complete_first_login(user_id)
+
+        return jsonify({"message": "Onboarding terminé"}), 200
+
+    except Exception as e:
+        app.logger.error(f"[BACK][routes/auth.py][complete_onboarding] Erreur : {e}")
+        return jsonify({"error": "Internal server error"}), 500
+
+
 @auth_bp.route('/login', methods=['POST'])
 def login():
     """Authenticate user credentials and generate JWT tokens (public route)."""
@@ -41,12 +59,7 @@ def login():
         auth_service.authenticate_user(user, validated["password"])
         app.logger.info(f"[BACK][routes/auth.py][login] Le mot de passe pour l'utilisateur: {user.id} est valide")
 
-        if user.first_login:
-            user.first_login = False
-            user.save()
-            app.logger.info(f"[BACK][routes/auth.py][login] Première connexion détectée pour l'utilisateur: {user.email}")
-        else:
-            app.logger.info(f"[BACK][routes/auth.py][login] L'utilisateur: {user.id} est connecté")
+        app.logger.info(f"[BACK][routes/auth.py][login] L'utilisateur: {user.id} est connecté")
         return auth_service.generate_tokens(user, remember_me)
 
     except ValueError as e:
@@ -89,7 +102,7 @@ def reset_request():
         email = auth_service.validate_reset_request(data)
         user = auth_service.find_user_by_email(email)
         response = auth_service.generate_reset_token(user)
-        auth_service.send_reset_email(user, response.get_json().get("message"))
+        auth_service.send_reset_email(user, response)
         app.logger.info(f"[BACK][routes/auth.py][reset_request] L'email de réinitialisation du mot de passe de l'utilisateur: {user.email} a bien été envoyé")
         return response
 
