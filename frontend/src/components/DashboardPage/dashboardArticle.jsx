@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { articleService } from "../../services/articleService";
+import { articleService } from "../../services/community/articleService";
 
 // imports icones
 import ArrowWriteIcon from "../../assets/icones/arrow-right-white.png";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { activityService } from "../../services/activityService"
+import { activityService } from "../../services/health/activityService";
 
 // import gestion des graphiques
 import { Chart, registerables } from "chart.js";

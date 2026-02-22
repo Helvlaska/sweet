@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { moodService } from "../../services/moodService";
+import { moodService } from "../../services/health/moodService";
 
 // imports des images et des icones
 import MoodLogo from "../../assets/dashboard/page/DashboardIllustrationHumeur.png";

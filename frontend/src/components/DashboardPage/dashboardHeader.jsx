@@ -1,5 +1,5 @@
 // Import des outils
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/useAuth";
 
 // import des images et des icones
 import imageIllus from "../../assets/dashboard/page/DashboardIllustrationLogo.png"

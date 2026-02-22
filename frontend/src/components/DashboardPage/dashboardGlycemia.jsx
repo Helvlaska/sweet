@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { glycemiaService } from "../../services/glycemiaService";
+import { glycemiaService } from "../../services/health/glycemiaService";
 
 // import gestion des graphiques
 import { Chart, registerables } from "chart.js";

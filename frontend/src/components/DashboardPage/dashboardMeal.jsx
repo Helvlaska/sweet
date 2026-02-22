@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { mealService } from "../../services/mealService";
+import { mealService } from "../../services/health/mealService";
 
 // imports des images et des icones
 import MealLogo from "../../assets/dashboard/page/DashboardIllustrationRepas.png";
