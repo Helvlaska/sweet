@@ -101,3 +101,27 @@ function validateField(name, value) {
 }
 
 export { validateField };
+
+function checkPasswordRules(password) {
+    // Sécurité : toujours travailler avec une string
+    if (typeof password !== "string") {
+        password = "";
+    }
+
+    const hasMinLength = password.length >= 8;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecialChar = /[@$!%*?&]/.test(password);
+
+    return {
+        hasMinLength,
+        hasUppercase,
+        hasLowercase,
+        hasNumber,
+        hasSpecialChar,
+    };
+}
+
+export { checkPasswordRules };
+

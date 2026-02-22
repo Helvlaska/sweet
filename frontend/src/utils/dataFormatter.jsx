@@ -1,41 +1,69 @@
 
 // Fonction pour convertir une image en largeBinary
-function convertFileToBase64(file, callback) {
+function convertFileToBase64(file) {
+  return new Promise(function (resolve, reject) {
     const reader = new FileReader();
-    reader.onload = function(event) {
-        const base64String = event.target.result.split(",")[1];
-        callback(base64String);
+
+    reader.onload = function (event) {
+      const base64String = event.target.result.split(",")[1];
+      resolve(base64String);
     };
+
+    reader.onerror = function () {
+      reject("Erreur lors de la conversion de l'image.");
+    };
+
     reader.readAsDataURL(file);
+  });
 }
+
 
 
 // Fonction pour formater les données du user
-function formatUser(data, callback) {
-    const formatted = { ...data };
+async function formatUser(data) {
+  const formatted = { ...data };
 
-    if (formatted.height) {
-        formatted.height = parseInt(formatted.height, 10);
-    }
-    if (formatted.date_of_birth instanceof Date) {
-        formatted.date_of_birth = formatted.date_of_birth.toISOString().split("T")[0];
-    }
-    if (formatted.profile_picture instanceof File) {
-        console.log(
-            "DEBUG formatUser → type de profile_picture :",
-            typeof formatted.profile_picture,
-            formatted.profile_picture
-        );
-        convertFileToBase64(formatted.profile_picture, function(base64Image) {
-            formatted.profile_picture = base64Image;
-            callback(formatted);
-        });
-        return;
-    }
+  if (formatted.height) {
+    formatted.height = parseInt(formatted.height, 10);
+  }
 
-    callback(formatted);
+  if (formatted.profile_picture instanceof File) {
+    const base64Image = await convertFileToBase64(formatted.profile_picture);
+    formatted.profile_picture = base64Image;
+  }
+
+  return formatted;
 }
 
+// Fonction pour formater les documents d'un pro
+async function formatProfessional(data) {
+  const formatted = { ...data };
+
+  if (
+    formatted.documents &&
+    Array.isArray(formatted.documents) &&
+    formatted.documents.length > 0
+  ) {
+    const formattedDocuments = [];
+
+    for (let i = 0; i < formatted.documents.length; i++) {
+      const file = formatted.documents[i];
+
+      if (file instanceof File) {
+        const base64 = await convertFileToBase64(file);
+
+        formattedDocuments.push({
+          filename: file.name,
+          file: base64,
+        });
+      }
+    }
+
+    formatted.documents = formattedDocuments;
+  }
+
+  return formatted;
+}
 
 // Fonction pour formater les données de santé
 function formatDataEntry(data) {
@@ -44,12 +72,15 @@ function formatDataEntry(data) {
     if (formatted.glycemia) {
         formatted.glycemia = parseInt(formatted.glycemia, 10);
     }
+
     if (formatted.weight) {
         formatted.weight = parseFloat(formatted.weight);
     }
+
     if (formatted.activity && formatted.activity.duration) {
         formatted.activity.duration = parseInt(formatted.activity.duration, 10);
     }
+
     if (formatted.medication) {
         formatted.medication.dose = parseInt(formatted.medication.dose, 10);
         formatted.medication.stock = parseInt(formatted.medication.stock, 10);
@@ -58,13 +89,6 @@ function formatDataEntry(data) {
     return formatted;
 }
 
-
-// Fonction pour formater les infos des professionels de santé
-function formatProfessional(data) {
-    const formatted = { ...data };
-
-    return formatted;
-}
 
 // Fonction pour formater les données de type texte
 function formatContent(data) {
@@ -79,25 +103,25 @@ function formatContent(data) {
 }
 
 // Fonction toggle pour envoyé la bonne fonction selon le besoin
-function formatData(entity, data, callback) {
-    switch (entity) {
-        case "user":
-            return formatUser(data, callback);
+async function formatData(entity, data) {
+  switch (entity) {
+    case "user":
+      return await formatUser(data);
 
-        case "data":
-            return callback(formatDataEntry(data));
+    case "data":
+      return formatDataEntry(data);
 
-        case "professional":
-            return callback(formatProfessional(data));
+    case "professional":
+      return formatProfessional(data);
 
-        case "forum":
-        case "article":
-        case "comment":
-            return callback(formatContent(data));
+    case "forum":
+    case "article":
+    case "comment":
+      return formatContent(data);
 
-        default:
-            return callback(data);
-    }
+    default:
+      return data;
+  }
 }
 
-export { formatData };
+export {formatData};
