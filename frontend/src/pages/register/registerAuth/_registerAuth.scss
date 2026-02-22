@@ -1,0 +1,242 @@
+/**
+ * SWEET — Register Auth Step Styles
+ * ==================================
+ * Styles for the credential creation step
+ * in the registration flow.
+ *
+ * Role:
+ * -----
+ * - Define layout and visual hierarchy.
+ * - Structure the progress indicator.
+ * - Style form groups and validation states.
+ * - Display password checklist and global errors.
+ * - Manage responsive behavior (mobile-first).
+ *
+ * Structure:
+ * ----------
+ * .registerAuth
+ * ├── __wrapper
+ * │   ├── __progress
+ * │   │   ├── __label
+ * │   │   └── __bar (progress indicator)
+ * │   └── __container
+ * │       ├── __title
+ * │       ├── __form
+ * │       ├── __checklist
+ * │       ├── __errors
+ * │       ├── __warning
+ * │       └── __actions
+ * └── __illustration
+ *
+ * Visual Logic:
+ * -------------
+ * - Mobile-first layout.
+ * - XL breakpoint switches to split-screen layout.
+ * - Progress bar visually reflects current step.
+ * - Field-level states:
+ *     - Success (green)
+ *     - Error (red)
+ * - Checklist items turn green when valid.
+ *
+ * Design System:
+ * --------------
+ * - Uses color tokens from colors.scss.
+ * - Typography tokens from typography.scss.
+ * - Responsive mixin from breakpoints.scss.
+ * - Fully compatible with SWEET Button and Icon components.
+ *
+ * Maintenance:
+ * ------------
+ * - Keep BEM naming consistent.
+ * - Do not mix logic into styling.
+ * - Progress bar behavior is visual only (logic handled in JSX).
+ */
+
+
+@use "../../../styles/base/colors" as *;
+@use "../../../styles/base/typography" as *;
+@use "../../../styles/base/breakpoints" as *;
+
+
+// MOBILE FIRST
+.registerAuth {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  color: $dark-grey;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    gap: 30px;
+    .registerAuth__progress {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 9px;
+      .registerAuth__label {
+        padding: 5px 8px;
+        margin: 0;
+        border-radius: 8px;
+        background-color: $main-blue;
+        font-size: 12px;
+        color: $white;
+        width: fit-content;
+      }
+
+      .registerAuth__bar {
+        display: flex;
+        width: 60%;
+        gap: 8px;
+        .registerAuth__page {
+          border-radius: 50px;
+          width: 36px;
+          height: 5px;
+        }
+
+        .registerAuth__page--active {
+          width: 60%;
+          background-color: $main-blue;
+        }
+
+        .registerAuth__page--inactive {
+          width: 20%;
+          background-color: $light-blue;
+        }
+      }
+    }
+
+    .registerAuth__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 100%;
+      .registerAuth__title {
+        display: flex;
+        flex-direction: column;
+        font-family: $font-title;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 30px;
+        text-align: center;
+        line-height: 1;
+        color: $black;
+      }
+
+      .registerAuth__form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .registerAuth__group {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border: 1px solid $main-grey;
+          border-radius: 10px;
+          padding: 10px 15px;
+          font-size: 12px;
+          width: 100%;
+          .registerAuth__field-error {
+            display: flex;
+            align-items: center;
+            font-size: 10px;
+            color: $red;
+            margin: 0;
+            gap: 5px;
+          }
+
+          .registerAuth__field-success {
+            display: flex;
+            align-items: center;
+            font-size: 10px;
+            color: $green;
+            margin: 0;
+            gap: 5px;
+          }
+        }
+      }
+
+      .registerAuth__checklist {
+        font-size: 10px;
+        .registerAuth__checklist-item {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+
+        .is-valid {
+          color: $green;
+        }
+      }
+
+      .registerAuth__errors {
+        display: flex;
+        flex-direction: column;
+        font-size: 10px;
+        color: $red;
+        .registerAuth__error {
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      .registerAuth__warning {
+        margin: 0;
+        font-size: 10px;
+        color: $main-grey;
+        line-height: 1;
+      }
+
+      .registerAuth__actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+  }
+
+  &__illustration {
+    display: none;
+    height: 100%;
+    .registerAuth__mascot {
+      height: 90%;
+    }
+  }
+
+  @include respond-to("xl") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 20px 0px;
+    &__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 50%;
+      .registerAuth__container {
+        justify-content: space-evenly;
+        width: 80%;
+        height: 100%;
+        gap: 10px;
+      }
+    }
+
+    &__illustration {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      border-radius: 20px;
+      background-color: $main-orange;
+      width: 70%;
+      .registerAuth__mascot {
+        padding-left: 25px;
+      }
+    }
+  }
+}
