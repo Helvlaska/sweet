@@ -2,18 +2,30 @@
 @use "./base/reset";
 @use "./base/breakpoints";
 @use "./base/typography";
-@use "./base/variables";
+@use "./base/colors";
 
-// LandingPage
-@use "../pages/landingPage";
+// Components
+@use "../components/Button/button";
+@use "../components/Icon/icon";
+@use "../components/Form/SelectedField/selectedField";
 
-// LoginPage
-@use "../pages/loginPage";
+// Landing
+@use "../pages/landing/landing";
 
-// RegisterPage
-@use "../pages/registerPage";
-@use "../components/RegisterPage/formPart1";
-@use "../components//RegisterPage//formPart2";
+// Login
+@use "../pages/login/login";
+
+// ForgotPassword
+@use "../pages/forgotPassword/forgotPasswordRequest/forgotPasswordRequest";
+@use "../pages/forgotPassword/resetPassword/resetPassord";
+
+// Register
+@use "../pages/register/registerIntro/registerIntro";
+@use "../pages/register/registerWelcome/registerWelcome";
+@use "../pages/register/registerAuth/registerAuth";
+@use "../pages/register/registerProfile/registerProfile";
+
+// Onboarding
 
 // NavBar
 @use "../components//DashboardPage/dashboardNavbar";
