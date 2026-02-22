@@ -1,0 +1,166 @@
+/**
+ * SWEET — Button Styles
+ * ========================================
+ * FILE CONTAIN
+ * - Base mixins used to build buttons (shape, color, states)
+ * - Navigation-specific button mixins
+ * - Final button classes (concrete skins usable in JSX)
+ *
+ * NOTES
+ * - This file contains NO JavaScript logic.
+ * - Buttons are styled exclusively via explicit CSS classes.
+ * - Mixins are only used to compose final classes.
+ * - Final classes are the ONLY ones meant to be used in React components.
+ * - Icon sizing is handled by the Icon system (components/Icon/icon.scss), not here.
+ *
+ * HOW TO USE
+ *    <Button className="btn-pill-outline-pink">
+ *      Save
+ *    </Button>
+ */
+
+
+@use "../../styles/base/colors" as *;
+
+
+// BASE BUTTON MIXIN
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+
+// BUTTON PILL
+@mixin btn-pill {
+  @include btn-base;
+  padding: 13px 23px;
+  border-radius: 50px;
+}
+
+// BUTTON ROUND
+@mixin btn-round($color, $bg-color, $text-color: $main-grey) {
+  @include btn-base;
+  border: 1px solid $color;
+  border-radius: 50%;
+  background-color: $bg-color;
+  color: $text-color;
+}
+
+// BUTTON UNDERLINE
+@mixin btn-underline {
+  @include btn-base;
+  color: $main-grey;
+}
+
+// COLOR OUTLINE
+@mixin btn-outline-color($color) {
+  color: $color;
+  background-color: transparent;
+  border: 1px solid $color;
+}
+
+// COLOR SOLID
+@mixin btn-solid-color($bg-color, $text-color: $white) {
+  color: $text-color;
+  background-color: $bg-color;
+  border: 1px solid $bg-color;
+}
+
+
+// HOVER BUTTON PILL
+@mixin btn-hover-bg($bg-color, $text-color: $white) {
+  &:hover {
+    background-color: $bg-color;
+    color: $text-color;
+  }
+}
+
+// HOVER BUTTON UNDERLINE
+@mixin btn-hover-underline() {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ACTIVE BUTTON
+@mixin btn-active-bg($color) {
+  &.is-active {
+    background-color: $color;
+  }
+}
+
+// DISABLED BUTTON
+@mixin btn-disabled {
+  &:disabled,
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+
+// NAVBAR BUTTON
+@mixin btn-nav {
+  @include btn-base;
+  width: clamp(48px, 5vw, 70px);
+  height: clamp(48px, 5vw, 70px);
+  padding: clamp(8px, 1.5vw, 12px);
+  border-radius: 17px;
+}
+
+// NAVBAR BUTTON BG
+@mixin btn-nav-bg($color) {
+  background-color: $color;
+}
+
+// NAVBAR BUTTON BG HOVER
+@mixin btn-nav-hover($color) {
+  &:hover:not(.is-active) {
+    background-color: $color;
+  }
+}
+
+
+// -------------------------------------------------------------------- LANDING
+.btn-pill-outline-kaki {
+  @include btn-pill();
+  @include btn-outline-color($main-kaki);
+  @include btn-hover-bg($dark-kaki, $white);
+}
+
+.btn-pill-solid-kaki {
+  @include btn-pill();
+  @include btn-solid-color($main-kaki, $white);
+  @include btn-hover-bg($dark-kaki, $white);
+}
+
+// ---------------------------------------------------------------------- LOGIN
+.btn-pill-outline-blue {
+  @include btn-pill();
+  @include btn-outline-color($dark-blue);
+  @include btn-hover-bg($dark-blue, $white)
+}
+
+// ------------------------------------------------------------------- REGISTER
+.btn-underline-grey {
+  @include btn-underline();
+  @include btn-hover-underline();
+}
+
+.btn-pill-outline-violet {
+  @include btn-pill();
+  @include btn-outline-color($light-violet);
+  @include btn-hover-bg($light-violet, $white);
+}
+
+.btn-round-grey {
+  @include btn-round($main-grey, $light-grey, $dark-grey)
+}
