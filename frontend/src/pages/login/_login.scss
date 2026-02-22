@@ -1,0 +1,197 @@
+/**
+ * SWEET — Login Page Styles
+ * ========================
+ * Styles dedicated to the user login page.
+ *
+ * Role:
+ * -----
+ * - Define the layout and visual appearance
+ *   of the login form.
+ * - Structure the different functional blocks of the login page.
+ *
+ * Content:
+ * --------
+ * - Main page layout (.login).
+ * - Styles for the form and its groups:
+ *   - Authentication fields
+ *   - Email / username separator
+ *   - Password field with associated action
+ * - Display of error messages.
+ * - Secondary options (remember me, forgot password).
+ * - Call-to-action leading to registration.
+ * - Visual illustration associated with the page.
+ *
+ * Responsive:
+ * -----------
+ * - Mobile-first approach by default.
+ * - From the "xl" breakpoint:
+ *   - Switch to a horizontal layout.
+ *   - Display the illustration.
+ *   - Rebalance widths between form and visual area.
+ *
+ * Architecture:
+ * -------------
+ * - Uses global color and breakpoint variables.
+ * - Follows the SWEET BEM naming convention.
+ * - Styles are strictly scoped to the Login page.
+ *
+ * Maintenance:
+ * ------------
+ * - Any responsive behavior changes must rely on
+ *   centralized breakpoint mixins.
+ * - Visual adjustments must remain specific
+ *   to the login page.
+ * - This file contains no JavaScript logic
+ *   or interactive behavior.
+ */
+
+
+@use "../../styles/base/colors" as *;
+@use "../../styles/base/breakpoints" as *;
+
+
+// MOBILE FIRST
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  color: $dark-grey;
+  font-size: 14px;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 16px;
+    .login__group {
+      border: 1px solid $main-grey;
+      border-radius: 10px;
+      padding: 10px 15px;
+    }
+    .login__separator {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      .login__separator-line {
+        flex: 1;
+        height: 1px;
+        background-color: $main-grey;
+      }
+      .login__separator-text {
+        color: $main-grey;
+        white-space: nowrap;
+        margin: 0;
+      }
+    }
+    .login__group--password {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .login__errors {
+      display: flex;
+      flex-direction: column;
+      color: $red;
+      .login__error {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .login__extras {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      .login__remember {
+        display: flex;
+        align-items: center;
+        position: relative;
+        user-select: none;
+        gap: 5px;
+        .login__checkbox {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 1.3px solid $main-grey;
+          border-radius: 3px;
+          cursor: pointer;
+          &:checked {
+            border-color: $main-blue;
+            background-color: $main-blue;
+          }
+          &:hover {
+            border-color: $main-blue;
+            background-color: $main-blue;
+          }
+        }
+      }
+      .login__forgot {
+        text-decoration: underline;
+      }
+    }
+    .login__actions {
+      display: flex;
+      justify-content: center;
+    }
+    .login__cta {
+      display: flex;
+      justify-content: center;
+      p {
+        font-size: 12px;
+        .login__link {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  &__illustration {
+    display: none;
+    height: 100%;
+    .login__mascot {
+      height: 90%;
+    }
+  }
+
+
+  @include respond-to("xl") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 20px 0px;
+    .login__form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40%;
+      .login__form--wrapper {
+        width: 80%;
+        .login__group {
+            width: 100%;
+        }
+      }
+      .login__group--password {
+        width: 80%;
+      }
+      .login__errors {
+        width: 80%;
+      }
+    }
+    .login__extras {
+      width: 80%;
+    }
+    .login__illustration {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      border-radius: 20px;
+      background-color: $light-yellow;
+      width: 60%;
+      .login__mascot {
+        padding-left: 25px;
+      }
+    }
+  }
+}
