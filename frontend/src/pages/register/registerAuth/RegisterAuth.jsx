@@ -64,6 +64,7 @@ function RegisterAuth({ onNext, onBack }) {
     password,
     passwordChecklist,
     showPassword,
+    consent,
     errors,
     emailStatus,
     usernameStatus,
@@ -93,7 +94,7 @@ function RegisterAuth({ onNext, onBack }) {
             Avec quels identifiants<br />
             voudras-tu te connecter ?
           </h1>
-          
+
           <form className="registerAuth__form">
             <div className="registerAuth__group">
               <input
@@ -180,9 +181,20 @@ function RegisterAuth({ onNext, onBack }) {
               </Button>
             </div>
 
-            <p className="registerAuth__warning">
-              En continuant, vous acceptez les Conditions d’utilisation de Sweet et vous confirmez avoir lu la Politique de confidentialité de Sweet.
-            </p>
+            <div className="registerAuth__extras">
+              <label htmlFor="consent" className="registerAuth__consent">
+                <input
+                  type="checkbox"
+                  id="consent"
+                  name="consent"
+                  checked={consent}
+                  onChange={handleChange}
+                  className="registerAuth__checkbox"
+                />
+
+                Vous acceptez les Conditions d’utilisation et vous confirmez avoir lu la Politique de confidentialité de Sweet.
+              </label>
+            </div>
           </form>
 
           {passwordChecklist && (

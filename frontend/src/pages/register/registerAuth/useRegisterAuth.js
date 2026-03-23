@@ -74,6 +74,7 @@ export function useRegisterAuth() {
   const [password, setPassword] = useState("");
   const [passwordChecklist, setPasswordChecklist] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState([]);
   const [emailStatus, setEmailStatus] = useState("neutral");
   const [usernameStatus, setUsernameStatus] = useState("neutral");
@@ -82,6 +83,8 @@ export function useRegisterAuth() {
   function handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
+    const type = event.target.type;
+    const checked = event.target.checked;
 
     if (name === "email") {
       setEmail(value);
@@ -104,6 +107,12 @@ export function useRegisterAuth() {
     if (name === "password") {
       setPassword(value);
       setPasswordChecklist(checkPasswordRules(value));
+    }
+
+    if (type === "checkbox") {
+      setConsent(checked);
+      setErrors([]);
+      return;
     }
 
     setErrors([]);
@@ -146,6 +155,12 @@ export function useRegisterAuth() {
       validationErrors.push(
         "Le mot de passe est obligatoire."
       );
+    }
+
+    if (!consent) {
+      validationErrors.push(
+        "Veuillez accepter les conditions d'utilisation et la politique de confidentialité pour poursuivre"
+      )
     }
 
     if (validationErrors.length > 0) {
@@ -290,6 +305,7 @@ export function useRegisterAuth() {
     password,
     passwordChecklist,
     showPassword,
+    consent,
     errors,
     emailStatus,
     usernameStatus,

@@ -125,6 +125,7 @@
         font-size: 30px;
         text-align: center;
         line-height: 1;
+        letter-spacing: -3%;
         color: $black;
       }
 
@@ -185,11 +186,34 @@
         }
       }
 
-      .registerAuth__warning {
-        margin: 0;
-        font-size: 10px;
+      .registerAuth__extras {
         color: $main-grey;
+        font-size: 10px;
         line-height: 1;
+        .registerAuth__consent {
+          display: flex;
+          align-items: center;
+          position: relative;
+          user-select: none;
+          margin: 0;
+          gap: 10px;
+          .registerAuth__checkbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1.3px solid $main-grey;
+            border-radius: 3px;
+            cursor: pointer;
+            &:checked {
+              border-color: $main-blue;
+              background-color: $main-blue;
+            }
+            &:hover {
+              border-color: $main-blue;
+              background-color: $main-blue;
+            }
+          }
+        }
       }
 
       .registerAuth__actions {
