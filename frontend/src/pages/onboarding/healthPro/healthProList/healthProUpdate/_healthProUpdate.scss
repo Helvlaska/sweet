@@ -1,0 +1,200 @@
+@use "../../../../../styles/base/colors" as *;
+@use "../../../../../styles/base/typography" as *;
+@use "../../../../../styles/base/breakpoints" as *;
+
+// MOBILE FIRST
+.healthProUpdate {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  border: 1px solid $main-grey;
+  border-radius: 10px;
+  gap: 10px;
+  &__group {
+    margin: 0;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .healthProUpdate__row {
+      display: flex;
+      flex-direction: column;
+      padding: 0 10px;
+      gap: 10px;
+      .healthProUpdate__group {
+        display: flex;
+        align-items: center;
+        border: 1px solid $main-grey;
+        border-radius: 10px;
+        padding: 10px 15px;
+        margin: 0;
+        gap: 10px;
+      }
+
+      .healthProUpdate__group--list {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        z-index: 3;
+        .healthProUpdate__documents--list {
+          position: absolute;
+          top: 65%;
+          left: 0;
+          background-color: $light-grey;
+          border: 1px solid $main-grey;
+          border-radius: 10px;
+          max-height: 150px;
+          overflow-y: auto;
+          padding: 20px 0 0 0 ;
+          width: 100%;
+          z-index: 1;
+          .healthProUpdate__empty {
+            text-align: center;
+            font-size: 12px;
+            color: $main-grey;
+            padding: 20px 0;
+            margin: 0;
+            width: 100%;
+          }
+
+          .healthProUpdate__documents--items {
+            .healthProUpdate__document--item {
+              position: relative;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 15px;
+              gap: 10px;
+              &:not(:last-child)::after {
+                content: "";
+                position: absolute;
+                left: 10px;
+                right: 10px;
+                bottom: 0;
+                height: 1px;
+                background-color: $main-grey;
+              }
+
+              .healthProUpdate__document--filename {
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 12px;
+                min-width: 0;
+                flex: 1;
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .healthProUpdate__group--files {
+        border: 1px solid $main-grey;
+        border-radius: 10px;
+        padding: 10px 15px;
+        .healthProUpdate__input--file {
+          display: none;
+        }
+
+        .healthProUpdate__label--file {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: $main-blue;
+          .healthProUpdate__placeholder--file {
+            font-size: 12px;
+            color: $dark-grey;
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .healthProUpdate__row--split {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0 10px;
+      gap: 10px;
+      .healthProUpdate__group--full {
+        display: flex;
+        align-items: center;
+        border: 1px solid $main-grey;
+        border-radius: 10px;
+        padding: 10px 15px;
+        margin: 0;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .healthProUpdate__group--split {
+        display: flex;
+        align-items: center;
+        border: 1px solid $main-grey;
+        border-radius: 10px;
+        padding: 10px 15px;
+        margin: 0;
+        width: 48%;
+        gap: 10px;
+      }
+    }
+
+    .healthProUpdate__actions {
+      display: flex;
+      justify-content: end;
+      gap: 10px;
+    }
+    .healthProUpdate__errors {
+      display: flex;
+      flex-direction: column;
+      font-size: 10px;
+      color: $red;
+      padding-left: 10px;
+      .healthProUpdate__error {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  @include respond-to("xl") {
+    &__form {
+      .healthProUpdate__row {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        .healthProUpdate__group,
+        .healthProUpdate__group--select {
+          width: 100%;
+        }
+
+        .healthProUpdate__group--list {
+          flex: 2;
+          min-width: 0;
+        }
+
+        .healthProUpdate__group--files {
+          flex: 2;
+          min-width: 0;
+        }
+      }
+
+      .healthProUpdate__row--split {
+        flex-wrap: nowrap;
+        width: 100%;
+        .healthProUpdate__group--full {
+          flex: 2;
+          min-width: 0;
+        }
+
+        .healthProUpdate__group--split {
+          flex: 1;
+          min-width: 0;
+        }
+      }
+    }
+  }
+}
