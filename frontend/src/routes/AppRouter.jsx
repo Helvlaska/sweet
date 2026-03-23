@@ -14,92 +14,100 @@ import RegisterFlow from "../pages/register/RegisterFlow";
 import ResetPassword from "../pages/forgotPassword/resetPassword/ResetPassword";
 import HealthPro from "../pages/onboarding/healthPro/HealthPro";
 import AdminPage from "../pages/AdminPage";
-import DashboardPage from "../pages/DashboardPage";
+import Dashboard from "../pages/dashboard/user/Dashboard";
 import HealthProPage from "../pages/HealthProPage";
 // import ForumPage from "../pages/ForumPage";
 // import CalendarPage from "../pages/CalendarPage";
 import ArticlePage from "../pages/ArticlePage";
-import ProfilePage from "../pages/ProfilePage";
-import NotFoundPage from "../pages/NotFoundPage";
+import Profile from "../pages/profile/ProfileFlow";
+import NotFound from "../pages/notFound/NotFound";
 
 
 export default function AppRouter() {
-    const { user } = useAuth();
+  const { user, loading } = useAuth();
 
-    return (
-        <BrowserRouter>
-        <Routes>
-            {/* Routes publiques */}
-            <Route path="/" element={<Landing />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/forgot-password/:token" element={<ResetPassword />} />
-            <Route path="/register" element={<RegisterFlow />} />
+  if (loading) {
+    return <div className="loader">Chargement...</div>;
+  }
 
-            {/* Routes sécurisées */}
-            <Route path="/onboarding" element={
-                <ProtectedRoute>
-                    <HealthPro />
-                </ProtectedRoute>
-            }/>
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Routes publiques */}
+        <Route path="/" element={
+          user
+            ? <Navigate to={user.role === "admin" ? "/admin" : "/dashboard"} replace />
+            : <Landing />
+        } />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/forgot-password/:token" element={<ResetPassword />} />
+        <Route path="/register" element={<RegisterFlow />} />
 
-            <Route path="/dashboard" element={
-                <ProtectedRoute>
-                    {user?.role === "user" ? (
-                        <DashboardPage />
-                    ) : (
-                        <Navigate to="/admin" replace />
-                    )}
-                </ProtectedRoute>
-            }/>
+        {/* Routes sécurisées */}
+        <Route path="/onboarding" element={
+          <ProtectedRoute>
+            <HealthPro />
+          </ProtectedRoute>
+        }/>
 
-            <Route path="/admin" element={
-                <ProtectedRoute>
-                    {user?.role === "admin" ? (
-                        <AdminPage />
-                    ) : (
-                        <Navigate to="/dashboard" replace />
-                    )}
-                </ProtectedRoute>
-            }/>
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            {user?.role === "user" ? (
+              <Dashboard />
+            ) : (
+              <Navigate to="/admin" replace />
+            )}
+          </ProtectedRoute>
+        }/>
 
-            <Route path="/professionals" element={
-                <ProtectedRoute>
-                    <HealthProPage />
-                </ProtectedRoute>
-            } />
+        <Route path="/admin" element={
+          <ProtectedRoute>
+            {user?.role === "admin" ? (
+              <AdminPage />
+            ) : (
+              <Navigate to="/dashboard" replace />
+            )}
+          </ProtectedRoute>
+        }/>
 
-            {/*<Route path="/calendar" element={
-                <ProtectedRoute>
-                <CalendarPage />
-                </ProtectedRoute>
-            } />*/}
+        <Route path="/professionals" element={
+          <ProtectedRoute>
+            <HealthProPage />
+          </ProtectedRoute>
+        } />
 
-            {/*<Route path="/forum" element={
-                <ProtectedRoute>
-                <ForumPage />
-                </ProtectedRoute>
-            } />*/}
+        {/*<Route path="/calendar" element={
+          <ProtectedRoute>
+            <CalendarPage />
+          </ProtectedRoute>
+        } />*/}
 
-            <Route path="/blog" element={
-                <ProtectedRoute>
-                    <ArticlePage />
-                </ProtectedRoute>
-            } />
+        {/*<Route path="/forum" element={
+          <ProtectedRoute>
+            <ForumPage />
+          </ProtectedRoute>
+        } />*/}
 
-            <Route path="/profile" element={
-                <ProtectedRoute>
-                    <ProfilePage />
-                </ProtectedRoute>
-            } />
+        <Route path="/blog" element={
+          <ProtectedRoute>
+            <ArticlePage />
+          </ProtectedRoute>
+        } />
 
-            {/* Gestion routes inconnues */}
-            <Route path="*" element={
-                <ProtectedRoute>
-                    <NotFoundPage />
-                </ProtectedRoute>
-            } />
-        </Routes>
-        </BrowserRouter>
-    );
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        } />
+
+        {/* Gestion routes inconnues */}
+        <Route path="*" element={
+          <ProtectedRoute>
+            <NotFound />
+          </ProtectedRoute>
+        } />
+      </Routes>
+    </BrowserRouter>
+  );
 }

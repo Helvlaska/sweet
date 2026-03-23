@@ -11,18 +11,20 @@ export function AuthProvider(props) {
   const children = props.children;
 
   const [user, setUser] = useState(null);
-  const [initializing, setInitializing] = useState(true);
+  const [loading, setLoading] = useState(true);
 
 
   async function verifySession() {
     try {
       const response = await authPrivateService.getProfile();
       setUser(response.data);
+
     } catch (error) {
       console.error("Verify session: ", error);
       setUser(null);
+
     } finally {
-      setInitializing(false);
+      setLoading(false);
     }
   }
 
@@ -38,6 +40,7 @@ export function AuthProvider(props) {
       const profileResponse = await authPrivateService.getProfile();
       setUser(profileResponse.data);
       return profileResponse.data;
+
     } catch (error) {
       setUser(null);
       throw error;
@@ -49,8 +52,10 @@ export function AuthProvider(props) {
 
     try {
       await authPrivateService.logout();
+
     } catch (error) {
       console.error("Logout error:", error);
+
     } finally {
       setUser(null);
     }
@@ -77,6 +82,7 @@ export function AuthProvider(props) {
       const response = await authPrivateService.getProfile();
       setUser(response.data);
       return response.data;
+      
     } catch (error) {
       setUser(null);
       throw error;
@@ -103,7 +109,7 @@ export function AuthProvider(props) {
         user: user,
         isAuthenticated: isAuthenticated,
         isAdmin: isAdmin,
-        initializing: initializing,
+        loading: loading,
         login: login,
         logout: logout,
         updateProfile: updateProfile,
