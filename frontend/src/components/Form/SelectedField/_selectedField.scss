@@ -56,7 +56,12 @@
     background-color: $light-grey;
     width: 100%;
     padding: 10px 15px;
+    gap: 30px;
     cursor: pointer;
+    .selectedField__placeholder,
+    .selectedField__value {
+    white-space: nowrap;
+    }
   }
 
   &__icon svg {
@@ -136,4 +141,25 @@
 
 .selectedField__list::-webkit-scrollbar-thumb:hover {
   background-color: $dark-grey;
+}
+
+
+// --------------------------------------------------------- SELECTEDFIELD SKIN
+
+.selectedField--white {
+  .selectedField__control {
+    background-color: $white;
+    padding: 20px 20px 20px 10px;
+  }
+
+  .selectedField__list {
+    background-color: $white;
+  }
+
+}
+
+.selectedField--profile-page {
+  .selectedField__control {
+    padding: 15px 10px;
+  }
 }

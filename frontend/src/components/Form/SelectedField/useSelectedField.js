@@ -12,7 +12,6 @@ export function useSelectedField(name, options, value, onChange, disabled) {
   let selectedLabel = "";
 
   if (value && options && options.length > 0) {
-
     const selectedOption = options.find(function (option) {
       return option.value === value;
     });

@@ -64,7 +64,8 @@ export default function SelectedField(props) {
     options,
     value,
     onChange,
-    disabled
+    disabled,
+    className
   } = props;
 
   const {
@@ -81,7 +82,7 @@ export default function SelectedField(props) {
   } = useSelectedField(name, options, value, onChange, disabled);
 
   return (
-    <div className="selectedField" ref={fieldRef}>
+    <div className={"selectedField" + (className ? " " + className : "")} ref={fieldRef}>
       <div
         className="selectedField__control"
         role="combobox"
