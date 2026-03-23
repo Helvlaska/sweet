@@ -3,11 +3,11 @@ import React, { useState } from "react";
 // Import des sous-pages et composants
 import ProfilPageUpdate from "../components/ProfilePage/profileUpdate";
 import ProfilPageMedication from "../components/ProfilePage/profileMedication";
-import NavBar from "../components/DashboardPage/dashboardNavbar";
+import NavBar from "../components/NavBar/NavBar";
 
 // Import des services backend
-import { authService } from "../services/authService";
-import { medicationService } from "../services/medicationService";
+import { authPrivateService } from "../services/auth/authPrivateService";
+import { medicationService } from "../services/health/medicationService";
 
 function ProfilePage() {
     // Détermine quelle sous-page afficher (1 = profil, 2 = médicaments)
@@ -57,7 +57,7 @@ function ProfilePage() {
     // Met à jour le profil utilisateur
     async function handleUpdateSubmit(userData) {
         try {
-            const response = await authService.update_profile(userData);
+            const response = await authPrivateService.update_profile(userData);
             console.log("Profil mis à jour :", response);
             alert("Profil mis à jour avec succès !");
         } catch (error) {

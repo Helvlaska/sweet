@@ -1,16 +1,42 @@
+"""
+[BACK][services/forum_service.py]
+
+Service layer — forum post business logic.
+Called exclusively from forum_routes.py.
+
+Exposed functions:
+  validate_forum_post_data(data)
+  create_forum_post_entry(user_id, data)
+  get_all_forum_posts(sort_by)
+  get_forum_post_by_id(post_id)
+  update_forum_post_entry(post_id, new_data, user_id)
+  delete_forum_post(post_id, user_id)
+  toggle_like_forum_post(post_id, user_id)
+
+Access control:
+  create          → any authenticated user
+  read            → any authenticated user
+  update, delete  → author only
+  like            → any authenticated user except post author
+"""
+
+
 from flask import current_app as app
 from app import db
 from app.models import ForumPost, User
 
 
 def validate_forum_post_data(data: dict):
+    """Validate and return a ForumPost instance."""
     try:
         if not data:
             app.logger.error("[BACK][services/data_service.py][validate_forum_post_data] Aucune donnée reçue.")
             raise ValueError("Aucune donnée reçue pour la création du post sur le forum.")
+
         if "title" not in data or "content" not in data :
             app.logger.error("[BACK][services/data_service.py][validate_forum_post_data] Champs 'title' et 'content' requis.")
             raise ValueError("Les champs 'title' et 'content' sont requis")
+
         forum_post = ForumPost()
         forum_post.title = data.get("title")
         forum_post.content = data.get("content")
@@ -23,7 +49,7 @@ def validate_forum_post_data(data: dict):
 
 
 def create_forum_post_entry(user_id: str, data: dict):
-    """Crée un nouveau post dans le forum."""
+    """Create forum post"""
     try:
         forum_post = validate_forum_post_data(data)
         forum_post.user_id = user_id
@@ -39,16 +65,19 @@ def create_forum_post_entry(user_id: str, data: dict):
 
 
 def get_all_forum_posts(sort_by="recent"):
-    """Retourne tous les posts triés par date ou popularité."""
+    """Get all forum post"""
     try:
         if sort_by == "popular":
             posts = ForumPost.query.order_by(ForumPost._likes.desc(), ForumPost.created_at.desc()).all() # type: ignore
         else:
             posts = ForumPost.query.order_by(ForumPost.created_at.desc()).all()
+
         result = []
+
         for post in posts:
             posts_dict = post.to_dict()
             result.append(posts_dict)
+
         app.logger.info("[BACK][services/data_service.py][get_all_forum_posts] Liste des posts renvoyée")
         return result
 
@@ -58,47 +87,56 @@ def get_all_forum_posts(sort_by="recent"):
 
 
 def get_forum_post_by_id(post_id: str):
-    """Retourne un post et ses commentaires."""
+    """Retrieve a forum post with its comments. Raises LookupError if not found."""
     try:
         post = ForumPost.query.get(post_id)
         if not post:
             app.logger.error(f"[BACK][services/data_service.py][get_forum_post_by_id] Post {post_id} introuvable")
-            return None
+            raise LookupError(f"Post {post_id} not found")
+
         post_data = post.to_dict()
         post_data["comments"] = []
+
         for comment in post.comments:
             comment_dict = comment.to_dict()
             post_data["comments"].append(comment_dict)
             app.logger.info(f"[BACK][services/data_service.py][get_forum_post_by_id] Commentaire ajouté → {comment_dict.get('id')}")
+
         app.logger.info(f"[BACK][services/data_service.py][get_forum_post_by_id] Post {post_id} récupéré avec ses commentaires")
         return post_data
 
+    except LookupError:
+        raise
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][get_forum_post_by_id] Erreur inattendue : {e}")
         raise
 
 
 def update_forum_post_entry(post_id: str, new_data: dict, user_id: str):
-    """Modifie un post existant (seulement par son auteur)."""
+    """Update a forum post — author only. Raises LookupError if not found, PermissionError if not author."""
     try:
         post = ForumPost.query.get(post_id)
         if not post:
             app.logger.info("[BACK][services/data_service.py][update_forum_post_entry] Aucune entrée trouvée pour cet utilisateur.")
-            return None
+            raise LookupError(f"Post {post_id} not found")
+
         if post.user_id != user_id:
             app.logger.info("[BACK][services/data_service.py][update_forum_post_entry] Utilisateur non autorisé à modifier ce post")
-            return None
+            raise PermissionError("Only the author can update this post")
+
         if "title" in new_data:
             validated_title = validate_forum_post_data({"title": new_data["title"], "content": post.content})
             post.title = validated_title.title
+
         if "content" in new_data:
             validated_content = validate_forum_post_data({"content": new_data["content"], "title": post.title})
             post.content = validated_content.content
+
         post.save()
         app.logger.info(f"[BACK][services/data_service.py][update_forum_post_entry] Post {post.id} mis à jour par user {user_id}")
         return post.to_dict()
 
-    except ValueError as e:
+    except (ValueError, TypeError, LookupError, PermissionError) as e:
         app.logger.error(f"[BACK][services/data_service.py][update_forum_post_entry] Erreur de validation : {e}")
         raise
     except Exception as e:
@@ -107,38 +145,45 @@ def update_forum_post_entry(post_id: str, new_data: dict, user_id: str):
 
 
 def delete_forum_post(post_id: str, user_id: str):
-    """Supprime un post (auteur uniquement)."""
+    """Delete a forum post — author only. Raises LookupError if not found, PermissionError if not author."""
     try:
         post = ForumPost.query.get(post_id)
         if not post:
             app.logger.info(f"[BACK][services/data_service.py][delete_forum_post] Aucune entrée trouvée pour user {user_id} (entry_id: {post_id})")
-            return None
+            raise LookupError(f"Post {post_id} not found")
+
         if post.user_id != user_id:
             app.logger.info("[BACK][services/data_service.py][delete_forum_post] Utilisateur non autorisé à supprimer ce post")
-            return None
+            raise PermissionError("Only the author can delete this post")
+
         post.delete()
         app.logger.info(f"[BACK][services/data_service.py][delete_forum_post] Post {post_id} supprimé par user {user_id}")
         return {"deleted_forum_post_id": post_id}
 
+    except (LookupError, PermissionError):
+        raise
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][delete_forum_post] Erreur inattendue : {e}")
         raise
 
 
 def toggle_like_forum_post(post_id: str, user_id: str):
-    """Ajoute ou retire un like sur un post."""
+    """Toggle a like on a forum post. Raises LookupError if not found, PermissionError if own post."""
     try:
         user = User.query.get(user_id)
         if not user:
             app.logger.error(f"[BACK][services/data_service.py][toggle_like_forum_post()] Utilisateur {user_id} introuvable")
-            return None
+            raise LookupError(f"User {user_id} not found")
+
         post = ForumPost.query.get(post_id)
         if not post:
             app.logger.error(f"[BACK][services/data_service.py][toggle_like_forum_post()] Post {post_id} introuvable")
-            return None
+            raise LookupError(f"Post {post_id} not found")
+
         if post.user_id == user_id:
             app.logger.info(f"[BACK][services/data_service.py][toggle_like_forum_post()] User {user_id} a tenté de liker son propre post {post_id}")
-            return None
+            raise PermissionError("Cannot like your own post")
+
         if post in user.liked_posts:
             user.liked_posts.remove(post)
             post.likes -= 1
@@ -147,10 +192,13 @@ def toggle_like_forum_post(post_id: str, user_id: str):
             user.liked_posts.append(post)
             post.increment_likes()
             message = "Post liké"
+
         db.session.commit()
         app.logger.info(f"[BACK][services/data_service.py][toggle_like_forum_post()] User {user_id} → {message} post {post_id}")
         return {"post_id": post_id, "likes": post.likes, "message": message}
 
+    except (LookupError, PermissionError):
+        raise
     except Exception as e:
         app.logger.error(f"[BACK][services/data_service.py][toggle_like_forum_post()] Erreur inattendue : {e}")
         raise

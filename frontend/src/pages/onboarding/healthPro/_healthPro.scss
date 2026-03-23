@@ -1,0 +1,140 @@
+@use "../../../styles/base/colors" as *;
+@use "../../../styles/base/typography" as *;
+@use "../../../styles/base/breakpoints" as *;
+
+// MOBILE FIRST
+.healthPro {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  color: $dark-grey;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    gap: 30px;
+    .healthPro__progress {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 9px;
+      .healthPro__label {
+        padding: 5px 8px;
+        margin: 0;
+        border-radius: 8px;
+        background-color: $main-blue;
+        font-size: 12px;
+        color: $white;
+        width: fit-content;
+      }
+
+      .healthPro__bar {
+        display: flex;
+        width: 60%;
+        gap: 8px;
+        .healthPro__page {
+          border-radius: 50px;
+          width: 36px;
+          height: 5px;
+        }
+
+        .healthPro__page--active {
+          width: 60%;
+          background-color: $main-blue;
+        }
+
+        .healthPro__page--inactive {
+          width: 20%;
+          background-color: $light-blue;
+        }
+      }
+    }
+    .healthPro__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 100%;
+      gap: 20px;
+      .healthPro__title {
+        display: flex;
+        flex-direction: column;
+        font-family: $font-title;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 30px;
+        text-align: center;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: $black;
+      }
+
+      .healthPro__skip {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        justify-content: flex-end;
+        font-size: 12px;
+        width: 100%;
+        gap: 5px;
+        .healthPro__separator {
+          background-color: $main-grey;
+          width: 100%;
+          height: 1px;
+        }
+      }
+
+      .healthPro__actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  &__illustration {
+    display: none;
+    height: 100%;
+    .healthPro__mascot {
+      height: 90%;
+    }
+  }
+
+  @include respond-to("xl") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 20px 0px;
+    &__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 60%;
+      .healthPro__progress {
+        width: 60%;
+      }
+
+      .healthPro__container {
+        justify-content: space-evenly;
+        width: 90%;
+        height: 100%;
+        gap: 10px;
+      }
+    }
+
+    &__illustration {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      border-radius: 20px;
+      background-color: $main-orange;
+      width: 40%;
+      .healthPro__mascot {
+        object-fit: cover;
+      }
+    }
+  }
+}

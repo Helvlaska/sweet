@@ -2,11 +2,13 @@
 @use './breakpoints' as *;
 // Import fonts
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 // Polices importées depuis Google Fonts (déjà dans ton index.html ou _main.scss)
-$font-heading: 'Inter', sans-serif;
-$font-body: 'Roboto', sans-serif;
+$font-heading: "Inter", sans-serif;
+$font-body: "Roboto", sans-serif;
+$font-title: "Roboto Serif", serif;
 
 
 // Base globale
@@ -27,6 +29,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.2px;
   margin-bottom: 0.5rem;
 }
+
 
 h1 { font-size: 2.5rem; font-weight: 400; } // 40px
 h2 { font-size: 2rem;   font-weight: 600; } // 32px

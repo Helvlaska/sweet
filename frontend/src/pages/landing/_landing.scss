@@ -1,0 +1,106 @@
+/**
+ * SWEET — Landing Page Styles
+ * ==========================
+ * Styles dedicated to the public landing page of the SWEET application.
+ *
+ * Role:
+ * -----
+ * - Define the layout and visual appearance of the landing page.
+ * - Handle a mobile-first layout with desktop adaptations.
+ *
+ * Content:
+ * --------
+ * - Main page layout (.landing).
+ * - Organization of visual blocks:
+ *   - Textual content and action buttons
+ *   - Welcome illustration
+ * - Responsive behavior using centralized breakpoints.
+ *
+ * Responsive:
+ * -----------
+ * - Mobile-first by default.
+ * - From the "xl" breakpoint:
+ *   - Switch to a horizontal layout.
+ *   - Display the illustration block.
+ *   - Rebalance content / image widths.
+ *
+ * Architecture:
+ * -------------
+ * - Uses global color and breakpoint variables.
+ * - Follows the SWEET BEM naming convention.
+ * - No global or generic styles are defined here.
+ *
+ * Maintenance:
+ * ------------
+ * - Any responsive logic changes must rely on centralized breakpoint mixins.
+ * - Visual adjustments must remain specific to the landing page.
+ * - This file must not contain any JavaScript logic or interactive behavior.
+ */
+
+
+@use "../../styles/base/colors" as *;
+@use "../../styles/base/breakpoints" as *;
+
+
+// MOBILE FIRST
+.landing {
+  display: flex;
+  padding: 20px;
+  width: 100vw;
+  height: 100vh;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    gap: 30px;
+    text-wrap: nowrap;
+    .landing__title {
+      font-weight: 400;
+      font-size: 60px;
+    }
+    .landing__buttons {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      gap: 15px;
+      button {
+        width: 100%;
+      }
+    }
+  }
+  &__image-wrapper {
+    display: none;
+    height: 100%;
+    background-color: $light-blue;
+    .landing__image {
+      height: 90%;
+    }
+  }
+
+
+  @include respond-to("xl") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 20px 0px;
+    &__content {
+      width: 40%;
+      .landing__buttons {
+        width: 40%;
+      }
+    }
+    &__image-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      border-radius: 20px;
+      width: 60%;
+      .landing__image {
+        padding-left: 25px;
+      }
+    }
+  }
+}

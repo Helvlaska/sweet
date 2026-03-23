@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { validateField } from "../../utils/validator";
 import { formatData } from "../../utils/dataFormatter";
-import { medicationService } from "../../services/medicationService";
-import { useAuth } from "../../context/AuthContext";
+import { medicationService } from "../../services/health/medicationService";
+import { useAuth } from "../../context/useAuth";
 
 // import image et icones
 import DeleteIcon from "../../assets/profile/ProfileIconTrash.png";

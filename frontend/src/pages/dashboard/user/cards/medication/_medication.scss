@@ -1,0 +1,130 @@
+@use "../../../../../styles/base/colors" as *;
+@use "../../../../../styles/base/breakpoints" as *;
+@use "../../../../../styles/base/typography" as *;
+
+// MOBILE FIRST
+.medication {
+  width: 100%;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 15px 20px 15px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: $main-pink;
+    .medication__container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      .medication__title {
+        font-family: $font-title;
+        font-weight: 400;
+        font-size: 30px;
+        letter-spacing: -3%;
+        color: $white;
+      }
+    }
+  }
+
+  &__body {
+    padding: 0px 15px 20px 15px;
+    border-radius: 0px 0px 20px 20px;
+    background-color: $main-pink;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__footer {
+    margin-top: -20px;
+    padding: 35px 15px 20px 15px;
+    border-radius: 0px 0px 20px 20px;
+    background-color: $light-pink;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__popup {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: $white;
+    height: 50%;
+    position: fixed;
+    top: 20%;
+    z-index: 10;
+    .popup__img {
+      display: none;
+    }
+
+    .popup__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 100%;
+      .popup__title {
+        font-family: $font-title;
+        font-weight: 400;
+        font-size: 30px;
+        text-align: center;
+        letter-spacing: -3%;
+        line-height: 1.10;
+        margin: 0;
+      }
+
+      .popup__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 40%;
+        .popup__input {
+          border: 1px solid $main-grey;
+          border-radius: 10px;
+          padding: 20px 20px 20px 10px;
+          margin-bottom: 10px;
+        }
+
+        .popup__errors {
+          color: $red;
+          width: 100%;
+          .popup__error {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+          }
+        }
+      }
+    }
+  }
+
+  @include respond-to("xl") {
+    flex: 1;
+    height: fit-content;
+    &__popup {
+      height: fit-content;
+      width: 60%;
+      top: 20%;
+      left: 20%;
+      gap: 20px;
+      .popup__img {
+        display: flex;
+        width: 50%;
+      }
+
+      .popup__content {
+        height: stretch;
+        justify-content: space-evenly;
+        .popup__form {
+          .popup__errors {
+            .popup__error {
+              margin: 10px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

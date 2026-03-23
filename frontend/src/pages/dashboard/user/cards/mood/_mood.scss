@@ -1,0 +1,129 @@
+@use "../../../../../styles/base/colors" as *;
+@use "../../../../../styles/base/breakpoints" as *;
+@use "../../../../../styles/base/typography" as *;
+
+// MOBILE FIRST
+.mood {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 15px 0px 15px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: $main-brown;
+    .mood__container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      .mood__title {
+        font-family: $font-title;
+        font-weight: 400;
+        font-size: 30px;
+        letter-spacing: -3%;
+        color: $white;
+      }
+    }
+  }
+
+  &__body {
+    background-color: $main-brown;
+    color: $white;
+    padding: 30px 15px 40px 15px;
+    border-radius: 0px 0px 20px 20px;
+    .mood__items {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 10px;
+      .mood__item {
+        border-radius: 50px;
+        color: $main-brown;
+        background-color: $white;
+        padding: 10px 20px;
+        width: fit-content;
+      }
+
+      .mood__item--empty {
+        margin: 40px 0px;
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+
+  &__popup {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: $white;
+    height: 50%;
+    position: fixed;
+    top: 20%;
+    z-index: 10;
+    .popup__img {
+      display: none;
+    }
+
+    .popup__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 100%;
+      .popup__title {
+        font-family: $font-title;
+        font-weight: 400;
+        font-size: 30px;
+        text-align: center;
+        letter-spacing: -3%;
+        line-height: 1.10;
+        margin: 0;
+      }
+
+      .popup__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 40%;
+      }
+
+      .popup__errors {
+        color: $red;
+        width: 100%;
+        .popup__error {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
+      }
+    }
+  }
+
+  @include respond-to("xl") {
+    &__popup {
+      height: fit-content;
+      width: 60%;
+      top: 20%;
+      left: 20%;
+      gap: 20px;
+      .popup__img {
+        display: flex;
+        width: 50%;
+      }
+
+      .popup__content {
+        height: stretch;
+        justify-content: space-evenly;
+        .popup__form {
+          .popup__errors {
+            .popup__error {
+              margin: 10px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

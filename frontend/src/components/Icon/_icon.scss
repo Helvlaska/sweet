@@ -1,0 +1,113 @@
+/**
+ * SWEET — Icon System (SKIN + SIZE Architecture)
+ * ============================================================
+ * FILE CONTAIN
+ * - Base SVG behavior shared by all icons
+ * - SVG visual behaviors (filled, outline, flipped…)
+ * - Unified SIZE system to scale the icon container and SVG
+ * - A dedicated size variant for navbar icons
+ *
+ * NOTES
+ * - This file contains NO JavaScript logic.
+ * - Icons rely on `currentColor` to inherit color from their parent.
+ * - This file does NOT define colors or skins (backgrounds, borders).
+ * - Icons are purely visual and have no interactive behavior.
+ * - Visual interaction (hover, active, disabled) is handled by Button styles.
+ *
+ * HOW TO USE
+ *  <Icon name="plus" className="icon-size--sm" />
+ */
+
+@use "../../styles/base/colors" as *;
+
+
+// SVG BEHAVIOR
+.icon svg {
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
+}
+
+.icon--filled svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.icon--outline svg {
+  fill: none !important;
+}
+
+.icon--flip-x svg {
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+.icon--chevron-left svg {
+  transform: translateX(-5px);
+}
+
+.icon--chevron-right svg {
+  transform: translateX(+5px);
+}
+
+
+// SIZES (scaling ONLY : no colors, no borders)
+.icon-size--xs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14px;
+  height: 14px;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.icon-size--sm {
+  width: 32px;
+  height: 32px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.icon-size--md {
+  width: 38px;
+  height: 38px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.icon-size--lg {
+  width: 50px;
+  height: 50px;
+
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.icon-size--xl {
+  width: 56px;
+  height: 56px;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+
+// ICON NAVBAR SIZE
+.icon-size--nav {
+  width: clamp(24px, 3vw, 32px);
+  height: clamp(24px, 3vw, 32px);
+}

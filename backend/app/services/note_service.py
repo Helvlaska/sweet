@@ -1,8 +1,24 @@
+"""
+[BACK][services/note_service.py]
+
+Service layer — note business logic.
+Called exclusively from note_routes.py.
+
+Exposed functions:
+  validate_note_data(data)
+  create_note_entry(user_id, health_professional_id, data)
+  get_note_entries(user_id, health_professional_id)
+  update_note_entry(user_id, health_professional_id, note_id, new_data)
+  delete_note_entry(user_id, health_professional_id, note_id)
+"""
+
+
 from flask import current_app as app
 from app.models import Note
 
 
 def validate_note_data(data: dict) -> Note:
+    """Validate and return a Note instance."""
     try:
         note = Note()
         note.title = data.get("title")
@@ -16,6 +32,7 @@ def validate_note_data(data: dict) -> Note:
 
 
 def create_note_entry(user_id: str, health_professional_id: str, data: dict) -> Note:
+    """Create and save a new Note entry."""
     try:
         note = validate_note_data(data)
         note.user_id = user_id
@@ -24,21 +41,33 @@ def create_note_entry(user_id: str, health_professional_id: str, data: dict) -> 
         app.logger.info(f"[BACK][services/note_service.py][create_note_entry] Nouvelle note '{note.title}' créée pour user {user_id}, professionnel {health_professional_id}")
         return note
 
+    except (ValueError, TypeError):
+        raise
     except Exception as e:
-        app.logger.error(f"[BACK][services/note_service.py][create_note_entry] Erreur lors de la création de la note : {e}")
+        app.logger.error(f"[BACK][services/note_service.py][create_note_entry] Erreur inattendue : {e}")
         raise
 
 
 def get_note_entries(user_id: str, health_professional_id: str) -> list[dict]:
+    """Get all note entry."""
     try:
-        entries = (Note.query.filter_by(user_id=user_id, health_professional_id=health_professional_id).order_by(Note.entry_date.desc()).all())
+        entries = (
+            Note.query
+            .filter_by(user_id=user_id, health_professional_id=health_professional_id)
+            .order_by(Note.entry_date.desc())
+            .all()
+        )
+
         if not entries:
             app.logger.info(f"[BACK][services/note_service.py][get_note_entries] Aucune note trouvée pour user {user_id} et professionnel {health_professional_id}")
             return []
+
         result = []
+
         for entry in entries:
             entry_dict = entry.to_dict()
             result.append(entry_dict)
+
         app.logger.info(f"[BACK][services/note_service.py][get_note_entries] {len(result)} notes récupérées pour user {user_id}, professionnel {health_professional_id}")
         return result
 
@@ -48,31 +77,34 @@ def get_note_entries(user_id: str, health_professional_id: str) -> list[dict]:
 
 
 def update_note_entry(user_id: str, health_professional_id: str, note_id: str, new_data: dict):
-    """Met à jour une note existante pour un professionnel donné."""
+    """Update a Note entry. Returns None if not found."""
     try:
         entry = Note.query.filter_by(id=note_id, user_id=user_id, health_professional_id=health_professional_id).first()
         if not entry:
             app.logger.info(
                 f"[BACK][services/note_service.py][update_note_entry] Aucune note trouvée (user={user_id}, pro={health_professional_id}, note={note_id})")
             return None
+
         if "title" in new_data:
             validated = validate_note_data({
                 "title": new_data["title"],
                 "content": entry.content
             })
             entry.title = validated.title
+
         if "content" in new_data:
             validated = validate_note_data({
                 "title": entry.title,
                 "content": new_data["content"]
             })
             entry.content = validated.content
+
         entry.save()
         app.logger.info(
             f"[BACK][services/note_service.py][update_note_entry] Note {note_id} mise à jour pour user={user_id}, pro={health_professional_id}")
         return entry.to_dict()
 
-    except ValueError as e:
+    except (ValueError, TypeError) as e:
         app.logger.error(f"[BACK][services/note_service.py][update_note_entry] Erreur de validation : {e}")
         raise
     except Exception as e:
@@ -81,13 +113,14 @@ def update_note_entry(user_id: str, health_professional_id: str, note_id: str, n
 
 
 def delete_note_entry(user_id: str, health_professional_id: str, note_id: str):
-    """Supprime une note spécifique liée à un professionnel de santé."""
+    """Delete note entry"""
     try:
         entry = Note.query.filter_by(id=note_id, user_id=user_id, health_professional_id=health_professional_id).first()
         if not entry:
             app.logger.info(
                 f"[BACK][services/note_service.py][delete_note_entry] Aucune note trouvée (user={user_id}, pro={health_professional_id}, note={note_id})")
             return None
+
         entry.delete()
         app.logger.info(
             f"[BACK][services/note_service.py][delete_note_entry] Note {note_id} supprimée avec succès (user={user_id}, pro={health_professional_id})")

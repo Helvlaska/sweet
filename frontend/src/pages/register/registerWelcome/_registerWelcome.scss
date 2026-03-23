@@ -1,0 +1,127 @@
+/**
+ * SWEET — Register Welcome Step Styles
+ * ====================================
+ * Styles dedicated to the transitional step
+ * of the registration process.
+ *
+ * Role:
+ * -----
+ * - Define the layout and visual appearance
+ *   of the register welcome screen.
+ * - Highlight the introductory message
+ *   and the primary "Start" action.
+ *
+ * Content:
+ * --------
+ * - Main layout (.registerWelcome).
+ * - Wrapper block centralizing the content.
+ * - Introductory typographic text.
+ * - Secondary call-to-action linking to login.
+ * - Illustration aligned with the SWEET visual identity.
+ *
+ * Responsive:
+ * -----------
+ * - Mobile-first approach by default (vertical layout).
+ * - From the "xl" breakpoint:
+ *   - Switch to a horizontal layout.
+ *   - Split content and illustration into two columns.
+ *
+ * Architecture:
+ * -------------
+ * - Uses global color, typography,
+ *   and breakpoint variables.
+ * - Follows the SWEET BEM naming convention.
+ * - Styles are strictly scoped to the RegisterWelcome step.
+ *
+ * Maintenance:
+ * ------------
+ * - Any responsive updates must use centralized breakpoint mixins.
+ * - Visual adjustments must remain specific
+ *   to this step of the flow.
+ * - This file contains no JavaScript logic
+ *   or interactive behavior.
+ */
+
+
+@use "../../../styles/base/colors" as *;
+@use "../../../styles/base/typography" as *;
+@use "../../../styles/base/breakpoints" as *;
+
+
+// MOBILE FIRST
+.registerWelcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  color: $dark-grey;
+  &__wrapper {
+    width: 90%;
+    .registerWelcome__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 30px;
+      .registerWelcome__text {
+        display: flex;
+        flex-direction: column;
+        font-family: $font-title;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 20px;
+        line-height: 1.2;
+        color: $black;
+        gap: 16px;
+      }
+
+      .registerWelcome__cta {
+        display: flex;
+        justify-content: center;
+        font-size: 12px;
+        gap: 5px;
+        .registerWelcome__link {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__illustration {
+    display: none;
+    height: 100%;
+    .registerWelcome__mascot {
+      height: 90%;
+    }
+  }
+
+  @include respond-to("xl") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 20px 0px;
+
+    &__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40%;
+    }
+
+    &__illustration {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      border-radius: 20px;
+      background-color: $main-orange;
+      width: 60%;
+      .registerWelcome__mascot {
+        padding-left: 25px;
+      }
+    }
+  }
+}

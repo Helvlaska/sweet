@@ -4,12 +4,13 @@ $max-width-container: 1660px;
 
 // Breakpoints
 $breakpoints: (
-  "xs": 360px,
-  "sm": 576px,
-  "md": 768px,
-  "lg": 1024px,
-  "xl": 1440px,     // Laptop Lenovo compact
-  "xxl": 1920px
+  "xs": 320px,
+  "sm": 375px,
+  "md": 425px,
+  "lg": 768px,
+  "xl": 1024px,
+  "xxl": 1440px,
+  "4k": 2560px
 );
 
 

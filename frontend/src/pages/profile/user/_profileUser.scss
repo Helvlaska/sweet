@@ -1,0 +1,186 @@
+@use "../../../styles/base/colors" as *;
+@use "../../../styles/base/breakpoints" as *;
+
+
+// MOBILE FIRST
+.profile {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0 100px 0;
+  gap: 30px;
+  &__picture {
+    display: flex;
+    justify-content: center;
+    .picture__input {
+      display: none;
+    }
+
+    .picture__wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      .picture__label {
+        display: block;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        cursor: pointer;
+        .picture__img {
+          display: block;
+          border-radius: 50%;
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .picture__btn {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+    }
+  }
+
+  &__username {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-size: 35px;
+    line-height: 1;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  &__form--user {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
+    font-size: 12px;
+    gap: 10px;
+    .profile__group {
+      border: 1px solid $main-grey;
+      border-radius: 10px;
+      padding: 15px 10px;
+      flex: 1;
+    }
+    .profile__group--select {
+      flex: 1;
+    }
+
+    .form__user--btn {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  &__form--auth {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
+    font-size: 12px;
+    gap: 30px;
+    .profile__group {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 20px;
+      .profile__group--input {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid $main-grey;
+        border-radius: 10px;
+        padding: 15px 10px;
+        flex: 1;
+        .profile__field-error {
+          display: flex;
+          align-items: center;
+          font-size: 10px;
+          color: $red;
+          margin: 0;
+          gap: 5px;
+        }
+
+        .profile__field-success {
+          display: flex;
+          align-items: center;
+          font-size: 10px;
+          color: $green;
+          margin: 0;
+          gap: 5px;
+        }
+      }
+
+      .profile__checklist {
+        font-size: 10px;
+        .profile__checklist-item {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+
+        .is-valid {
+          color: $green;
+        }
+      }
+    }
+  }
+
+  @include respond-to("xl") {
+    padding: 40px 0 100px 100px;
+    align-items: center;
+    &__form--user {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0px 10px;
+      width: 60%;
+    }
+
+    &__form--auth {
+      gap: 20px;
+      width: 50%;
+      .profile__group {
+        flex-direction: row;
+        .profile__group--input {
+          display: flex;
+          justify-content: space-between;
+          border: 1px solid $main-grey;
+          border-radius: 10px;
+          padding: 15px 10px;
+          flex: 1;
+        }
+
+        .profile__checklist {
+          font-size: 10px;
+          .profile__checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
+
+          .is-valid {
+            color: $green;
+          }
+        }
+      }
+
+      .profile__groupe--password {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        gap: 20px;
+        .password__btn {
+          height: fit-content;
+        }
+      }
+    }
+  }
+}

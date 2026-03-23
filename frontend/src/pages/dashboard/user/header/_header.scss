@@ -1,0 +1,111 @@
+@use "../../../../styles/base/colors" as *;
+@use "../../../../styles/base/breakpoints" as *;
+@use "../../../../styles/base/typography" as *;
+
+
+// MOBILE FIRST
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px 10px 0px 10px;
+  width: 100%;
+  &__welcome {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+    .welcome__mascot {
+      width: 30%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 17px;
+    }
+
+    .welcome__bubble {
+      background-color: $main-blue;
+      color: $white;
+      border-radius: 17px;
+      padding: 20px;
+      width: 100%;
+      .bubble__container {
+        display: none;
+      }
+
+      .bubble__content {
+        .bubble__greeting {
+          white-space: nowrap;
+          font-family: $font-title;
+          font-size: 20px;
+          font-weight: 400;
+          letter-spacing: -3%;
+        }
+
+        .bubble__text {
+          white-space: nowrap;
+          margin: 0;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  &__date {
+    .date__text,
+    .date__date {
+      margin: 0;
+      font-family: $font-title;
+      font-size: 23px;
+      font-weight: 400;
+      letter-spacing: -3%;
+      line-height: 1;
+    }
+  }
+
+  @include respond-to("xl") {
+    padding: 30px 20px 0px 100px;
+    justify-content: space-between;
+    align-items: flex-end;
+    &__welcome {
+      margin: 0;
+      .welcome__bubble {
+        background-color: transparent;
+        padding: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        height: auto;
+        .bubble__container {
+          display: flex;
+        }
+
+        .bubble__content {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 58%;
+          left: 45%;
+          transform: translate(-50%, -50%);
+          width: 75%;
+          .bubble__greeting {
+            font-size: 30px;
+          }
+
+          .bubble__text {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+
+    &__date {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      .date__text,
+      .date__date {
+        font-size: 40px;
+      }
+    }
+  }
+}

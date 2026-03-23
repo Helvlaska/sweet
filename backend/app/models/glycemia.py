@@ -1,6 +1,20 @@
+"""
+[BACK][models/glycemia.py]
+
+Glycemia model — inherits from BaseModel (id, created_at, updated_at, entry_date, CRUD).
+
+Fields:
+  glucose_level   Integer, mg/dL (50–350)
+  user_id         Foreign key → users.id
+
+All fields are exposed via validated property setters.
+"""
+
+
 from flask import current_app as app
 from app.models.base import BaseModel
 from app import db
+
 
 class Glycemia(BaseModel):
     __tablename__ = "glycemias"
@@ -9,6 +23,7 @@ class Glycemia(BaseModel):
     _glucose_level = db.Column(db.Integer, nullable=False)
 
     user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
+
 
     @property
     def glucose_level(self):
@@ -19,8 +34,10 @@ class Glycemia(BaseModel):
         if not isinstance(value, int):
             app.logger.error("[BACK][models/glycemia.py][glucose_level.setter] La glycémie doit être un integer")
             raise TypeError(f"La glycémie {value} doit être un nombre entier")
+
         if value < 50 or value > 350:
             app.logger.error(f"[BACK][models/glycemia.py][glucose_level.setter] La glycémie {value} doit se situer entre 50 et 350")
             raise ValueError("La glycémie doit se situer entre 50 et 350")
+        
         app.logger.info(f"La mesure {value} de glycémie est valide")
         self._glucose_level = value

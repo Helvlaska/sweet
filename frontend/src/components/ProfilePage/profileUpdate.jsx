@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { validateField } from "../../utils/validator";
 import { formatData } from "../../utils/dataFormatter";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/useAuth";
 
 // Imports d’assets (à adapter à ton arborescence)
 import ModifyIcon from "../../assets/profile/ProfileIconModifier.png"

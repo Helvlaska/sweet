@@ -45,10 +45,11 @@ def create_app(test_config=None):
     flask_app.config["JWT_ACCESS_COOKIE_PATH"] = "/"
     flask_app.config["JWT_REFRESH_COOKIE_PATH"] = "/auth/refresh"
 
-    flask_app.config["JWT_COOKIE_SECURE"] = True
+    flask_app.config["JWT_COOKIE_SECURE"] = False
     flask_app.config["JWT_COOKIE_HTTPONLY"] = True
     flask_app.config["JWT_COOKIE_CSRF_PROTECT"] = False
-    flask_app.config["JWT_COOKIE_SAMESITE"] = "None"
+    flask_app.config["JWT_COOKIE_SAMESITE"] = "Lax"
+    # En production HTTPS: samesite="None" + secure=True
 
     flask_app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
     flask_app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(hours=48)
@@ -74,7 +75,7 @@ def create_app(test_config=None):
     CORS(
         flask_app,
         supports_credentials=True,
-        origins=["http://localhost:5173"]
+        origins=["http://localhost:5173", "https://sweetapp.fr", "https://www.sweetapp.fr"]
     )
 
     # Register models
@@ -90,6 +91,7 @@ def create_app(test_config=None):
     from .routes.medication_routes import medication_bp
     from .routes.mood_routes import mood_bp
     from .routes.note_routes import note_bp
+    from .routes.health_document_routes import document_bp
     from .routes.professional_routes import professional_bp
     from .routes.weight_routes import weight_bp
     from .routes.comment_routes import comment_bp
@@ -103,6 +105,7 @@ def create_app(test_config=None):
     flask_app.register_blueprint(medication_bp)
     flask_app.register_blueprint(mood_bp)
     flask_app.register_blueprint(note_bp)
+    flask_app.register_blueprint(document_bp)
     flask_app.register_blueprint(professional_bp)
     flask_app.register_blueprint(weight_bp)
     flask_app.register_blueprint(comment_bp)

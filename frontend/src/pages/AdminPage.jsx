@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { articleService } from "../services/articleService";
-import { useAuth } from "../context/AuthContext";
+import { articleService } from "../services/community/articleService";
+import { useAuth } from "../context/useAuth";
 
 // Import des icones
 import LogoutIcon from "../assets/dashboard/navbar/NavBarIconLogOut.svg";
