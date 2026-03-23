@@ -90,9 +90,11 @@
 }
 
 // ACTIVE BUTTON
-@mixin btn-active-bg($color) {
+@mixin btn-active-bg($bg-color, $color) {
   &.is-active {
-    background-color: $color;
+    border-color: $bg-color;
+    background-color: $bg-color;
+    color: $color;
   }
 }
 
@@ -106,9 +108,16 @@
   }
 }
 
+// NAVBAR BUTTON ROUND
+@mixin btn-nav-round {
+  @include btn-base;
+  width: clamp(48px, 5vw, 70px);
+  height: clamp(48px, 5vw, 70px);
+  border-radius: 50%;
+}
 
-// NAVBAR BUTTON
-@mixin btn-nav {
+// NAVBAR BUTTON SQUARE
+@mixin btn-nav-square {
   @include btn-base;
   width: clamp(48px, 5vw, 70px);
   height: clamp(48px, 5vw, 70px);
@@ -121,9 +130,30 @@
   background-color: $color;
 }
 
+// NAVBAR BUTTON OUTLINE HOVER
+@mixin btn-nav-outline--hover($color) {
+  &:hover:not(.active) {
+    border: 2px solid $color;
+  }
+}
+
+// NAVBAR BUTTON OUTLINE ACTIVE
+@mixin btn-nav-outline--active($color) {
+  &.active {
+    border: 2px solid $color;
+  }
+}
+
 // NAVBAR BUTTON BG HOVER
-@mixin btn-nav-hover($color) {
-  &:hover:not(.is-active) {
+@mixin btn-nav-bg--hover($color) {
+  &:hover:not(.active) {
+    background-color: $color;
+  }
+}
+
+// NAVBAR BUTTON BG ACTIVE
+@mixin btn-nav-bg--active($color) {
+  &.active {
     background-color: $color;
   }
 }
@@ -163,4 +193,144 @@
 
 .btn-round-grey {
   @include btn-round($main-grey, $light-grey, $dark-grey)
+}
+
+// ------------------------------------------------------------------- ONBOARDING
+.btn-list {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid $main-grey;
+  border-radius: 10px;
+  padding: 10px 15px;
+  width: 100%;
+  color: $dark-grey;
+  font-size: 12px;
+  background-color: $light-grey;
+  height: 100%;
+  z-index: 2;
+  &__arrow--open svg {
+    transform: rotate(180deg);
+    transition: transform 0.5s ease;
+  }
+  &__arrow--close svg {
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+  }
+}
+
+.btn-round-list-trash-grey {
+  @include btn-round($main-grey, transparent, $dark-grey);
+  padding: 5px;
+
+}
+
+.btn-round-grey {
+  @include btn-round($main-grey, transparent, $dark-grey);
+  padding: 9px;
+}
+
+// ------------------------------------------------------------------- NAVBAR
+
+.btn-nav--round {
+  @include btn-nav-round();
+  @include btn-nav-outline--hover($main-kaki);
+  @include btn-nav-outline--active($dark-kaki);
+}
+
+.btn-nav--square {
+  @include btn-nav-square();
+  @include btn-nav-bg($light-kaki);
+  @include btn-nav-bg--hover($main-kaki);
+  @include btn-nav-bg--active($dark-kaki);
+}
+
+.btn-nav--square-logout {
+  @include btn-nav-square();
+  @include btn-nav-bg($light-kaki);
+  @include btn-nav-bg--hover($main-orange);
+  @include btn-nav-bg--active($dark-orange);
+}
+
+// ------------------------------------------------------------------- DASHBOARD
+
+.btn-round-white {
+  @include btn-round($white, $white, $black);
+  padding: 11px;
+}
+
+.btn-pill-glycemia {
+  @include btn-pill();
+  @include btn-solid-color($white, $black);
+  @include btn-active-bg($dark-lila, $white);
+}
+
+.btn-pill-activity {
+  @include btn-pill();
+  @include btn-solid-color($white, $black);
+  @include btn-active-bg($dark-yellow, $white);
+}
+
+.btn-pill-weight {
+  @include btn-pill();
+  @include btn-solid-color($white, $black);
+  @include btn-active-bg($dark-orange, $white);
+  padding: 10px 20px
+}
+
+.btn-round-popup--close {
+  @include btn-round($light-violet, $light-violet, $white);
+  padding: 5px;
+}
+
+.btn-pill-article {
+  @include btn-pill();
+  @include btn-solid-color($main-blue, $white);
+  @include btn-hover-bg($dark-blue, $white);
+  width: 100%;
+}
+
+.btn-pill-article--all {
+  @include btn-pill();
+  @include btn-outline-color($black);
+  @include btn-hover-bg($black, $white);
+  width: 100%;
+}
+
+// ------------------------------------------------------------------- PROFILE
+
+.btn-round--kaki {
+  @include btn-round($main-kaki, $main-kaki, $white);
+  @include btn-hover-bg($dark-kaki, $white);
+  padding: 10px;
+  height: fit-content;
+}
+
+.btn-pill-solid--orange {
+  @include btn-pill();
+  @include btn-solid-color($light-orange, $white);
+  @include btn-active-bg($main-orange, $white);
+  width: fit-content;
+  padding: 10px 15px;
+}
+
+.btn-pill-outline-violet--password {
+  @include btn-pill();
+  @include btn-outline-color($light-violet);
+  @include btn-hover-bg($light-violet, $white);
+  height: fit-content;
+  padding: 19px 23px;
+}
+
+.btn-pill-outline--grey {
+  @include btn-pill();
+  @include btn-outline-color($dark-grey);
+}
+// ------------------------------------------------------------------- NOTFOUND
+
+.btn-pill-outline-brown {
+  @include btn-pill();
+  @include btn-outline-color($light-brown);
+  @include btn-hover-bg($light-brown, $white);
 }
