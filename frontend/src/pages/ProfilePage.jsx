@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // Import des sous-pages et composants
 import ProfilPageUpdate from "../components/ProfilePage/profileUpdate";
 import ProfilPageMedication from "../components/ProfilePage/profileMedication";
-import NavBar from "../components/DashboardPage/dashboardNavbar";
+import NavBar from "../components/NavBar/NavBar";
 
 // Import des services backend
 import { authPrivateService } from "../services/auth/authPrivateService";

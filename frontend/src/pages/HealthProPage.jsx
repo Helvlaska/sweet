@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { healthProfessionalService } from "../services/healthProService";
-import { noteService } from "../services/noteService";
+ import React, { useState, useEffect } from "react";
+import { healthProfessionalService } from "../services/professionals/healthProService";
+import { noteService } from "../services/professionals/noteService";
 
 // import des composants
-import NavBar from "../components/DashboardPage/dashboardNavbar";
+import NavBar from "../components/NavBar/NavBar";
 
 // Import des images et icônes
 import CrossClose from "../assets/dashboard/page/DashboardPopUpIconQuitter.png";
@@ -50,7 +50,7 @@ function HealthProPage() {
     // Récupération des professionels
     const fetchHealthProData = async () => {
         try {
-            const response = await healthProfessionalService.get_health_professional_entries();
+            const response = await healthProfessionalService.getHealthProfessionals();
             const data = response.data || response;
             setEntries(data);
         } catch (error) {
@@ -61,7 +61,7 @@ function HealthProPage() {
     // Récupération des notes
     const fetchNotes = async (proId) => {
         try {
-            const response = await noteService.get_note_entries(proId);
+            const response = await noteService.getNotes(proId);
             const data = response.data || [];
             setNotes(data);
         } catch (error) {
@@ -75,7 +75,7 @@ function HealthProPage() {
         if (!newValue.fullname || !newValue.speciality || !newValue.phone) return;
 
         try {
-            await healthProfessionalService.create_health_professional_entry({
+            await healthProfessionalService.createHealthProfessional({
                 fullname: newValue.fullname,
                 speciality: newValue.speciality,
                 phone: newValue.phone,
@@ -94,7 +94,7 @@ function HealthProPage() {
         if (!noteInput.title || !noteInput.content || !selectedPro) return;
 
         try {
-            await noteService.create_note_entry(selectedPro.id, noteInput);
+            await noteService.createNote(selectedPro.id, noteInput);
             setNoteInput({ title: "", content: "" });
             await fetchNotes(selectedPro.id); // rafraîchit la liste après ajout
         } catch (error) {
@@ -108,7 +108,7 @@ function HealthProPage() {
         if (!selectedPro) return;
 
         try {
-            const response = await healthProfessionalService.update_health_professional_entry(
+            const response = await healthProfessionalService.updateHealthProfessional(
                 selectedPro.id,
                 {
                     fullname: newValue.fullname,
@@ -142,7 +142,7 @@ function HealthProPage() {
         if (!selectedNote || !selectedPro) return;
 
         try {
-            await noteService.update_note_entry(
+            await noteService.updateNote(
                 selectedPro.id,
                 selectedNote.id,
                 {
@@ -168,7 +168,7 @@ function HealthProPage() {
         if (!confirmDelete) return;
 
         try {
-            await healthProfessionalService.delete_health_professional_entry(selectedPro.id);
+            await healthProfessionalService.deleteHealthProfessional(selectedPro.id);
             await fetchHealthProData();
             setSelectedPro(null);
         } catch (error) {
@@ -184,7 +184,7 @@ function HealthProPage() {
         if (!confirmDelete) return;
 
         try {
-            await noteService.delete_note_entry(selectedPro.id, selectedNote.id);
+            await noteService.deleteNote(selectedPro.id, selectedNote.id);
             await fetchNotes(selectedPro.id);
             setShowNotePopup(false);
             setSelectedNote(null);
