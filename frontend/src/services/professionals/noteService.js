@@ -18,7 +18,7 @@ import { apiClient } from "../core/apiClient";
 
 function createNote(professionalId, data) {
   return apiClient.post(
-    `data/health_professionals/${professionalId}/notes`,
+    `data/health_professionals/${professionalId}/notes/`,
     data
   );
 }

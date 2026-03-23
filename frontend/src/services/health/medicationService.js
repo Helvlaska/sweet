@@ -17,7 +17,7 @@ import { apiClient } from "../core/apiClient";
 
 
 function createMedicationEntry(data) {
-  return apiClient.post("data/medication", data);
+  return apiClient.post("data/medication/", data);
 }
 
 function getMedicationEntries() {

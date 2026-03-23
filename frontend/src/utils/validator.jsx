@@ -102,6 +102,7 @@ function validateField(name, value) {
 
 export { validateField };
 
+
 function checkPasswordRules(password) {
     // Sécurité : toujours travailler avec une string
     if (typeof password !== "string") {

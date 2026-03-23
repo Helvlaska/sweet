@@ -17,7 +17,7 @@ import { apiClient } from "../core/apiClient";
 
 
 function createMoodEntry(data) {
-  return apiClient.post("data/mood", data);
+  return apiClient.post("data/mood/", data);
 }
 
 function getMoodEntries(params) {

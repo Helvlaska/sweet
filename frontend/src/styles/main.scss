@@ -8,6 +8,7 @@
 @use "../components/Button/button";
 @use "../components/Icon/icon";
 @use "../components/Form/SelectedField/selectedField";
+@use "../components/NavBar/navBar";
 
 // Landing
 @use "../pages/landing/landing";
@@ -26,34 +27,36 @@
 @use "../pages/register/registerProfile/registerProfile";
 
 // Onboarding
-
-// NavBar
-@use "../components//DashboardPage/dashboardNavbar";
+@use "../pages/onboarding/healthPro/healthPro";
+@use "../pages/onboarding/healthPro/healthProAdd/healthProAdd";
+@use "../pages/onboarding/healthPro/healthProList/healthProList";
+@use "../pages/onboarding/healthPro/healthProList/healthProUpdate/healthProUpdate";
 
 // AdminPage
 @use "../pages/adminPage";
 
 // DashboardPage
-@use "../pages/dashboardPage";
-@use "../components/DashboardPage/dashboardHeader";
-@use "../components/DashboardPage/dashboardGlycemia";
-@use "../components/DashboardPage/dashboardActivity";
-@use "../components/DashboardPage/dashboardMedication";
-@use "../components/DashboardPage/dashboardWeight";
-@use "../components/DashboardPage/dashboardMood";
-@use "../components/DashboardPage/dashboardMeal";
-@use "../components/DashboardPage/dashboardArticle";
+@use "../pages/dashboard/user/dashboard";
+@use "../pages/dashboard/user/header/header";
+@use "../pages/dashboard/user/cards/glycemia/glycemia";
+@use "../pages/dashboard/user/cards/activity/activity";
+@use "../pages/dashboard/user/cards/medication/medication";
+@use "../pages/dashboard/user/cards/weight/weight";
+@use "../pages/dashboard/user/cards/mood/mood";
+@use "../pages/dashboard/user/cards/meal/meal";
+@use "../pages/dashboard/user/article/article";
 
 // ArticlePage
 @use "../pages/articlePage";
 
 // ProfilePage
+@use "../pages/profile/user/profileUser";
+@use "../pages/profile/medication/profileMedication";
 @use "../pages/profilePage";
 @use "../components/ProfilePage/profileUpdate";
-@use "../components/ProfilePage/profileMedication";
 
 // HealthProPage
 @use "../pages/healthProPage";
 
 // NoteFoundPage
-@use "../pages/notFoundPage";
+@use "../pages/notFound/notFound";

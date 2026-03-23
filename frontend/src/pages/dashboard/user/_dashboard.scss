@@ -1,0 +1,48 @@
+@use "../../../styles/base/colors" as *;
+@use "../../../styles/base/breakpoints" as *;
+
+
+// MOBILE FIRST
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100vw;
+  height: 100vh;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    .dashboard__master {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 20px;
+    }
+
+    .dashboard__option {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 20px;
+    }
+  }
+
+  @include respond-to("xl") {
+    &__wrapper {
+      flex-direction: row;
+      padding: 0px 20px 0 100px;
+      .dashboard__master {
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex: 2;
+        height: fit-content;
+      }
+
+      .dashboard__option {
+        flex: 1;
+      }
+    }
+  }
+}

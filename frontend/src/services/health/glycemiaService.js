@@ -17,7 +17,7 @@ import { apiClient } from "../core/apiClient";
 
 
 function createGlycemiaEntry(data) {
-  return apiClient.post("data/glycemia", data);
+  return apiClient.post("data/glycemia/", data);
 }
 
 function getGlycemiaEntries(params) {

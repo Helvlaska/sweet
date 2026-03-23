@@ -17,7 +17,7 @@ import { apiClient } from "../core/apiClient";
 
 
 function createActivityEntry(data) {
-  return apiClient.post("data/activity", data);
+  return apiClient.post("data/activity/", data);
 }
 
 function getActivityEntries(params) {

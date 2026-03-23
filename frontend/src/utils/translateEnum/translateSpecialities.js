@@ -1,4 +1,4 @@
-export const SPECIALITY_LABELS = {
+const SPECIALITY_LABELS = {
   general_practitioner: "Médecin généraliste",
   diabetologist: "Diabétologue",
   endocrinologist: "Endocrinologue",
@@ -16,3 +16,13 @@ export const SPECIALITY_LABELS = {
   social_worker: "Assistant social",
   gynecologist: "Gynécologue",
 };
+
+function translateSpeciality(value) {
+  if (SPECIALITY_LABELS[value]) {
+    return SPECIALITY_LABELS[value];
+  }
+
+  return value;
+}
+
+export { translateSpeciality };

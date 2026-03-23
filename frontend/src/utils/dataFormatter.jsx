@@ -77,8 +77,8 @@ function formatDataEntry(data) {
         formatted.weight = parseFloat(formatted.weight);
     }
 
-    if (formatted.activity && formatted.activity.duration) {
-        formatted.activity.duration = parseInt(formatted.activity.duration, 10);
+    if (formatted.duration) {
+        formatted.duration = parseInt(formatted.duration, 10);
     }
 
     if (formatted.medication) {

@@ -1,0 +1,90 @@
+@use "../../../../styles/base/colors" as *;
+@use "../../../../styles/base/breakpoints" as *;
+@use "../../../../styles/base/typography" as *;
+
+// MOBILE FIRST
+.article {
+  padding: 20px 15px 110px 15px;
+  &__title {
+    font-family: $font-title;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -3%;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .article__list {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      margin-top: 20px;
+      gap: 20px;
+      .article__item {
+        .article__card--color {
+          display: none;
+        }
+
+        .article__content {
+          border-radius: 20px;
+          padding: 15px;
+          background-color: $white;
+          color: $dark-grey;
+          .article__title {
+            font-size: 30px;
+            margin-bottom: 20px;
+          }
+
+          .article__text {
+            line-height: normal;
+          }
+        }
+      }
+    }
+
+    .article__list--empty {
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    .article__action {
+      width: 100%;
+    }
+  }
+
+  @include respond-to("xl") {
+    padding: 20px 20px 20px 100px;
+    &__container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      .article__list {
+        flex-direction: row;
+        flex: 1;
+        .article__item {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          border-radius: 20px;
+          background-color: $light-blue;
+          height: 400px;
+          .article__content {
+            .article__title {
+              font-size: 25px;
+            }
+          }
+        }
+      }
+      .article__action {
+        display: flex;
+        justify-content: flex-end;
+        max-width: max-content;
+        flex: 2;
+      }
+    }
+  }
+}

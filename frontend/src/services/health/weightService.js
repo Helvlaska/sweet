@@ -17,7 +17,7 @@ import { apiClient } from "../core/apiClient";
 
 
 function createWeightEntry(data) {
-  return apiClient.post("data/weight", data);
+  return apiClient.post("data/weight/", data);
 }
 
 function getWeightEntries(params) {

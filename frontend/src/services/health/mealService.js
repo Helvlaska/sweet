@@ -17,7 +17,7 @@ import { apiClient } from "../core/apiClient";
 
 
 function createMealEntry(data) {
-  return apiClient.post("data/meal", data);
+  return apiClient.post("data/meal/", data);
 }
 
 function getMealEntries(params) {
