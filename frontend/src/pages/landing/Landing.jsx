@@ -51,15 +51,22 @@ export default function Landing() {
         <h1 className="landing__title">Sweet</h1>
         <div className="landing__buttons">
           <Link to="/login">
-            <Button className="btn-pill-outline-kaki">Se connecter</Button>
+            <Button className="btn-pill-outline-kaki">
+              Se connecter
+            </Button>
           </Link>
           <Link to="/register">
-            <Button className="btn-pill-solid-kaki">Inscription</Button>
+            <Button className="btn-pill-solid-kaki">
+              Inscription
+            </Button>
           </Link>
         </div>
       </div>
       <div className="landing__image-wrapper">
-        <img src={landingImg} alt="Illustration d'accueil de l'application Sweet" className="landing__image" />
+        <img
+          src={landingImg}
+          alt="Illustration d'accueil de l'application Sweet" className="landing__image"
+        />
       </div>
     </div>
   );
