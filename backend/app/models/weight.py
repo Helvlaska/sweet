@@ -1,6 +1,20 @@
+"""
+[BACK][models/weight.py]
+
+Weight model — inherits from BaseModel (id, created_at, updated_at, entry_date, CRUD).
+
+Fields:
+  mass      Float, kg (1.0–400.0), accepts int and float
+  user_id   Foreign key → users.id
+
+All fields are exposed via validated property setters.
+"""
+
+
 from flask import current_app as app
 from app import db
 from app.models.base import BaseModel
+
 
 class Weight(BaseModel):
     __tablename__ = "weights"
@@ -9,6 +23,7 @@ class Weight(BaseModel):
     _mass = db.Column(db.Float, nullable=False)
 
     user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
+
 
     @property
     def mass(self):
@@ -19,7 +34,9 @@ class Weight(BaseModel):
         if not isinstance(value, (float, int)):
             app.logger.error(f"[BACK][models/weight.py][mass.setter] Le poids {value} doit être un float")
             raise TypeError("Le poids doit être un float")
+
         if value < 1.0 or value > 400.0:
             app.logger.error("[BACK][models/weight.py][mass.setter] Le poids doit être compris entre 1 et 400 kg")
             raise ValueError("Le poids doit être compris entre 1 et 400 kg")
+        
         self._mass = float(value)

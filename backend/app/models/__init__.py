@@ -19,18 +19,18 @@ __all__ = ["User", "Glycemia", "Weight", "Activity", "Meal", "Mood", "Medication
 
 user_likes_post = db.Table(
     "user_likes_post",
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("post_id", db.Integer, db.ForeignKey("forum_posts.id"), primary_key=True)
+    db.Column("user_id", db.String(36), db.ForeignKey("users.id"), primary_key=True),
+    db.Column("post_id", db.String(36), db.ForeignKey("forum_posts.id"), primary_key=True)
 )
 
 user_likes_comment = db.Table(
     "user_likes_comment",
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("comment_id", db.Integer, db.ForeignKey("comments.id"), primary_key=True)
+    db.Column("user_id", db.String(36), db.ForeignKey("users.id"), primary_key=True),
+    db.Column("comment_id", db.String(36), db.ForeignKey("comments.id"), primary_key=True)
 )
 
 user_likes_article = db.Table(
     "user_likes_article",
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("article_id", db.Integer, db.ForeignKey("articles.id"), primary_key=True)
+    db.Column("user_id", db.String(36), db.ForeignKey("users.id"), primary_key=True),
+    db.Column("article_id", db.String(36), db.ForeignKey("articles.id"), primary_key=True)
 )

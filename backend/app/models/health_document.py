@@ -1,7 +1,25 @@
-import base64
+"""
+[BACK][models/health_document.py]
+
+HealthDocument model — inherits from BaseModel (id, created_at, updated_at, entry_date, CRUD).
+
+Fields:
+  filename               String (255), validated extension (.pdf, .jpg, .jpeg, .png)
+  file                   LargeBinary, base64 or bytes, max 5 MB
+  health_professional_id Foreign key → health_professionals.id (nullable, SET NULL on delete)
+  user_id                Foreign key → users.id
+
+All fields are exposed via validated property setters.
+file getter returns base64-encoded string for frontend consumption.
+Max 10 documents per health professional (enforced in service layer).
+"""
+
+
 from flask import current_app as app
 from app import db
 from app.models.base import BaseModel
+import base64
+
 
 class HealthDocument(BaseModel) :
     __tablename__="health_documents"

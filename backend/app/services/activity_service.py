@@ -1,6 +1,23 @@
+"""
+[BACK][services/activity_service.py]
+
+Service layer — activity business logic.
+Called exclusively from activity_routes.py.
+
+Exposed functions:
+  validate_activity_data(data)
+  create_activity_entry(user_id, data)
+  get_activity_entry(user_id, range_type, target_date)
+  get_activity_stats(user_id, range_type, target_date)
+  update_activity_entry(user_id, entry_id, new_data)
+  delete_activity_entry(entry_id, user_id)
+"""
+
+
 from flask import current_app as app
 from app.models import Activity
 from app.utils import timelaps
+
 
 def validate_activity_data(data: dict):
     """Validate and return a valid Activity instance"""
@@ -8,9 +25,11 @@ def validate_activity_data(data: dict):
         if not data:
             app.logger.error("[BACK][services/activity_service.py][validate_activity_data] Aucune donnée reçue.")
             raise ValueError("Aucune donnée reçue pour la création d'activité.")
+
         if "description" not in data or "duration" not in data :
             app.logger.error("[BACK][services/activity_service.py][validate_activity_data] Champs 'description' et 'duration' requis.")
             raise ValueError("Les champs 'description' et 'duration' sont requis")
+
         activity = Activity()
         activity.description = data.get("description")
         activity.duration = data.get("duration")
@@ -31,7 +50,8 @@ def create_activity_entry(user_id: str, data: dict):
         app.logger.info(f"[BACK][services/activity_service][create_activity_entry] L'activité {activity.description} pendant {activity.duration} minutes à été enregistrée pour le user {user_id}")
         return activity.to_dict()
 
-    except (ValueError, TypeError):
+    except (ValueError, TypeError) as e:
+        app.logger.error(f"[BACK][services/activity_service.py][create_activity_entry] Erreur de validation de l'activité: {str(e)}")
         raise
     except Exception as e:
         app.logger.error(f"[BACK][services/activity_service][create_activity_entry] Erreur lors de la création de l'activité '{activity.description}' pour le user {user_id}: {e}")
@@ -43,11 +63,14 @@ def get_activity_entry(user_id: str, range_type: str, target_date=None):
     try:
         start_date, end_date = timelaps.get_time_range(range_type, target_date)
         entries = (Activity.query.filter(Activity.user_id == user_id, Activity.entry_date >= start_date, Activity.entry_date <= end_date).order_by(Activity.entry_date.asc()).all())
+
         if not entries:
             app.logger.info(f"[BACK][services/activity_service][get_activity_entry] Aucune entrée trouvée pour l’utilisateur {user_id} ({range_type}).")
             return []
+
         app.logger.info(f"[BACK][services/activity_service][get_activity_entry] {len(entries)} entrées trouvées pour l'utilisateur {user_id}, {range_type} → {start_date} à {end_date}") # type: ignore
         result = []
+
         for entry in entries:
             activity_dict = entry.to_dict()
             result.append(activity_dict)
@@ -68,13 +91,16 @@ def update_activity_entry(user_id: str, entry_id: str, new_data: dict):
         if not entry:
             app.logger.info("[BACK][services/activity_service][update_activity_entry] Aucune entrée trouvée pour cet utilisateur")
             return None
+
         app.logger.info(f"[BACK][services/activity_service][update_activity_entry] L'activités {entry.description} de {entry.duration} minutes: trouvé")
         if "description" in new_data:
             validated_description = validate_activity_data({"description": new_data["description"], "duration": entry.duration})
             entry.description = validated_description.description
+
         if "duration" in new_data:
             validated_duration = validate_activity_data({"duration": new_data["duration"], "description": entry.description})
             entry.duration = validated_duration.duration
+
         entry.save()
         app.logger.info(f"[BACK][services/activity_service][update_activity_entry] Entrée {entry_id} mise à jour de l'activité {entry.description} pendant {entry.duration} minutes, pour user {user_id}")
         return entry.to_dict()
@@ -94,11 +120,14 @@ def get_activity_stats(user_id: str, range_type: str, target_date=None):
         if not entries:
             app.logger.info(f"[BACK][services/activity_service][get_activity_stats] Aucune donnée trouvée pour l’utilisateur {user_id} ({range_type})")
             return None
+
         app.logger.info(f"[BACK][services/activity_service][get_activity_stats] {len(entries)} enregistrements récupérés pour l’utilisateur {user_id} ({range_type})")
         values = []
+
         for entry in entries:
             activity_value = entry["duration"]
             values.append(activity_value)
+
         if values:
             average = round((sum(values) / len(values)))
             app.logger.info(f"[BACK][services/activity_service][get_activity_stats] Moyenne calculée : {average} min/j sur {len(values)} enregistrements")
@@ -122,6 +151,7 @@ def delete_activity_entry(entry_id: str, user_id: str):
         if not entry:
             app.logger.info(f"[BACK][services/activity_service][delete_activity_entry] Aucune entrée trouvée pour user {user_id} (entry_id: {entry_id})")
             return None
+
         entry.delete()
         app.logger.info(f"[BACK][services/activity_service][delete_activity_entry] Entrée {entry_id} supprimée avec succès pour user {user_id}")
         return {"deleted_entry_id": entry_id}

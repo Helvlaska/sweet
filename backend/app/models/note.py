@@ -1,6 +1,22 @@
+"""
+[BACK][models/note.py]
+
+Note model — inherits from BaseModel (id, created_at, updated_at, entry_date, CRUD).
+
+Fields:
+  title                  String (3–80 chars), required
+  content                String (10–1000 chars), required
+  user_id                Foreign key → users.id
+  health_professional_id Foreign key → health_professionals.id (nullable, SET NULL on delete)
+
+All fields are exposed via validated property setters.
+"""
+
+
 from flask import current_app as app
 from app.models.base import BaseModel
 from app import db
+
 
 class Note(BaseModel):
     __tablename__ = "notes"
@@ -21,10 +37,12 @@ class Note(BaseModel):
         if not isinstance(value, str):
             app.logger.error("[BACK][models/note.py][title.setter] Le titre doit être une chaîne de caractères")
             raise TypeError("Le titre doit être une chaîne de caractères")
+
         cleaned_title = value.strip()
         if not (3 <= len(cleaned_title) <= 80):
             app.logger.error("[BACK][models/note.py][title.setter] Le titre doit comporter entre 3 et 80 caractères")
             raise ValueError("Le titre doit comporter entre 3 et 80 caractères")
+
         app.logger.info("[BACK][models/note.py][title.setter] Le titre est validé")
         self._title = cleaned_title
 
@@ -38,9 +56,11 @@ class Note(BaseModel):
         if not isinstance(value, str):
             app.logger.error("[BACK][models/note.py][content.setter] Le contenu doit être une chaîne de caractères")
             raise TypeError("Le contenu doit être une chaîne de caractères")
+
         cleaned_content = value.strip()
         if not (10 <= len(cleaned_content) <= 1000):
             app.logger.error("[BACK][models/note.py][content.setter] Le contenu doit comporter entre 10 et 1000 caractères")
             raise ValueError("Le contenu doit comporter entre 10 et 1000 caractères")
+        
         app.logger.info("[BACK][models/note.py][content.setter] Le contenu est validé")
         self._content = cleaned_content

@@ -1,5 +1,32 @@
-import base64
-import os
+"""
+[BACK][services/auth_service.py]
+
+Service layer — authentication and user management business logic.
+Called exclusively from auth_routes.py.
+
+Exposed functions:
+  validate_user_data(data)
+  check_availability(data)
+  create_user(data)
+  complete_first_login(user_id)
+  validate_login_data(data)
+  find_user_by_email_or_username(data)
+  authenticate_user(user, password)
+  generate_tokens(user, remember_me)
+  logout_user()
+  validate_reset_request(data)
+  find_user_by_email(email)
+  generate_reset_token(user)
+  send_reset_email(user, reset_token)
+  validate_reset_token(token)
+  clear_reset_token()
+  update_user_password(user, new_password)
+  sanitize_user_profile(user)
+  get_user_from_identity()
+  update_profile(user, data)
+"""
+
+
 from jwt import ExpiredSignatureError, InvalidTokenError
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, set_access_cookies, set_refresh_cookies, unset_jwt_cookies, decode_token
 from flask_mail import Message
@@ -7,6 +34,7 @@ from flask import current_app as app, jsonify, make_response
 from app import db, mail
 from app.models.user import User
 from datetime import timedelta
+import os
 
 
 def validate_user_data(data: dict):
@@ -26,7 +54,9 @@ def validate_user_data(data: dict):
         app.logger.error(f"[BACK][services/auth_service.py][validate_register_data] Erreur de validation des champs du nouvel utilisateur: {str(e)}")
         raise
 
+
 def check_availability(data):
+    """Check in database if email & username are available"""
     email = data.get("email")
     username = data.get("username")
 
@@ -83,30 +113,44 @@ def validate_login_data(data: dict):
     email = data.get("email")
     username = data.get("username")
     password = data.get("password")
+
     if not password or (not email and not username):
-        app.logger.error("[BACK][services/auth_service.py][validate_login_data] Champs invalides : email/username ou mot de passe manquant")
+        app.logger.error(
+            "[BACK][services/auth_service.py][validate_login_data] Champs invalides : email/username ou mot de passe manquant"
+        )
         raise ValueError("Missing email/username or password")
+
     app.logger.info("[BACK][services/auth_service.py][validate_login_data()] Champs valides pour la connexion")
     return {"email": email, "username": username, "password": password}
 
 
 def find_user_by_email_or_username(data: dict) -> User: # type: ignore
-    """Retrieve a user by email or username"""
+    """Retrieve a user by email or username. Raises ValueError if no match is found."""
     try:
         email = data.get("email")
         username = data.get("username")
+        user = None
+
         if email:
             user = db.session.query(User).filter_by(_email=email).first()
             if user:
-                app.logger.info(f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : {email}")
+                app.logger.info(
+                    f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par email : {email}"
+                )
                 return user
+
         if username:
             user = db.session.query(User).filter_by(_username=username).first()
             if user:
-                app.logger.info(f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par username : {username}")
+                app.logger.info(
+                    f"[BACK][services/auth_service.py][find_user_by_email_or_username()] Utilisateur trouvé par username : {username}"
+                )
                 return user
+
         if not user:
-            app.logger.error("[BACK][services/auth_service.py][find_user_by_email_or_username()] Aucun utilisateur trouvé")
+            app.logger.error(
+                "[BACK][services/auth_service.py][find_user_by_email_or_username()] Aucun utilisateur trouvé"
+            )
             raise ValueError("User not found")
 
     except Exception as e:
@@ -119,14 +163,17 @@ def authenticate_user(user: User, password: str):
     if not user:
         app.logger.error("[BACK][services/auth_service.py][authenticate_user()] Utilisateur introuvable")
         raise ValueError("User not found")
+
     if not user.verify_password(password):
         app.logger.error(f"[BACK][services/auth_service.py][authenticate_user()] Mot de passe incorrect")
         raise ValueError("Invalid password")
+
     app.logger.info(f"[BACK][services/auth_service.py][authenticate_user()] Authentification réussie pour l'utilisateur")
     return True
 
 
 def generate_tokens(user: User, remember_me=False):
+    """Generate JWT access and optional refresh token, set them as HTTP-only cookies."""
     try:
         access_token = create_access_token(identity=user.id, expires_delta=timedelta(hours=24))
         refresh_token = None
@@ -147,7 +194,6 @@ def generate_tokens(user: User, remember_me=False):
 
         app.logger.info(f"[BACK][generate_tokens()] Cookies JWT définis avec succès pour {user.email}")
         return response
-
     except Exception as e:
         app.logger.error(f"[BACK][generate_tokens()] Erreur lors de la génération des tokens : {str(e)}")
         raise
@@ -178,7 +224,7 @@ def validate_reset_request(data: dict):
 
 
 def find_user_by_email(email: str) -> User:
-    """Retrieve a user by email"""
+    """Retrieve a user by email. Returns None silently if not found — intentional for reset flow (anti-enumeration)."""
     user = User.query.filter_by(_email=email).first()
     if not user:
         app.logger.error(f"[BACK][services/auth_service.py][find_user_by_email()] Aucun utilisateur trouvé pour {email}")
@@ -377,7 +423,7 @@ def sanitize_user_profile(user: User):
 
 
 def get_user_from_identity() -> User:
-    """Retrieve the current user based on JWT identity"""
+    """Retrieve the current user from JWT identity. Returns None if not found — caller must check before use."""
     user_id = get_jwt_identity()
     user = db.session.query(User).filter_by(id=user_id).first()
     if not user:

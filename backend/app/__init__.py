@@ -75,7 +75,7 @@ def create_app(test_config=None):
     CORS(
         flask_app,
         supports_credentials=True,
-        origins=["http://localhost:5173"]
+        origins=["http://localhost:5173", "https://sweetapp.fr", "https://www.sweetapp.fr"]
     )
 
     # Register models

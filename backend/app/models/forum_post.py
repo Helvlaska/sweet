@@ -1,7 +1,27 @@
+"""
+[BACK][models/forum_post.py]
+
+ForumPost model — inherits from BaseModel (id, created_at, updated_at, entry_date, CRUD).
+
+Fields:
+  title     String (150), validated against FORUM_TITLE_PATTERN
+  content   Text, validated against FORUM_CONTENT_PATTERN
+  likes     Integer, non-negative (default 0)
+  user_id   Foreign key → users.id
+
+Relationships:
+  comments  (cascade delete) → Comment
+
+All fields are exposed via validated property setters.
+Write operations (create, update, delete) are restricted to the post author.
+"""
+
+
 from flask import current_app as app
 from app.models.base import BaseModel
 from app.utils.validators import FORUM_CONTENT_PATTERN, FORUM_TITLE_PATTERN, is_valid
 from app import db
+
 
 class ForumPost(BaseModel):
     __tablename__ = "forum_posts"
@@ -10,7 +30,7 @@ class ForumPost(BaseModel):
     _content = db.Column(db.Text, nullable=False)
     _likes = db.Column(db.Integer, default=0, nullable=False)
 
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
     comments = db.relationship("Comment", backref="forum_posts", cascade="all, delete-orphan")
 
 
@@ -24,13 +44,16 @@ class ForumPost(BaseModel):
         if not isinstance(value, str):
             app.logger.error("[BACK][models/forum_post.py][title.setter] Title n'est pas une string")
             raise TypeError("Le titre doit être une chaîne de caractères")
+
         cleaned_value = value.strip()
         if not cleaned_value:
             app.logger.error("[BACK][models/forum_post.py][title.setter] Title vide")
             raise ValueError("Le titre ne peut pas être vide")
+
         if not is_valid(cleaned_value, FORUM_TITLE_PATTERN):
             app.logger.error("[BACK][models/forum_post.py][title.setter] Format du titre invalide")
             raise ValueError("Le titre ne respecte pas le format attendu")
+
         app.logger.info("[BACK][models/forum_post.py][title.setter] Titre validé")
         self._title = cleaned_value
 
@@ -45,13 +68,16 @@ class ForumPost(BaseModel):
         if not isinstance(value, str):
             app.logger.error("[BACK][models/forum_post.py][content.setter] Content n'est pas une string")
             raise TypeError("Le contenu doit être une chaîne de caractères")
+
         cleaned_value = value.strip()
         if not cleaned_value:
             app.logger.error("[BACK][models/forum_post.py][content.setter] Content vide")
             raise ValueError("Le contenu ne peut pas être vide")
+
         if not is_valid(cleaned_value, FORUM_CONTENT_PATTERN):
             app.logger.error("[BACK][models/forum_post.py][content.setter] Format du contenu invalide")
             raise ValueError("Le contenu ne respecte pas le format attendu")
+
         app.logger.info("[BACK][models/forum_post.py][content.setter] Contenu validé")
         self._content = cleaned_value
 
@@ -66,8 +92,10 @@ class ForumPost(BaseModel):
         if not isinstance(value, int):
             app.logger.error("[BACK][models/forum_post.py][likes.setter] Le nombre de likes doit être un entier")
             raise TypeError("Le nombre de likes doit être un entier")
+
         if value < 0:
             app.logger.error("[BACK][models/forum_post.py][likes.setter] Le nombre de likes ne peut pas être négatif")
             raise ValueError("Le nombre de likes ne peut pas être négatif")
+        
         app.logger.info("[BACK][models/forum_post.py][likes.setter] Nombre de likes validé")
         self._likes = value
