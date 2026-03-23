@@ -46,7 +46,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useForgotPasswordRequest } from "./useForgotPasswordRequest";
 
-import imgForgotPassword from "../../../assets/login/mascot-password-forgotten.webp";
+import imgEyesOpen from "../../../assets/forgotPassword/mascot-eyes-open.webp";
 import Button from "../../../components/Button/buttons";
 import Icon from "../../../components/Icon/Icons";
 
@@ -135,7 +135,7 @@ function ForgotPasswordRequest() {
 
       <div className="forgotPassword__illustration">
         <img
-          src={imgForgotPassword}
+          src={imgEyesOpen}
           alt="Mascotte Sweet en train de demander si vous avez un trou de mémoire"
           className="forgotPassword__mascot"
         />

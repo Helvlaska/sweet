@@ -44,12 +44,12 @@
  */
 
 
-import React from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useResetPassword } from "./useResetPassword";
 
-import imgForgotPassword from "../../../assets/login/mascot-password-forgotten.webp";
+import imgEyesOpen from "../../../assets/forgotPassword/mascot-eyes-open.webp";
+import imgEyesClose from "../../../assets/forgotPassword/mascot-eyes-closed.webp";
 import Button from "../../../components/Button/buttons";
 import Icon from "../../../components/Icon/Icons";
 
@@ -237,7 +237,7 @@ function ResetPassword() {
 
       <div className="resetPassword__illustration">
         <img
-          src={imgForgotPassword}
+          src={showPassword ? imgEyesClose : imgEyesOpen}
           alt="Mascotte Sweet en train de demander si vous avez un trou de mémoire"
           className="resetPassword__mascot"
         />
