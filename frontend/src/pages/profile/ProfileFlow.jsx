@@ -1,22 +1,29 @@
-import { useProfileFlow } from "./useProfileFlow";
-
-import ProfileUser from "./user/ProfileUser";
-import ProfileMedication from "./medication/ProfileMedication";
+import { NavLink, Outlet } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 
 
 function ProfileFlow() {
-  const { currentPage, goToMedication, goToProfile } = useProfileFlow();
-
-  const pages = [
-    <ProfileUser goToMedication={goToMedication} />,
-    <ProfileMedication goToProfile={goToProfile} />
-  ];
-
   return (
     <main className="profileFlow">
       <NavBar />
-      {pages[currentPage]}
+
+      <nav className="profileFlow__btn">
+        <NavLink
+          to="/profile/user"
+          className="btn-pill-solid--orange"
+        >
+          Informations personnelles
+        </NavLink>
+
+        <NavLink
+          to="/profile/medication"
+          className="btn-pill-solid--orange"
+        >
+          Médications et posologies
+        </NavLink>
+      </nav>
+
+      <Outlet />
     </main>
   );
 }
