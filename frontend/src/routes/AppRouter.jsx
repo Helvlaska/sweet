@@ -19,7 +19,9 @@ import HealthProPage from "../pages/HealthProPage";
 // import ForumPage from "../pages/ForumPage";
 // import CalendarPage from "../pages/CalendarPage";
 import ArticlePage from "../pages/ArticlePage";
-import Profile from "../pages/profile/ProfileFlow";
+import ProfileFlow from "../pages/profile/ProfileFlow";
+import ProfileUser from "../pages/profile/user/ProfileUser";
+import ProfileMedication from "../pages/profile/medication/ProfileMedication";
 import NotFound from "../pages/notFound/NotFound";
 
 
@@ -97,9 +99,13 @@ export default function AppRouter() {
 
         <Route path="/profile" element={
           <ProtectedRoute>
-            <Profile />
+            <ProfileFlow />
           </ProtectedRoute>
-        } />
+        }>
+          <Route index element={<Navigate to="user" replace />} />
+          <Route path="user" element={<ProfileUser />} />
+          <Route path="medication" element={<ProfileMedication />} />
+        </Route>
 
         {/* Gestion routes inconnues */}
         <Route path="*" element={
