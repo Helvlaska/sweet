@@ -1,7 +1,9 @@
 import { useProfileUser } from "./useProfileUser";
 import { useProfileAuth } from "./useProfileAuth";
-import { useProfilePassword } from "./useProfilePassword";
+import { useProfilePassword } from "../user/profilePassword/useProfilePassword";
 import { useAuth } from "../../../context/useAuth";
+
+import ProfileInfo from "./profileInfo/ProfileInfo";
 
 import defaultPicture from "../../../assets/profile/default_profile_picture.webp";
 import Button from "../../../components/Button/buttons";
@@ -49,6 +51,7 @@ function ProfileUser({ goToMedication }) {
 
   return (
     <section className="profile">
+      <ProfileInfo />
       <div className="profile__picture">
         <input
           id="profilePicture"

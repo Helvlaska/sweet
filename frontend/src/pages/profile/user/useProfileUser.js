@@ -6,15 +6,14 @@ import { formatData } from "../../../utils/dataFormatter"
 
 export function useProfileUser() {
   const { user, updateProfile } = useAuth();
-  const initialData = user;
 
   // States
-  const [firstName, setFirstName] = useState(initialData.first_name || "");
-  const [lastName, setLastName] = useState(initialData.last_name || "");
-  const [gender, setGender] = useState(initialData.gender || "");
-  const [height, setHeight] = useState(initialData.height || "");
-  const [city, setCity] = useState(initialData.city || "");
-  const [dateOfBirth, setDateOfBirth] = useState(initialData.date_of_birth || "");
+  const [firstName, setFirstName] = useState(user.first_name || "");
+  const [lastName, setLastName] = useState(user.last_name || "");
+  const [gender, setGender] = useState(user.gender || "");
+  const [height, setHeight] = useState(user.height || "");
+  const [city, setCity] = useState(user.city || "");
+  const [dateOfBirth, setDateOfBirth] = useState(user.date_of_birth || "");
   const [profilePicture, setProfilePicture] = useState(null);
   const [preview, setPreview] = useState(null);
   const [errors, setErrors] = useState([]);
@@ -54,61 +53,61 @@ export function useProfileUser() {
   function validateRequiredFields() {
     const validationErrors = [];
 
-    if (!(firstName || initialData.first_name)) {
+    if (!(firstName || user.first_name)) {
       validationErrors.push(
         "Renseigne ton prénom."
       );
     }
 
-    if ((firstName || initialData.first_name) && !validateField("first_name", (firstName || initialData.first_name))) {
+    if ((firstName || user.first_name) && !validateField("first_name", (firstName || user.first_name))) {
       validationErrors.push(
         "Prénom invalide."
       );
     }
 
-    if (!(lastName || initialData.last_name)) {
+    if (!(lastName || user.last_name)) {
       validationErrors.push(
         "Renseigne ton nom."
       );
     }
 
-    if ((lastName || initialData.last_name) && !validateField("last_name", (lastName || initialData.last_name))) {
+    if ((lastName || user.last_name) && !validateField("last_name", (lastName || user.last_name))) {
       validationErrors.push(
         "Nom invalide."
       );
     }
 
-    if (!(gender || initialData.gender)) {
+    if (!(gender || user.gender)) {
       validationErrors.push(
         "Renseigne ton genre."
       );
     }
 
-    if ((gender || initialData.gender) && !validateField("gender", (gender || initialData.gender))) {
+    if ((gender || user.gender) && !validateField("gender", (gender || user.gender))) {
       validationErrors.push(
         "Genre invalide."
       );
     }
 
-    if (!(height || initialData.height)) {
+    if (!(height || user.height)) {
       validationErrors.push(
         "Renseigne ta taille."
       );
     }
 
-    if ((height || initialData.height) && !validateField("height", (height || initialData.height))) {
+    if ((height || user.height) && !validateField("height", (height || user.height))) {
       validationErrors.push(
         "Taille invalide."
       );
     }
 
-    if (!(city || initialData.city)) {
+    if (!(city || user.city)) {
       validationErrors.push(
         "Renseigne ta ville."
       );
     }
 
-    if ((city || initialData.city) && !validateField("city", (city || initialData.city))) {
+    if ((city || user.city) && !validateField("city", (city || user.city))) {
       validationErrors.push(
         "Ville invalide."
       );
@@ -140,11 +139,11 @@ export function useProfileUser() {
     }
 
     const data = {
-      first_name: firstName || initialData.first_name,
-      last_name: lastName || initialData.last_name,
-      gender: gender || initialData.gender,
-      height: height || initialData.height,
-      city: city || initialData.city,
+      first_name: firstName || user.first_name,
+      last_name: lastName || user.last_name,
+      gender: gender || user.gender,
+      height: height || user.height,
+      city: city || user.city,
       date_of_birth: dateOfBirth || undefined,
       profile_picture: profilePicture || undefined,
     };
