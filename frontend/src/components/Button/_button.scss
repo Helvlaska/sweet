@@ -91,7 +91,7 @@
 
 // ACTIVE BUTTON
 @mixin btn-active-bg($bg-color, $color) {
-  &.is-active {
+  &.active {
     border-color: $bg-color;
     background-color: $bg-color;
     color: $color;
@@ -310,6 +310,7 @@
 .btn-pill-solid--orange {
   @include btn-pill();
   @include btn-solid-color($light-orange, $white);
+  @include btn-hover-bg($main-orange, $white);
   @include btn-active-bg($main-orange, $white);
   width: fit-content;
   padding: 10px 15px;
