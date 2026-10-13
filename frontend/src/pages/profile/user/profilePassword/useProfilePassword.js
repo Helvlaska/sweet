@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "../../../context/useAuth";
-import { checkPasswordRules } from "../../../utils/validator";
+import { useAuth } from "../../../../context/useAuth";
+import { checkPasswordRules } from "../../../../utils/validator";
 
 
 export function useProfilePassword() {
@@ -8,9 +8,23 @@ export function useProfilePassword() {
 
   //States
   const [password, setPassword] = useState("");
-  const [passwordChecklist, setPasswordChecklist] = useState(null);
+  const [passwordChecklist, setPasswordChecklist] = useState(checkPasswordRules(""));
   const [showPassword, setShowPassword] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [errors, setErrors] = useState([]);
+
+
+  function editing() {
+    setIsEditing(true);
+  }
+
+  function cancelEditing() {
+    setPassword("");
+    setPasswordChecklist(checkPasswordRules(""));
+    setShowPassword(false);
+    setErrors([]);
+    setIsEditing(false);
+  }
 
 
   function handleChange(event) {
@@ -95,6 +109,10 @@ export function useProfilePassword() {
 
     try {
       await updatePassword(payload);
+      setPassword("");
+      setPasswordChecklist(checkPasswordRules(""));
+      setShowPassword(false);
+      setIsEditing(false);
 
     } catch (error) {
       console.error("Une erreur est survenue lors de la modification du mot de passe", error);
@@ -106,7 +124,10 @@ export function useProfilePassword() {
     password,
     passwordChecklist,
     showPassword,
+    isEditing,
     errors,
+    editing,
+    cancelEditing,
     handleChange,
     togglePasswordVisibility,
     handleSubmit
