@@ -2,10 +2,6 @@ import { useProfileInfo } from "./useProfileInfo";
 import { useAuth } from "../../../../context/useAuth";
 import { translateGender } from "../../../../utils/translateEnum/translateGender";
 
-import ProfileUsername from "../profileUsername/ProfileUsername";
-import ProfileEmail from "../profileEmail/ProfileEmail";
-import ProfilePassword from "../profilePassword/ProfilePassword";
-
 import defaultPicture from "../../../../assets/profile/default_profile_picture.webp";
 import Button from "../../../../components/Button/buttons";
 import Icon from "../../../../components/Icon/Icons";
@@ -64,10 +60,6 @@ function ProfileInfo() {
           </Button>
         </div>
       </div>
-
-      <ProfileUsername />
-      <ProfileEmail />
-      <ProfilePassword />
 
       {isEditing ? (
         <div className="profileInfo__edit">
