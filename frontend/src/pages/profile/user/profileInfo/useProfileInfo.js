@@ -14,8 +14,6 @@ export function useProfileInfo() {
   const [height, setHeight] = useState(user.height || "");
   const [city, setCity] = useState(user.city || "");
   const [dateOfBirth, setDateOfBirth] = useState(user.date_of_birth || "");
-  const [profilePicture, setProfilePicture] = useState(null);
-  const [preview, setPreview] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [errors, setErrors] = useState([]);
 
@@ -142,16 +140,6 @@ export function useProfileInfo() {
   }
 
 
-  function handleFileChange(event) {
-    const file = event.target.files[0];
-
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-      setProfilePicture(file);
-    }
-  }
-
-
   async function buildProfilePayload() {
     if (!validateRequiredFields()) {
       return false;
@@ -164,7 +152,6 @@ export function useProfileInfo() {
       height: height || user.height,
       city: city || user.city,
       date_of_birth: dateOfBirth || undefined,
-      profile_picture: profilePicture || undefined,
     };
 
     const formattedData = await formatData("user", data);
@@ -184,7 +171,6 @@ export function useProfileInfo() {
 
     try {
       await updateProfile(payload);
-      setPreview(null);
       setIsEditing(false);
 
     } catch (error) {
@@ -200,12 +186,10 @@ export function useProfileInfo() {
     city,
     dateOfBirth,
     errors,
-    preview,
     isEditing,
     editing,
     cancelEditing,
     handleChange,
-    handleFileChange,
     handleSubmit,
   }
 }
