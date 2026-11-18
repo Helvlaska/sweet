@@ -1,11 +1,14 @@
 import { NavLink, Outlet } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
+import ProfileAvatar from "./user/profileAvatar/ProfileAvatar";
 
 
 function ProfileFlow() {
   return (
     <main className="profileFlow">
       <NavBar />
+
+      <ProfileAvatar />
 
       <nav className="profileFlow__btn">
         <NavLink
