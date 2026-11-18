@@ -1,16 +1,12 @@
 import { useProfileInfo } from "./useProfileInfo";
-import { useAuth } from "../../../../context/useAuth";
 import { translateGender } from "../../../../utils/translateEnum/translateGender";
 
-import defaultPicture from "../../../../assets/profile/default_profile_picture.webp";
 import Button from "../../../../components/Button/buttons";
 import Icon from "../../../../components/Icon/Icons";
 import SelectedField from "../../../../components/Form/SelectedField/SelectedField";
 
 
 function ProfileInfo() {
-  const { user } = useAuth();
-
   const {
     firstName,
     lastName,
@@ -19,48 +15,15 @@ function ProfileInfo() {
     city,
     dateOfBirth,
     errors,
-    preview,
     isEditing,
     editing,
     cancelEditing,
     handleChange,
-    handleFileChange,
     handleSubmit,
   } = useProfileInfo();
 
   return (
     <section className="profileInfo">
-      <div className="profileInfo__avatar">
-        <input
-          id="profilePicture"
-          name="profilePicture"
-          type="file"
-          className="profileInfo__avatar-input"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-
-        <div className="profileInfo__avatar-wrapper">
-          <label htmlFor="profilePicture" className="profileInfo__avatar-label">
-            <img
-              src={preview || user.profile_picture || defaultPicture}
-              className="profileInfo__avatar-img"
-            />
-          </label>
-
-          <Button
-            onClick={preview ? handleSubmit : function() { document.getElementById("profilePicture").click() }}
-            className="btn-round--kaki profileInfo__avatar-btn"
-          >
-            <Icon
-              name={preview ? "check" : "pen"}
-              strokeWidth="1"
-              size={20}
-            />
-          </Button>
-        </div>
-      </div>
-
       {isEditing ? (
         <div className="profileInfo__edit">
           <div className="profileInfo__edit-header">
